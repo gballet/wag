@@ -1,0 +1,11540 @@
+Disassembly error at 0x7f83f0010094
+
+trap.no_function:
+00007f83f0010000	movl	$1, result
+00007f83f0010006	movq	-8(text), scratch
+00007f83f001000a	jmp	retpoline
+
+resume:
+00007f83f0010010	xorl	zero, zero
+00007f83f0010012	retq
+
+start:
+00007f83f0010020	xorl	zero, zero
+00007f83f0010022	nop
+00007f83f0010023	nop
+00007f83f0010024	nop
+00007f83f0010025	nop
+00007f83f0010026	nop
+00007f83f0010027	nop
+00007f83f0010028	nop
+00007f83f0010029	nop
+00007f83f001002a	nop
+00007f83f001002b	nop
+00007f83f001002c	nop
+00007f83f001002d	nop
+00007f83f001002e	nop
+00007f83f001002f	nop
+
+enter:
+00007f83f0010030	xorl	zero, zero
+00007f83f0010032	xorl	result, result
+00007f83f0010034	popq	scratch
+00007f83f0010036	testl	scratch, scratch
+00007f83f0010038	je	trap.exit
+00007f83f001003a	addq	text, scratch
+00007f83f001003d	callq	retpoline
+
+trap.exit:
+00007f83f0010042	shlq	$0x20, result
+00007f83f0010046	movq	-8(text), scratch
+00007f83f001004a	jmp	retpoline
+
+retpoline:
+00007f83f0010050	callq	retpoline.setup
+00007f83f0010055 .0:	pause
+00007f83f0010057	jmp	.0			; back
+
+retpoline.setup:
+00007f83f0010060	movq	scratch, (sp)
+00007f83f0010064	xorl	scratch, scratch
+00007f83f0010066	retq
+
+00007f83f0010084	addb	resultb, (result)
+00007f83f0010086	addb	resultb, (result)
+00007f83f0010088	addb	resultb, (result)
+00007f83f001008a	addb	resultb, (result)
+00007f83f001008c	addb	resultb, (result)
+00007f83f001008e	addb	resultb, (result)
+00007f83f0010098	addb	resultb, (result)
+00007f83f001009a	addb	resultb, (result)
+00007f83f001009c	addb	resultb, (result)
+00007f83f001009e	addb	resultb, (result)
+00007f83f00100a0	addb	resultb, (result)
+00007f83f00100a2	addb	resultb, (result)
+00007f83f00100a8	addb	resultb, (result)
+00007f83f00100aa	addb	resultb, (result)
+00007f83f00100ac	addb	resultb, (result)
+00007f83f00100ae	addb	resultb, (result)
+00007f83f00100b0	addb	resultb, (result)
+00007f83f00100b2	addb	resultb, (result)
+00007f83f00100b4	addb	resultb, (result)
+00007f83f00100b6	addb	resultb, (result)
+00007f83f00100bc	addb	resultb, (result)
+00007f83f00100be	addb	resultb, (result)
+00007f83f00100c0	addb	resultb, (result)
+00007f83f00100c2	addb	suspendbit, (r7)
+00007f83f00100c5	addb	resultb, (result)
+00007f83f00100c7	addb	resultb, (result)
+00007f83f00100c9	addb	resultb, (result)
+00007f83f00100cb	addb	resultb, (result)
+00007f83f00100cd	addb	resultb, (result)
+00007f83f00100cf	addb	resultb, (result)
+00007f83f00100d1	addb	resultb, (result)
+00007f83f00100d3	addb	resultb, (result)
+00007f83f00100d5	addb	resultw, resultb
+00007f83f00100d7	addb	resultb, (r8)
+00007f83f00100da	addb	resultb, (result)
+00007f83f00100dc	addb	resultb, (result)
+00007f83f00100de	addb	resultb, (result)
+00007f83f00100e0	addb	resultb, (result)
+00007f83f00100e2	addb	resultb, (result)
+00007f83f00100e8	subb	$0, 0x70000(result)
+00007f83f00100ef	addb	resultb, 0x60000ba(result)
+00007f83f00100f5	addb	resultb, (result)
+00007f83f00100f7	addb	resultw, 0x90000ba(result)
+00007f83f00100fd	addb	resultb, (result)
+00007f83f00100ff	addb	resultb, suspendbit
+00007f83f0010101	rolb	$0, (zero)
+00007f83f0010104	addb	resultb, (result)
+00007f83f0010106	movq	-8(text), scratch
+00007f83f001010a	jmp	retpoline
+
+trap.unreachable:
+00007f83f0010110	movl	$3, result
+00007f83f0010116	movq	-8(text), scratch
+00007f83f001011a	jmp	retpoline
+
+trap.call_stack_exhausted:
+00007f83f0010120	subq	$0x12, (sp)
+00007f83f0010125	movl	$4, result
+00007f83f001012b	movq	-8(text), scratch
+00007f83f001012f	jmp	retpoline
+
+trap.memory_access_out_of_bounds:
+00007f83f0010140	movl	$5, result
+00007f83f0010146	movq	-8(text), scratch
+00007f83f001014a	jmp	retpoline
+
+trap.indirect_call_index_out_of_bounds:
+00007f83f0010150	movl	$6, result
+00007f83f0010156	movq	-8(text), scratch
+00007f83f001015a	jmp	retpoline
+
+trap.indirect_call_signature_mismatch:
+00007f83f0010160	movl	$7, result
+00007f83f0010166	movq	-8(text), scratch
+00007f83f001016a	jmp	retpoline
+
+trap.integer_divide_by_zero:
+00007f83f0010170	movl	$8, result
+00007f83f0010176	movq	-8(text), scratch
+00007f83f001017a	jmp	retpoline
+
+trap.integer_overflow:
+00007f83f0010180	movl	$9, result
+00007f83f0010186	movq	-8(text), scratch
+00007f83f001018a	jmp	retpoline
+
+ethereum_useGas:
+00007f83f0010190	movq	-0x40(text), scratch
+00007f83f0010194	jmp	retpoline
+
+ethereum_callDataCopy:
+00007f83f00101a0	movq	-0x38(text), scratch
+00007f83f00101a4	jmp	retpoline
+
+ethereum_getCallDataSize:
+00007f83f00101b0	movq	-0x30(text), scratch
+00007f83f00101b4	jmp	retpoline
+
+ethereum_finish:
+00007f83f00101c0	movq	-0x28(text), scratch
+00007f83f00101c4	jmp	retpoline
+
+__wasm_call_ctors:
+00007f83f00101d0	leaq	(sp), scratch
+00007f83f00101d8	cmpq	stacklimit, scratch
+00007f83f00101db	jge	.1
+00007f83f00101dd	callq	trap.call_stack_exhausted
+00007f83f00101e2 .1:	xorl	result, result
+00007f83f00101e4	retq
+
+main:
+00007f83f00101f0	leaq	-0x28(sp), scratch
+00007f83f00101f8	cmpq	stacklimit, scratch
+00007f83f00101fb	jge	.2
+00007f83f00101fd	callq	trap.call_stack_exhausted
+00007f83f0010202 .2:	pushq	zero
+00007f83f0010203	pushq	zero
+00007f83f0010204	movl	-0x18(memory), r5
+00007f83f0010208	subl	$0x110, r5
+00007f83f001020e	movl	r5, 8(sp)
+00007f83f0010212	movl	r5, -0x18(memory)
+00007f83f0010216	callq	_ZN9ewasm_api13calldata_size17h3360deef9ee9f525E
+00007f83f001021b	movl	result, (sp)
+00007f83f001021e	movl	result, r5
+00007f83f0010220	addl	$0x1f, r5
+00007f83f0010223	shrl	$5, r5
+00007f83f0010226	imull	$0xc, r5, r5
+00007f83f0010229	addl	$0x3c, r5
+00007f83f001022c	movl	r5, r5
+00007f83f001022e	pushq	r5
+00007f83f0010230	callq	_ZN9ewasm_api11consume_gas17h88866a5aa2948dd7E
+00007f83f0010235	leaq	8(sp), sp
+00007f83f001023a	movl	8(sp), r5
+00007f83f001023e	movl	(sp), r6
+00007f83f0010241	pushq	r5
+00007f83f0010243	pushq	r6
+00007f83f0010245	callq	_ZN9ewasm_api20unsafe_calldata_copy17h33b8897c19838d90E
+00007f83f001024a	leaq	0x10(sp), sp
+00007f83f001024f	movl	8(sp), r5
+00007f83f0010253	addl	$0x10, r5
+00007f83f0010256	pushq	r5
+00007f83f0010258	pushq	zero
+00007f83f0010259	pushq	$0x4c
+00007f83f001025b	callq	memset
+00007f83f0010260	leaq	0x18(sp), sp
+00007f83f0010265	movl	8(sp), r5
+00007f83f0010269	addl	$0x74, r5
+00007f83f001026c	movq	0x100114(memory), r6
+00007f83f0010273	movl	r5, scratch
+00007f83f0010275	addq	memory, scratch
+00007f83f0010278	movq	r6, (scratch)
+00007f83f001027b	movl	8(sp), r5
+00007f83f001027f	addl	$0x6c, r5
+00007f83f0010282	movq	0x10010c(memory), r6
+00007f83f0010289	movl	r5, scratch
+00007f83f001028b	addq	memory, scratch
+00007f83f001028e	movq	r6, (scratch)
+00007f83f0010291	movl	8(sp), r5
+00007f83f0010295	addl	$0x64, r5
+00007f83f0010298	movq	0x100104(memory), r6
+00007f83f001029f	movl	r5, scratch
+00007f83f00102a1	addq	memory, scratch
+00007f83f00102a4	movq	r6, (scratch)
+00007f83f00102a7	movl	8(sp), r5
+00007f83f00102ab	movq	0x1000fc(memory), r6
+00007f83f00102b2	movl	r5, scratch
+00007f83f00102b4	addq	memory, scratch
+00007f83f00102b7	movq	r6, 0x5c(scratch)
+00007f83f00102bb	movl	8(sp), r5
+00007f83f00102bf	addl	$0x10, r5
+00007f83f00102c2	movl	8(sp), r6
+00007f83f00102c6	movl	r6, scratch
+00007f83f00102c8	addq	memory, scratch
+00007f83f00102cb	movl	(scratch), r6
+00007f83f00102cd	movl	8(sp), r7
+00007f83f00102d1	movl	r7, scratch
+00007f83f00102d3	addq	memory, scratch
+00007f83f00102d6	movl	8(scratch), r7
+00007f83f00102d9	pushq	r5
+00007f83f00102db	pushq	r6
+00007f83f00102dd	pushq	r7
+00007f83f00102df	callq	_ZN6digest6digest6Digest5input17h9d9078f59bf2496dE
+00007f83f00102e4	leaq	0x18(sp), sp
+00007f83f00102e9	movl	8(sp), r5
+00007f83f00102ed	addl	$0xa0, r5
+00007f83f00102f3	movl	8(sp), r6
+00007f83f00102f7	addl	$0x10, r6
+00007f83f00102fa	pushq	r5
+00007f83f00102fc	pushq	r6
+00007f83f00102fe	pushq	$0x70
+00007f83f0010300	callq	memcpy
+00007f83f0010305	leaq	0x18(sp), sp
+00007f83f001030a	movl	8(sp), r5
+00007f83f001030e	addl	$0x80, r5
+00007f83f0010314	movl	8(sp), r6
+00007f83f0010318	addl	$0xa0, r6
+00007f83f001031e	pushq	r5
+00007f83f0010320	pushq	r6
+00007f83f0010322	callq	_ZN6digest6digest6Digest6result17h15f6330440b1b1a2E
+00007f83f0010327	leaq	0x10(sp), sp
+00007f83f001032c	movl	8(sp), r5
+00007f83f0010330	addl	$0x80, r5
+00007f83f0010336	pushq	r5
+00007f83f0010338	callq	_ZN9ewasm_api11finish_data17h2abb6b0303d2b1ccE
+00007f83f001033d	leaq	8(sp), sp
+00007f83f0010342	callq	trap.unreachable
+00007f83f0010347	leaq	0x10(sp), sp
+00007f83f001034c	retq
+
+_ZN9ewasm_api13calldata_size17h3360deef9ee9f525E:
+00007f83f0010350	leaq	(sp), scratch
+00007f83f0010358	cmpq	stacklimit, scratch
+00007f83f001035b	jge	.3
+00007f83f001035d	callq	trap.call_stack_exhausted
+00007f83f0010362 .3:	callq	ethereum_getCallDataSize
+00007f83f0010367	movl	result, result
+00007f83f0010369	retq
+
+_ZN9ewasm_api11consume_gas17h88866a5aa2948dd7E:
+00007f83f0010370	leaq	-8(sp), scratch
+00007f83f0010378	cmpq	stacklimit, scratch
+00007f83f001037b	jge	.4
+00007f83f001037d	callq	trap.call_stack_exhausted
+00007f83f0010382 .4:	movq	8(sp), r5
+00007f83f0010387	pushq	r5
+00007f83f0010389	callq	ethereum_useGas
+00007f83f001038e	leaq	8(sp), sp
+00007f83f0010393	xorl	result, result
+00007f83f0010395	retq
+
+_ZN9ewasm_api20unsafe_calldata_copy17h33b8897c19838d90E:
+00007f83f00103a0	leaq	-0x20(sp), scratch
+00007f83f00103a8	cmpq	stacklimit, scratch
+00007f83f00103ab	jge	.5
+00007f83f00103ad	callq	trap.call_stack_exhausted
+00007f83f00103b2 .5:	pushq	zero
+00007f83f00103b3	movl	0x10(sp), r5
+00007f83f00103b7	movl	r5, result
+00007f83f00103b9	cmpl	$0xff, result
+00007f83f00103bc	jle	.6
+00007f83f00103c2	movl	0x10(sp), r5
+00007f83f00103c6	testl	r5, r5
+00007f83f00103c8	je	.7
+00007f83f00103ce	movl	0x10(sp), r5
+00007f83f00103d2	pushq	r5
+00007f83f00103d4	pushq	$1
+00007f83f00103d6	callq	__rust_alloc
+00007f83f00103db	leaq	0x10(sp), sp
+00007f83f00103e0	movl	result, (sp)
+00007f83f00103e3	testl	result, result
+00007f83f00103e5	jne	.8
+00007f83f00103eb	callq	trap.unreachable
+00007f83f00103f0 .7:	movl	$1, scratch
+00007f83f00103f6	movl	scratch, (sp)
+00007f83f00103f9 .8:	movl	(sp), r5
+00007f83f00103fc	movl	0x10(sp), r6
+00007f83f0010400	pushq	r5
+00007f83f0010402	pushq	zero
+00007f83f0010403	pushq	r6
+00007f83f0010405	callq	ethereum_callDataCopy
+00007f83f001040a	leaq	0x18(sp), sp
+00007f83f001040f	movl	0x18(sp), r5
+00007f83f0010413	movl	0x10(sp), r6
+00007f83f0010417	movl	r5, scratch
+00007f83f0010419	addq	memory, scratch
+00007f83f001041c	movl	r6, 8(scratch)
+00007f83f001041f	movl	0x18(sp), r5
+00007f83f0010423	movl	0x10(sp), r6
+00007f83f0010427	movl	r5, scratch
+00007f83f0010429	addq	memory, scratch
+00007f83f001042c	movl	r6, 4(scratch)
+00007f83f001042f	movl	0x18(sp), r5
+00007f83f0010433	movl	(sp), r6
+00007f83f0010436	movl	r5, scratch
+00007f83f0010438	addq	memory, scratch
+00007f83f001043b	movl	r6, (scratch)
+00007f83f001043d	leaq	8(sp), sp
+00007f83f0010442	retq
+00007f83f0010443 .6:	callq	_ZN49_$LT$alloc..raw_vec..RawVec$LT$T$C$$u20$A$GT$$GT$11allocate_in28_$u7b$$u7b$closure$u7d$$u7d$17h2030fdde2f3687b4E.llvm.7857267965200689934
+00007f83f0010448	callq	trap.unreachable
+00007f83f001044d	leaq	8(sp), sp
+00007f83f0010452	retq
+
+_ZN6digest6digest6Digest5input17h9d9078f59bf2496dE:
+00007f83f0010460	leaq	-0x38(sp), scratch
+00007f83f0010468	cmpq	stacklimit, scratch
+00007f83f001046b	jge	.9
+00007f83f001046d	callq	trap.call_stack_exhausted
+00007f83f0010472 .9:	pushq	zero
+00007f83f0010473	pushq	zero
+00007f83f0010474	pushq	zero
+00007f83f0010475	pushq	zero
+00007f83f0010476	movl	0x38(sp), r5
+00007f83f001047a	movl	0x38(sp), r6
+00007f83f001047e	movl	r6, scratch
+00007f83f0010480	addq	memory, scratch
+00007f83f0010483	movq	(scratch), r6
+00007f83f0010486	movl	0x28(sp), r7
+00007f83f001048a	movl	r7, r7
+00007f83f001048c	shlq	$3, r7
+00007f83f0010490	addq	r7, r6
+00007f83f0010493	movl	r5, scratch
+00007f83f0010495	addq	memory, scratch
+00007f83f0010498	movq	r6, (scratch)
+00007f83f001049b	movl	0x38(sp), r5
+00007f83f001049f	addl	$0x4c, r5
+00007f83f00104a2	movl	r5, 0x18(sp)
+00007f83f00104a6	movl	0x38(sp), r5
+00007f83f00104aa	addl	$8, r5
+00007f83f00104ad	movl	r5, scratch
+00007f83f00104af	addq	memory, scratch
+00007f83f00104b2	movl	(scratch), r5
+00007f83f00104b4	movl	r5, 0x10(sp)
+00007f83f00104b8	testl	r5, r5
+00007f83f00104ba	je	.a
+00007f83f00104c0	movl	0x10(sp), r5
+00007f83f00104c4	movl	$0x40, r6
+00007f83f00104ca	subl	r5, r6
+00007f83f00104cc	movl	r6, 8(sp)
+00007f83f00104d0	movl	0x28(sp), r5
+00007f83f00104d4	movl	r6, result
+00007f83f00104d6	cmpl	r5, result
+00007f83f00104d8	jbe	.b
+00007f83f00104de	movl	0x10(sp), r5
+00007f83f00104e2	movl	0x28(sp), r6
+00007f83f00104e6	addl	r6, r5
+00007f83f00104e8	movl	r5, 0x18(sp)
+00007f83f00104ec	movl	0x10(sp), r6
+00007f83f00104f0	movl	r5, result
+00007f83f00104f2	cmpl	r6, result
+00007f83f00104f4	jb	.c
+00007f83f00104fa	movl	0x18(sp), r5
+00007f83f00104fe	movl	r5, result
+00007f83f0010500	cmpl	$0x41, result
+00007f83f0010503	jae	.d
+00007f83f0010509	movl	0x38(sp), r5
+00007f83f001050d	movl	0x10(sp), r6
+00007f83f0010511	addl	r6, r5
+00007f83f0010513	addl	$0xc, r5
+00007f83f0010516	movl	0x30(sp), r6
+00007f83f001051a	movl	0x28(sp), r7
+00007f83f001051e	pushq	r5
+00007f83f0010520	pushq	r6
+00007f83f0010522	pushq	r7
+00007f83f0010524	callq	memcpy
+00007f83f0010529	leaq	0x18(sp), sp
+00007f83f001052e	movl	0x38(sp), r5
+00007f83f0010532	addl	$8, r5
+00007f83f0010535	movl	0x18(sp), r6
+00007f83f0010539	movl	r5, scratch
+00007f83f001053b	addq	memory, scratch
+00007f83f001053e	movl	r6, (scratch)
+00007f83f0010540	leaq	0x20(sp), sp
+00007f83f0010545	retq
+00007f83f0010546 .b:	movl	0x10(sp), r5
+00007f83f001054a	movl	r5, result
+00007f83f001054c	cmpl	$0x41, result
+00007f83f001054f	jae	.e
+00007f83f0010555	movl	0x38(sp), r5
+00007f83f0010559	addl	$0xc, r5
+00007f83f001055c	movl	r5, (sp)
+00007f83f001055f	movl	0x10(sp), r6
+00007f83f0010563	addl	r6, r5
+00007f83f0010565	movl	0x30(sp), r6
+00007f83f0010569	movl	8(sp), r7
+00007f83f001056d	pushq	r5
+00007f83f001056f	pushq	r6
+00007f83f0010571	pushq	r7
+00007f83f0010573	callq	memcpy
+00007f83f0010578	leaq	0x18(sp), sp
+00007f83f001057d	movl	0x38(sp), r5
+00007f83f0010581	movl	r5, scratch
+00007f83f0010583	addq	memory, scratch
+00007f83f0010586	movl	zero, 8(scratch)
+00007f83f0010589	movl	0x18(sp), r5
+00007f83f001058d	movl	(sp), r6
+00007f83f0010590	pushq	r5
+00007f83f0010592	pushq	r6
+00007f83f0010594	callq	_ZN4sha212sha256_utils11compress25617heb5d99e73f591819E
+00007f83f0010599	leaq	0x10(sp), sp
+00007f83f001059e	movl	0x28(sp), r5
+00007f83f00105a2	movl	8(sp), r6
+00007f83f00105a6	subl	r6, r5
+00007f83f00105a8	movl	r5, 0x28(sp)
+00007f83f00105ac	movl	0x30(sp), r5
+00007f83f00105b0	movl	8(sp), r6
+00007f83f00105b4	addl	r6, r5
+00007f83f00105b6	movl	r5, 0x30(sp)
+00007f83f00105ba .a:	movl	0x28(sp), r5
+00007f83f00105be	movl	r5, result
+00007f83f00105c0	cmpl	$0x40, result
+00007f83f00105c3	jb	.f
+00007f83f00105c9	movl	0x28(sp), r5
+00007f83f00105cd	movl	r5, 0x10(sp)
+00007f83f00105d1 .10:	movl	0x18(sp), r5
+00007f83f00105d5	movl	0x30(sp), r6
+00007f83f00105d9	pushq	r5
+00007f83f00105db	pushq	r6
+00007f83f00105dd	callq	_ZN4sha212sha256_utils11compress25617heb5d99e73f591819E
+00007f83f00105e2	leaq	0x10(sp), sp
+00007f83f00105e7	movl	0x30(sp), r5
+00007f83f00105eb	addl	$0x40, r5
+00007f83f00105ee	movl	r5, 0x30(sp)
+00007f83f00105f2	movl	0x10(sp), r5
+00007f83f00105f6	addl	$-0x40, r5
+00007f83f00105f9	movl	r5, 0x10(sp)
+00007f83f00105fd	movl	r5, result
+00007f83f00105ff	cmpl	$0x3f, result
+00007f83f0010602	ja	.10			; back
+00007f83f0010608	movl	0x28(sp), r5
+00007f83f001060c	andl	$0x3f, r5
+00007f83f001060f	movl	r5, 0x10(sp)
+00007f83f0010613	jmp	.11
+00007f83f0010618 .f:	movl	0x28(sp), r5
+00007f83f001061c	movl	r5, 0x10(sp)
+00007f83f0010620 .11:	movl	0x38(sp), r5
+00007f83f0010624	addl	$0xc, r5
+00007f83f0010627	movl	0x30(sp), r6
+00007f83f001062b	movl	0x10(sp), r7
+00007f83f001062f	pushq	r5
+00007f83f0010631	pushq	r6
+00007f83f0010633	pushq	r7
+00007f83f0010635	callq	memcpy
+00007f83f001063a	leaq	0x18(sp), sp
+00007f83f001063f	movl	0x38(sp), r5
+00007f83f0010643	addl	$8, r5
+00007f83f0010646	movl	0x10(sp), r6
+00007f83f001064a	movl	r5, scratch
+00007f83f001064c	addq	memory, scratch
+00007f83f001064f	movl	r6, (scratch)
+00007f83f0010651	leaq	0x20(sp), sp
+00007f83f0010656	retq
+00007f83f0010657 .c:	movl	0x10(sp), r5
+00007f83f001065b	movl	0x18(sp), r6
+00007f83f001065f	pushq	r5
+00007f83f0010661	pushq	r6
+00007f83f0010663	callq	_ZN4core5slice22slice_index_order_fail17h4ab2eb66cba28a23E
+00007f83f0010668	leaq	0x10(sp), sp
+00007f83f001066d	callq	trap.unreachable
+00007f83f0010672 .d:	movl	0x18(sp), r5
+00007f83f0010676	pushq	r5
+00007f83f0010678	callq	_ZN4core5slice20slice_index_len_fail17hf8ba41da06b62445E
+00007f83f001067d	leaq	8(sp), sp
+00007f83f0010682	callq	trap.unreachable
+00007f83f0010687 .e:	movl	0x10(sp), r5
+00007f83f001068b	pushq	r5
+00007f83f001068d	pushq	$0x40
+00007f83f001068f	callq	_ZN4core5slice22slice_index_order_fail17h4ab2eb66cba28a23E
+00007f83f0010694	leaq	0x10(sp), sp
+00007f83f0010699	callq	trap.unreachable
+00007f83f001069e	leaq	0x20(sp), sp
+00007f83f00106a3	retq
+
+_ZN6digest6digest6Digest6result17h15f6330440b1b1a2E:
+00007f83f00106b0	leaq	-0x48(sp), scratch
+00007f83f00106b8	cmpq	stacklimit, scratch
+00007f83f00106bb	jge	.12
+00007f83f00106bd	callq	trap.call_stack_exhausted
+00007f83f00106c2 .12:	pushq	zero
+00007f83f00106c3	pushq	zero
+00007f83f00106c4	pushq	zero
+00007f83f00106c5	pushq	zero
+00007f83f00106c6	pushq	zero
+00007f83f00106c7	pushq	zero
+00007f83f00106c8	movl	-0x18(memory), r5
+00007f83f00106cc	subl	$0x70, r5
+00007f83f00106cf	movl	r5, 0x28(sp)
+00007f83f00106d3	movl	r5, -0x18(memory)
+00007f83f00106d7	movl	0x28(sp), r5
+00007f83f00106db	movl	0x38(sp), r6
+00007f83f00106df	pushq	r5
+00007f83f00106e1	pushq	r6
+00007f83f00106e3	pushq	$0x70
+00007f83f00106e5	callq	memcpy
+00007f83f00106ea	leaq	0x18(sp), sp
+00007f83f00106ef	movl	result, 0x38(sp)
+00007f83f00106f3	movl	result, scratch
+00007f83f00106f5	addq	memory, scratch
+00007f83f00106f8	movl	8(scratch), r5
+00007f83f00106fb	movl	r5, 0x20(sp)
+00007f83f00106ff	movl	r5, result
+00007f83f0010701	cmpl	$0x3f, result
+00007f83f0010704	ja	.13
+00007f83f001070a	movl	0x38(sp), r5
+00007f83f001070e	movl	r5, scratch
+00007f83f0010710	addq	memory, scratch
+00007f83f0010713	movq	(scratch), r5
+00007f83f0010716	movq	r5, 0x18(sp)
+00007f83f001071b	movl	0x38(sp), r5
+00007f83f001071f	addl	$0xc, r5
+00007f83f0010722	movl	r5, 0x28(sp)
+00007f83f0010726	movl	0x20(sp), r6
+00007f83f001072a	addl	r6, r5
+00007f83f001072c	movl	r5, scratch
+00007f83f001072e	addq	memory, scratch
+00007f83f0010731	movb	$0x80, (scratch)
+00007f83f0010734	movl	0x38(sp), r5
+00007f83f0010738	movl	0x38(sp), r6
+00007f83f001073c	movl	r6, scratch
+00007f83f001073e	addq	memory, scratch
+00007f83f0010741	movl	8(scratch), r6
+00007f83f0010744	movl	r6, 0x10(sp)
+00007f83f0010748	incl	r6
+00007f83f001074a	movl	r6, 0x20(sp)
+00007f83f001074e	movl	r5, scratch
+00007f83f0010750	addq	memory, scratch
+00007f83f0010753	movl	r6, 8(scratch)
+00007f83f0010756	movl	0x20(sp), r5
+00007f83f001075a	movl	r5, result
+00007f83f001075c	cmpl	$0x41, result
+00007f83f001075f	jae	.14
+00007f83f0010765	movl	0x38(sp), r5
+00007f83f0010769	addl	$0x4c, r5
+00007f83f001076c	movl	r5, 8(sp)
+00007f83f0010770	movl	0x38(sp), r5
+00007f83f0010774	addl	$8, r5
+00007f83f0010777	movl	r5, (sp)
+00007f83f001077a	movl	0x20(sp), r6
+00007f83f001077e	addl	r6, r5
+00007f83f0010780	addl	$4, r5
+00007f83f0010783	movl	0x10(sp), r6
+00007f83f0010787	movl	$0x3f, r7
+00007f83f001078d	subl	r6, r7
+00007f83f001078f	pushq	r5
+00007f83f0010791	pushq	zero
+00007f83f0010792	pushq	r7
+00007f83f0010794	callq	memset
+00007f83f0010799	leaq	0x18(sp), sp
+00007f83f001079e	movl	0x38(sp), r5
+00007f83f00107a2	movl	r5, scratch
+00007f83f00107a4	addq	memory, scratch
+00007f83f00107a7	movl	8(scratch), r5
+00007f83f00107aa	movl	$0x40, r6
+00007f83f00107b0	subl	r5, r6
+00007f83f00107b2	movl	r6, result
+00007f83f00107b4	cmpl	$7, result
+00007f83f00107b7	ja	.15
+00007f83f00107bd	movl	8(sp), r5
+00007f83f00107c1	movl	0x28(sp), r6
+00007f83f00107c5	pushq	r5
+00007f83f00107c7	pushq	r6
+00007f83f00107c9	callq	_ZN4sha212sha256_utils11compress25617heb5d99e73f591819E
+00007f83f00107ce	leaq	0x10(sp), sp
+00007f83f00107d3	movl	(sp), r5
+00007f83f00107d6	movl	r5, scratch
+00007f83f00107d8	addq	memory, scratch
+00007f83f00107db	movl	(scratch), r5
+00007f83f00107dd	movl	r5, 0x20(sp)
+00007f83f00107e1	movl	r5, result
+00007f83f00107e3	cmpl	$0x41, result
+00007f83f00107e6	jae	.16
+00007f83f00107ec	movl	0x28(sp), r5
+00007f83f00107f0	movl	0x20(sp), r6
+00007f83f00107f4	pushq	r5
+00007f83f00107f6	pushq	zero
+00007f83f00107f7	pushq	r6
+00007f83f00107f9	callq	memset
+00007f83f00107fe	leaq	0x18(sp), sp
+00007f83f0010803 .15:	movl	0x38(sp), r5
+00007f83f0010807	addl	$0x44, r5
+00007f83f001080a	movq	0x18(sp), r6
+00007f83f001080f	shlq	$0x38, r6
+00007f83f0010813	movq	0x18(sp), r7
+00007f83f0010818	shlq	$0x28, r7
+00007f83f001081c	movabsq	$0xff000000000000, scratch
+00007f83f0010826	andq	scratch, r7
+00007f83f0010829	orq	r7, r6
+00007f83f001082c	movq	0x18(sp), r7
+00007f83f0010831	shlq	$0x18, r7
+00007f83f0010835	movabsq	$0xff0000000000, scratch
+00007f83f001083f	andq	scratch, r7
+00007f83f0010842	movq	0x18(sp), r8
+00007f83f0010847	shlq	$8, r8
+00007f83f001084b	movabsq	$0xff00000000, scratch
+00007f83f0010855	andq	scratch, r8
+00007f83f0010858	orq	r8, r7
+00007f83f001085b	orq	r7, r6
+00007f83f001085e	movq	0x18(sp), r7
+00007f83f0010863	shrq	$8, r7
+00007f83f0010867	movabsq	$0xff000000, scratch
+00007f83f0010871	andq	scratch, r7
+00007f83f0010874	movq	0x18(sp), r8
+00007f83f0010879	shrq	$0x18, r8
+00007f83f001087d	andq	$0xff0000, r8
+00007f83f0010884	orq	r8, r7
+00007f83f0010887	movq	0x18(sp), r8
+00007f83f001088c	shrq	$0x28, r8
+00007f83f0010890	andq	$0xff00, r8
+00007f83f0010897	movq	0x18(sp), r9
+00007f83f001089c	shrq	$0x38, r9
+00007f83f00108a0	orq	r9, r8
+00007f83f00108a3	orq	r8, r7
+00007f83f00108a6	orq	r7, r6
+00007f83f00108a9	movl	r5, scratch
+00007f83f00108ab	addq	memory, scratch
+00007f83f00108ae	movq	r6, (scratch)
+00007f83f00108b1	movl	8(sp), r5
+00007f83f00108b5	movl	0x28(sp), r6
+00007f83f00108b9	pushq	r5
+00007f83f00108bb	pushq	r6
+00007f83f00108bd	callq	_ZN4sha212sha256_utils11compress25617heb5d99e73f591819E
+00007f83f00108c2	leaq	0x10(sp), sp
+00007f83f00108c7	movl	0x40(sp), r5
+00007f83f00108cb	addl	$0x1c, r5
+00007f83f00108ce	movl	0x38(sp), r6
+00007f83f00108d2	addl	$0x68, r6
+00007f83f00108d5	movl	r6, scratch
+00007f83f00108d7	addq	memory, scratch
+00007f83f00108da	movl	(scratch), r6
+00007f83f00108dc	movl	r6, 0x28(sp)
+00007f83f00108e0	shll	$0x18, r6
+00007f83f00108e3	movl	0x28(sp), r7
+00007f83f00108e7	shll	$8, r7
+00007f83f00108ea	andl	$0xff0000, r7
+00007f83f00108f0	orl	r7, r6
+00007f83f00108f2	movl	0x28(sp), r7
+00007f83f00108f6	shrl	$8, r7
+00007f83f00108f9	andl	$0xff00, r7
+00007f83f00108ff	movl	0x28(sp), r8
+00007f83f0010904	shrl	$0x18, r8
+00007f83f0010908	orl	r8, r7
+00007f83f001090b	orl	r7, r6
+00007f83f001090d	movl	r5, scratch
+00007f83f001090f	addq	memory, scratch
+00007f83f0010912	movl	r6, (scratch)
+00007f83f0010914	movl	0x40(sp), r5
+00007f83f0010918	addl	$0x18, r5
+00007f83f001091b	movl	0x38(sp), r6
+00007f83f001091f	addl	$0x64, r6
+00007f83f0010922	movl	r6, scratch
+00007f83f0010924	addq	memory, scratch
+00007f83f0010927	movl	(scratch), r6
+00007f83f0010929	movl	r6, 0x28(sp)
+00007f83f001092d	shll	$0x18, r6
+00007f83f0010930	movl	0x28(sp), r7
+00007f83f0010934	shll	$8, r7
+00007f83f0010937	andl	$0xff0000, r7
+00007f83f001093d	orl	r7, r6
+00007f83f001093f	movl	0x28(sp), r7
+00007f83f0010943	shrl	$8, r7
+00007f83f0010946	andl	$0xff00, r7
+00007f83f001094c	movl	0x28(sp), r8
+00007f83f0010951	shrl	$0x18, r8
+00007f83f0010955	orl	r8, r7
+00007f83f0010958	orl	r7, r6
+00007f83f001095a	movl	r5, scratch
+00007f83f001095c	addq	memory, scratch
+00007f83f001095f	movl	r6, (scratch)
+00007f83f0010961	movl	0x40(sp), r5
+00007f83f0010965	addl	$0x14, r5
+00007f83f0010968	movl	0x38(sp), r6
+00007f83f001096c	addl	$0x60, r6
+00007f83f001096f	movl	r6, scratch
+00007f83f0010971	addq	memory, scratch
+00007f83f0010974	movl	(scratch), r6
+00007f83f0010976	movl	r6, 0x28(sp)
+00007f83f001097a	shll	$0x18, r6
+00007f83f001097d	movl	0x28(sp), r7
+00007f83f0010981	shll	$8, r7
+00007f83f0010984	andl	$0xff0000, r7
+00007f83f001098a	orl	r7, r6
+00007f83f001098c	movl	0x28(sp), r7
+00007f83f0010990	shrl	$8, r7
+00007f83f0010993	andl	$0xff00, r7
+00007f83f0010999	movl	0x28(sp), r8
+00007f83f001099e	shrl	$0x18, r8
+00007f83f00109a2	orl	r8, r7
+00007f83f00109a5	orl	r7, r6
+00007f83f00109a7	movl	r5, scratch
+00007f83f00109a9	addq	memory, scratch
+00007f83f00109ac	movl	r6, (scratch)
+00007f83f00109ae	movl	0x40(sp), r5
+00007f83f00109b2	movl	0x38(sp), r6
+00007f83f00109b6	addl	$0x5c, r6
+00007f83f00109b9	movl	r6, scratch
+00007f83f00109bb	addq	memory, scratch
+00007f83f00109be	movl	(scratch), r6
+00007f83f00109c0	movl	r6, 0x28(sp)
+00007f83f00109c4	shll	$0x18, r6
+00007f83f00109c7	movl	0x28(sp), r7
+00007f83f00109cb	shll	$8, r7
+00007f83f00109ce	andl	$0xff0000, r7
+00007f83f00109d4	orl	r7, r6
+00007f83f00109d6	movl	0x28(sp), r7
+00007f83f00109da	shrl	$8, r7
+00007f83f00109dd	andl	$0xff00, r7
+00007f83f00109e3	movl	0x28(sp), r8
+00007f83f00109e8	shrl	$0x18, r8
+00007f83f00109ec	orl	r8, r7
+00007f83f00109ef	orl	r7, r6
+00007f83f00109f1	movl	r5, scratch
+00007f83f00109f3	addq	memory, scratch
+00007f83f00109f6	movl	r6, 0x10(scratch)
+00007f83f00109f9	movl	0x40(sp), r5
+00007f83f00109fd	addl	$0xc, r5
+00007f83f0010a00	movl	0x38(sp), r6
+00007f83f0010a04	addl	$0x58, r6
+00007f83f0010a07	movl	r6, scratch
+00007f83f0010a09	addq	memory, scratch
+00007f83f0010a0c	movl	(scratch), r6
+00007f83f0010a0e	movl	r6, 0x28(sp)
+00007f83f0010a12	shll	$0x18, r6
+00007f83f0010a15	movl	0x28(sp), r7
+00007f83f0010a19	shll	$8, r7
+00007f83f0010a1c	andl	$0xff0000, r7
+00007f83f0010a22	orl	r7, r6
+00007f83f0010a24	movl	0x28(sp), r7
+00007f83f0010a28	shrl	$8, r7
+00007f83f0010a2b	andl	$0xff00, r7
+00007f83f0010a31	movl	0x28(sp), r8
+00007f83f0010a36	shrl	$0x18, r8
+00007f83f0010a3a	orl	r8, r7
+00007f83f0010a3d	orl	r7, r6
+00007f83f0010a3f	movl	r5, scratch
+00007f83f0010a41	addq	memory, scratch
+00007f83f0010a44	movl	r6, (scratch)
+00007f83f0010a46	movl	0x40(sp), r5
+00007f83f0010a4a	movl	0x38(sp), r6
+00007f83f0010a4e	addl	$0x54, r6
+00007f83f0010a51	movl	r6, scratch
+00007f83f0010a53	addq	memory, scratch
+00007f83f0010a56	movl	(scratch), r6
+00007f83f0010a58	movl	r6, 0x28(sp)
+00007f83f0010a5c	shll	$0x18, r6
+00007f83f0010a5f	movl	0x28(sp), r7
+00007f83f0010a63	shll	$8, r7
+00007f83f0010a66	andl	$0xff0000, r7
+00007f83f0010a6c	orl	r7, r6
+00007f83f0010a6e	movl	0x28(sp), r7
+00007f83f0010a72	shrl	$8, r7
+00007f83f0010a75	andl	$0xff00, r7
+00007f83f0010a7b	movl	0x28(sp), r8
+00007f83f0010a80	shrl	$0x18, r8
+00007f83f0010a84	orl	r8, r7
+00007f83f0010a87	orl	r7, r6
+00007f83f0010a89	movl	r5, scratch
+00007f83f0010a8b	addq	memory, scratch
+00007f83f0010a8e	movl	r6, 8(scratch)
+00007f83f0010a91	movl	0x40(sp), r5
+00007f83f0010a95	movl	0x38(sp), r6
+00007f83f0010a99	addl	$0x50, r6
+00007f83f0010a9c	movl	r6, scratch
+00007f83f0010a9e	addq	memory, scratch
+00007f83f0010aa1	movl	(scratch), r6
+00007f83f0010aa3	movl	r6, 0x28(sp)
+00007f83f0010aa7	shll	$0x18, r6
+00007f83f0010aaa	movl	0x28(sp), r7
+00007f83f0010aae	shll	$8, r7
+00007f83f0010ab1	andl	$0xff0000, r7
+00007f83f0010ab7	orl	r7, r6
+00007f83f0010ab9	movl	0x28(sp), r7
+00007f83f0010abd	shrl	$8, r7
+00007f83f0010ac0	andl	$0xff00, r7
+00007f83f0010ac6	movl	0x28(sp), r8
+00007f83f0010acb	shrl	$0x18, r8
+00007f83f0010acf	orl	r8, r7
+00007f83f0010ad2	orl	r7, r6
+00007f83f0010ad4	movl	r5, scratch
+00007f83f0010ad6	addq	memory, scratch
+00007f83f0010ad9	movl	r6, 4(scratch)
+00007f83f0010adc	movl	0x40(sp), r5
+00007f83f0010ae0	movl	0x38(sp), r6
+00007f83f0010ae4	movl	r6, scratch
+00007f83f0010ae6	addq	memory, scratch
+00007f83f0010ae9	movl	0x4c(scratch), r6
+00007f83f0010aec	movl	r6, 0x28(sp)
+00007f83f0010af0	shll	$0x18, r6
+00007f83f0010af3	movl	0x28(sp), r7
+00007f83f0010af7	shll	$8, r7
+00007f83f0010afa	andl	$0xff0000, r7
+00007f83f0010b00	orl	r7, r6
+00007f83f0010b02	movl	0x28(sp), r7
+00007f83f0010b06	shrl	$8, r7
+00007f83f0010b09	andl	$0xff00, r7
+00007f83f0010b0f	movl	0x28(sp), r8
+00007f83f0010b14	shrl	$0x18, r8
+00007f83f0010b18	orl	r8, r7
+00007f83f0010b1b	orl	r7, r6
+00007f83f0010b1d	movl	r5, scratch
+00007f83f0010b1f	addq	memory, scratch
+00007f83f0010b22	movl	r6, (scratch)
+00007f83f0010b24	movl	0x38(sp), r5
+00007f83f0010b28	movl	r5, scratch
+00007f83f0010b2a	addq	memory, scratch
+00007f83f0010b2d	movl	zero, 8(scratch)
+00007f83f0010b30	movl	0x38(sp), r5
+00007f83f0010b34	addl	$0x70, r5
+00007f83f0010b37	movl	r5, -0x18(memory)
+00007f83f0010b3b	leaq	0x30(sp), sp
+00007f83f0010b40	retq
+00007f83f0010b41 .13:	movl	0x20(sp), r5
+00007f83f0010b45	pushq	$0x100000
+00007f83f0010b4a	pushq	r5
+00007f83f0010b4c	pushq	$0x40
+00007f83f0010b4e	callq	_ZN4core9panicking18panic_bounds_check17h5092bca8a4727e93E
+00007f83f0010b53	leaq	0x18(sp), sp
+00007f83f0010b58	callq	trap.unreachable
+00007f83f0010b5d .14:	movl	0x20(sp), r5
+00007f83f0010b61	pushq	r5
+00007f83f0010b63	pushq	$0x40
+00007f83f0010b65	callq	_ZN4core5slice22slice_index_order_fail17h4ab2eb66cba28a23E
+00007f83f0010b6a	leaq	0x10(sp), sp
+00007f83f0010b6f	callq	trap.unreachable
+00007f83f0010b74 .16:	movl	0x20(sp), r5
+00007f83f0010b78	pushq	r5
+00007f83f0010b7a	callq	_ZN4core5slice20slice_index_len_fail17hf8ba41da06b62445E
+00007f83f0010b7f	leaq	8(sp), sp
+00007f83f0010b84	callq	trap.unreachable
+00007f83f0010b89	leaq	0x30(sp), sp
+00007f83f0010b8e	retq
+
+_ZN9ewasm_api11finish_data17h2abb6b0303d2b1ccE:
+00007f83f0010b90	leaq	-0x10(sp), scratch
+00007f83f0010b98	cmpq	stacklimit, scratch
+00007f83f0010b9b	jge	.17
+00007f83f0010b9d	callq	trap.call_stack_exhausted
+00007f83f0010ba2 .17:	movl	8(sp), r5
+00007f83f0010ba6	pushq	r5
+00007f83f0010ba8	pushq	$0x20
+00007f83f0010baa	callq	ethereum_finish
+00007f83f0010baf	leaq	0x10(sp), sp
+00007f83f0010bb4	callq	trap.unreachable
+00007f83f0010bb9	retq
+
+_ZN4sha212sha256_utils11compress25617heb5d99e73f591819E:
+00007f83f0010bc0	leaq	-0x298(sp), scratch
+00007f83f0010bc8	cmpq	stacklimit, scratch
+00007f83f0010bcb	jge	.18
+00007f83f0010bcd	callq	trap.call_stack_exhausted
+00007f83f0010bd2 .18:	movl	$0x46, scratch
+00007f83f0010bd8 .19:	pushq	zero
+00007f83f0010bd9	loop	.19			; back
+00007f83f0010bdb	movl	0x240(sp), r5
+00007f83f0010be2	movl	0x238(sp), r6
+00007f83f0010be9	movl	r6, scratch
+00007f83f0010beb	addq	memory, scratch
+00007f83f0010bee	movl	0x3c(scratch), r6
+00007f83f0010bf1	movl	r6, 0x228(sp)
+00007f83f0010bf8	shll	$0x18, r6
+00007f83f0010bfb	movl	0x228(sp), r7
+00007f83f0010c02	shll	$8, r7
+00007f83f0010c05	andl	$0xff0000, r7
+00007f83f0010c0b	orl	r7, r6
+00007f83f0010c0d	movl	0x228(sp), r7
+00007f83f0010c14	shrl	$8, r7
+00007f83f0010c17	andl	$0xff00, r7
+00007f83f0010c1d	movl	0x228(sp), r8
+00007f83f0010c25	shrl	$0x18, r8
+00007f83f0010c29	orl	r8, r7
+00007f83f0010c2c	orl	r7, r6
+00007f83f0010c2e	movl	r6, 0x228(sp)
+00007f83f0010c35	roll	$0x19, r6
+00007f83f0010c38	movl	0x228(sp), r7
+00007f83f0010c3f	shrl	$3, r7
+00007f83f0010c42	xorl	r7, r6
+00007f83f0010c44	movl	0x228(sp), r7
+00007f83f0010c4b	roll	$0xe, r7
+00007f83f0010c4e	xorl	r7, r6
+00007f83f0010c50	movl	0x238(sp), r7
+00007f83f0010c57	movl	r7, scratch
+00007f83f0010c59	addq	memory, scratch
+00007f83f0010c5c	movl	0x38(scratch), r7
+00007f83f0010c5f	movl	r7, 0x220(sp)
+00007f83f0010c66	shll	$0x18, r7
+00007f83f0010c69	movl	0x220(sp), r8
+00007f83f0010c71	shll	$8, r8
+00007f83f0010c75	andl	$0xff0000, r8
+00007f83f0010c7c	orl	r8, r7
+00007f83f0010c7f	movl	0x220(sp), r8
+00007f83f0010c87	shrl	$8, r8
+00007f83f0010c8b	andl	$0xff00, r8
+00007f83f0010c92	movl	0x220(sp), r9
+00007f83f0010c9a	shrl	$0x18, r9
+00007f83f0010c9e	orl	r9, r8
+00007f83f0010ca1	orl	r8, r7
+00007f83f0010ca4	movl	r7, 0x220(sp)
+00007f83f0010cab	addl	r7, r6
+00007f83f0010cad	movl	0x238(sp), r7
+00007f83f0010cb4	movl	r7, scratch
+00007f83f0010cb6	addq	memory, scratch
+00007f83f0010cb9	movl	0x20(scratch), r7
+00007f83f0010cbc	movl	r7, 0x218(sp)
+00007f83f0010cc3	shll	$0x18, r7
+00007f83f0010cc6	movl	0x218(sp), r8
+00007f83f0010cce	shll	$8, r8
+00007f83f0010cd2	andl	$0xff0000, r8
+00007f83f0010cd9	orl	r8, r7
+00007f83f0010cdc	movl	0x218(sp), r8
+00007f83f0010ce4	shrl	$8, r8
+00007f83f0010ce8	andl	$0xff00, r8
+00007f83f0010cef	movl	0x218(sp), r9
+00007f83f0010cf7	shrl	$0x18, r9
+00007f83f0010cfb	orl	r9, r8
+00007f83f0010cfe	orl	r8, r7
+00007f83f0010d01	movl	r7, 0x210(sp)
+00007f83f0010d08	roll	$0x19, r7
+00007f83f0010d0b	movl	0x210(sp), r8
+00007f83f0010d13	shrl	$3, r8
+00007f83f0010d17	xorl	r8, r7
+00007f83f0010d1a	movl	0x210(sp), r8
+00007f83f0010d22	roll	$0xe, r8
+00007f83f0010d26	xorl	r8, r7
+00007f83f0010d29	movl	0x238(sp), r8
+00007f83f0010d31	movl	r8, scratch
+00007f83f0010d34	addq	memory, scratch
+00007f83f0010d37	movl	0x1c(scratch), r8
+00007f83f0010d3b	movl	r8, 0x218(sp)
+00007f83f0010d43	shll	$0x18, r8
+00007f83f0010d47	movl	0x218(sp), r9
+00007f83f0010d4f	shll	$8, r9
+00007f83f0010d53	andl	$0xff0000, r9
+00007f83f0010d5a	orl	r9, r8
+00007f83f0010d5d	movl	0x218(sp), r9
+00007f83f0010d65	shrl	$8, r9
+00007f83f0010d69	andl	$0xff00, r9
+00007f83f0010d70	movl	0x218(sp), r10
+00007f83f0010d78	shrl	$0x18, r10
+00007f83f0010d7c	orl	r10, r9
+00007f83f0010d7f	orl	r9, r8
+00007f83f0010d82	movl	r8, 0x208(sp)
+00007f83f0010d8a	addl	r8, r7
+00007f83f0010d8d	movl	0x238(sp), r8
+00007f83f0010d95	movl	r8, scratch
+00007f83f0010d98	addq	memory, scratch
+00007f83f0010d9b	movl	4(scratch), r8
+00007f83f0010d9f	movl	r8, 0x218(sp)
+00007f83f0010da7	shll	$0x18, r8
+00007f83f0010dab	movl	0x218(sp), r9
+00007f83f0010db3	shll	$8, r9
+00007f83f0010db7	andl	$0xff0000, r9
+00007f83f0010dbe	orl	r9, r8
+00007f83f0010dc1	movl	0x218(sp), r9
+00007f83f0010dc9	shrl	$8, r9
+00007f83f0010dcd	andl	$0xff00, r9
+00007f83f0010dd4	movl	0x218(sp), r10
+00007f83f0010ddc	shrl	$0x18, r10
+00007f83f0010de0	orl	r10, r9
+00007f83f0010de3	orl	r9, r8
+00007f83f0010de6	movl	r8, 0x200(sp)
+00007f83f0010dee	roll	$0x19, r8
+00007f83f0010df2	movl	0x200(sp), r9
+00007f83f0010dfa	shrl	$3, r9
+00007f83f0010dfe	xorl	r9, r8
+00007f83f0010e01	movl	0x200(sp), r9
+00007f83f0010e09	roll	$0xe, r9
+00007f83f0010e0d	xorl	r9, r8
+00007f83f0010e10	movl	0x238(sp), r9
+00007f83f0010e18	movl	r9, scratch
+00007f83f0010e1b	addq	memory, scratch
+00007f83f0010e1e	movl	(scratch), r9
+00007f83f0010e21	movl	r9, 0x218(sp)
+00007f83f0010e29	shll	$0x18, r9
+00007f83f0010e2d	movl	0x218(sp), r10
+00007f83f0010e35	shll	$8, r10
+00007f83f0010e39	andl	$0xff0000, r10
+00007f83f0010e40	orl	r10, r9
+00007f83f0010e43	movl	0x218(sp), r10
+00007f83f0010e4b	shrl	$8, r10
+00007f83f0010e4f	andl	$0xff00, r10
+00007f83f0010e56	movl	0x218(sp), r11
+00007f83f0010e5e	shrl	$0x18, r11
+00007f83f0010e62	orl	r11, r10
+00007f83f0010e65	orl	r10, r9
+00007f83f0010e68	movl	r9, 0x1f8(sp)
+00007f83f0010e70	addl	r9, r8
+00007f83f0010e73	movl	0x238(sp), r9
+00007f83f0010e7b	movl	r9, scratch
+00007f83f0010e7e	addq	memory, scratch
+00007f83f0010e81	movl	0x24(scratch), r9
+00007f83f0010e85	movl	r9, 0x218(sp)
+00007f83f0010e8d	shll	$0x18, r9
+00007f83f0010e91	movl	0x218(sp), r10
+00007f83f0010e99	shll	$8, r10
+00007f83f0010e9d	andl	$0xff0000, r10
+00007f83f0010ea4	orl	r10, r9
+00007f83f0010ea7	movl	0x218(sp), r10
+00007f83f0010eaf	shrl	$8, r10
+00007f83f0010eb3	andl	$0xff00, r10
+00007f83f0010eba	movl	0x218(sp), r11
+00007f83f0010ec2	shrl	$0x18, r11
+00007f83f0010ec6	orl	r11, r10
+00007f83f0010ec9	orl	r10, r9
+00007f83f0010ecc	movl	r9, 0x1f0(sp)
+00007f83f0010ed4	addl	r9, r8
+00007f83f0010ed7	movl	0x220(sp), r9
+00007f83f0010edf	rorl	$0x11, r9
+00007f83f0010ee3	movl	0x220(sp), r10
+00007f83f0010eeb	rorl	$0x13, r10
+00007f83f0010eef	xorl	r10, r9
+00007f83f0010ef2	movl	0x220(sp), r10
+00007f83f0010efa	shrl	$0xa, r10
+00007f83f0010efe	xorl	r10, r9
+00007f83f0010f01	addl	r9, r8
+00007f83f0010f04	movl	r8, 0x218(sp)
+00007f83f0010f0c	addl	r8, r7
+00007f83f0010f0f	movl	0x238(sp), r8
+00007f83f0010f17	movl	r8, scratch
+00007f83f0010f1a	addq	memory, scratch
+00007f83f0010f1d	movl	0x18(scratch), r8
+00007f83f0010f21	movl	r8, 0x1e8(sp)
+00007f83f0010f29	shll	$0x18, r8
+00007f83f0010f2d	movl	0x1e8(sp), r9
+00007f83f0010f35	shll	$8, r9
+00007f83f0010f39	andl	$0xff0000, r9
+00007f83f0010f40	orl	r9, r8
+00007f83f0010f43	movl	0x1e8(sp), r9
+00007f83f0010f4b	shrl	$8, r9
+00007f83f0010f4f	andl	$0xff00, r9
+00007f83f0010f56	movl	0x1e8(sp), r10
+00007f83f0010f5e	shrl	$0x18, r10
+00007f83f0010f62	orl	r10, r9
+00007f83f0010f65	orl	r9, r8
+00007f83f0010f68	movl	r8, 0x1e0(sp)
+00007f83f0010f70	roll	$0x19, r8
+00007f83f0010f74	movl	0x1e0(sp), r9
+00007f83f0010f7c	shrl	$3, r9
+00007f83f0010f80	xorl	r9, r8
+00007f83f0010f83	movl	0x1e0(sp), r9
+00007f83f0010f8b	roll	$0xe, r9
+00007f83f0010f8f	xorl	r9, r8
+00007f83f0010f92	movl	0x238(sp), r9
+00007f83f0010f9a	movl	r9, scratch
+00007f83f0010f9d	addq	memory, scratch
+00007f83f0010fa0	movl	0x14(scratch), r9
+00007f83f0010fa4	movl	r9, 0x1e8(sp)
+00007f83f0010fac	shll	$0x18, r9
+00007f83f0010fb0	movl	0x1e8(sp), r10
+00007f83f0010fb8	shll	$8, r10
+00007f83f0010fbc	andl	$0xff0000, r10
+00007f83f0010fc3	orl	r10, r9
+00007f83f0010fc6	movl	0x1e8(sp), r10
+00007f83f0010fce	shrl	$8, r10
+00007f83f0010fd2	andl	$0xff00, r10
+00007f83f0010fd9	movl	0x1e8(sp), r11
+00007f83f0010fe1	shrl	$0x18, r11
+00007f83f0010fe5	orl	r11, r10
+00007f83f0010fe8	orl	r10, r9
+00007f83f0010feb	movl	r9, 0x1d8(sp)
+00007f83f0010ff3	addl	r9, r8
+00007f83f0010ff6	movl	0x220(sp), r9
+00007f83f0010ffe	addl	r9, r8
+00007f83f0011001	movl	0x238(sp), r9
+00007f83f0011009	movl	r9, scratch
+00007f83f001100c	addq	memory, scratch
+00007f83f001100f	movl	0x10(scratch), r9
+00007f83f0011013	movl	r9, 0x1e8(sp)
+00007f83f001101b	shll	$0x18, r9
+00007f83f001101f	movl	0x1e8(sp), r10
+00007f83f0011027	shll	$8, r10
+00007f83f001102b	andl	$0xff0000, r10
+00007f83f0011032	orl	r10, r9
+00007f83f0011035	movl	0x1e8(sp), r10
+00007f83f001103d	shrl	$8, r10
+00007f83f0011041	andl	$0xff00, r10
+00007f83f0011048	movl	0x1e8(sp), r11
+00007f83f0011050	shrl	$0x18, r11
+00007f83f0011054	orl	r11, r10
+00007f83f0011057	orl	r10, r9
+00007f83f001105a	movl	r9, 0x1d0(sp)
+00007f83f0011062	roll	$0x19, r9
+00007f83f0011066	movl	0x1d0(sp), r10
+00007f83f001106e	shrl	$3, r10
+00007f83f0011072	xorl	r10, r9
+00007f83f0011075	movl	0x1d0(sp), r10
+00007f83f001107d	roll	$0xe, r10
+00007f83f0011081	xorl	r10, r9
+00007f83f0011084	movl	0x238(sp), r10
+00007f83f001108c	movl	r10, scratch
+00007f83f001108f	addq	memory, scratch
+00007f83f0011092	movl	0xc(scratch), r10
+00007f83f0011096	movl	r10, 0x1e8(sp)
+00007f83f001109e	shll	$0x18, r10
+00007f83f00110a2	movl	0x1e8(sp), r11
+00007f83f00110aa	shll	$8, r11
+00007f83f00110ae	andl	$0xff0000, r11
+00007f83f00110b5	orl	r11, r10
+00007f83f00110b8	movl	0x1e8(sp), r11
+00007f83f00110c0	shrl	$8, r11
+00007f83f00110c4	andl	$0xff00, r11
+00007f83f00110cb	movl	0x1e8(sp), r12
+00007f83f00110d3	shrl	$0x18, r12
+00007f83f00110d7	orl	r12, r11
+00007f83f00110da	orl	r11, r10
+00007f83f00110dd	movl	r10, 0x1c8(sp)
+00007f83f00110e5	addl	r10, r9
+00007f83f00110e8	movl	0x238(sp), r10
+00007f83f00110f0	movl	r10, scratch
+00007f83f00110f3	addq	memory, scratch
+00007f83f00110f6	movl	0x30(scratch), r10
+00007f83f00110fa	movl	r10, 0x1e8(sp)
+00007f83f0011102	shll	$0x18, r10
+00007f83f0011106	movl	0x1e8(sp), r11
+00007f83f001110e	shll	$8, r11
+00007f83f0011112	andl	$0xff0000, r11
+00007f83f0011119	orl	r11, r10
+00007f83f001111c	movl	0x1e8(sp), r11
+00007f83f0011124	shrl	$8, r11
+00007f83f0011128	andl	$0xff00, r11
+00007f83f001112f	movl	0x1e8(sp), r12
+00007f83f0011137	shrl	$0x18, r12
+00007f83f001113b	orl	r12, r11
+00007f83f001113e	orl	r11, r10
+00007f83f0011141	movl	r10, 0x1c0(sp)
+00007f83f0011149	addl	r10, r9
+00007f83f001114c	movl	0x238(sp), r10
+00007f83f0011154	movl	r10, scratch
+00007f83f0011157	addq	memory, scratch
+00007f83f001115a	movl	8(scratch), r10
+00007f83f001115e	movl	r10, 0x1e8(sp)
+00007f83f0011166	shll	$0x18, r10
+00007f83f001116a	movl	0x1e8(sp), r11
+00007f83f0011172	shll	$8, r11
+00007f83f0011176	andl	$0xff0000, r11
+00007f83f001117d	orl	r11, r10
+00007f83f0011180	movl	0x1e8(sp), r11
+00007f83f0011188	shrl	$8, r11
+00007f83f001118c	andl	$0xff00, r11
+00007f83f0011193	movl	0x1e8(sp), r12
+00007f83f001119b	shrl	$0x18, r12
+00007f83f001119f	orl	r12, r11
+00007f83f00111a2	orl	r11, r10
+00007f83f00111a5	movl	r10, 0x1b8(sp)
+00007f83f00111ad	roll	$0x19, r10
+00007f83f00111b1	movl	0x1b8(sp), r11
+00007f83f00111b9	shrl	$3, r11
+00007f83f00111bd	xorl	r11, r10
+00007f83f00111c0	movl	0x1b8(sp), r11
+00007f83f00111c8	roll	$0xe, r11
+00007f83f00111cc	xorl	r11, r10
+00007f83f00111cf	movl	0x200(sp), r11
+00007f83f00111d7	addl	r11, r10
+00007f83f00111da	movl	0x238(sp), r11
+00007f83f00111e2	movl	r11, scratch
+00007f83f00111e5	addq	memory, scratch
+00007f83f00111e8	movl	0x28(scratch), r11
+00007f83f00111ec	movl	r11, 0x1e8(sp)
+00007f83f00111f4	shll	$0x18, r11
+00007f83f00111f8	movl	0x1e8(sp), r12
+00007f83f0011200	shll	$8, r12
+00007f83f0011204	andl	$0xff0000, r12
+00007f83f001120b	orl	r12, r11
+00007f83f001120e	movl	0x1e8(sp), r12
+00007f83f0011216	shrl	$8, r12
+00007f83f001121a	andl	$0xff00, r12
+00007f83f0011221	movl	0x1e8(sp), r13
+00007f83f0011229	shrl	$0x18, r13
+00007f83f001122d	orl	r13, r12
+00007f83f0011230	orl	r12, r11
+00007f83f0011233	movl	r11, 0x1b0(sp)
+00007f83f001123b	addl	r11, r10
+00007f83f001123e	movl	0x228(sp), r11
+00007f83f0011246	rorl	$0x11, r11
+00007f83f001124a	movl	0x228(sp), r12
+00007f83f0011252	rorl	$0x13, r12
+00007f83f0011256	xorl	r12, r11
+00007f83f0011259	movl	0x228(sp), r12
+00007f83f0011261	shrl	$0xa, r12
+00007f83f0011265	xorl	r12, r11
+00007f83f0011268	addl	r11, r10
+00007f83f001126b	movl	r10, 0x1e8(sp)
+00007f83f0011273	rorl	$0x11, r10
+00007f83f0011277	movl	0x1e8(sp), r11
+00007f83f001127f	rorl	$0x13, r11
+00007f83f0011283	xorl	r11, r10
+00007f83f0011286	movl	0x1e8(sp), r11
+00007f83f001128e	shrl	$0xa, r11
+00007f83f0011292	xorl	r11, r10
+00007f83f0011295	addl	r10, r9
+00007f83f0011298	movl	r9, 0x1a8(sp)
+00007f83f00112a0	rorl	$0x11, r9
+00007f83f00112a4	movl	0x1a8(sp), r10
+00007f83f00112ac	rorl	$0x13, r10
+00007f83f00112b0	xorl	r10, r9
+00007f83f00112b3	movl	0x1a8(sp), r10
+00007f83f00112bb	shrl	$0xa, r10
+00007f83f00112bf	xorl	r10, r9
+00007f83f00112c2	addl	r9, r8
+00007f83f00112c5	movl	r8, 0x1a0(sp)
+00007f83f00112cd	rorl	$0x11, r8
+00007f83f00112d1	movl	0x1a0(sp), r9
+00007f83f00112d9	rorl	$0x13, r9
+00007f83f00112dd	xorl	r9, r8
+00007f83f00112e0	movl	0x1a0(sp), r9
+00007f83f00112e8	shrl	$0xa, r9
+00007f83f00112ec	xorl	r9, r8
+00007f83f00112ef	addl	r8, r7
+00007f83f00112f2	movl	r7, 0x198(sp)
+00007f83f00112f9	addl	r7, r6
+00007f83f00112fb	movl	0x238(sp), r7
+00007f83f0011302	movl	r7, scratch
+00007f83f0011304	addq	memory, scratch
+00007f83f0011307	movl	0x34(scratch), r7
+00007f83f001130a	movl	r7, 0x190(sp)
+00007f83f0011311	shll	$0x18, r7
+00007f83f0011314	movl	0x190(sp), r8
+00007f83f001131c	shll	$8, r8
+00007f83f0011320	andl	$0xff0000, r8
+00007f83f0011327	orl	r8, r7
+00007f83f001132a	movl	0x190(sp), r8
+00007f83f0011332	shrl	$8, r8
+00007f83f0011336	andl	$0xff00, r8
+00007f83f001133d	movl	0x190(sp), r9
+00007f83f0011345	shrl	$0x18, r9
+00007f83f0011349	orl	r9, r8
+00007f83f001134c	orl	r8, r7
+00007f83f001134f	movl	r7, 0x188(sp)
+00007f83f0011356	roll	$0x19, r7
+00007f83f0011359	movl	0x188(sp), r8
+00007f83f0011361	shrl	$3, r8
+00007f83f0011365	xorl	r8, r7
+00007f83f0011368	movl	0x188(sp), r8
+00007f83f0011370	roll	$0xe, r8
+00007f83f0011374	xorl	r8, r7
+00007f83f0011377	movl	0x1c0(sp), r8
+00007f83f001137f	addl	r8, r7
+00007f83f0011382	movl	0x1a0(sp), r8
+00007f83f001138a	addl	r8, r7
+00007f83f001138d	movl	0x238(sp), r8
+00007f83f0011395	movl	r8, scratch
+00007f83f0011398	addq	memory, scratch
+00007f83f001139b	movl	0x2c(scratch), r8
+00007f83f001139f	movl	r8, 0x238(sp)
+00007f83f00113a7	shll	$0x18, r8
+00007f83f00113ab	movl	0x238(sp), r9
+00007f83f00113b3	shll	$8, r9
+00007f83f00113b7	andl	$0xff0000, r9
+00007f83f00113be	orl	r9, r8
+00007f83f00113c1	movl	0x238(sp), r9
+00007f83f00113c9	shrl	$8, r9
+00007f83f00113cd	andl	$0xff00, r9
+00007f83f00113d4	movl	0x238(sp), r10
+00007f83f00113dc	shrl	$0x18, r10
+00007f83f00113e0	orl	r10, r9
+00007f83f00113e3	orl	r9, r8
+00007f83f00113e6	movl	r8, 0x180(sp)
+00007f83f00113ee	roll	$0x19, r8
+00007f83f00113f2	movl	0x180(sp), r9
+00007f83f00113fa	shrl	$3, r9
+00007f83f00113fe	xorl	r9, r8
+00007f83f0011401	movl	0x180(sp), r9
+00007f83f0011409	roll	$0xe, r9
+00007f83f001140d	xorl	r9, r8
+00007f83f0011410	movl	0x1b0(sp), r9
+00007f83f0011418	addl	r9, r8
+00007f83f001141b	movl	0x1a8(sp), r9
+00007f83f0011423	addl	r9, r8
+00007f83f0011426	movl	0x1f0(sp), r9
+00007f83f001142e	roll	$0x19, r9
+00007f83f0011432	movl	0x1f0(sp), r10
+00007f83f001143a	shrl	$3, r10
+00007f83f001143e	xorl	r10, r9
+00007f83f0011441	movl	0x1f0(sp), r10
+00007f83f0011449	roll	$0xe, r10
+00007f83f001144d	xorl	r10, r9
+00007f83f0011450	movl	0x210(sp), r10
+00007f83f0011458	addl	r10, r9
+00007f83f001145b	movl	0x1e8(sp), r10
+00007f83f0011463	addl	r10, r9
+00007f83f0011466	movl	0x208(sp), r10
+00007f83f001146e	roll	$0x19, r10
+00007f83f0011472	movl	0x208(sp), r11
+00007f83f001147a	shrl	$3, r11
+00007f83f001147e	xorl	r11, r10
+00007f83f0011481	movl	0x208(sp), r11
+00007f83f0011489	roll	$0xe, r11
+00007f83f001148d	xorl	r11, r10
+00007f83f0011490	movl	0x1e0(sp), r11
+00007f83f0011498	addl	r11, r10
+00007f83f001149b	movl	0x228(sp), r11
+00007f83f00114a3	addl	r11, r10
+00007f83f00114a6	movl	0x1d8(sp), r11
+00007f83f00114ae	roll	$0x19, r11
+00007f83f00114b2	movl	0x1d8(sp), r12
+00007f83f00114ba	shrl	$3, r12
+00007f83f00114be	xorl	r12, r11
+00007f83f00114c1	movl	0x1d8(sp), r12
+00007f83f00114c9	roll	$0xe, r12
+00007f83f00114cd	xorl	r12, r11
+00007f83f00114d0	movl	0x1d0(sp), r12
+00007f83f00114d8	addl	r12, r11
+00007f83f00114db	movl	0x188(sp), r12
+00007f83f00114e3	addl	r12, r11
+00007f83f00114e6	movl	0x1c8(sp), r12
+00007f83f00114ee	roll	$0x19, r12
+00007f83f00114f2	movl	0x1c8(sp), r13
+00007f83f00114fa	shrl	$3, r13
+00007f83f00114fe	xorl	r13, r12
+00007f83f0011501	movl	0x1c8(sp), r13
+00007f83f0011509	roll	$0xe, r13
+00007f83f001150d	xorl	r13, r12
+00007f83f0011510	movl	0x1b8(sp), r13
+00007f83f0011518	addl	r13, r12
+00007f83f001151b	movl	0x180(sp), r13
+00007f83f0011523	addl	r13, r12
+00007f83f0011526	movl	0x218(sp), r13
+00007f83f001152e	rorl	$0x11, r13
+00007f83f0011532	pushq	r5
+00007f83f0011534	movl	0x220(sp), r5
+00007f83f001153b	rorl	$0x13, r5
+00007f83f001153e	xorl	r5, r13
+00007f83f0011541	movl	0x220(sp), r5
+00007f83f0011548	shrl	$0xa, r5
+00007f83f001154b	xorl	r5, r13
+00007f83f001154e	addl	r13, r12
+00007f83f0011551	movl	r12, 0x198(sp)
+00007f83f0011559	rorl	$0x11, r12
+00007f83f001155d	movl	0x198(sp), r5
+00007f83f0011564	rorl	$0x13, r5
+00007f83f0011567	xorl	r5, r12
+00007f83f001156a	movl	0x198(sp), r5
+00007f83f0011571	shrl	$0xa, r5
+00007f83f0011574	xorl	r5, r12
+00007f83f0011577	addl	r12, r11
+00007f83f001157a	movl	r11, 0x180(sp)
+00007f83f0011582	rorl	$0x11, r11
+00007f83f0011586	movl	0x180(sp), r5
+00007f83f001158d	rorl	$0x13, r5
+00007f83f0011590	xorl	r5, r11
+00007f83f0011593	movl	0x180(sp), r5
+00007f83f001159a	shrl	$0xa, r5
+00007f83f001159d	xorl	r5, r11
+00007f83f00115a0	addl	r11, r10
+00007f83f00115a3	movl	r10, 0x178(sp)
+00007f83f00115ab	rorl	$0x11, r10
+00007f83f00115af	movl	0x178(sp), r5
+00007f83f00115b6	rorl	$0x13, r5
+00007f83f00115b9	xorl	r5, r10
+00007f83f00115bc	movl	0x178(sp), r5
+00007f83f00115c3	shrl	$0xa, r5
+00007f83f00115c6	xorl	r5, r10
+00007f83f00115c9	addl	r10, r9
+00007f83f00115cc	movl	r9, 0x170(sp)
+00007f83f00115d4	rorl	$0x11, r9
+00007f83f00115d8	movl	0x170(sp), r5
+00007f83f00115df	rorl	$0x13, r5
+00007f83f00115e2	xorl	r5, r9
+00007f83f00115e5	movl	0x170(sp), r5
+00007f83f00115ec	shrl	$0xa, r5
+00007f83f00115ef	xorl	r5, r9
+00007f83f00115f2	addl	r9, r8
+00007f83f00115f5	movl	r8, 0x168(sp)
+00007f83f00115fd	rorl	$0x11, r8
+00007f83f0011601	movl	0x168(sp), r5
+00007f83f0011608	rorl	$0x13, r5
+00007f83f001160b	xorl	r5, r8
+00007f83f001160e	movl	0x168(sp), r5
+00007f83f0011615	shrl	$0xa, r5
+00007f83f0011618	xorl	r5, r8
+00007f83f001161b	addl	r8, r7
+00007f83f001161e	movl	r7, 0x160(sp)
+00007f83f0011625	rorl	$0x11, r7
+00007f83f0011628	movl	0x160(sp), r5
+00007f83f001162f	rorl	$0x13, r5
+00007f83f0011632	xorl	r5, r7
+00007f83f0011634	movl	0x160(sp), r5
+00007f83f001163b	shrl	$0xa, r5
+00007f83f001163e	xorl	r5, r7
+00007f83f0011640	addl	r7, r6
+00007f83f0011642	movl	r6, 0x158(sp)
+00007f83f0011649	roll	$0x19, r6
+00007f83f001164c	movl	0x158(sp), r5
+00007f83f0011653	shrl	$3, r5
+00007f83f0011656	xorl	r5, r6
+00007f83f0011658	movl	0x158(sp), r5
+00007f83f001165f	roll	$0xe, r5
+00007f83f0011662	xorl	r5, r6
+00007f83f0011664	movl	0x228(sp), r5
+00007f83f001166b	roll	$0x19, r5
+00007f83f001166e	movl	0x228(sp), r7
+00007f83f0011675	shrl	$3, r7
+00007f83f0011678	xorl	r7, r5
+00007f83f001167a	movl	0x228(sp), r7
+00007f83f0011681	roll	$0xe, r7
+00007f83f0011684	xorl	r7, r5
+00007f83f0011686	movl	0x190(sp), r7
+00007f83f001168d	addl	r7, r5
+00007f83f001168f	movl	0x178(sp), r7
+00007f83f0011696	addl	r7, r5
+00007f83f0011698	movl	0x1c8(sp), r7
+00007f83f001169f	roll	$0x19, r7
+00007f83f00116a2	movl	0x1c8(sp), r8
+00007f83f00116aa	shrl	$3, r8
+00007f83f00116ae	xorl	r8, r7
+00007f83f00116b1	movl	0x1c8(sp), r8
+00007f83f00116b9	roll	$0xe, r8
+00007f83f00116bd	xorl	r8, r7
+00007f83f00116c0	movl	0x188(sp), r8
+00007f83f00116c8	addl	r8, r7
+00007f83f00116cb	movl	0x180(sp), r8
+00007f83f00116d3	addl	r8, r7
+00007f83f00116d6	movl	0x1b8(sp), r8
+00007f83f00116de	roll	$0x19, r8
+00007f83f00116e2	movl	0x1b8(sp), r9
+00007f83f00116ea	shrl	$3, r9
+00007f83f00116ee	xorl	r9, r8
+00007f83f00116f1	movl	0x1b8(sp), r9
+00007f83f00116f9	roll	$0xe, r9
+00007f83f00116fd	xorl	r9, r8
+00007f83f0011700	movl	0x1f8(sp), r9
+00007f83f0011708	addl	r9, r8
+00007f83f001170b	movl	0x198(sp), r9
+00007f83f0011713	addl	r9, r8
+00007f83f0011716	movl	0x1a0(sp), r9
+00007f83f001171e	rorl	$0x11, r9
+00007f83f0011722	movl	0x1a0(sp), r10
+00007f83f001172a	rorl	$0x13, r10
+00007f83f001172e	xorl	r10, r9
+00007f83f0011731	movl	0x1a0(sp), r10
+00007f83f0011739	shrl	$0xa, r10
+00007f83f001173d	xorl	r10, r9
+00007f83f0011740	addl	r9, r8
+00007f83f0011743	movl	r8, 0x150(sp)
+00007f83f001174b	rorl	$0x11, r8
+00007f83f001174f	movl	0x150(sp), r9
+00007f83f0011757	rorl	$0x13, r9
+00007f83f001175b	xorl	r9, r8
+00007f83f001175e	movl	0x150(sp), r9
+00007f83f0011766	shrl	$0xa, r9
+00007f83f001176a	xorl	r9, r8
+00007f83f001176d	addl	r8, r7
+00007f83f0011770	movl	r7, 0x148(sp)
+00007f83f0011777	rorl	$0x11, r7
+00007f83f001177a	movl	0x148(sp), r8
+00007f83f0011782	rorl	$0x13, r8
+00007f83f0011786	xorl	r8, r7
+00007f83f0011789	movl	0x148(sp), r8
+00007f83f0011791	shrl	$0xa, r8
+00007f83f0011795	xorl	r8, r7
+00007f83f0011798	addl	r7, r5
+00007f83f001179a	movl	r5, 0x140(sp)
+00007f83f00117a1	addl	r5, r6
+00007f83f00117a3	movl	0x1a0(sp), r5
+00007f83f00117aa	roll	$0x19, r5
+00007f83f00117ad	movl	0x1a0(sp), r7
+00007f83f00117b4	shrl	$3, r7
+00007f83f00117b7	xorl	r7, r5
+00007f83f00117b9	movl	0x1a0(sp), r7
+00007f83f00117c0	roll	$0xe, r7
+00007f83f00117c3	xorl	r7, r5
+00007f83f00117c5	movl	0x178(sp), r7
+00007f83f00117cc	addl	r7, r5
+00007f83f00117ce	movl	0x220(sp), r7
+00007f83f00117d5	roll	$0x19, r7
+00007f83f00117d8	movl	0x220(sp), r8
+00007f83f00117e0	shrl	$3, r8
+00007f83f00117e4	xorl	r8, r7
+00007f83f00117e7	movl	0x220(sp), r8
+00007f83f00117ef	roll	$0xe, r8
+00007f83f00117f3	xorl	r8, r7
+00007f83f00117f6	movl	0x230(sp), r8
+00007f83f00117fe	addl	r8, r7
+00007f83f0011801	movl	0x170(sp), r8
+00007f83f0011809	addl	r8, r7
+00007f83f001180c	movl	0x140(sp), r8
+00007f83f0011814	rorl	$0x11, r8
+00007f83f0011818	movl	0x140(sp), r9
+00007f83f0011820	rorl	$0x13, r9
+00007f83f0011824	xorl	r9, r8
+00007f83f0011827	movl	0x140(sp), r9
+00007f83f001182f	shrl	$0xa, r9
+00007f83f0011833	xorl	r9, r8
+00007f83f0011836	addl	r8, r7
+00007f83f0011839	movl	r7, 0x138(sp)
+00007f83f0011840	addl	r7, r5
+00007f83f0011842	movl	0x1a8(sp), r7
+00007f83f0011849	roll	$0x19, r7
+00007f83f001184c	movl	0x1a8(sp), r8
+00007f83f0011854	shrl	$3, r8
+00007f83f0011858	xorl	r8, r7
+00007f83f001185b	movl	0x1a8(sp), r8
+00007f83f0011863	roll	$0xe, r8
+00007f83f0011867	xorl	r8, r7
+00007f83f001186a	movl	0x180(sp), r8
+00007f83f0011872	addl	r8, r7
+00007f83f0011875	movl	0x140(sp), r8
+00007f83f001187d	addl	r8, r7
+00007f83f0011880	movl	0x1b0(sp), r8
+00007f83f0011888	roll	$0x19, r8
+00007f83f001188c	movl	0x1b0(sp), r9
+00007f83f0011894	shrl	$3, r9
+00007f83f0011898	xorl	r9, r8
+00007f83f001189b	movl	0x1b0(sp), r9
+00007f83f00118a3	roll	$0xe, r9
+00007f83f00118a7	xorl	r9, r8
+00007f83f00118aa	movl	0x198(sp), r9
+00007f83f00118b2	addl	r9, r8
+00007f83f00118b5	movl	0x148(sp), r9
+00007f83f00118bd	addl	r9, r8
+00007f83f00118c0	movl	0x1f0(sp), r9
+00007f83f00118c8	roll	$0x19, r9
+00007f83f00118cc	movl	0x1f0(sp), r10
+00007f83f00118d4	shrl	$3, r10
+00007f83f00118d8	xorl	r10, r9
+00007f83f00118db	movl	0x1f0(sp), r10
+00007f83f00118e3	roll	$0xe, r10
+00007f83f00118e7	xorl	r10, r9
+00007f83f00118ea	movl	0x220(sp), r10
+00007f83f00118f2	addl	r10, r9
+00007f83f00118f5	movl	0x150(sp), r10
+00007f83f00118fd	addl	r10, r9
+00007f83f0011900	movl	0x158(sp), r10
+00007f83f0011908	rorl	$0x11, r10
+00007f83f001190c	movl	0x158(sp), r11
+00007f83f0011914	rorl	$0x13, r11
+00007f83f0011918	xorl	r11, r10
+00007f83f001191b	movl	0x158(sp), r11
+00007f83f0011923	shrl	$0xa, r11
+00007f83f0011927	xorl	r11, r10
+00007f83f001192a	addl	r10, r9
+00007f83f001192d	movl	r9, 0x130(sp)
+00007f83f0011935	rorl	$0x11, r9
+00007f83f0011939	movl	0x130(sp), r10
+00007f83f0011941	rorl	$0x13, r10
+00007f83f0011945	xorl	r10, r9
+00007f83f0011948	movl	0x130(sp), r10
+00007f83f0011950	shrl	$0xa, r10
+00007f83f0011954	xorl	r10, r9
+00007f83f0011957	addl	r9, r8
+00007f83f001195a	movl	r8, 0x128(sp)
+00007f83f0011962	rorl	$0x11, r8
+00007f83f0011966	movl	0x128(sp), r9
+00007f83f001196e	rorl	$0x13, r9
+00007f83f0011972	xorl	r9, r8
+00007f83f0011975	movl	0x128(sp), r9
+00007f83f001197d	shrl	$0xa, r9
+00007f83f0011981	xorl	r9, r8
+00007f83f0011984	addl	r8, r7
+00007f83f0011987	movl	r7, 0x120(sp)
+00007f83f001198e	rorl	$0x11, r7
+00007f83f0011991	movl	0x120(sp), r8
+00007f83f0011999	rorl	$0x13, r8
+00007f83f001199d	xorl	r8, r7
+00007f83f00119a0	movl	0x120(sp), r8
+00007f83f00119a8	shrl	$0xa, r8
+00007f83f00119ac	xorl	r8, r7
+00007f83f00119af	addl	r7, r5
+00007f83f00119b1	movl	r5, 0x118(sp)
+00007f83f00119b8	addl	r5, r6
+00007f83f00119ba	movl	0x160(sp), r5
+00007f83f00119c1	roll	$0x19, r5
+00007f83f00119c4	movl	0x160(sp), r7
+00007f83f00119cb	shrl	$3, r7
+00007f83f00119ce	xorl	r7, r5
+00007f83f00119d0	movl	0x160(sp), r7
+00007f83f00119d7	roll	$0xe, r7
+00007f83f00119da	xorl	r7, r5
+00007f83f00119dc	movl	0x148(sp), r7
+00007f83f00119e3	addl	r7, r5
+00007f83f00119e5	movl	0x120(sp), r7
+00007f83f00119ec	addl	r7, r5
+00007f83f00119ee	movl	0x168(sp), r7
+00007f83f00119f5	roll	$0x19, r7
+00007f83f00119f8	movl	0x168(sp), r8
+00007f83f0011a00	shrl	$3, r8
+00007f83f0011a04	xorl	r8, r7
+00007f83f0011a07	movl	0x168(sp), r8
+00007f83f0011a0f	roll	$0xe, r8
+00007f83f0011a13	xorl	r8, r7
+00007f83f0011a16	movl	0x150(sp), r8
+00007f83f0011a1e	addl	r8, r7
+00007f83f0011a21	movl	0x128(sp), r8
+00007f83f0011a29	addl	r8, r7
+00007f83f0011a2c	movl	0x170(sp), r8
+00007f83f0011a34	roll	$0x19, r8
+00007f83f0011a38	movl	0x170(sp), r9
+00007f83f0011a40	shrl	$3, r9
+00007f83f0011a44	xorl	r9, r8
+00007f83f0011a47	movl	0x170(sp), r9
+00007f83f0011a4f	roll	$0xe, r9
+00007f83f0011a53	xorl	r9, r8
+00007f83f0011a56	movl	0x1a0(sp), r9
+00007f83f0011a5e	addl	r9, r8
+00007f83f0011a61	movl	0x130(sp), r9
+00007f83f0011a69	addl	r9, r8
+00007f83f0011a6c	movl	0x178(sp), r9
+00007f83f0011a74	roll	$0x19, r9
+00007f83f0011a78	movl	0x178(sp), r10
+00007f83f0011a80	shrl	$3, r10
+00007f83f0011a84	xorl	r10, r9
+00007f83f0011a87	movl	0x178(sp), r10
+00007f83f0011a8f	roll	$0xe, r10
+00007f83f0011a93	xorl	r10, r9
+00007f83f0011a96	movl	0x1a8(sp), r10
+00007f83f0011a9e	addl	r10, r9
+00007f83f0011aa1	movl	0x158(sp), r10
+00007f83f0011aa9	addl	r10, r9
+00007f83f0011aac	movl	0x180(sp), r10
+00007f83f0011ab4	roll	$0x19, r10
+00007f83f0011ab8	movl	0x180(sp), r11
+00007f83f0011ac0	shrl	$3, r11
+00007f83f0011ac4	xorl	r11, r10
+00007f83f0011ac7	movl	0x180(sp), r11
+00007f83f0011acf	roll	$0xe, r11
+00007f83f0011ad3	xorl	r11, r10
+00007f83f0011ad6	movl	0x1b0(sp), r11
+00007f83f0011ade	addl	r11, r10
+00007f83f0011ae1	movl	0x160(sp), r11
+00007f83f0011ae9	addl	r11, r10
+00007f83f0011aec	movl	0x198(sp), r11
+00007f83f0011af4	roll	$0x19, r11
+00007f83f0011af8	movl	0x198(sp), r12
+00007f83f0011b00	shrl	$3, r12
+00007f83f0011b04	xorl	r12, r11
+00007f83f0011b07	movl	0x198(sp), r12
+00007f83f0011b0f	roll	$0xe, r12
+00007f83f0011b13	xorl	r12, r11
+00007f83f0011b16	movl	0x1f0(sp), r12
+00007f83f0011b1e	addl	r12, r11
+00007f83f0011b21	movl	0x168(sp), r12
+00007f83f0011b29	addl	r12, r11
+00007f83f0011b2c	movl	0x138(sp), r12
+00007f83f0011b34	rorl	$0x11, r12
+00007f83f0011b38	movl	0x138(sp), r13
+00007f83f0011b40	rorl	$0x13, r13
+00007f83f0011b44	xorl	r13, r12
+00007f83f0011b47	movl	0x138(sp), r13
+00007f83f0011b4f	shrl	$0xa, r13
+00007f83f0011b53	xorl	r13, r12
+00007f83f0011b56	addl	r12, r11
+00007f83f0011b59	movl	r11, 0x110(sp)
+00007f83f0011b61	rorl	$0x11, r11
+00007f83f0011b65	movl	0x110(sp), r12
+00007f83f0011b6d	rorl	$0x13, r12
+00007f83f0011b71	xorl	r12, r11
+00007f83f0011b74	movl	0x110(sp), r12
+00007f83f0011b7c	shrl	$0xa, r12
+00007f83f0011b80	xorl	r12, r11
+00007f83f0011b83	addl	r11, r10
+00007f83f0011b86	movl	r10, 0x108(sp)
+00007f83f0011b8e	rorl	$0x11, r10
+00007f83f0011b92	movl	0x108(sp), r11
+00007f83f0011b9a	rorl	$0x13, r11
+00007f83f0011b9e	xorl	r11, r10
+00007f83f0011ba1	movl	0x108(sp), r11
+00007f83f0011ba9	shrl	$0xa, r11
+00007f83f0011bad	xorl	r11, r10
+00007f83f0011bb0	addl	r10, r9
+00007f83f0011bb3	movl	r9, 0x100(sp)
+00007f83f0011bbb	rorl	$0x11, r9
+00007f83f0011bbf	movl	0x100(sp), r10
+00007f83f0011bc7	rorl	$0x13, r10
+00007f83f0011bcb	xorl	r10, r9
+00007f83f0011bce	movl	0x100(sp), r10
+00007f83f0011bd6	shrl	$0xa, r10
+00007f83f0011bda	xorl	r10, r9
+00007f83f0011bdd	addl	r9, r8
+00007f83f0011be0	movl	r8, 0xf8(sp)
+00007f83f0011be8	rorl	$0x11, r8
+00007f83f0011bec	movl	0xf8(sp), r9
+00007f83f0011bf4	rorl	$0x13, r9
+00007f83f0011bf8	xorl	r9, r8
+00007f83f0011bfb	movl	0xf8(sp), r9
+00007f83f0011c03	shrl	$0xa, r9
+00007f83f0011c07	xorl	r9, r8
+00007f83f0011c0a	addl	r8, r7
+00007f83f0011c0d	movl	r7, 0xf0(sp)
+00007f83f0011c14	rorl	$0x11, r7
+00007f83f0011c17	movl	0xf0(sp), r8
+00007f83f0011c1f	rorl	$0x13, r8
+00007f83f0011c23	xorl	r8, r7
+00007f83f0011c26	movl	0xf0(sp), r8
+00007f83f0011c2e	shrl	$0xa, r8
+00007f83f0011c32	xorl	r8, r7
+00007f83f0011c35	addl	r7, r5
+00007f83f0011c37	movl	r5, 0xe8(sp)
+00007f83f0011c3e	rorl	$0x11, r5
+00007f83f0011c41	movl	0xe8(sp), r7
+00007f83f0011c48	rorl	$0x13, r7
+00007f83f0011c4b	xorl	r7, r5
+00007f83f0011c4d	movl	0xe8(sp), r7
+00007f83f0011c54	shrl	$0xa, r7
+00007f83f0011c57	xorl	r7, r5
+00007f83f0011c59	addl	r5, r6
+00007f83f0011c5b	movl	r6, 0xe0(sp)
+00007f83f0011c62	roll	$0x19, r6
+00007f83f0011c65	movl	0xe0(sp), r5
+00007f83f0011c6c	shrl	$3, r5
+00007f83f0011c6f	xorl	r5, r6
+00007f83f0011c71	movl	0xe0(sp), r5
+00007f83f0011c78	roll	$0xe, r5
+00007f83f0011c7b	xorl	r5, r6
+00007f83f0011c7d	movl	0x140(sp), r5
+00007f83f0011c84	roll	$0x19, r5
+00007f83f0011c87	movl	0x140(sp), r7
+00007f83f0011c8e	shrl	$3, r7
+00007f83f0011c91	xorl	r7, r5
+00007f83f0011c93	movl	0x140(sp), r7
+00007f83f0011c9a	roll	$0xe, r7
+00007f83f0011c9d	xorl	r7, r5
+00007f83f0011c9f	movl	0x160(sp), r7
+00007f83f0011ca6	addl	r7, r5
+00007f83f0011ca8	movl	0x100(sp), r7
+00007f83f0011caf	addl	r7, r5
+00007f83f0011cb1	movl	0x148(sp), r7
+00007f83f0011cb8	roll	$0x19, r7
+00007f83f0011cbb	movl	0x148(sp), r8
+00007f83f0011cc3	shrl	$3, r8
+00007f83f0011cc7	xorl	r8, r7
+00007f83f0011cca	movl	0x148(sp), r8
+00007f83f0011cd2	roll	$0xe, r8
+00007f83f0011cd6	xorl	r8, r7
+00007f83f0011cd9	movl	0x168(sp), r8
+00007f83f0011ce1	addl	r8, r7
+00007f83f0011ce4	movl	0x108(sp), r8
+00007f83f0011cec	addl	r8, r7
+00007f83f0011cef	movl	0x150(sp), r8
+00007f83f0011cf7	roll	$0x19, r8
+00007f83f0011cfb	movl	0x150(sp), r9
+00007f83f0011d03	shrl	$3, r9
+00007f83f0011d07	xorl	r9, r8
+00007f83f0011d0a	movl	0x150(sp), r9
+00007f83f0011d12	roll	$0xe, r9
+00007f83f0011d16	xorl	r9, r8
+00007f83f0011d19	movl	0x170(sp), r9
+00007f83f0011d21	addl	r9, r8
+00007f83f0011d24	movl	0x110(sp), r9
+00007f83f0011d2c	addl	r9, r8
+00007f83f0011d2f	movl	0x118(sp), r9
+00007f83f0011d37	rorl	$0x11, r9
+00007f83f0011d3b	movl	0x118(sp), r10
+00007f83f0011d43	rorl	$0x13, r10
+00007f83f0011d47	xorl	r10, r9
+00007f83f0011d4a	movl	0x118(sp), r10
+00007f83f0011d52	shrl	$0xa, r10
+00007f83f0011d56	xorl	r10, r9
+00007f83f0011d59	addl	r9, r8
+00007f83f0011d5c	movl	r8, 0xd8(sp)
+00007f83f0011d64	rorl	$0x11, r8
+00007f83f0011d68	movl	0xd8(sp), r9
+00007f83f0011d70	rorl	$0x13, r9
+00007f83f0011d74	xorl	r9, r8
+00007f83f0011d77	movl	0xd8(sp), r9
+00007f83f0011d7f	shrl	$0xa, r9
+00007f83f0011d83	xorl	r9, r8
+00007f83f0011d86	addl	r8, r7
+00007f83f0011d89	movl	r7, 0xd0(sp)
+00007f83f0011d90	rorl	$0x11, r7
+00007f83f0011d93	movl	0xd0(sp), r8
+00007f83f0011d9b	rorl	$0x13, r8
+00007f83f0011d9f	xorl	r8, r7
+00007f83f0011da2	movl	0xd0(sp), r8
+00007f83f0011daa	shrl	$0xa, r8
+00007f83f0011dae	xorl	r8, r7
+00007f83f0011db1	addl	r7, r5
+00007f83f0011db3	movl	r5, 0xc8(sp)
+00007f83f0011dba	addl	r5, r6
+00007f83f0011dbc	movl	0x118(sp), r5
+00007f83f0011dc3	roll	$0x19, r5
+00007f83f0011dc6	movl	0x118(sp), r7
+00007f83f0011dcd	shrl	$3, r7
+00007f83f0011dd0	xorl	r7, r5
+00007f83f0011dd2	movl	0x118(sp), r7
+00007f83f0011dd9	roll	$0xe, r7
+00007f83f0011ddc	xorl	r7, r5
+00007f83f0011dde	movl	0x100(sp), r7
+00007f83f0011de5	addl	r7, r5
+00007f83f0011de7	movl	0x138(sp), r7
+00007f83f0011dee	roll	$0x19, r7
+00007f83f0011df1	movl	0x138(sp), r8
+00007f83f0011df9	shrl	$3, r8
+00007f83f0011dfd	xorl	r8, r7
+00007f83f0011e00	movl	0x138(sp), r8
+00007f83f0011e08	roll	$0xe, r8
+00007f83f0011e0c	xorl	r8, r7
+00007f83f0011e0f	movl	0x158(sp), r8
+00007f83f0011e17	addl	r8, r7
+00007f83f0011e1a	movl	0xf8(sp), r8
+00007f83f0011e22	addl	r8, r7
+00007f83f0011e25	movl	0xc8(sp), r8
+00007f83f0011e2d	rorl	$0x11, r8
+00007f83f0011e31	movl	0xc8(sp), r9
+00007f83f0011e39	rorl	$0x13, r9
+00007f83f0011e3d	xorl	r9, r8
+00007f83f0011e40	movl	0xc8(sp), r9
+00007f83f0011e48	shrl	$0xa, r9
+00007f83f0011e4c	xorl	r9, r8
+00007f83f0011e4f	addl	r8, r7
+00007f83f0011e52	movl	r7, 0xc0(sp)
+00007f83f0011e59	addl	r7, r5
+00007f83f0011e5b	movl	0x120(sp), r7
+00007f83f0011e62	roll	$0x19, r7
+00007f83f0011e65	movl	0x120(sp), r8
+00007f83f0011e6d	shrl	$3, r8
+00007f83f0011e71	xorl	r8, r7
+00007f83f0011e74	movl	0x120(sp), r8
+00007f83f0011e7c	roll	$0xe, r8
+00007f83f0011e80	xorl	r8, r7
+00007f83f0011e83	movl	0x108(sp), r8
+00007f83f0011e8b	addl	r8, r7
+00007f83f0011e8e	movl	0xc8(sp), r8
+00007f83f0011e96	addl	r8, r7
+00007f83f0011e99	movl	0x128(sp), r8
+00007f83f0011ea1	roll	$0x19, r8
+00007f83f0011ea5	movl	0x128(sp), r9
+00007f83f0011ead	shrl	$3, r9
+00007f83f0011eb1	xorl	r9, r8
+00007f83f0011eb4	movl	0x128(sp), r9
+00007f83f0011ebc	roll	$0xe, r9
+00007f83f0011ec0	xorl	r9, r8
+00007f83f0011ec3	movl	0x110(sp), r9
+00007f83f0011ecb	addl	r9, r8
+00007f83f0011ece	movl	0xd0(sp), r9
+00007f83f0011ed6	addl	r9, r8
+00007f83f0011ed9	movl	0x130(sp), r9
+00007f83f0011ee1	roll	$0x19, r9
+00007f83f0011ee5	movl	0x130(sp), r10
+00007f83f0011eed	shrl	$3, r10
+00007f83f0011ef1	xorl	r10, r9
+00007f83f0011ef4	movl	0x130(sp), r10
+00007f83f0011efc	roll	$0xe, r10
+00007f83f0011f00	xorl	r10, r9
+00007f83f0011f03	movl	0x138(sp), r10
+00007f83f0011f0b	addl	r10, r9
+00007f83f0011f0e	movl	0xd8(sp), r10
+00007f83f0011f16	addl	r10, r9
+00007f83f0011f19	movl	0xe0(sp), r10
+00007f83f0011f21	rorl	$0x11, r10
+00007f83f0011f25	movl	0xe0(sp), r11
+00007f83f0011f2d	rorl	$0x13, r11
+00007f83f0011f31	xorl	r11, r10
+00007f83f0011f34	movl	0xe0(sp), r11
+00007f83f0011f3c	shrl	$0xa, r11
+00007f83f0011f40	xorl	r11, r10
+00007f83f0011f43	addl	r10, r9
+00007f83f0011f46	movl	r9, 0xb8(sp)
+00007f83f0011f4e	rorl	$0x11, r9
+00007f83f0011f52	movl	0xb8(sp), r10
+00007f83f0011f5a	rorl	$0x13, r10
+00007f83f0011f5e	xorl	r10, r9
+00007f83f0011f61	movl	0xb8(sp), r10
+00007f83f0011f69	shrl	$0xa, r10
+00007f83f0011f6d	xorl	r10, r9
+00007f83f0011f70	addl	r9, r8
+00007f83f0011f73	movl	r8, 0xb0(sp)
+00007f83f0011f7b	rorl	$0x11, r8
+00007f83f0011f7f	movl	0xb0(sp), r9
+00007f83f0011f87	rorl	$0x13, r9
+00007f83f0011f8b	xorl	r9, r8
+00007f83f0011f8e	movl	0xb0(sp), r9
+00007f83f0011f96	shrl	$0xa, r9
+00007f83f0011f9a	xorl	r9, r8
+00007f83f0011f9d	addl	r8, r7
+00007f83f0011fa0	movl	r7, 0xa8(sp)
+00007f83f0011fa7	rorl	$0x11, r7
+00007f83f0011faa	movl	0xa8(sp), r8
+00007f83f0011fb2	rorl	$0x13, r8
+00007f83f0011fb6	xorl	r8, r7
+00007f83f0011fb9	movl	0xa8(sp), r8
+00007f83f0011fc1	shrl	$0xa, r8
+00007f83f0011fc5	xorl	r8, r7
+00007f83f0011fc8	addl	r7, r5
+00007f83f0011fca	movl	r5, 0xa0(sp)
+00007f83f0011fd1	addl	r5, r6
+00007f83f0011fd3	movl	0xe8(sp), r5
+00007f83f0011fda	roll	$0x19, r5
+00007f83f0011fdd	movl	0xe8(sp), r7
+00007f83f0011fe4	shrl	$3, r7
+00007f83f0011fe7	xorl	r7, r5
+00007f83f0011fe9	movl	0xe8(sp), r7
+00007f83f0011ff0	roll	$0xe, r7
+00007f83f0011ff3	xorl	r7, r5
+00007f83f0011ff5	movl	0xd0(sp), r7
+00007f83f0011ffc	addl	r7, r5
+00007f83f0011ffe	movl	0xa8(sp), r7
+00007f83f0012005	addl	r7, r5
+00007f83f0012007	movl	0xf0(sp), r7
+00007f83f001200e	roll	$0x19, r7
+00007f83f0012011	movl	0xf0(sp), r8
+00007f83f0012019	shrl	$3, r8
+00007f83f001201d	xorl	r8, r7
+00007f83f0012020	movl	0xf0(sp), r8
+00007f83f0012028	roll	$0xe, r8
+00007f83f001202c	xorl	r8, r7
+00007f83f001202f	movl	0xd8(sp), r8
+00007f83f0012037	addl	r8, r7
+00007f83f001203a	movl	0xb0(sp), r8
+00007f83f0012042	addl	r8, r7
+00007f83f0012045	movl	0xf8(sp), r8
+00007f83f001204d	roll	$0x19, r8
+00007f83f0012051	movl	0xf8(sp), r9
+00007f83f0012059	shrl	$3, r9
+00007f83f001205d	xorl	r9, r8
+00007f83f0012060	movl	0xf8(sp), r9
+00007f83f0012068	roll	$0xe, r9
+00007f83f001206c	xorl	r9, r8
+00007f83f001206f	movl	0x118(sp), r9
+00007f83f0012077	addl	r9, r8
+00007f83f001207a	movl	0xb8(sp), r9
+00007f83f0012082	addl	r9, r8
+00007f83f0012085	movl	0x100(sp), r9
+00007f83f001208d	roll	$0x19, r9
+00007f83f0012091	movl	0x100(sp), r10
+00007f83f0012099	shrl	$3, r10
+00007f83f001209d	xorl	r10, r9
+00007f83f00120a0	movl	0x100(sp), r10
+00007f83f00120a8	roll	$0xe, r10
+00007f83f00120ac	xorl	r10, r9
+00007f83f00120af	movl	0x120(sp), r10
+00007f83f00120b7	addl	r10, r9
+00007f83f00120ba	movl	0xe0(sp), r10
+00007f83f00120c2	addl	r10, r9
+00007f83f00120c5	movl	0x108(sp), r10
+00007f83f00120cd	roll	$0x19, r10
+00007f83f00120d1	movl	0x108(sp), r11
+00007f83f00120d9	shrl	$3, r11
+00007f83f00120dd	xorl	r11, r10
+00007f83f00120e0	movl	0x108(sp), r11
+00007f83f00120e8	roll	$0xe, r11
+00007f83f00120ec	xorl	r11, r10
+00007f83f00120ef	movl	0x128(sp), r11
+00007f83f00120f7	addl	r11, r10
+00007f83f00120fa	movl	0xe8(sp), r11
+00007f83f0012102	addl	r11, r10
+00007f83f0012105	movl	0x110(sp), r11
+00007f83f001210d	roll	$0x19, r11
+00007f83f0012111	movl	0x110(sp), r12
+00007f83f0012119	shrl	$3, r12
+00007f83f001211d	xorl	r12, r11
+00007f83f0012120	movl	0x110(sp), r12
+00007f83f0012128	roll	$0xe, r12
+00007f83f001212c	xorl	r12, r11
+00007f83f001212f	movl	0x130(sp), r12
+00007f83f0012137	addl	r12, r11
+00007f83f001213a	movl	0xf0(sp), r12
+00007f83f0012142	addl	r12, r11
+00007f83f0012145	movl	0xc0(sp), r12
+00007f83f001214d	rorl	$0x11, r12
+00007f83f0012151	movl	0xc0(sp), r13
+00007f83f0012159	rorl	$0x13, r13
+00007f83f001215d	xorl	r13, r12
+00007f83f0012160	movl	0xc0(sp), r13
+00007f83f0012168	shrl	$0xa, r13
+00007f83f001216c	xorl	r13, r12
+00007f83f001216f	addl	r12, r11
+00007f83f0012172	movl	r11, 0x98(sp)
+00007f83f001217a	rorl	$0x11, r11
+00007f83f001217e	movl	0x98(sp), r12
+00007f83f0012186	rorl	$0x13, r12
+00007f83f001218a	xorl	r12, r11
+00007f83f001218d	movl	0x98(sp), r12
+00007f83f0012195	shrl	$0xa, r12
+00007f83f0012199	xorl	r12, r11
+00007f83f001219c	addl	r11, r10
+00007f83f001219f	movl	r10, 0x90(sp)
+00007f83f00121a7	rorl	$0x11, r10
+00007f83f00121ab	movl	0x90(sp), r11
+00007f83f00121b3	rorl	$0x13, r11
+00007f83f00121b7	xorl	r11, r10
+00007f83f00121ba	movl	0x90(sp), r11
+00007f83f00121c2	shrl	$0xa, r11
+00007f83f00121c6	xorl	r11, r10
+00007f83f00121c9	addl	r10, r9
+00007f83f00121cc	movl	r9, 0x88(sp)
+00007f83f00121d4	rorl	$0x11, r9
+00007f83f00121d8	movl	0x88(sp), r10
+00007f83f00121e0	rorl	$0x13, r10
+00007f83f00121e4	xorl	r10, r9
+00007f83f00121e7	movl	0x88(sp), r10
+00007f83f00121ef	shrl	$0xa, r10
+00007f83f00121f3	xorl	r10, r9
+00007f83f00121f6	addl	r9, r8
+00007f83f00121f9	movl	r8, 0x80(sp)
+00007f83f0012201	rorl	$0x11, r8
+00007f83f0012205	movl	0x80(sp), r9
+00007f83f001220d	rorl	$0x13, r9
+00007f83f0012211	xorl	r9, r8
+00007f83f0012214	movl	0x80(sp), r9
+00007f83f001221c	shrl	$0xa, r9
+00007f83f0012220	xorl	r9, r8
+00007f83f0012223	addl	r8, r7
+00007f83f0012226	movl	r7, 0x78(sp)
+00007f83f001222a	rorl	$0x11, r7
+00007f83f001222d	movl	0x78(sp), r8
+00007f83f0012232	rorl	$0x13, r8
+00007f83f0012236	xorl	r8, r7
+00007f83f0012239	movl	0x78(sp), r8
+00007f83f001223e	shrl	$0xa, r8
+00007f83f0012242	xorl	r8, r7
+00007f83f0012245	addl	r7, r5
+00007f83f0012247	movl	r5, 0x70(sp)
+00007f83f001224b	rorl	$0x11, r5
+00007f83f001224e	movl	0x70(sp), r7
+00007f83f0012252	rorl	$0x13, r7
+00007f83f0012255	xorl	r7, r5
+00007f83f0012257	movl	0x70(sp), r7
+00007f83f001225b	shrl	$0xa, r7
+00007f83f001225e	xorl	r7, r5
+00007f83f0012260	addl	r5, r6
+00007f83f0012262	movl	r6, 0x68(sp)
+00007f83f0012266	movl	0x78(sp), r5
+00007f83f001226a	movl	0x88(sp), r7
+00007f83f0012271	movl	0x98(sp), r8
+00007f83f0012279	movl	0xc8(sp), r9
+00007f83f0012281	movl	0xd8(sp), r10
+00007f83f0012289	movl	0x120(sp), r11
+00007f83f0012291	movl	0x130(sp), r12
+00007f83f0012299	movl	0x160(sp), r13
+00007f83f00122a1	pushq	r6
+00007f83f00122a3	movl	0x178(sp), r6
+00007f83f00122aa	pushq	r5
+00007f83f00122ac	movl	0x190(sp), r5
+00007f83f00122b3	pushq	r7
+00007f83f00122b5	movl	0x238(sp), r7
+00007f83f00122bc	pushq	r8
+00007f83f00122bf	movl	0x1e8(sp), r8
+00007f83f00122c7	pushq	r9
+00007f83f00122ca	movl	0x240(sp), r9
+00007f83f00122d2	pushq	r10
+00007f83f00122d5	movl	0x278(sp), r10
+00007f83f00122dd	movl	r10, scratch
+00007f83f00122e0	addq	memory, scratch
+00007f83f00122e3	movl	0x10(scratch), r10
+00007f83f00122e7	movl	r10, 0x90(sp)
+00007f83f00122ef	rorl	$6, r10
+00007f83f00122f3	pushq	r11
+00007f83f00122f6	movl	0x98(sp), r11
+00007f83f00122fe	rorl	$0xb, r11
+00007f83f0012302	xorl	r11, r10
+00007f83f0012305	movl	0x98(sp), r11
+00007f83f001230d	rorl	$0x19, r11
+00007f83f0012311	xorl	r11, r10
+00007f83f0012314	movl	0x280(sp), r11
+00007f83f001231c	movl	r11, scratch
+00007f83f001231f	addq	memory, scratch
+00007f83f0012322	movl	0x1c(scratch), r11
+00007f83f0012326	movl	r11, 0x90(sp)
+00007f83f001232e	addl	r11, r10
+00007f83f0012331	movl	0x280(sp), r11
+00007f83f0012339	movl	r11, scratch
+00007f83f001233c	addq	memory, scratch
+00007f83f001233f	movl	0x18(scratch), r11
+00007f83f0012343	movl	r11, 0x88(sp)
+00007f83f001234b	pushq	r12
+00007f83f001234e	movl	0x288(sp), r12
+00007f83f0012356	movl	r12, scratch
+00007f83f0012359	addq	memory, scratch
+00007f83f001235c	movl	0x14(scratch), r12
+00007f83f0012360	movl	r12, 0x88(sp)
+00007f83f0012368	xorl	r12, r11
+00007f83f001236b	movl	0xa0(sp), r12
+00007f83f0012373	andl	r12, r11
+00007f83f0012376	movl	0x90(sp), r12
+00007f83f001237e	xorl	r12, r11
+00007f83f0012381	addl	r11, r10
+00007f83f0012384	movl	0x240(sp), r11
+00007f83f001238c	addl	r11, r10
+00007f83f001238f	addl	$0x428a2f98, r10
+00007f83f0012396	movl	r10, 0x240(sp)
+00007f83f001239e	movl	0x288(sp), r11
+00007f83f00123a6	movl	r11, scratch
+00007f83f00123a9	addq	memory, scratch
+00007f83f00123ac	movl	0xc(scratch), r11
+00007f83f00123b0	movl	r11, 0x80(sp)
+00007f83f00123b8	addl	r11, r10
+00007f83f00123bb	movl	r10, 0x280(sp)
+00007f83f00123c3	movl	0x218(sp), r11
+00007f83f00123cb	addl	r11, r10
+00007f83f00123ce	movl	0xa0(sp), r11
+00007f83f00123d6	movl	0x210(sp), r12
+00007f83f00123de	addl	r12, r11
+00007f83f00123e1	movl	0x88(sp), r12
+00007f83f00123e9	pushq	r13
+00007f83f00123ec	movl	0x208(sp), r13
+00007f83f00123f4	addl	r13, r12
+00007f83f00123f7	movl	0x98(sp), r13
+00007f83f00123ff	pushq	r6
+00007f83f0012401	movl	0x258(sp), r6
+00007f83f0012408	addl	r6, r13
+00007f83f001240b	movl	0x290(sp), r6
+00007f83f0012412	pushq	r5
+00007f83f0012414	movl	0xa0(sp), r5
+00007f83f001241b	pushq	r7
+00007f83f001241d	movl	0xc0(sp), r7
+00007f83f0012424	xorl	r7, r5
+00007f83f0012426	andl	r5, r6
+00007f83f0012428	movl	0xa8(sp), r5
+00007f83f001242f	xorl	r5, r6
+00007f83f0012431	addl	r6, r13
+00007f83f0012434	movl	0x2a0(sp), r5
+00007f83f001243b	rorl	$6, r5
+00007f83f001243e	movl	0x2a0(sp), r6
+00007f83f0012445	rorl	$0xb, r6
+00007f83f0012448	xorl	r6, r5
+00007f83f001244a	movl	0x2a0(sp), r6
+00007f83f0012451	rorl	$0x19, r6
+00007f83f0012454	xorl	r6, r5
+00007f83f0012456	addl	r5, r13
+00007f83f0012459	addl	$0x71374491, r13
+00007f83f0012460	movl	r13, 0x98(sp)
+00007f83f0012468	movl	0x2a8(sp), r5
+00007f83f001246f	movl	r5, scratch
+00007f83f0012471	addq	memory, scratch
+00007f83f0012474	movl	8(scratch), r5
+00007f83f0012477	movl	r5, 0x90(sp)
+00007f83f001247e	addl	r5, r13
+00007f83f0012481	movl	r13, 0x268(sp)
+00007f83f0012489	movl	0x2a0(sp), r5
+00007f83f0012490	movl	0xc0(sp), r6
+00007f83f0012497	xorl	r6, r5
+00007f83f0012499	andl	r5, r13
+00007f83f001249c	movl	0xc0(sp), r5
+00007f83f00124a3	xorl	r5, r13
+00007f83f00124a6	addl	r13, r12
+00007f83f00124a9	movl	0x268(sp), r5
+00007f83f00124b0	rorl	$6, r5
+00007f83f00124b3	movl	0x268(sp), r6
+00007f83f00124ba	rorl	$0xb, r6
+00007f83f00124bd	xorl	r6, r5
+00007f83f00124bf	movl	0x268(sp), r6
+00007f83f00124c6	rorl	$0x19, r6
+00007f83f00124c9	xorl	r6, r5
+00007f83f00124cb	addl	r5, r12
+00007f83f00124ce	addl	$0xb5c0fbcf, r12
+00007f83f00124d5	movl	r12, 0x88(sp)
+00007f83f00124dd	movl	0x2a8(sp), r5
+00007f83f00124e4	movl	r5, scratch
+00007f83f00124e6	addq	memory, scratch
+00007f83f00124e9	movl	4(scratch), r5
+00007f83f00124ec	movl	r5, 0x80(sp)
+00007f83f00124f3	addl	r5, r12
+00007f83f00124f6	movl	r12, 0x238(sp)
+00007f83f00124fe	movl	0x268(sp), r5
+00007f83f0012505	movl	0x2a0(sp), r6
+00007f83f001250c	xorl	r6, r5
+00007f83f001250e	andl	r5, r12
+00007f83f0012511	movl	0x2a0(sp), r5
+00007f83f0012518	xorl	r5, r12
+00007f83f001251b	addl	r12, r11
+00007f83f001251e	movl	0x238(sp), r5
+00007f83f0012525	rorl	$6, r5
+00007f83f0012528	movl	0x238(sp), r6
+00007f83f001252f	rorl	$0xb, r6
+00007f83f0012532	xorl	r6, r5
+00007f83f0012534	movl	0x238(sp), r6
+00007f83f001253b	rorl	$0x19, r6
+00007f83f001253e	xorl	r6, r5
+00007f83f0012540	addl	r5, r11
+00007f83f0012543	addl	$0xe9b5dba5, r11
+00007f83f001254a	movl	r11, 0x78(sp)
+00007f83f001254f	movl	0x2a8(sp), r5
+00007f83f0012556	movl	r5, scratch
+00007f83f0012558	addq	memory, scratch
+00007f83f001255b	movl	(scratch), r5
+00007f83f001255d	movl	r5, 0x2a0(sp)
+00007f83f0012564	addl	r5, r11
+00007f83f0012567	movl	r11, 0x230(sp)
+00007f83f001256f	movl	0x238(sp), r5
+00007f83f0012576	movl	0x268(sp), r6
+00007f83f001257d	xorl	r6, r5
+00007f83f001257f	andl	r5, r11
+00007f83f0012582	movl	0x268(sp), r5
+00007f83f0012589	xorl	r5, r11
+00007f83f001258c	addl	r11, r10
+00007f83f001258f	movl	0x230(sp), r5
+00007f83f0012596	rorl	$6, r5
+00007f83f0012599	movl	0x230(sp), r6
+00007f83f00125a0	rorl	$0xb, r6
+00007f83f00125a3	xorl	r6, r5
+00007f83f00125a5	movl	0x230(sp), r6
+00007f83f00125ac	rorl	$0x19, r6
+00007f83f00125af	xorl	r6, r5
+00007f83f00125b1	addl	r5, r10
+00007f83f00125b4	addl	$0x3956c25b, r10
+00007f83f00125bb	movl	r10, 0x70(sp)
+00007f83f00125c0	movl	0x90(sp), r5
+00007f83f00125c7	movl	0x80(sp), r6
+00007f83f00125ce	xorl	r6, r5
+00007f83f00125d0	movl	0x2a0(sp), r6
+00007f83f00125d7	andl	r6, r5
+00007f83f00125d9	movl	0x90(sp), r6
+00007f83f00125e0	movl	0x80(sp), r7
+00007f83f00125e7	andl	r7, r6
+00007f83f00125e9	xorl	r6, r5
+00007f83f00125eb	movl	0x2a0(sp), r6
+00007f83f00125f2	rorl	$2, r6
+00007f83f00125f5	movl	0x2a0(sp), r7
+00007f83f00125fc	rorl	$0xd, r7
+00007f83f00125ff	xorl	r7, r6
+00007f83f0012601	movl	0x2a0(sp), r7
+00007f83f0012608	rorl	$0x16, r7
+00007f83f001260b	xorl	r7, r6
+00007f83f001260d	addl	r6, r5
+00007f83f001260f	movl	0x260(sp), r6
+00007f83f0012616	addl	r6, r5
+00007f83f0012618	movl	r5, 0x220(sp)
+00007f83f001261f	addl	r5, r10
+00007f83f0012622	movl	r10, 0x260(sp)
+00007f83f001262a	addl	r10, r9
+00007f83f001262d	movl	0x270(sp), r5
+00007f83f0012634	movl	0x230(sp), r6
+00007f83f001263b	addl	r6, r5
+00007f83f001263d	movl	0x248(sp), r6
+00007f83f0012644	movl	0x238(sp), r7
+00007f83f001264b	addl	r7, r6
+00007f83f001264d	movl	0x240(sp), r7
+00007f83f0012654	movl	0x268(sp), r10
+00007f83f001265c	addl	r10, r7
+00007f83f001265f	movl	0x260(sp), r10
+00007f83f0012667	movl	0x230(sp), r11
+00007f83f001266f	movl	0x238(sp), r12
+00007f83f0012677	xorl	r12, r11
+00007f83f001267a	andl	r11, r10
+00007f83f001267d	movl	0x238(sp), r11
+00007f83f0012685	xorl	r11, r10
+00007f83f0012688	addl	r10, r7
+00007f83f001268b	movl	0x260(sp), r10
+00007f83f0012693	rorl	$6, r10
+00007f83f0012697	movl	0x260(sp), r11
+00007f83f001269f	rorl	$0xb, r11
+00007f83f00126a3	xorl	r11, r10
+00007f83f00126a6	movl	0x260(sp), r11
+00007f83f00126ae	rorl	$0x19, r11
+00007f83f00126b2	xorl	r11, r10
+00007f83f00126b5	addl	r10, r7
+00007f83f00126b8	addl	$0x59f111f1, r7
+00007f83f00126be	movl	r7, 0x240(sp)
+00007f83f00126c5	movl	0x220(sp), r10
+00007f83f00126cd	rorl	$2, r10
+00007f83f00126d1	movl	0x220(sp), r11
+00007f83f00126d9	rorl	$0xd, r11
+00007f83f00126dd	xorl	r11, r10
+00007f83f00126e0	movl	0x220(sp), r11
+00007f83f00126e8	rorl	$0x16, r11
+00007f83f00126ec	xorl	r11, r10
+00007f83f00126ef	movl	0x220(sp), r11
+00007f83f00126f7	movl	0x80(sp), r12
+00007f83f00126ff	movl	0x2a0(sp), r13
+00007f83f0012707	xorl	r13, r12
+00007f83f001270a	andl	r12, r11
+00007f83f001270d	movl	0x80(sp), r12
+00007f83f0012715	movl	0x2a0(sp), r13
+00007f83f001271d	andl	r13, r12
+00007f83f0012720	xorl	r12, r11
+00007f83f0012723	addl	r11, r10
+00007f83f0012726	movl	0x98(sp), r11
+00007f83f001272e	addl	r11, r10
+00007f83f0012731	movl	r10, 0x268(sp)
+00007f83f0012739	addl	r10, r7
+00007f83f001273c	movl	r7, 0x278(sp)
+00007f83f0012743	movl	0x260(sp), r10
+00007f83f001274b	movl	0x230(sp), r11
+00007f83f0012753	xorl	r11, r10
+00007f83f0012756	andl	r10, r7
+00007f83f0012759	movl	0x230(sp), r10
+00007f83f0012761	xorl	r10, r7
+00007f83f0012764	addl	r7, r6
+00007f83f0012766	movl	0x278(sp), r7
+00007f83f001276d	rorl	$6, r7
+00007f83f0012770	movl	0x278(sp), r10
+00007f83f0012778	rorl	$0xb, r10
+00007f83f001277c	xorl	r10, r7
+00007f83f001277f	movl	0x278(sp), r10
+00007f83f0012787	rorl	$0x19, r10
+00007f83f001278b	xorl	r10, r7
+00007f83f001278e	addl	r7, r6
+00007f83f0012790	addl	$0x923f82a4, r6
+00007f83f0012796	movl	r6, 0x98(sp)
+00007f83f001279d	movl	0x268(sp), r7
+00007f83f00127a4	movl	0x220(sp), r10
+00007f83f00127ac	andl	r10, r7
+00007f83f00127af	movl	r7, 0x238(sp)
+00007f83f00127b6	movl	0x220(sp), r10
+00007f83f00127be	movl	0x2a0(sp), r11
+00007f83f00127c6	andl	r11, r10
+00007f83f00127c9	xorl	r10, r7
+00007f83f00127cc	movl	0x268(sp), r10
+00007f83f00127d4	movl	0x2a0(sp), r11
+00007f83f00127dc	andl	r11, r10
+00007f83f00127df	xorl	r10, r7
+00007f83f00127e2	movl	0x268(sp), r10
+00007f83f00127ea	rorl	$2, r10
+00007f83f00127ee	movl	0x268(sp), r11
+00007f83f00127f6	rorl	$0xd, r11
+00007f83f00127fa	xorl	r11, r10
+00007f83f00127fd	movl	0x268(sp), r11
+00007f83f0012805	rorl	$0x16, r11
+00007f83f0012809	xorl	r11, r10
+00007f83f001280c	addl	r10, r7
+00007f83f001280f	movl	0x88(sp), r10
+00007f83f0012817	addl	r10, r7
+00007f83f001281a	movl	r7, 0x230(sp)
+00007f83f0012821	addl	r7, r6
+00007f83f0012823	movl	r6, 0x270(sp)
+00007f83f001282a	movl	0x278(sp), r7
+00007f83f0012831	movl	0x260(sp), r10
+00007f83f0012839	xorl	r10, r7
+00007f83f001283c	andl	r7, r6
+00007f83f001283e	movl	0x260(sp), r7
+00007f83f0012845	xorl	r7, r6
+00007f83f0012847	addl	r6, r5
+00007f83f0012849	movl	0x270(sp), r6
+00007f83f0012850	rorl	$6, r6
+00007f83f0012853	movl	0x270(sp), r7
+00007f83f001285a	rorl	$0xb, r7
+00007f83f001285d	xorl	r7, r6
+00007f83f001285f	movl	0x270(sp), r7
+00007f83f0012866	rorl	$0x19, r7
+00007f83f0012869	xorl	r7, r6
+00007f83f001286b	addl	r6, r5
+00007f83f001286d	addl	$0xab1c5ed5, r5
+00007f83f0012873	movl	r5, 0x88(sp)
+00007f83f001287a	movl	0x230(sp), r6
+00007f83f0012881	rorl	$2, r6
+00007f83f0012884	movl	0x230(sp), r7
+00007f83f001288b	rorl	$0xd, r7
+00007f83f001288e	xorl	r7, r6
+00007f83f0012890	movl	0x230(sp), r7
+00007f83f0012897	rorl	$0x16, r7
+00007f83f001289a	xorl	r7, r6
+00007f83f001289c	movl	0x230(sp), r7
+00007f83f00128a3	movl	0x268(sp), r10
+00007f83f00128ab	movl	0x220(sp), r11
+00007f83f00128b3	xorl	r11, r10
+00007f83f00128b6	andl	r10, r7
+00007f83f00128b9	movl	0x238(sp), r10
+00007f83f00128c1	xorl	r10, r7
+00007f83f00128c4	addl	r7, r6
+00007f83f00128c6	movl	0x78(sp), r7
+00007f83f00128ca	addl	r7, r6
+00007f83f00128cc	movl	r6, 0x238(sp)
+00007f83f00128d3	addl	r6, r5
+00007f83f00128d5	movl	r5, 0x220(sp)
+00007f83f00128dc	movl	0x270(sp), r6
+00007f83f00128e3	movl	0x278(sp), r7
+00007f83f00128ea	xorl	r7, r6
+00007f83f00128ec	andl	r6, r5
+00007f83f00128ee	movl	0x278(sp), r6
+00007f83f00128f5	xorl	r6, r5
+00007f83f00128f7	addl	r5, r9
+00007f83f00128fa	movl	0x220(sp), r5
+00007f83f0012901	rorl	$6, r5
+00007f83f0012904	movl	0x220(sp), r6
+00007f83f001290b	rorl	$0xb, r6
+00007f83f001290e	xorl	r6, r5
+00007f83f0012910	movl	0x220(sp), r6
+00007f83f0012917	rorl	$0x19, r6
+00007f83f001291a	xorl	r6, r5
+00007f83f001291c	addl	r5, r9
+00007f83f001291f	addl	$0xd807aa98, r9
+00007f83f0012926	movl	r9, 0x78(sp)
+00007f83f001292b	movl	0x238(sp), r5
+00007f83f0012932	movl	0x230(sp), r6
+00007f83f0012939	andl	r6, r5
+00007f83f001293b	movl	r5, 0x68(sp)
+00007f83f001293f	movl	0x230(sp), r6
+00007f83f0012946	movl	0x268(sp), r7
+00007f83f001294d	andl	r7, r6
+00007f83f001294f	xorl	r6, r5
+00007f83f0012951	movl	0x238(sp), r6
+00007f83f0012958	movl	0x268(sp), r7
+00007f83f001295f	andl	r7, r6
+00007f83f0012961	xorl	r6, r5
+00007f83f0012963	movl	0x238(sp), r6
+00007f83f001296a	rorl	$2, r6
+00007f83f001296d	movl	0x238(sp), r7
+00007f83f0012974	rorl	$0xd, r7
+00007f83f0012977	xorl	r7, r6
+00007f83f0012979	movl	0x238(sp), r7
+00007f83f0012980	rorl	$0x16, r7
+00007f83f0012983	xorl	r7, r6
+00007f83f0012985	addl	r6, r5
+00007f83f0012987	movl	0x70(sp), r6
+00007f83f001298b	addl	r6, r5
+00007f83f001298d	movl	r5, 0x260(sp)
+00007f83f0012994	addl	r5, r9
+00007f83f0012997	movl	r9, 0x248(sp)
+00007f83f001299f	addl	r9, r8
+00007f83f00129a2	movl	0x1e8(sp), r5
+00007f83f00129a9	movl	0x220(sp), r6
+00007f83f00129b0	addl	r6, r5
+00007f83f00129b2	movl	0x218(sp), r6
+00007f83f00129b9	movl	0x270(sp), r7
+00007f83f00129c0	addl	r7, r6
+00007f83f00129c2	movl	0x258(sp), r7
+00007f83f00129c9	movl	0x278(sp), r9
+00007f83f00129d1	addl	r9, r7
+00007f83f00129d4	movl	0x248(sp), r9
+00007f83f00129dc	movl	0x220(sp), r10
+00007f83f00129e4	movl	0x270(sp), r11
+00007f83f00129ec	xorl	r11, r10
+00007f83f00129ef	andl	r10, r9
+00007f83f00129f2	movl	0x270(sp), r10
+00007f83f00129fa	xorl	r10, r9
+00007f83f00129fd	addl	r9, r7
+00007f83f0012a00	movl	0x248(sp), r9
+00007f83f0012a08	rorl	$6, r9
+00007f83f0012a0c	movl	0x248(sp), r10
+00007f83f0012a14	rorl	$0xb, r10
+00007f83f0012a18	xorl	r10, r9
+00007f83f0012a1b	movl	0x248(sp), r10
+00007f83f0012a23	rorl	$0x19, r10
+00007f83f0012a27	xorl	r10, r9
+00007f83f0012a2a	addl	r9, r7
+00007f83f0012a2d	addl	$0x12835b01, r7
+00007f83f0012a33	movl	r7, 0x258(sp)
+00007f83f0012a3a	movl	0x260(sp), r9
+00007f83f0012a42	rorl	$2, r9
+00007f83f0012a46	movl	0x260(sp), r10
+00007f83f0012a4e	rorl	$0xd, r10
+00007f83f0012a52	xorl	r10, r9
+00007f83f0012a55	movl	0x260(sp), r10
+00007f83f0012a5d	rorl	$0x16, r10
+00007f83f0012a61	xorl	r10, r9
+00007f83f0012a64	movl	0x260(sp), r10
+00007f83f0012a6c	movl	0x238(sp), r11
+00007f83f0012a74	movl	0x230(sp), r12
+00007f83f0012a7c	xorl	r12, r11
+00007f83f0012a7f	andl	r11, r10
+00007f83f0012a82	movl	0x68(sp), r11
+00007f83f0012a87	xorl	r11, r10
+00007f83f0012a8a	addl	r10, r9
+00007f83f0012a8d	movl	0x240(sp), r10
+00007f83f0012a95	addl	r10, r9
+00007f83f0012a98	movl	r9, 0x268(sp)
+00007f83f0012aa0	addl	r9, r7
+00007f83f0012aa3	movl	r7, 0x230(sp)
+00007f83f0012aaa	movl	0x248(sp), r9
+00007f83f0012ab2	movl	0x220(sp), r10
+00007f83f0012aba	xorl	r10, r9
+00007f83f0012abd	andl	r9, r7
+00007f83f0012ac0	movl	0x220(sp), r9
+00007f83f0012ac8	xorl	r9, r7
+00007f83f0012acb	addl	r7, r6
+00007f83f0012acd	movl	0x230(sp), r7
+00007f83f0012ad4	rorl	$6, r7
+00007f83f0012ad7	movl	0x230(sp), r9
+00007f83f0012adf	rorl	$0xb, r9
+00007f83f0012ae3	xorl	r9, r7
+00007f83f0012ae6	movl	0x230(sp), r9
+00007f83f0012aee	rorl	$0x19, r9
+00007f83f0012af2	xorl	r9, r7
+00007f83f0012af5	addl	r7, r6
+00007f83f0012af7	addl	$0x243185be, r6
+00007f83f0012afd	movl	r6, 0x228(sp)
+00007f83f0012b04	movl	0x268(sp), r7
+00007f83f0012b0b	movl	0x260(sp), r9
+00007f83f0012b13	andl	r9, r7
+00007f83f0012b16	movl	r7, 0x270(sp)
+00007f83f0012b1d	movl	0x260(sp), r9
+00007f83f0012b25	movl	0x238(sp), r10
+00007f83f0012b2d	andl	r10, r9
+00007f83f0012b30	xorl	r9, r7
+00007f83f0012b33	movl	0x268(sp), r9
+00007f83f0012b3b	movl	0x238(sp), r10
+00007f83f0012b43	andl	r10, r9
+00007f83f0012b46	xorl	r9, r7
+00007f83f0012b49	movl	0x268(sp), r9
+00007f83f0012b51	rorl	$2, r9
+00007f83f0012b55	movl	0x268(sp), r10
+00007f83f0012b5d	rorl	$0xd, r10
+00007f83f0012b61	xorl	r10, r9
+00007f83f0012b64	movl	0x268(sp), r10
+00007f83f0012b6c	rorl	$0x16, r10
+00007f83f0012b70	xorl	r10, r9
+00007f83f0012b73	addl	r9, r7
+00007f83f0012b76	movl	0x98(sp), r9
+00007f83f0012b7e	addl	r9, r7
+00007f83f0012b81	movl	r7, 0x220(sp)
+00007f83f0012b88	addl	r7, r6
+00007f83f0012b8a	movl	r6, 0x278(sp)
+00007f83f0012b91	movl	0x230(sp), r7
+00007f83f0012b98	movl	0x248(sp), r9
+00007f83f0012ba0	xorl	r9, r7
+00007f83f0012ba3	andl	r7, r6
+00007f83f0012ba5	movl	0x248(sp), r7
+00007f83f0012bac	xorl	r7, r6
+00007f83f0012bae	addl	r6, r5
+00007f83f0012bb0	movl	0x278(sp), r6
+00007f83f0012bb7	rorl	$6, r6
+00007f83f0012bba	movl	0x278(sp), r7
+00007f83f0012bc1	rorl	$0xb, r7
+00007f83f0012bc4	xorl	r7, r6
+00007f83f0012bc6	movl	0x278(sp), r7
+00007f83f0012bcd	rorl	$0x19, r7
+00007f83f0012bd0	xorl	r7, r6
+00007f83f0012bd2	addl	r6, r5
+00007f83f0012bd4	addl	$0x550c7dc3, r5
+00007f83f0012bda	movl	r5, 0x248(sp)
+00007f83f0012be1	movl	0x220(sp), r6
+00007f83f0012be8	rorl	$2, r6
+00007f83f0012beb	movl	0x220(sp), r7
+00007f83f0012bf2	rorl	$0xd, r7
+00007f83f0012bf5	xorl	r7, r6
+00007f83f0012bf7	movl	0x220(sp), r7
+00007f83f0012bfe	rorl	$0x16, r7
+00007f83f0012c01	xorl	r7, r6
+00007f83f0012c03	movl	0x220(sp), r7
+00007f83f0012c0a	movl	0x268(sp), r9
+00007f83f0012c12	movl	0x260(sp), r10
+00007f83f0012c1a	xorl	r10, r9
+00007f83f0012c1d	andl	r9, r7
+00007f83f0012c20	movl	0x270(sp), r9
+00007f83f0012c28	xorl	r9, r7
+00007f83f0012c2b	addl	r7, r6
+00007f83f0012c2d	movl	0x88(sp), r7
+00007f83f0012c34	addl	r7, r6
+00007f83f0012c36	movl	r6, 0x238(sp)
+00007f83f0012c3d	addl	r6, r5
+00007f83f0012c3f	movl	r5, 0x260(sp)
+00007f83f0012c46	movl	0x278(sp), r6
+00007f83f0012c4d	movl	0x230(sp), r7
+00007f83f0012c54	xorl	r7, r6
+00007f83f0012c56	andl	r6, r5
+00007f83f0012c58	movl	0x230(sp), r6
+00007f83f0012c5f	xorl	r6, r5
+00007f83f0012c61	addl	r5, r8
+00007f83f0012c64	movl	0x260(sp), r5
+00007f83f0012c6b	rorl	$6, r5
+00007f83f0012c6e	movl	0x260(sp), r6
+00007f83f0012c75	rorl	$0xb, r6
+00007f83f0012c78	xorl	r6, r5
+00007f83f0012c7a	movl	0x260(sp), r6
+00007f83f0012c81	rorl	$0x19, r6
+00007f83f0012c84	xorl	r6, r5
+00007f83f0012c86	addl	r5, r8
+00007f83f0012c89	addl	$0x72be5d74, r8
+00007f83f0012c90	movl	r8, 0x218(sp)
+00007f83f0012c98	movl	0x238(sp), r5
+00007f83f0012c9f	movl	0x220(sp), r6
+00007f83f0012ca6	andl	r6, r5
+00007f83f0012ca8	movl	r5, 0x1e8(sp)
+00007f83f0012caf	movl	0x220(sp), r6
+00007f83f0012cb6	movl	0x268(sp), r7
+00007f83f0012cbd	andl	r7, r6
+00007f83f0012cbf	xorl	r6, r5
+00007f83f0012cc1	movl	0x238(sp), r6
+00007f83f0012cc8	movl	0x268(sp), r7
+00007f83f0012ccf	andl	r7, r6
+00007f83f0012cd1	xorl	r6, r5
+00007f83f0012cd3	movl	0x238(sp), r6
+00007f83f0012cda	rorl	$2, r6
+00007f83f0012cdd	movl	0x238(sp), r7
+00007f83f0012ce4	rorl	$0xd, r7
+00007f83f0012ce7	xorl	r7, r6
+00007f83f0012ce9	movl	0x238(sp), r7
+00007f83f0012cf0	rorl	$0x16, r7
+00007f83f0012cf3	xorl	r7, r6
+00007f83f0012cf5	addl	r6, r5
+00007f83f0012cf7	movl	0x78(sp), r6
+00007f83f0012cfb	addl	r6, r5
+00007f83f0012cfd	movl	r5, 0x268(sp)
+00007f83f0012d04	addl	r5, r8
+00007f83f0012d07	movl	r8, 0x270(sp)
+00007f83f0012d0f	popq	r5
+00007f83f0012d11	addl	r8, r5
+00007f83f0012d14	movl	0x288(sp), r6
+00007f83f0012d1b	movl	0x258(sp), r7
+00007f83f0012d22	addl	r7, r6
+00007f83f0012d24	movl	0x280(sp), r7
+00007f83f0012d2b	movl	0x270(sp), r8
+00007f83f0012d33	addl	r8, r7
+00007f83f0012d36	movl	0x1e8(sp), r8
+00007f83f0012d3e	movl	0x228(sp), r9
+00007f83f0012d46	addl	r9, r8
+00007f83f0012d49	movl	0x268(sp), r9
+00007f83f0012d51	movl	0x258(sp), r10
+00007f83f0012d59	movl	0x270(sp), r11
+00007f83f0012d61	xorl	r11, r10
+00007f83f0012d64	andl	r10, r9
+00007f83f0012d67	movl	0x270(sp), r10
+00007f83f0012d6f	xorl	r10, r9
+00007f83f0012d72	addl	r9, r8
+00007f83f0012d75	movl	0x268(sp), r9
+00007f83f0012d7d	rorl	$6, r9
+00007f83f0012d81	movl	0x268(sp), r10
+00007f83f0012d89	rorl	$0xb, r10
+00007f83f0012d8d	xorl	r10, r9
+00007f83f0012d90	movl	0x268(sp), r10
+00007f83f0012d98	rorl	$0x19, r10
+00007f83f0012d9c	xorl	r10, r9
+00007f83f0012d9f	addl	r9, r8
+00007f83f0012da2	addl	$0x80deb1fe, r8
+00007f83f0012da9	movl	r8, 0x270(sp)
+00007f83f0012db1	movl	0x260(sp), r9
+00007f83f0012db9	rorl	$2, r9
+00007f83f0012dbd	movl	0x260(sp), r10
+00007f83f0012dc5	rorl	$0xd, r10
+00007f83f0012dc9	xorl	r10, r9
+00007f83f0012dcc	movl	0x260(sp), r10
+00007f83f0012dd4	rorl	$0x16, r10
+00007f83f0012dd8	xorl	r10, r9
+00007f83f0012ddb	movl	0x260(sp), r10
+00007f83f0012de3	movl	0x230(sp), r11
+00007f83f0012deb	movl	0x218(sp), r12
+00007f83f0012df3	xorl	r12, r11
+00007f83f0012df6	andl	r11, r10
+00007f83f0012df9	movl	0x1e0(sp), r11
+00007f83f0012e01	xorl	r11, r10
+00007f83f0012e04	addl	r10, r9
+00007f83f0012e07	movl	0x250(sp), r10
+00007f83f0012e0f	addl	r10, r9
+00007f83f0012e12	movl	r9, 0x288(sp)
+00007f83f0012e1a	addl	r9, r8
+00007f83f0012e1d	movl	r8, 0x278(sp)
+00007f83f0012e25	movl	0x268(sp), r9
+00007f83f0012e2d	movl	0x258(sp), r10
+00007f83f0012e35	xorl	r10, r9
+00007f83f0012e38	andl	r9, r8
+00007f83f0012e3b	movl	0x258(sp), r9
+00007f83f0012e43	xorl	r9, r8
+00007f83f0012e46	addl	r8, r7
+00007f83f0012e49	movl	0x278(sp), r8
+00007f83f0012e51	rorl	$6, r8
+00007f83f0012e55	movl	0x278(sp), r9
+00007f83f0012e5d	rorl	$0xb, r9
+00007f83f0012e61	xorl	r9, r8
+00007f83f0012e64	movl	0x278(sp), r9
+00007f83f0012e6c	rorl	$0x19, r9
+00007f83f0012e70	xorl	r9, r8
+00007f83f0012e73	addl	r8, r7
+00007f83f0012e76	addl	$0x9bdc06a7, r7
+00007f83f0012e7c	movl	r7, 0x250(sp)
+00007f83f0012e83	movl	0x288(sp), r8
+00007f83f0012e8b	movl	0x260(sp), r9
+00007f83f0012e93	andl	r9, r8
+00007f83f0012e96	movl	r8, 0x280(sp)
+00007f83f0012e9e	movl	0x260(sp), r9
+00007f83f0012ea6	movl	0x230(sp), r10
+00007f83f0012eae	andl	r10, r9
+00007f83f0012eb1	xorl	r9, r8
+00007f83f0012eb4	movl	0x288(sp), r9
+00007f83f0012ebc	movl	0x230(sp), r10
+00007f83f0012ec4	andl	r10, r9
+00007f83f0012ec7	xorl	r9, r8
+00007f83f0012eca	movl	0x288(sp), r9
+00007f83f0012ed2	rorl	$2, r9
+00007f83f0012ed6	movl	0x288(sp), r10
+00007f83f0012ede	rorl	$0xd, r10
+00007f83f0012ee2	xorl	r10, r9
+00007f83f0012ee5	movl	0x288(sp), r10
+00007f83f0012eed	rorl	$0x16, r10
+00007f83f0012ef1	xorl	r10, r9
+00007f83f0012ef4	addl	r9, r8
+00007f83f0012ef7	movl	0x220(sp), r9
+00007f83f0012eff	addl	r9, r8
+00007f83f0012f02	movl	r8, 0x230(sp)
+00007f83f0012f0a	addl	r8, r7
+00007f83f0012f0d	movl	r7, 0x228(sp)
+00007f83f0012f14	movl	0x278(sp), r8
+00007f83f0012f1c	movl	0x268(sp), r9
+00007f83f0012f24	xorl	r9, r8
+00007f83f0012f27	andl	r8, r7
+00007f83f0012f2a	movl	0x268(sp), r8
+00007f83f0012f32	xorl	r8, r7
+00007f83f0012f35	addl	r7, r6
+00007f83f0012f37	movl	0x228(sp), r7
+00007f83f0012f3e	rorl	$6, r7
+00007f83f0012f41	movl	0x228(sp), r8
+00007f83f0012f49	rorl	$0xb, r8
+00007f83f0012f4d	xorl	r8, r7
+00007f83f0012f50	movl	0x228(sp), r8
+00007f83f0012f58	rorl	$0x19, r8
+00007f83f0012f5c	xorl	r8, r7
+00007f83f0012f5f	addl	r7, r6
+00007f83f0012f61	addl	$0xc19bf174, r6
+00007f83f0012f67	movl	r6, 0x268(sp)
+00007f83f0012f6e	movl	0x230(sp), r7
+00007f83f0012f75	rorl	$2, r7
+00007f83f0012f78	movl	0x230(sp), r8
+00007f83f0012f80	rorl	$0xd, r8
+00007f83f0012f84	xorl	r8, r7
+00007f83f0012f87	movl	0x230(sp), r8
+00007f83f0012f8f	rorl	$0x16, r8
+00007f83f0012f93	xorl	r8, r7
+00007f83f0012f96	movl	0x230(sp), r8
+00007f83f0012f9e	movl	0x288(sp), r9
+00007f83f0012fa6	movl	0x260(sp), r10
+00007f83f0012fae	xorl	r10, r9
+00007f83f0012fb1	andl	r9, r8
+00007f83f0012fb4	movl	0x280(sp), r9
+00007f83f0012fbc	xorl	r9, r8
+00007f83f0012fbf	addl	r8, r7
+00007f83f0012fc2	movl	0x240(sp), r8
+00007f83f0012fca	addl	r8, r7
+00007f83f0012fcd	movl	r7, 0x280(sp)
+00007f83f0012fd4	addl	r7, r6
+00007f83f0012fd6	movl	r6, 0x260(sp)
+00007f83f0012fdd	movl	0x228(sp), r7
+00007f83f0012fe4	movl	0x278(sp), r8
+00007f83f0012fec	xorl	r8, r7
+00007f83f0012fef	andl	r7, r6
+00007f83f0012ff1	movl	0x278(sp), r7
+00007f83f0012ff8	xorl	r7, r6
+00007f83f0012ffa	addl	r6, r5
+00007f83f0012ffc	movl	0x260(sp), r6
+00007f83f0013003	rorl	$6, r6
+00007f83f0013006	movl	0x260(sp), r7
+00007f83f001300d	rorl	$0xb, r7
+00007f83f0013010	xorl	r7, r6
+00007f83f0013012	movl	0x260(sp), r7
+00007f83f0013019	rorl	$0x19, r7
+00007f83f001301c	xorl	r7, r6
+00007f83f001301e	addl	r6, r5
+00007f83f0013020	addl	$0xe49b69c1, r5
+00007f83f0013026	movl	r5, 0x240(sp)
+00007f83f001302d	movl	0x280(sp), r6
+00007f83f0013034	movl	0x230(sp), r7
+00007f83f001303b	andl	r7, r6
+00007f83f001303d	movl	r6, 0x220(sp)
+00007f83f0013044	movl	0x230(sp), r7
+00007f83f001304b	movl	0x288(sp), r8
+00007f83f0013053	andl	r8, r7
+00007f83f0013056	xorl	r7, r6
+00007f83f0013058	movl	0x280(sp), r7
+00007f83f001305f	movl	0x288(sp), r8
+00007f83f0013067	andl	r8, r7
+00007f83f001306a	xorl	r7, r6
+00007f83f001306c	movl	0x280(sp), r7
+00007f83f0013073	rorl	$2, r7
+00007f83f0013076	movl	0x280(sp), r8
+00007f83f001307e	rorl	$0xd, r8
+00007f83f0013082	xorl	r8, r7
+00007f83f0013085	movl	0x280(sp), r8
+00007f83f001308d	rorl	$0x16, r8
+00007f83f0013091	xorl	r8, r7
+00007f83f0013094	addl	r7, r6
+00007f83f0013096	movl	0x210(sp), r7
+00007f83f001309d	addl	r7, r6
+00007f83f001309f	movl	r6, 0x218(sp)
+00007f83f00130a6	addl	r6, r5
+00007f83f00130a8	movl	r5, 0x258(sp)
+00007f83f00130af	popq	r6
+00007f83f00130b1	addl	r5, r6
+00007f83f00130b3	movl	0x200(sp), r5
+00007f83f00130ba	movl	0x258(sp), r7
+00007f83f00130c1	addl	r7, r5
+00007f83f00130c3	movl	0x1e8(sp), r7
+00007f83f00130ca	movl	0x220(sp), r8
+00007f83f00130d2	addl	r8, r7
+00007f83f00130d5	movl	0x240(sp), r8
+00007f83f00130dd	movl	0x270(sp), r9
+00007f83f00130e5	addl	r9, r8
+00007f83f00130e8	movl	0x250(sp), r9
+00007f83f00130f0	movl	0x258(sp), r10
+00007f83f00130f8	movl	0x220(sp), r11
+00007f83f0013100	xorl	r11, r10
+00007f83f0013103	andl	r10, r9
+00007f83f0013106	movl	0x220(sp), r10
+00007f83f001310e	xorl	r10, r9
+00007f83f0013111	addl	r9, r8
+00007f83f0013114	movl	0x250(sp), r9
+00007f83f001311c	rorl	$6, r9
+00007f83f0013120	movl	0x250(sp), r10
+00007f83f0013128	rorl	$0xb, r10
+00007f83f001312c	xorl	r10, r9
+00007f83f001312f	movl	0x250(sp), r10
+00007f83f0013137	rorl	$0x19, r10
+00007f83f001313b	xorl	r10, r9
+00007f83f001313e	addl	r9, r8
+00007f83f0013141	addl	$0xefbe4786, r8
+00007f83f0013148	movl	r8, 0x220(sp)
+00007f83f0013150	movl	0x210(sp), r9
+00007f83f0013158	rorl	$2, r9
+00007f83f001315c	movl	0x210(sp), r10
+00007f83f0013164	rorl	$0xd, r10
+00007f83f0013168	xorl	r10, r9
+00007f83f001316b	movl	0x210(sp), r10
+00007f83f0013173	rorl	$0x16, r10
+00007f83f0013177	xorl	r10, r9
+00007f83f001317a	movl	0x210(sp), r10
+00007f83f0013182	movl	0x278(sp), r11
+00007f83f001318a	movl	0x228(sp), r12
+00007f83f0013192	xorl	r12, r11
+00007f83f0013195	andl	r11, r10
+00007f83f0013198	movl	0x218(sp), r11
+00007f83f00131a0	xorl	r11, r10
+00007f83f00131a3	addl	r10, r9
+00007f83f00131a6	movl	0x268(sp), r10
+00007f83f00131ae	addl	r10, r9
+00007f83f00131b1	movl	r9, 0x280(sp)
+00007f83f00131b9	addl	r9, r8
+00007f83f00131bc	movl	r8, 0x270(sp)
+00007f83f00131c4	movl	0x250(sp), r9
+00007f83f00131cc	movl	0x258(sp), r10
+00007f83f00131d4	xorl	r10, r9
+00007f83f00131d7	andl	r9, r8
+00007f83f00131da	movl	0x258(sp), r9
+00007f83f00131e2	xorl	r9, r8
+00007f83f00131e5	addl	r8, r7
+00007f83f00131e8	movl	0x270(sp), r8
+00007f83f00131f0	rorl	$6, r8
+00007f83f00131f4	movl	0x270(sp), r9
+00007f83f00131fc	rorl	$0xb, r9
+00007f83f0013200	xorl	r9, r8
+00007f83f0013203	movl	0x270(sp), r9
+00007f83f001320b	rorl	$0x19, r9
+00007f83f001320f	xorl	r9, r8
+00007f83f0013212	addl	r8, r7
+00007f83f0013215	addl	$0xfc19dc6, r7
+00007f83f001321b	movl	r7, 0x228(sp)
+00007f83f0013222	movl	0x280(sp), r8
+00007f83f001322a	movl	0x210(sp), r9
+00007f83f0013232	andl	r9, r8
+00007f83f0013235	movl	r8, 0x1e8(sp)
+00007f83f001323d	movl	0x210(sp), r9
+00007f83f0013245	movl	0x278(sp), r10
+00007f83f001324d	andl	r10, r9
+00007f83f0013250	xorl	r9, r8
+00007f83f0013253	movl	0x280(sp), r9
+00007f83f001325b	movl	0x278(sp), r10
+00007f83f0013263	andl	r10, r9
+00007f83f0013266	xorl	r9, r8
+00007f83f0013269	movl	0x280(sp), r9
+00007f83f0013271	rorl	$2, r9
+00007f83f0013275	movl	0x280(sp), r10
+00007f83f001327d	rorl	$0xd, r10
+00007f83f0013281	xorl	r10, r9
+00007f83f0013284	movl	0x280(sp), r10
+00007f83f001328c	rorl	$0x16, r10
+00007f83f0013290	xorl	r10, r9
+00007f83f0013293	addl	r9, r8
+00007f83f0013296	movl	0x248(sp), r9
+00007f83f001329e	addl	r9, r8
+00007f83f00132a1	movl	r8, 0x240(sp)
+00007f83f00132a9	addl	r8, r7
+00007f83f00132ac	movl	r7, 0x200(sp)
+00007f83f00132b3	movl	0x270(sp), r8
+00007f83f00132bb	movl	0x250(sp), r9
+00007f83f00132c3	xorl	r9, r8
+00007f83f00132c6	andl	r8, r7
+00007f83f00132c9	movl	0x250(sp), r8
+00007f83f00132d1	xorl	r8, r7
+00007f83f00132d4	addl	r7, r5
+00007f83f00132d6	movl	0x200(sp), r7
+00007f83f00132dd	rorl	$6, r7
+00007f83f00132e0	movl	0x200(sp), r8
+00007f83f00132e8	rorl	$0xb, r8
+00007f83f00132ec	xorl	r8, r7
+00007f83f00132ef	movl	0x200(sp), r8
+00007f83f00132f7	rorl	$0x19, r8
+00007f83f00132fb	xorl	r8, r7
+00007f83f00132fe	addl	r7, r5
+00007f83f0013300	addl	$0x240ca1cc, r5
+00007f83f0013306	movl	r5, 0x250(sp)
+00007f83f001330d	movl	0x240(sp), r7
+00007f83f0013314	rorl	$2, r7
+00007f83f0013317	movl	0x240(sp), r8
+00007f83f001331f	rorl	$0xd, r8
+00007f83f0013323	xorl	r8, r7
+00007f83f0013326	movl	0x240(sp), r8
+00007f83f001332e	rorl	$0x16, r8
+00007f83f0013332	xorl	r8, r7
+00007f83f0013335	movl	0x240(sp), r8
+00007f83f001333d	movl	0x280(sp), r9
+00007f83f0013345	movl	0x210(sp), r10
+00007f83f001334d	xorl	r10, r9
+00007f83f0013350	andl	r9, r8
+00007f83f0013353	movl	0x1e8(sp), r9
+00007f83f001335b	xorl	r9, r8
+00007f83f001335e	addl	r8, r7
+00007f83f0013361	movl	0x260(sp), r8
+00007f83f0013369	addl	r8, r7
+00007f83f001336c	movl	r7, 0x278(sp)
+00007f83f0013373	addl	r7, r5
+00007f83f0013375	movl	r5, 0x1e8(sp)
+00007f83f001337c	movl	0x200(sp), r7
+00007f83f0013383	movl	0x270(sp), r8
+00007f83f001338b	xorl	r8, r7
+00007f83f001338e	andl	r7, r5
+00007f83f0013390	movl	0x270(sp), r7
+00007f83f0013397	xorl	r7, r5
+00007f83f0013399	addl	r5, r6
+00007f83f001339b	movl	0x1e8(sp), r5
+00007f83f00133a2	rorl	$6, r5
+00007f83f00133a5	movl	0x1e8(sp), r7
+00007f83f00133ac	rorl	$0xb, r7
+00007f83f00133af	xorl	r7, r5
+00007f83f00133b1	movl	0x1e8(sp), r7
+00007f83f00133b8	rorl	$0x19, r7
+00007f83f00133bb	xorl	r7, r5
+00007f83f00133bd	addl	r5, r6
+00007f83f00133bf	addl	$0x2de92c6f, r6
+00007f83f00133c5	movl	r6, 0x210(sp)
+00007f83f00133cc	movl	0x278(sp), r5
+00007f83f00133d3	movl	0x240(sp), r7
+00007f83f00133da	andl	r7, r5
+00007f83f00133dc	movl	r5, 0x268(sp)
+00007f83f00133e3	movl	0x240(sp), r7
+00007f83f00133ea	movl	0x280(sp), r8
+00007f83f00133f2	andl	r8, r7
+00007f83f00133f5	xorl	r7, r5
+00007f83f00133f7	movl	0x278(sp), r7
+00007f83f00133fe	movl	0x280(sp), r8
+00007f83f0013406	andl	r8, r7
+00007f83f0013409	xorl	r7, r5
+00007f83f001340b	movl	0x278(sp), r7
+00007f83f0013412	rorl	$2, r7
+00007f83f0013415	movl	0x278(sp), r8
+00007f83f001341d	rorl	$0xd, r8
+00007f83f0013421	xorl	r8, r7
+00007f83f0013424	movl	0x278(sp), r8
+00007f83f001342c	rorl	$0x16, r8
+00007f83f0013430	xorl	r8, r7
+00007f83f0013433	addl	r7, r5
+00007f83f0013435	movl	0x238(sp), r7
+00007f83f001343c	addl	r7, r5
+00007f83f001343e	movl	r5, 0x1d0(sp)
+00007f83f0013445	addl	r5, r6
+00007f83f0013447	movl	r6, 0x258(sp)
+00007f83f001344e	popq	r5
+00007f83f0013450	addl	r6, r5
+00007f83f0013452	movl	0x1e8(sp), r6
+00007f83f0013459	movl	0x1e0(sp), r7
+00007f83f0013460	addl	r7, r6
+00007f83f0013462	movl	0x1c0(sp), r7
+00007f83f0013469	movl	0x1f8(sp), r8
+00007f83f0013471	addl	r8, r7
+00007f83f0013474	movl	0x1f0(sp), r8
+00007f83f001347c	movl	0x268(sp), r9
+00007f83f0013484	addl	r9, r8
+00007f83f0013487	movl	0x250(sp), r9
+00007f83f001348f	movl	0x1e0(sp), r10
+00007f83f0013497	movl	0x1f8(sp), r11
+00007f83f001349f	xorl	r11, r10
+00007f83f00134a2	andl	r10, r9
+00007f83f00134a5	movl	0x1f8(sp), r10
+00007f83f00134ad	xorl	r10, r9
+00007f83f00134b0	addl	r9, r8
+00007f83f00134b3	movl	0x250(sp), r9
+00007f83f00134bb	rorl	$6, r9
+00007f83f00134bf	movl	0x250(sp), r10
+00007f83f00134c7	rorl	$0xb, r10
+00007f83f00134cb	xorl	r10, r9
+00007f83f00134ce	movl	0x250(sp), r10
+00007f83f00134d6	rorl	$0x19, r10
+00007f83f00134da	xorl	r10, r9
+00007f83f00134dd	addl	r9, r8
+00007f83f00134e0	addl	$0x4a7484aa, r8
+00007f83f00134e7	movl	r8, 0x1c0(sp)
+00007f83f00134ef	movl	0x1c8(sp), r9
+00007f83f00134f7	rorl	$2, r9
+00007f83f00134fb	movl	0x1c8(sp), r10
+00007f83f0013503	rorl	$0xd, r10
+00007f83f0013507	xorl	r10, r9
+00007f83f001350a	movl	0x1c8(sp), r10
+00007f83f0013512	rorl	$0x16, r10
+00007f83f0013516	xorl	r10, r9
+00007f83f0013519	movl	0x1c8(sp), r10
+00007f83f0013521	movl	0x270(sp), r11
+00007f83f0013529	movl	0x238(sp), r12
+00007f83f0013531	xorl	r12, r11
+00007f83f0013534	andl	r11, r10
+00007f83f0013537	movl	0x260(sp), r11
+00007f83f001353f	xorl	r11, r10
+00007f83f0013542	addl	r10, r9
+00007f83f0013545	movl	0x218(sp), r10
+00007f83f001354d	addl	r10, r9
+00007f83f0013550	movl	r9, 0x278(sp)
+00007f83f0013558	addl	r9, r8
+00007f83f001355b	movl	r8, 0x268(sp)
+00007f83f0013563	movl	0x250(sp), r9
+00007f83f001356b	movl	0x1e0(sp), r10
+00007f83f0013573	xorl	r10, r9
+00007f83f0013576	andl	r9, r8
+00007f83f0013579	movl	0x1e0(sp), r9
+00007f83f0013581	xorl	r9, r8
+00007f83f0013584	addl	r8, r7
+00007f83f0013587	movl	0x268(sp), r8
+00007f83f001358f	rorl	$6, r8
+00007f83f0013593	movl	0x268(sp), r9
+00007f83f001359b	rorl	$0xb, r9
+00007f83f001359f	xorl	r9, r8
+00007f83f00135a2	movl	0x268(sp), r9
+00007f83f00135aa	rorl	$0x19, r9
+00007f83f00135ae	xorl	r9, r8
+00007f83f00135b1	addl	r8, r7
+00007f83f00135b4	addl	$0x5cb0a9dc, r7
+00007f83f00135ba	movl	r7, 0x1b8(sp)
+00007f83f00135c1	movl	0x278(sp), r8
+00007f83f00135c9	movl	0x1c8(sp), r9
+00007f83f00135d1	andl	r9, r8
+00007f83f00135d4	movl	r8, 0x1f0(sp)
+00007f83f00135dc	movl	0x1c8(sp), r9
+00007f83f00135e4	movl	0x270(sp), r10
+00007f83f00135ec	andl	r10, r9
+00007f83f00135ef	xorl	r9, r8
+00007f83f00135f2	movl	0x278(sp), r9
+00007f83f00135fa	movl	0x270(sp), r10
+00007f83f0013602	andl	r10, r9
+00007f83f0013605	xorl	r9, r8
+00007f83f0013608	movl	0x278(sp), r9
+00007f83f0013610	rorl	$2, r9
+00007f83f0013614	movl	0x278(sp), r10
+00007f83f001361c	rorl	$0xd, r10
+00007f83f0013620	xorl	r10, r9
+00007f83f0013623	movl	0x278(sp), r10
+00007f83f001362b	rorl	$0x16, r10
+00007f83f001362f	xorl	r10, r9
+00007f83f0013632	addl	r9, r8
+00007f83f0013635	movl	0x220(sp), r9
+00007f83f001363d	addl	r9, r8
+00007f83f0013640	movl	r8, 0x238(sp)
+00007f83f0013648	addl	r8, r7
+00007f83f001364b	movl	r7, 0x1f8(sp)
+00007f83f0013652	movl	0x268(sp), r8
+00007f83f001365a	movl	0x250(sp), r9
+00007f83f0013662	xorl	r9, r8
+00007f83f0013665	andl	r8, r7
+00007f83f0013668	movl	0x250(sp), r8
+00007f83f0013670	xorl	r8, r7
+00007f83f0013673	addl	r7, r6
+00007f83f0013675	movl	0x1f8(sp), r7
+00007f83f001367c	rorl	$6, r7
+00007f83f001367f	movl	0x1f8(sp), r8
+00007f83f0013687	rorl	$0xb, r8
+00007f83f001368b	xorl	r8, r7
+00007f83f001368e	movl	0x1f8(sp), r8
+00007f83f0013696	rorl	$0x19, r8
+00007f83f001369a	xorl	r8, r7
+00007f83f001369d	addl	r7, r6
+00007f83f001369f	addl	$0x76f988da, r6
+00007f83f00136a5	movl	r6, 0x250(sp)
+00007f83f00136ac	movl	0x238(sp), r7
+00007f83f00136b3	rorl	$2, r7
+00007f83f00136b6	movl	0x238(sp), r8
+00007f83f00136be	rorl	$0xd, r8
+00007f83f00136c2	xorl	r8, r7
+00007f83f00136c5	movl	0x238(sp), r8
+00007f83f00136cd	rorl	$0x16, r8
+00007f83f00136d1	xorl	r8, r7
+00007f83f00136d4	movl	0x238(sp), r8
+00007f83f00136dc	movl	0x278(sp), r9
+00007f83f00136e4	movl	0x1c8(sp), r10
+00007f83f00136ec	xorl	r10, r9
+00007f83f00136ef	andl	r9, r8
+00007f83f00136f2	movl	0x1f0(sp), r9
+00007f83f00136fa	xorl	r9, r8
+00007f83f00136fd	addl	r8, r7
+00007f83f0013700	movl	0x248(sp), r8
+00007f83f0013708	addl	r8, r7
+00007f83f001370b	movl	r7, 0x270(sp)
+00007f83f0013712	addl	r7, r6
+00007f83f0013714	movl	r6, 0x1f0(sp)
+00007f83f001371b	movl	0x1f8(sp), r7
+00007f83f0013722	movl	0x268(sp), r8
+00007f83f001372a	xorl	r8, r7
+00007f83f001372d	andl	r7, r6
+00007f83f001372f	movl	0x268(sp), r7
+00007f83f0013736	xorl	r7, r6
+00007f83f0013738	addl	r6, r5
+00007f83f001373a	movl	0x1f0(sp), r6
+00007f83f0013741	rorl	$6, r6
+00007f83f0013744	movl	0x1f0(sp), r7
+00007f83f001374b	rorl	$0xb, r7
+00007f83f001374e	xorl	r7, r6
+00007f83f0013750	movl	0x1f0(sp), r7
+00007f83f0013757	rorl	$0x19, r7
+00007f83f001375a	xorl	r7, r6
+00007f83f001375c	addl	r6, r5
+00007f83f001375e	addl	$0x983e5152, r5
+00007f83f0013764	movl	r5, 0x1c8(sp)
+00007f83f001376b	movl	0x270(sp), r6
+00007f83f0013772	movl	0x238(sp), r7
+00007f83f0013779	andl	r7, r6
+00007f83f001377b	movl	r6, 0x220(sp)
+00007f83f0013782	movl	0x238(sp), r7
+00007f83f0013789	movl	0x278(sp), r8
+00007f83f0013791	andl	r8, r7
+00007f83f0013794	xorl	r7, r6
+00007f83f0013796	movl	0x270(sp), r7
+00007f83f001379d	movl	0x278(sp), r8
+00007f83f00137a5	andl	r8, r7
+00007f83f00137a8	xorl	r7, r6
+00007f83f00137aa	movl	0x270(sp), r7
+00007f83f00137b1	rorl	$2, r7
+00007f83f00137b4	movl	0x270(sp), r8
+00007f83f00137bc	rorl	$0xd, r8
+00007f83f00137c0	xorl	r8, r7
+00007f83f00137c3	movl	0x270(sp), r8
+00007f83f00137cb	rorl	$0x16, r8
+00007f83f00137cf	xorl	r8, r7
+00007f83f00137d2	addl	r7, r6
+00007f83f00137d4	movl	0x208(sp), r7
+00007f83f00137db	addl	r7, r6
+00007f83f00137dd	movl	r6, 0x1e8(sp)
+00007f83f00137e4	addl	r6, r5
+00007f83f00137e6	movl	r5, 0x1e0(sp)
+00007f83f00137ed	popq	r6
+00007f83f00137ef	addl	r5, r6
+00007f83f00137f1	movl	0x188(sp), r5
+00007f83f00137f8	movl	0x1e8(sp), r7
+00007f83f00137ff	addl	r7, r5
+00007f83f0013801	movl	0x1a8(sp), r7
+00007f83f0013808	movl	0x1f0(sp), r8
+00007f83f0013810	addl	r8, r7
+00007f83f0013813	movl	0x190(sp), r8
+00007f83f001381b	movl	0x260(sp), r9
+00007f83f0013823	addl	r9, r8
+00007f83f0013826	movl	0x1d8(sp), r9
+00007f83f001382e	movl	0x1e8(sp), r10
+00007f83f0013836	movl	0x1f0(sp), r11
+00007f83f001383e	xorl	r11, r10
+00007f83f0013841	andl	r10, r9
+00007f83f0013844	movl	0x1f0(sp), r10
+00007f83f001384c	xorl	r10, r9
+00007f83f001384f	addl	r9, r8
+00007f83f0013852	movl	0x1d8(sp), r9
+00007f83f001385a	rorl	$6, r9
+00007f83f001385e	movl	0x1d8(sp), r10
+00007f83f0013866	rorl	$0xb, r10
+00007f83f001386a	xorl	r10, r9
+00007f83f001386d	movl	0x1d8(sp), r10
+00007f83f0013875	rorl	$0x19, r10
+00007f83f0013879	xorl	r10, r9
+00007f83f001387c	addl	r9, r8
+00007f83f001387f	addl	$0xa831c66d, r8
+00007f83f0013886	movl	r8, 0x1a8(sp)
+00007f83f001388e	movl	0x1e0(sp), r9
+00007f83f0013896	rorl	$2, r9
+00007f83f001389a	movl	0x1e0(sp), r10
+00007f83f00138a2	rorl	$0xd, r10
+00007f83f00138a6	xorl	r10, r9
+00007f83f00138a9	movl	0x1e0(sp), r10
+00007f83f00138b1	rorl	$0x16, r10
+00007f83f00138b5	xorl	r10, r9
+00007f83f00138b8	movl	0x1e0(sp), r10
+00007f83f00138c0	movl	0x268(sp), r11
+00007f83f00138c8	movl	0x230(sp), r12
+00007f83f00138d0	xorl	r12, r11
+00007f83f00138d3	andl	r11, r10
+00007f83f00138d6	movl	0x218(sp), r11
+00007f83f00138de	xorl	r11, r10
+00007f83f00138e1	addl	r10, r9
+00007f83f00138e4	movl	0x1b8(sp), r10
+00007f83f00138ec	addl	r10, r9
+00007f83f00138ef	movl	r9, 0x270(sp)
+00007f83f00138f7	addl	r9, r8
+00007f83f00138fa	movl	r8, 0x260(sp)
+00007f83f0013902	movl	0x1d8(sp), r9
+00007f83f001390a	movl	0x1e8(sp), r10
+00007f83f0013912	xorl	r10, r9
+00007f83f0013915	andl	r9, r8
+00007f83f0013918	movl	0x1e8(sp), r9
+00007f83f0013920	xorl	r9, r8
+00007f83f0013923	addl	r8, r7
+00007f83f0013926	movl	0x260(sp), r8
+00007f83f001392e	rorl	$6, r8
+00007f83f0013932	movl	0x260(sp), r9
+00007f83f001393a	rorl	$0xb, r9
+00007f83f001393e	xorl	r9, r8
+00007f83f0013941	movl	0x260(sp), r9
+00007f83f0013949	rorl	$0x19, r9
+00007f83f001394d	xorl	r9, r8
+00007f83f0013950	addl	r8, r7
+00007f83f0013953	addl	$0xb00327c8, r7
+00007f83f0013959	movl	r7, 0x1b8(sp)
+00007f83f0013960	movl	0x270(sp), r8
+00007f83f0013968	movl	0x1e0(sp), r9
+00007f83f0013970	andl	r9, r8
+00007f83f0013973	movl	r8, 0x1e8(sp)
+00007f83f001397b	movl	0x1e0(sp), r9
+00007f83f0013983	movl	0x268(sp), r10
+00007f83f001398b	andl	r10, r9
+00007f83f001398e	xorl	r9, r8
+00007f83f0013991	movl	0x270(sp), r9
+00007f83f0013999	movl	0x268(sp), r10
+00007f83f00139a1	andl	r10, r9
+00007f83f00139a4	xorl	r9, r8
+00007f83f00139a7	movl	0x270(sp), r9
+00007f83f00139af	rorl	$2, r9
+00007f83f00139b3	movl	0x270(sp), r10
+00007f83f00139bb	rorl	$0xd, r10
+00007f83f00139bf	xorl	r10, r9
+00007f83f00139c2	movl	0x270(sp), r10
+00007f83f00139ca	rorl	$0x16, r10
+00007f83f00139ce	xorl	r10, r9
+00007f83f00139d1	addl	r9, r8
+00007f83f00139d4	movl	0x1b0(sp), r9
+00007f83f00139dc	addl	r9, r8
+00007f83f00139df	movl	r8, 0x230(sp)
+00007f83f00139e7	addl	r8, r7
+00007f83f00139ea	movl	r7, 0x1f0(sp)
+00007f83f00139f1	movl	0x260(sp), r8
+00007f83f00139f9	movl	0x1d8(sp), r9
+00007f83f0013a01	xorl	r9, r8
+00007f83f0013a04	andl	r8, r7
+00007f83f0013a07	movl	0x1d8(sp), r8
+00007f83f0013a0f	xorl	r8, r7
+00007f83f0013a12	addl	r7, r5
+00007f83f0013a14	movl	0x1f0(sp), r7
+00007f83f0013a1b	rorl	$6, r7
+00007f83f0013a1e	movl	0x1f0(sp), r8
+00007f83f0013a26	rorl	$0xb, r8
+00007f83f0013a2a	xorl	r8, r7
+00007f83f0013a2d	movl	0x1f0(sp), r8
+00007f83f0013a35	rorl	$0x19, r8
+00007f83f0013a39	xorl	r8, r7
+00007f83f0013a3c	addl	r7, r5
+00007f83f0013a3e	addl	$0xbf597fc7, r5
+00007f83f0013a44	movl	r5, 0x1b0(sp)
+00007f83f0013a4b	movl	0x230(sp), r7
+00007f83f0013a52	rorl	$2, r7
+00007f83f0013a55	movl	0x230(sp), r8
+00007f83f0013a5d	rorl	$0xd, r8
+00007f83f0013a61	xorl	r8, r7
+00007f83f0013a64	movl	0x230(sp), r8
+00007f83f0013a6c	rorl	$0x16, r8
+00007f83f0013a70	xorl	r8, r7
+00007f83f0013a73	movl	0x230(sp), r8
+00007f83f0013a7b	movl	0x270(sp), r9
+00007f83f0013a83	movl	0x1e0(sp), r10
+00007f83f0013a8b	xorl	r10, r9
+00007f83f0013a8e	andl	r9, r8
+00007f83f0013a91	movl	0x1e8(sp), r9
+00007f83f0013a99	xorl	r9, r8
+00007f83f0013a9c	addl	r8, r7
+00007f83f0013a9f	movl	0x248(sp), r8
+00007f83f0013aa7	addl	r8, r7
+00007f83f0013aaa	movl	r7, 0x268(sp)
+00007f83f0013ab1	addl	r7, r5
+00007f83f0013ab3	movl	r5, 0x1e8(sp)
+00007f83f0013aba	movl	0x1f0(sp), r7
+00007f83f0013ac1	movl	0x260(sp), r8
+00007f83f0013ac9	xorl	r8, r7
+00007f83f0013acc	andl	r7, r5
+00007f83f0013ace	movl	0x260(sp), r7
+00007f83f0013ad5	xorl	r7, r5
+00007f83f0013ad7	addl	r5, r6
+00007f83f0013ad9	movl	0x1e8(sp), r5
+00007f83f0013ae0	rorl	$6, r5
+00007f83f0013ae3	movl	0x1e8(sp), r7
+00007f83f0013aea	rorl	$0xb, r7
+00007f83f0013aed	xorl	r7, r5
+00007f83f0013aef	movl	0x1e8(sp), r7
+00007f83f0013af6	rorl	$0x19, r7
+00007f83f0013af9	xorl	r7, r5
+00007f83f0013afb	addl	r5, r6
+00007f83f0013afd	addl	$0xc6e00bf3, r6
+00007f83f0013b03	movl	r6, 0x1a0(sp)
+00007f83f0013b0a	movl	0x268(sp), r5
+00007f83f0013b11	movl	0x230(sp), r7
+00007f83f0013b18	andl	r7, r5
+00007f83f0013b1a	movl	r5, 0x190(sp)
+00007f83f0013b21	movl	0x230(sp), r7
+00007f83f0013b28	movl	0x270(sp), r8
+00007f83f0013b30	andl	r8, r7
+00007f83f0013b33	xorl	r7, r5
+00007f83f0013b35	movl	0x268(sp), r7
+00007f83f0013b3c	movl	0x270(sp), r8
+00007f83f0013b44	andl	r8, r7
+00007f83f0013b47	xorl	r7, r5
+00007f83f0013b49	movl	0x268(sp), r7
+00007f83f0013b50	rorl	$2, r7
+00007f83f0013b53	movl	0x268(sp), r8
+00007f83f0013b5b	rorl	$0xd, r8
+00007f83f0013b5f	xorl	r8, r7
+00007f83f0013b62	movl	0x268(sp), r8
+00007f83f0013b6a	rorl	$0x16, r8
+00007f83f0013b6e	xorl	r8, r7
+00007f83f0013b71	addl	r7, r5
+00007f83f0013b73	movl	0x1c0(sp), r7
+00007f83f0013b7a	addl	r7, r5
+00007f83f0013b7c	movl	r5, 0x1e0(sp)
+00007f83f0013b83	addl	r5, r6
+00007f83f0013b85	movl	r6, 0x1d8(sp)
+00007f83f0013b8c	popq	r5
+00007f83f0013b8e	addl	r6, r5
+00007f83f0013b90	movl	0x170(sp), r6
+00007f83f0013b97	movl	0x1e0(sp), r7
+00007f83f0013b9e	addl	r7, r6
+00007f83f0013ba0	movl	0x190(sp), r7
+00007f83f0013ba7	movl	0x1e8(sp), r8
+00007f83f0013baf	addl	r8, r7
+00007f83f0013bb2	movl	0x178(sp), r8
+00007f83f0013bba	movl	0x258(sp), r9
+00007f83f0013bc2	addl	r9, r8
+00007f83f0013bc5	movl	0x1d0(sp), r9
+00007f83f0013bcd	movl	0x1e0(sp), r10
+00007f83f0013bd5	movl	0x1e8(sp), r11
+00007f83f0013bdd	xorl	r11, r10
+00007f83f0013be0	andl	r10, r9
+00007f83f0013be3	movl	0x1e8(sp), r10
+00007f83f0013beb	xorl	r10, r9
+00007f83f0013bee	addl	r9, r8
+00007f83f0013bf1	movl	0x1d0(sp), r9
+00007f83f0013bf9	rorl	$6, r9
+00007f83f0013bfd	movl	0x1d0(sp), r10
+00007f83f0013c05	rorl	$0xb, r10
+00007f83f0013c09	xorl	r10, r9
+00007f83f0013c0c	movl	0x1d0(sp), r10
+00007f83f0013c14	rorl	$0x19, r10
+00007f83f0013c18	xorl	r10, r9
+00007f83f0013c1b	addl	r9, r8
+00007f83f0013c1e	addl	$0xd5a79147, r8
+00007f83f0013c25	movl	r8, 0x1b8(sp)
+00007f83f0013c2d	movl	0x1d8(sp), r9
+00007f83f0013c35	rorl	$2, r9
+00007f83f0013c39	movl	0x1d8(sp), r10
+00007f83f0013c41	rorl	$0xd, r10
+00007f83f0013c45	xorl	r10, r9
+00007f83f0013c48	movl	0x1d8(sp), r10
+00007f83f0013c50	rorl	$0x16, r10
+00007f83f0013c54	xorl	r10, r9
+00007f83f0013c57	movl	0x1d8(sp), r10
+00007f83f0013c5f	movl	0x260(sp), r11
+00007f83f0013c67	movl	0x228(sp), r12
+00007f83f0013c6f	xorl	r12, r11
+00007f83f0013c72	andl	r11, r10
+00007f83f0013c75	movl	0x188(sp), r11
+00007f83f0013c7d	xorl	r11, r10
+00007f83f0013c80	addl	r10, r9
+00007f83f0013c83	movl	0x1a0(sp), r10
+00007f83f0013c8b	addl	r10, r9
+00007f83f0013c8e	movl	r9, 0x268(sp)
+00007f83f0013c96	addl	r9, r8
+00007f83f0013c99	movl	r8, 0x258(sp)
+00007f83f0013ca1	movl	0x1d0(sp), r9
+00007f83f0013ca9	movl	0x1e0(sp), r10
+00007f83f0013cb1	xorl	r10, r9
+00007f83f0013cb4	andl	r9, r8
+00007f83f0013cb7	movl	0x1e0(sp), r9
+00007f83f0013cbf	xorl	r9, r8
+00007f83f0013cc2	addl	r8, r7
+00007f83f0013cc5	movl	0x258(sp), r8
+00007f83f0013ccd	rorl	$6, r8
+00007f83f0013cd1	movl	0x258(sp), r9
+00007f83f0013cd9	rorl	$0xb, r9
+00007f83f0013cdd	xorl	r9, r8
+00007f83f0013ce0	movl	0x258(sp), r9
+00007f83f0013ce8	rorl	$0x19, r9
+00007f83f0013cec	xorl	r9, r8
+00007f83f0013cef	addl	r8, r7
+00007f83f0013cf2	addl	$0x6ca6351, r7
+00007f83f0013cf8	movl	r7, 0x1a0(sp)
+00007f83f0013cff	movl	0x268(sp), r8
+00007f83f0013d07	movl	0x1d8(sp), r9
+00007f83f0013d0f	andl	r9, r8
+00007f83f0013d12	movl	r8, 0x1e0(sp)
+00007f83f0013d1a	movl	0x1d8(sp), r9
+00007f83f0013d22	movl	0x260(sp), r10
+00007f83f0013d2a	andl	r10, r9
+00007f83f0013d2d	xorl	r9, r8
+00007f83f0013d30	movl	0x268(sp), r9
+00007f83f0013d38	movl	0x260(sp), r10
+00007f83f0013d40	andl	r10, r9
+00007f83f0013d43	xorl	r9, r8
+00007f83f0013d46	movl	0x268(sp), r9
+00007f83f0013d4e	rorl	$2, r9
+00007f83f0013d52	movl	0x268(sp), r10
+00007f83f0013d5a	rorl	$0xd, r10
+00007f83f0013d5e	xorl	r10, r9
+00007f83f0013d61	movl	0x268(sp), r10
+00007f83f0013d69	rorl	$0x16, r10
+00007f83f0013d6d	xorl	r10, r9
+00007f83f0013d70	addl	r9, r8
+00007f83f0013d73	movl	0x1b0(sp), r9
+00007f83f0013d7b	addl	r9, r8
+00007f83f0013d7e	movl	r8, 0x228(sp)
+00007f83f0013d86	addl	r8, r7
+00007f83f0013d89	movl	r7, 0x1e8(sp)
+00007f83f0013d90	movl	0x258(sp), r8
+00007f83f0013d98	movl	0x1d0(sp), r9
+00007f83f0013da0	xorl	r9, r8
+00007f83f0013da3	andl	r8, r7
+00007f83f0013da6	movl	0x1d0(sp), r8
+00007f83f0013dae	xorl	r8, r7
+00007f83f0013db1	addl	r7, r6
+00007f83f0013db3	movl	0x1e8(sp), r7
+00007f83f0013dba	rorl	$6, r7
+00007f83f0013dbd	movl	0x1e8(sp), r8
+00007f83f0013dc5	rorl	$0xb, r8
+00007f83f0013dc9	xorl	r8, r7
+00007f83f0013dcc	movl	0x1e8(sp), r8
+00007f83f0013dd4	rorl	$0x19, r8
+00007f83f0013dd8	xorl	r8, r7
+00007f83f0013ddb	addl	r7, r6
+00007f83f0013ddd	addl	$0x14292967, r6
+00007f83f0013de3	movl	r6, 0x1b0(sp)
+00007f83f0013dea	movl	0x228(sp), r7
+00007f83f0013df1	rorl	$2, r7
+00007f83f0013df4	movl	0x228(sp), r8
+00007f83f0013dfc	rorl	$0xd, r8
+00007f83f0013e00	xorl	r8, r7
+00007f83f0013e03	movl	0x228(sp), r8
+00007f83f0013e0b	rorl	$0x16, r8
+00007f83f0013e0f	xorl	r8, r7
+00007f83f0013e12	movl	0x228(sp), r8
+00007f83f0013e1a	movl	0x268(sp), r9
+00007f83f0013e22	movl	0x1d8(sp), r10
+00007f83f0013e2a	xorl	r10, r9
+00007f83f0013e2d	andl	r9, r8
+00007f83f0013e30	movl	0x1e0(sp), r9
+00007f83f0013e38	xorl	r9, r8
+00007f83f0013e3b	addl	r8, r7
+00007f83f0013e3e	movl	0x1a8(sp), r8
+00007f83f0013e46	addl	r8, r7
+00007f83f0013e49	movl	r7, 0x260(sp)
+00007f83f0013e50	addl	r7, r6
+00007f83f0013e52	movl	r6, 0x1e0(sp)
+00007f83f0013e59	movl	0x1e8(sp), r7
+00007f83f0013e60	movl	0x258(sp), r8
+00007f83f0013e68	xorl	r8, r7
+00007f83f0013e6b	andl	r7, r6
+00007f83f0013e6d	movl	0x258(sp), r7
+00007f83f0013e74	xorl	r7, r6
+00007f83f0013e76	addl	r6, r5
+00007f83f0013e78	movl	0x1e0(sp), r6
+00007f83f0013e7f	rorl	$6, r6
+00007f83f0013e82	movl	0x1e0(sp), r7
+00007f83f0013e89	rorl	$0xb, r7
+00007f83f0013e8c	xorl	r7, r6
+00007f83f0013e8e	movl	0x1e0(sp), r7
+00007f83f0013e95	rorl	$0x19, r7
+00007f83f0013e98	xorl	r7, r6
+00007f83f0013e9a	addl	r6, r5
+00007f83f0013e9c	addl	$0x27b70a85, r5
+00007f83f0013ea2	movl	r5, 0x1a8(sp)
+00007f83f0013ea9	movl	0x260(sp), r6
+00007f83f0013eb0	movl	0x228(sp), r7
+00007f83f0013eb7	andl	r7, r6
+00007f83f0013eb9	movl	r6, 0x190(sp)
+00007f83f0013ec0	movl	0x228(sp), r7
+00007f83f0013ec7	movl	0x268(sp), r8
+00007f83f0013ecf	andl	r8, r7
+00007f83f0013ed2	xorl	r7, r6
+00007f83f0013ed4	movl	0x260(sp), r7
+00007f83f0013edb	movl	0x268(sp), r8
+00007f83f0013ee3	andl	r8, r7
+00007f83f0013ee6	xorl	r7, r6
+00007f83f0013ee8	movl	0x260(sp), r7
+00007f83f0013eef	rorl	$2, r7
+00007f83f0013ef2	movl	0x260(sp), r8
+00007f83f0013efa	rorl	$0xd, r8
+00007f83f0013efe	xorl	r8, r7
+00007f83f0013f01	movl	0x260(sp), r8
+00007f83f0013f09	rorl	$0x16, r8
+00007f83f0013f0d	xorl	r8, r7
+00007f83f0013f10	addl	r7, r6
+00007f83f0013f12	movl	0x198(sp), r7
+00007f83f0013f19	addl	r7, r6
+00007f83f0013f1b	movl	r6, 0x1d8(sp)
+00007f83f0013f22	addl	r6, r5
+00007f83f0013f24	movl	r5, 0x1d0(sp)
+00007f83f0013f2b	popq	r6
+00007f83f0013f2d	addl	r5, r6
+00007f83f0013f2f	movl	0x138(sp), r5
+00007f83f0013f36	movl	0x1d8(sp), r7
+00007f83f0013f3d	addl	r7, r5
+00007f83f0013f3f	movl	0x158(sp), r7
+00007f83f0013f46	movl	0x1e0(sp), r8
+00007f83f0013f4e	addl	r8, r7
+00007f83f0013f51	movl	0x140(sp), r8
+00007f83f0013f59	movl	0x250(sp), r9
+00007f83f0013f61	addl	r9, r8
+00007f83f0013f64	movl	0x1c8(sp), r9
+00007f83f0013f6c	movl	0x1d8(sp), r10
+00007f83f0013f74	movl	0x1e0(sp), r11
+00007f83f0013f7c	xorl	r11, r10
+00007f83f0013f7f	andl	r10, r9
+00007f83f0013f82	movl	0x1e0(sp), r10
+00007f83f0013f8a	xorl	r10, r9
+00007f83f0013f8d	addl	r9, r8
+00007f83f0013f90	movl	0x1c8(sp), r9
+00007f83f0013f98	rorl	$6, r9
+00007f83f0013f9c	movl	0x1c8(sp), r10
+00007f83f0013fa4	rorl	$0xb, r10
+00007f83f0013fa8	xorl	r10, r9
+00007f83f0013fab	movl	0x1c8(sp), r10
+00007f83f0013fb3	rorl	$0x19, r10
+00007f83f0013fb7	xorl	r10, r9
+00007f83f0013fba	addl	r9, r8
+00007f83f0013fbd	addl	$0x2e1b2138, r8
+00007f83f0013fc4	movl	r8, 0x190(sp)
+00007f83f0013fcc	movl	0x1d0(sp), r9
+00007f83f0013fd4	rorl	$2, r9
+00007f83f0013fd8	movl	0x1d0(sp), r10
+00007f83f0013fe0	rorl	$0xd, r10
+00007f83f0013fe4	xorl	r10, r9
+00007f83f0013fe7	movl	0x1d0(sp), r10
+00007f83f0013fef	rorl	$0x16, r10
+00007f83f0013ff3	xorl	r10, r9
+00007f83f0013ff6	movl	0x1d0(sp), r10
+00007f83f0013ffe	movl	0x258(sp), r11
+00007f83f0014006	movl	0x220(sp), r12
+00007f83f001400e	xorl	r12, r11
+00007f83f0014011	andl	r11, r10
+00007f83f0014014	movl	0x188(sp), r11
+00007f83f001401c	xorl	r11, r10
+00007f83f001401f	addl	r10, r9
+00007f83f0014022	movl	0x1b0(sp), r10
+00007f83f001402a	addl	r10, r9
+00007f83f001402d	movl	r9, 0x260(sp)
+00007f83f0014035	addl	r9, r8
+00007f83f0014038	movl	r8, 0x250(sp)
+00007f83f0014040	movl	0x1c8(sp), r9
+00007f83f0014048	movl	0x1d8(sp), r10
+00007f83f0014050	xorl	r10, r9
+00007f83f0014053	andl	r9, r8
+00007f83f0014056	movl	0x1d8(sp), r9
+00007f83f001405e	xorl	r9, r8
+00007f83f0014061	addl	r8, r7
+00007f83f0014064	movl	0x250(sp), r8
+00007f83f001406c	rorl	$6, r8
+00007f83f0014070	movl	0x250(sp), r9
+00007f83f0014078	rorl	$0xb, r9
+00007f83f001407c	xorl	r9, r8
+00007f83f001407f	movl	0x250(sp), r9
+00007f83f0014087	rorl	$0x19, r9
+00007f83f001408b	xorl	r9, r8
+00007f83f001408e	addl	r8, r7
+00007f83f0014091	addl	$0x4d2c6dfc, r7
+00007f83f0014097	movl	r7, 0x1b0(sp)
+00007f83f001409e	movl	0x260(sp), r8
+00007f83f00140a6	movl	0x1d0(sp), r9
+00007f83f00140ae	andl	r9, r8
+00007f83f00140b1	movl	r8, 0x1d8(sp)
+00007f83f00140b9	movl	0x1d0(sp), r9
+00007f83f00140c1	movl	0x258(sp), r10
+00007f83f00140c9	andl	r10, r9
+00007f83f00140cc	xorl	r9, r8
+00007f83f00140cf	movl	0x260(sp), r9
+00007f83f00140d7	movl	0x258(sp), r10
+00007f83f00140df	andl	r10, r9
+00007f83f00140e2	xorl	r9, r8
+00007f83f00140e5	movl	0x260(sp), r9
+00007f83f00140ed	rorl	$2, r9
+00007f83f00140f1	movl	0x260(sp), r10
+00007f83f00140f9	rorl	$0xd, r10
+00007f83f00140fd	xorl	r10, r9
+00007f83f0014100	movl	0x260(sp), r10
+00007f83f0014108	rorl	$0x16, r10
+00007f83f001410c	xorl	r10, r9
+00007f83f001410f	addl	r9, r8
+00007f83f0014112	movl	0x198(sp), r9
+00007f83f001411a	addl	r9, r8
+00007f83f001411d	movl	r8, 0x220(sp)
+00007f83f0014125	addl	r8, r7
+00007f83f0014128	movl	r7, 0x1e0(sp)
+00007f83f001412f	movl	0x250(sp), r8
+00007f83f0014137	movl	0x1c8(sp), r9
+00007f83f001413f	xorl	r9, r8
+00007f83f0014142	andl	r8, r7
+00007f83f0014145	movl	0x1c8(sp), r8
+00007f83f001414d	xorl	r8, r7
+00007f83f0014150	addl	r7, r5
+00007f83f0014152	movl	0x1e0(sp), r7
+00007f83f0014159	rorl	$6, r7
+00007f83f001415c	movl	0x1e0(sp), r8
+00007f83f0014164	rorl	$0xb, r8
+00007f83f0014168	xorl	r8, r7
+00007f83f001416b	movl	0x1e0(sp), r8
+00007f83f0014173	rorl	$0x19, r8
+00007f83f0014177	xorl	r8, r7
+00007f83f001417a	addl	r7, r5
+00007f83f001417c	addl	$0x53380d13, r5
+00007f83f0014182	movl	r5, 0x198(sp)
+00007f83f0014189	movl	0x220(sp), r7
+00007f83f0014190	rorl	$2, r7
+00007f83f0014193	movl	0x220(sp), r8
+00007f83f001419b	rorl	$0xd, r8
+00007f83f001419f	xorl	r8, r7
+00007f83f00141a2	movl	0x220(sp), r8
+00007f83f00141aa	rorl	$0x16, r8
+00007f83f00141ae	xorl	r8, r7
+00007f83f00141b1	movl	0x220(sp), r8
+00007f83f00141b9	movl	0x260(sp), r9
+00007f83f00141c1	movl	0x1d0(sp), r10
+00007f83f00141c9	xorl	r10, r9
+00007f83f00141cc	andl	r9, r8
+00007f83f00141cf	movl	0x1d8(sp), r9
+00007f83f00141d7	xorl	r9, r8
+00007f83f00141da	addl	r8, r7
+00007f83f00141dd	movl	0x1a8(sp), r8
+00007f83f00141e5	addl	r8, r7
+00007f83f00141e8	movl	r7, 0x258(sp)
+00007f83f00141ef	addl	r7, r5
+00007f83f00141f1	movl	r5, 0x1d8(sp)
+00007f83f00141f8	movl	0x1e0(sp), r7
+00007f83f00141ff	movl	0x250(sp), r8
+00007f83f0014207	xorl	r8, r7
+00007f83f001420a	andl	r7, r5
+00007f83f001420c	movl	0x250(sp), r7
+00007f83f0014213	xorl	r7, r5
+00007f83f0014215	addl	r5, r6
+00007f83f0014217	movl	0x1d8(sp), r5
+00007f83f001421e	rorl	$6, r5
+00007f83f0014221	movl	0x1d8(sp), r7
+00007f83f0014228	rorl	$0xb, r7
+00007f83f001422b	xorl	r7, r5
+00007f83f001422d	movl	0x1d8(sp), r7
+00007f83f0014234	rorl	$0x19, r7
+00007f83f0014237	xorl	r7, r5
+00007f83f0014239	addl	r5, r6
+00007f83f001423b	addl	$0x650a7354, r6
+00007f83f0014241	movl	r6, 0x1a8(sp)
+00007f83f0014248	movl	0x258(sp), r5
+00007f83f001424f	movl	0x220(sp), r7
+00007f83f0014256	andl	r7, r5
+00007f83f0014258	movl	r5, 0x188(sp)
+00007f83f001425f	movl	0x220(sp), r7
+00007f83f0014266	movl	0x260(sp), r8
+00007f83f001426e	andl	r8, r7
+00007f83f0014271	xorl	r7, r5
+00007f83f0014273	movl	0x258(sp), r7
+00007f83f001427a	movl	0x260(sp), r8
+00007f83f0014282	andl	r8, r7
+00007f83f0014285	xorl	r7, r5
+00007f83f0014287	movl	0x258(sp), r7
+00007f83f001428e	rorl	$2, r7
+00007f83f0014291	movl	0x258(sp), r8
+00007f83f0014299	rorl	$0xd, r8
+00007f83f001429d	xorl	r8, r7
+00007f83f00142a0	movl	0x258(sp), r8
+00007f83f00142a8	rorl	$0x16, r8
+00007f83f00142ac	xorl	r8, r7
+00007f83f00142af	addl	r7, r5
+00007f83f00142b1	movl	0x1a0(sp), r7
+00007f83f00142b8	addl	r7, r5
+00007f83f00142ba	movl	r5, 0x1d0(sp)
+00007f83f00142c1	addl	r5, r6
+00007f83f00142c3	movl	r6, 0x1c8(sp)
+00007f83f00142ca	popq	r5
+00007f83f00142cc	addl	r6, r5
+00007f83f00142ce	movl	0x120(sp), r6
+00007f83f00142d5	movl	0x1d0(sp), r7
+00007f83f00142dc	addl	r7, r6
+00007f83f00142de	movl	0x140(sp), r7
+00007f83f00142e5	movl	0x1d8(sp), r8
+00007f83f00142ed	addl	r8, r7
+00007f83f00142f0	movl	0x128(sp), r8
+00007f83f00142f8	movl	0x248(sp), r9
+00007f83f0014300	addl	r9, r8
+00007f83f0014303	movl	0x1c0(sp), r9
+00007f83f001430b	movl	0x1d0(sp), r10
+00007f83f0014313	movl	0x1d8(sp), r11
+00007f83f001431b	xorl	r11, r10
+00007f83f001431e	andl	r10, r9
+00007f83f0014321	movl	0x1d8(sp), r10
+00007f83f0014329	xorl	r10, r9
+00007f83f001432c	addl	r9, r8
+00007f83f001432f	movl	0x1c0(sp), r9
+00007f83f0014337	rorl	$6, r9
+00007f83f001433b	movl	0x1c0(sp), r10
+00007f83f0014343	rorl	$0xb, r10
+00007f83f0014347	xorl	r10, r9
+00007f83f001434a	movl	0x1c0(sp), r10
+00007f83f0014352	rorl	$0x19, r10
+00007f83f0014356	xorl	r10, r9
+00007f83f0014359	addl	r9, r8
+00007f83f001435c	addl	$0x766a0abb, r8
+00007f83f0014363	movl	r8, 0x198(sp)
+00007f83f001436b	movl	0x1c8(sp), r9
+00007f83f0014373	rorl	$2, r9
+00007f83f0014377	movl	0x1c8(sp), r10
+00007f83f001437f	rorl	$0xd, r10
+00007f83f0014383	xorl	r10, r9
+00007f83f0014386	movl	0x1c8(sp), r10
+00007f83f001438e	rorl	$0x16, r10
+00007f83f0014392	xorl	r10, r9
+00007f83f0014395	movl	0x1c8(sp), r10
+00007f83f001439d	movl	0x250(sp), r11
+00007f83f00143a5	movl	0x218(sp), r12
+00007f83f00143ad	xorl	r12, r11
+00007f83f00143b0	andl	r11, r10
+00007f83f00143b3	movl	0x180(sp), r11
+00007f83f00143bb	xorl	r11, r10
+00007f83f00143be	addl	r10, r9
+00007f83f00143c1	movl	0x188(sp), r10
+00007f83f00143c9	addl	r10, r9
+00007f83f00143cc	movl	r9, 0x258(sp)
+00007f83f00143d4	addl	r9, r8
+00007f83f00143d7	movl	r8, 0x248(sp)
+00007f83f00143df	movl	0x1c0(sp), r9
+00007f83f00143e7	movl	0x1d0(sp), r10
+00007f83f00143ef	xorl	r10, r9
+00007f83f00143f2	andl	r9, r8
+00007f83f00143f5	movl	0x1d0(sp), r9
+00007f83f00143fd	xorl	r9, r8
+00007f83f0014400	addl	r8, r7
+00007f83f0014403	movl	0x248(sp), r8
+00007f83f001440b	rorl	$6, r8
+00007f83f001440f	movl	0x248(sp), r9
+00007f83f0014417	rorl	$0xb, r9
+00007f83f001441b	xorl	r9, r8
+00007f83f001441e	movl	0x248(sp), r9
+00007f83f0014426	rorl	$0x19, r9
+00007f83f001442a	xorl	r9, r8
+00007f83f001442d	addl	r8, r7
+00007f83f0014430	addl	$0x81c2c92e, r7
+00007f83f0014436	movl	r7, 0x188(sp)
+00007f83f001443d	movl	0x258(sp), r8
+00007f83f0014445	movl	0x1c8(sp), r9
+00007f83f001444d	andl	r9, r8
+00007f83f0014450	movl	r8, 0x1d0(sp)
+00007f83f0014458	movl	0x1c8(sp), r9
+00007f83f0014460	movl	0x250(sp), r10
+00007f83f0014468	andl	r10, r9
+00007f83f001446b	xorl	r9, r8
+00007f83f001446e	movl	0x258(sp), r9
+00007f83f0014476	movl	0x250(sp), r10
+00007f83f001447e	andl	r10, r9
+00007f83f0014481	xorl	r9, r8
+00007f83f0014484	movl	0x258(sp), r9
+00007f83f001448c	rorl	$2, r9
+00007f83f0014490	movl	0x258(sp), r10
+00007f83f0014498	rorl	$0xd, r10
+00007f83f001449c	xorl	r10, r9
+00007f83f001449f	movl	0x258(sp), r10
+00007f83f00144a7	rorl	$0x16, r10
+00007f83f00144ab	xorl	r10, r9
+00007f83f00144ae	addl	r9, r8
+00007f83f00144b1	movl	0x1a8(sp), r9
+00007f83f00144b9	addl	r9, r8
+00007f83f00144bc	movl	r8, 0x218(sp)
+00007f83f00144c4	addl	r8, r7
+00007f83f00144c7	movl	r7, 0x1d8(sp)
+00007f83f00144ce	movl	0x248(sp), r8
+00007f83f00144d6	movl	0x1c0(sp), r9
+00007f83f00144de	xorl	r9, r8
+00007f83f00144e1	andl	r8, r7
+00007f83f00144e4	movl	0x1c0(sp), r8
+00007f83f00144ec	xorl	r8, r7
+00007f83f00144ef	addl	r7, r6
+00007f83f00144f1	movl	0x1d8(sp), r7
+00007f83f00144f8	rorl	$6, r7
+00007f83f00144fb	movl	0x1d8(sp), r8
+00007f83f0014503	rorl	$0xb, r8
+00007f83f0014507	xorl	r8, r7
+00007f83f001450a	movl	0x1d8(sp), r8
+00007f83f0014512	rorl	$0x19, r8
+00007f83f0014516	xorl	r8, r7
+00007f83f0014519	addl	r7, r6
+00007f83f001451b	addl	$0x92722c85, r6
+00007f83f0014521	movl	r6, 0x1a8(sp)
+00007f83f0014528	movl	0x218(sp), r7
+00007f83f001452f	rorl	$2, r7
+00007f83f0014532	movl	0x218(sp), r8
+00007f83f001453a	rorl	$0xd, r8
+00007f83f001453e	xorl	r8, r7
+00007f83f0014541	movl	0x218(sp), r8
+00007f83f0014549	rorl	$0x16, r8
+00007f83f001454d	xorl	r8, r7
+00007f83f0014550	movl	0x218(sp), r8
+00007f83f0014558	movl	0x258(sp), r9
+00007f83f0014560	movl	0x1c8(sp), r10
+00007f83f0014568	xorl	r10, r9
+00007f83f001456b	andl	r9, r8
+00007f83f001456e	movl	0x1d0(sp), r9
+00007f83f0014576	xorl	r9, r8
+00007f83f0014579	addl	r8, r7
+00007f83f001457c	movl	0x190(sp), r8
+00007f83f0014584	addl	r8, r7
+00007f83f0014587	movl	r7, 0x250(sp)
+00007f83f001458e	addl	r7, r6
+00007f83f0014590	movl	r6, 0x1d0(sp)
+00007f83f0014597	movl	0x1d8(sp), r7
+00007f83f001459e	movl	0x248(sp), r8
+00007f83f00145a6	xorl	r8, r7
+00007f83f00145a9	andl	r7, r6
+00007f83f00145ab	movl	0x248(sp), r7
+00007f83f00145b2	xorl	r7, r6
+00007f83f00145b4	addl	r6, r5
+00007f83f00145b6	movl	0x1d0(sp), r6
+00007f83f00145bd	rorl	$6, r6
+00007f83f00145c0	movl	0x1d0(sp), r7
+00007f83f00145c7	rorl	$0xb, r7
+00007f83f00145ca	xorl	r7, r6
+00007f83f00145cc	movl	0x1d0(sp), r7
+00007f83f00145d3	rorl	$0x19, r7
+00007f83f00145d6	xorl	r7, r6
+00007f83f00145d8	addl	r6, r5
+00007f83f00145da	addl	$0xa2bfe8a1, r5
+00007f83f00145e0	movl	r5, 0x190(sp)
+00007f83f00145e7	movl	0x250(sp), r6
+00007f83f00145ee	movl	0x218(sp), r7
+00007f83f00145f5	andl	r7, r6
+00007f83f00145f7	movl	r6, 0x180(sp)
+00007f83f00145fe	movl	0x218(sp), r7
+00007f83f0014605	movl	0x258(sp), r8
+00007f83f001460d	andl	r8, r7
+00007f83f0014610	xorl	r7, r6
+00007f83f0014612	movl	0x250(sp), r7
+00007f83f0014619	movl	0x258(sp), r8
+00007f83f0014621	andl	r8, r7
+00007f83f0014624	xorl	r7, r6
+00007f83f0014626	movl	0x250(sp), r7
+00007f83f001462d	rorl	$2, r7
+00007f83f0014630	movl	0x250(sp), r8
+00007f83f0014638	rorl	$0xd, r8
+00007f83f001463c	xorl	r8, r7
+00007f83f001463f	movl	0x250(sp), r8
+00007f83f0014647	rorl	$0x16, r8
+00007f83f001464b	xorl	r8, r7
+00007f83f001464e	addl	r7, r6
+00007f83f0014650	movl	0x1a0(sp), r7
+00007f83f0014657	addl	r7, r6
+00007f83f0014659	movl	r6, 0x1c8(sp)
+00007f83f0014660	addl	r6, r5
+00007f83f0014662	movl	r5, 0x1c0(sp)
+00007f83f0014669	popq	r6
+00007f83f001466b	addl	r5, r6
+00007f83f001466d	movl	0x108(sp), r5
+00007f83f0014674	movl	0x1c8(sp), r7
+00007f83f001467b	addl	r7, r5
+00007f83f001467d	movl	0xf0(sp), r7
+00007f83f0014684	movl	0x1d0(sp), r8
+00007f83f001468c	addl	r8, r7
+00007f83f001468f	movl	0x110(sp), r8
+00007f83f0014697	movl	0x240(sp), r9
+00007f83f001469f	addl	r9, r8
+00007f83f00146a2	movl	0x1b8(sp), r9
+00007f83f00146aa	movl	0x1c8(sp), r10
+00007f83f00146b2	movl	0x1d0(sp), r11
+00007f83f00146ba	xorl	r11, r10
+00007f83f00146bd	andl	r10, r9
+00007f83f00146c0	movl	0x1d0(sp), r10
+00007f83f00146c8	xorl	r10, r9
+00007f83f00146cb	addl	r9, r8
+00007f83f00146ce	movl	0x1b8(sp), r9
+00007f83f00146d6	rorl	$6, r9
+00007f83f00146da	movl	0x1b8(sp), r10
+00007f83f00146e2	rorl	$0xb, r10
+00007f83f00146e6	xorl	r10, r9
+00007f83f00146e9	movl	0x1b8(sp), r10
+00007f83f00146f1	rorl	$0x19, r10
+00007f83f00146f5	xorl	r10, r9
+00007f83f00146f8	addl	r9, r8
+00007f83f00146fb	addl	$0xa81a664b, r8
+00007f83f0014702	movl	r8, 0x198(sp)
+00007f83f001470a	movl	0x1c0(sp), r9
+00007f83f0014712	rorl	$2, r9
+00007f83f0014716	movl	0x1c0(sp), r10
+00007f83f001471e	rorl	$0xd, r10
+00007f83f0014722	xorl	r10, r9
+00007f83f0014725	movl	0x1c0(sp), r10
+00007f83f001472d	rorl	$0x16, r10
+00007f83f0014731	xorl	r10, r9
+00007f83f0014734	movl	0x1c0(sp), r10
+00007f83f001473c	movl	0x248(sp), r11
+00007f83f0014744	movl	0x210(sp), r12
+00007f83f001474c	xorl	r12, r11
+00007f83f001474f	andl	r11, r10
+00007f83f0014752	movl	0x178(sp), r11
+00007f83f001475a	xorl	r11, r10
+00007f83f001475d	addl	r10, r9
+00007f83f0014760	movl	0x190(sp), r10
+00007f83f0014768	addl	r10, r9
+00007f83f001476b	movl	r9, 0x250(sp)
+00007f83f0014773	addl	r9, r8
+00007f83f0014776	movl	r8, 0x240(sp)
+00007f83f001477e	movl	0x1b8(sp), r9
+00007f83f0014786	movl	0x1c8(sp), r10
+00007f83f001478e	xorl	r10, r9
+00007f83f0014791	andl	r9, r8
+00007f83f0014794	movl	0x1c8(sp), r9
+00007f83f001479c	xorl	r9, r8
+00007f83f001479f	addl	r8, r7
+00007f83f00147a2	movl	0x240(sp), r8
+00007f83f00147aa	rorl	$6, r8
+00007f83f00147ae	movl	0x240(sp), r9
+00007f83f00147b6	rorl	$0xb, r9
+00007f83f00147ba	xorl	r9, r8
+00007f83f00147bd	movl	0x240(sp), r9
+00007f83f00147c5	rorl	$0x19, r9
+00007f83f00147c9	xorl	r9, r8
+00007f83f00147cc	addl	r8, r7
+00007f83f00147cf	addl	$0xc24b8b70, r7
+00007f83f00147d5	movl	r7, 0x190(sp)
+00007f83f00147dc	movl	0x250(sp), r8
+00007f83f00147e4	movl	0x1c0(sp), r9
+00007f83f00147ec	andl	r9, r8
+00007f83f00147ef	movl	r8, 0x1c8(sp)
+00007f83f00147f7	movl	0x1c0(sp), r9
+00007f83f00147ff	movl	0x248(sp), r10
+00007f83f0014807	andl	r10, r9
+00007f83f001480a	xorl	r9, r8
+00007f83f001480d	movl	0x250(sp), r9
+00007f83f0014815	movl	0x248(sp), r10
+00007f83f001481d	andl	r10, r9
+00007f83f0014820	xorl	r9, r8
+00007f83f0014823	movl	0x250(sp), r9
+00007f83f001482b	rorl	$2, r9
+00007f83f001482f	movl	0x250(sp), r10
+00007f83f0014837	rorl	$0xd, r10
+00007f83f001483b	xorl	r10, r9
+00007f83f001483e	movl	0x250(sp), r10
+00007f83f0014846	rorl	$0x16, r10
+00007f83f001484a	xorl	r10, r9
+00007f83f001484d	addl	r9, r8
+00007f83f0014850	movl	0x180(sp), r9
+00007f83f0014858	addl	r9, r8
+00007f83f001485b	movl	r8, 0x210(sp)
+00007f83f0014863	addl	r8, r7
+00007f83f0014866	movl	r7, 0x1d0(sp)
+00007f83f001486d	movl	0x240(sp), r8
+00007f83f0014875	movl	0x1b8(sp), r9
+00007f83f001487d	xorl	r9, r8
+00007f83f0014880	andl	r8, r7
+00007f83f0014883	movl	0x1b8(sp), r8
+00007f83f001488b	xorl	r8, r7
+00007f83f001488e	addl	r7, r5
+00007f83f0014890	movl	0x1d0(sp), r7
+00007f83f0014897	rorl	$6, r7
+00007f83f001489a	movl	0x1d0(sp), r8
+00007f83f00148a2	rorl	$0xb, r8
+00007f83f00148a6	xorl	r8, r7
+00007f83f00148a9	movl	0x1d0(sp), r8
+00007f83f00148b1	rorl	$0x19, r8
+00007f83f00148b5	xorl	r8, r7
+00007f83f00148b8	addl	r7, r5
+00007f83f00148ba	addl	$0xc76c51a3, r5
+00007f83f00148c0	movl	r5, 0x180(sp)
+00007f83f00148c7	movl	0x210(sp), r7
+00007f83f00148ce	rorl	$2, r7
+00007f83f00148d1	movl	0x210(sp), r8
+00007f83f00148d9	rorl	$0xd, r8
+00007f83f00148dd	xorl	r8, r7
+00007f83f00148e0	movl	0x210(sp), r8
+00007f83f00148e8	rorl	$0x16, r8
+00007f83f00148ec	xorl	r8, r7
+00007f83f00148ef	movl	0x210(sp), r8
+00007f83f00148f7	movl	0x250(sp), r9
+00007f83f00148ff	movl	0x1c0(sp), r10
+00007f83f0014907	xorl	r10, r9
+00007f83f001490a	andl	r9, r8
+00007f83f001490d	movl	0x1c8(sp), r9
+00007f83f0014915	xorl	r9, r8
+00007f83f0014918	addl	r8, r7
+00007f83f001491b	movl	0x1a0(sp), r8
+00007f83f0014923	addl	r8, r7
+00007f83f0014926	movl	r7, 0x248(sp)
+00007f83f001492d	addl	r7, r5
+00007f83f001492f	movl	r5, 0x1c8(sp)
+00007f83f0014936	movl	0x1d0(sp), r7
+00007f83f001493d	movl	0x240(sp), r8
+00007f83f0014945	xorl	r8, r7
+00007f83f0014948	andl	r7, r5
+00007f83f001494a	movl	0x240(sp), r7
+00007f83f0014951	xorl	r7, r5
+00007f83f0014953	addl	r5, r6
+00007f83f0014955	movl	0x1c8(sp), r5
+00007f83f001495c	rorl	$6, r5
+00007f83f001495f	movl	0x1c8(sp), r7
+00007f83f0014966	rorl	$0xb, r7
+00007f83f0014969	xorl	r7, r5
+00007f83f001496b	movl	0x1c8(sp), r7
+00007f83f0014972	rorl	$0x19, r7
+00007f83f0014975	xorl	r7, r5
+00007f83f0014977	addl	r5, r6
+00007f83f0014979	addl	$0xd192e819, r6
+00007f83f001497f	movl	r6, 0x1a0(sp)
+00007f83f0014986	movl	0x248(sp), r5
+00007f83f001498d	movl	0x210(sp), r7
+00007f83f0014994	andl	r7, r5
+00007f83f0014996	movl	r5, 0x178(sp)
+00007f83f001499d	movl	0x210(sp), r7
+00007f83f00149a4	movl	0x250(sp), r8
+00007f83f00149ac	andl	r8, r7
+00007f83f00149af	xorl	r7, r5
+00007f83f00149b1	movl	0x248(sp), r7
+00007f83f00149b8	movl	0x250(sp), r8
+00007f83f00149c0	andl	r8, r7
+00007f83f00149c3	xorl	r7, r5
+00007f83f00149c5	movl	0x248(sp), r7
+00007f83f00149cc	rorl	$2, r7
+00007f83f00149cf	movl	0x248(sp), r8
+00007f83f00149d7	rorl	$0xd, r8
+00007f83f00149db	xorl	r8, r7
+00007f83f00149de	movl	0x248(sp), r8
+00007f83f00149e6	rorl	$0x16, r8
+00007f83f00149ea	xorl	r8, r7
+00007f83f00149ed	addl	r7, r5
+00007f83f00149ef	movl	0x188(sp), r7
+00007f83f00149f6	addl	r7, r5
+00007f83f00149f8	movl	r5, 0x1c0(sp)
+00007f83f00149ff	addl	r5, r6
+00007f83f0014a01	movl	r6, 0x1b8(sp)
+00007f83f0014a08	popq	r5
+00007f83f0014a0a	addl	r6, r5
+00007f83f0014a0c	movl	0xd0(sp), r6
+00007f83f0014a13	movl	0x1c0(sp), r7
+00007f83f0014a1a	addl	r7, r6
+00007f83f0014a1c	movl	0xd8(sp), r7
+00007f83f0014a23	movl	0x1c8(sp), r8
+00007f83f0014a2b	addl	r8, r7
+00007f83f0014a2e	movl	0xf8(sp), r8
+00007f83f0014a36	movl	0x238(sp), r9
+00007f83f0014a3e	addl	r9, r8
+00007f83f0014a41	movl	0x1b0(sp), r9
+00007f83f0014a49	movl	0x1c0(sp), r10
+00007f83f0014a51	movl	0x1c8(sp), r11
+00007f83f0014a59	xorl	r11, r10
+00007f83f0014a5c	andl	r10, r9
+00007f83f0014a5f	movl	0x1c8(sp), r10
+00007f83f0014a67	xorl	r10, r9
+00007f83f0014a6a	addl	r9, r8
+00007f83f0014a6d	movl	0x1b0(sp), r9
+00007f83f0014a75	rorl	$6, r9
+00007f83f0014a79	movl	0x1b0(sp), r10
+00007f83f0014a81	rorl	$0xb, r10
+00007f83f0014a85	xorl	r10, r9
+00007f83f0014a88	movl	0x1b0(sp), r10
+00007f83f0014a90	rorl	$0x19, r10
+00007f83f0014a94	xorl	r10, r9
+00007f83f0014a97	addl	r9, r8
+00007f83f0014a9a	addl	$0xd6990624, r8
+00007f83f0014aa1	movl	r8, 0x180(sp)
+00007f83f0014aa9	movl	0x1b8(sp), r9
+00007f83f0014ab1	rorl	$2, r9
+00007f83f0014ab5	movl	0x1b8(sp), r10
+00007f83f0014abd	rorl	$0xd, r10
+00007f83f0014ac1	xorl	r10, r9
+00007f83f0014ac4	movl	0x1b8(sp), r10
+00007f83f0014acc	rorl	$0x16, r10
+00007f83f0014ad0	xorl	r10, r9
+00007f83f0014ad3	movl	0x1b8(sp), r10
+00007f83f0014adb	movl	0x240(sp), r11
+00007f83f0014ae3	movl	0x208(sp), r12
+00007f83f0014aeb	xorl	r12, r11
+00007f83f0014aee	andl	r11, r10
+00007f83f0014af1	movl	0x170(sp), r11
+00007f83f0014af9	xorl	r11, r10
+00007f83f0014afc	addl	r10, r9
+00007f83f0014aff	movl	0x190(sp), r10
+00007f83f0014b07	addl	r10, r9
+00007f83f0014b0a	movl	r9, 0x248(sp)
+00007f83f0014b12	addl	r9, r8
+00007f83f0014b15	movl	r8, 0x238(sp)
+00007f83f0014b1d	movl	0x1b0(sp), r9
+00007f83f0014b25	movl	0x1c0(sp), r10
+00007f83f0014b2d	xorl	r10, r9
+00007f83f0014b30	andl	r9, r8
+00007f83f0014b33	movl	0x1c0(sp), r9
+00007f83f0014b3b	xorl	r9, r8
+00007f83f0014b3e	addl	r8, r7
+00007f83f0014b41	movl	0x238(sp), r8
+00007f83f0014b49	rorl	$6, r8
+00007f83f0014b4d	movl	0x238(sp), r9
+00007f83f0014b55	rorl	$0xb, r9
+00007f83f0014b59	xorl	r9, r8
+00007f83f0014b5c	movl	0x238(sp), r9
+00007f83f0014b64	rorl	$0x19, r9
+00007f83f0014b68	xorl	r9, r8
+00007f83f0014b6b	addl	r8, r7
+00007f83f0014b6e	addl	$0xf40e3585, r7
+00007f83f0014b74	movl	r7, 0x190(sp)
+00007f83f0014b7b	movl	0x248(sp), r8
+00007f83f0014b83	movl	0x1b8(sp), r9
+00007f83f0014b8b	andl	r9, r8
+00007f83f0014b8e	movl	r8, 0x1c0(sp)
+00007f83f0014b96	movl	0x1b8(sp), r9
+00007f83f0014b9e	movl	0x240(sp), r10
+00007f83f0014ba6	andl	r10, r9
+00007f83f0014ba9	xorl	r9, r8
+00007f83f0014bac	movl	0x248(sp), r9
+00007f83f0014bb4	movl	0x240(sp), r10
+00007f83f0014bbc	andl	r10, r9
+00007f83f0014bbf	xorl	r9, r8
+00007f83f0014bc2	movl	0x248(sp), r9
+00007f83f0014bca	rorl	$2, r9
+00007f83f0014bce	movl	0x248(sp), r10
+00007f83f0014bd6	rorl	$0xd, r10
+00007f83f0014bda	xorl	r10, r9
+00007f83f0014bdd	movl	0x248(sp), r10
+00007f83f0014be5	rorl	$0x16, r10
+00007f83f0014be9	xorl	r10, r9
+00007f83f0014bec	addl	r9, r8
+00007f83f0014bef	movl	0x188(sp), r9
+00007f83f0014bf7	addl	r9, r8
+00007f83f0014bfa	movl	r8, 0x208(sp)
+00007f83f0014c02	addl	r8, r7
+00007f83f0014c05	movl	r7, 0x1c8(sp)
+00007f83f0014c0c	movl	0x238(sp), r8
+00007f83f0014c14	movl	0x1b0(sp), r9
+00007f83f0014c1c	xorl	r9, r8
+00007f83f0014c1f	andl	r8, r7
+00007f83f0014c22	movl	0x1b0(sp), r8
+00007f83f0014c2a	xorl	r8, r7
+00007f83f0014c2d	addl	r7, r6
+00007f83f0014c2f	movl	0x1c8(sp), r7
+00007f83f0014c36	rorl	$6, r7
+00007f83f0014c39	movl	0x1c8(sp), r8
+00007f83f0014c41	rorl	$0xb, r8
+00007f83f0014c45	xorl	r8, r7
+00007f83f0014c48	movl	0x1c8(sp), r8
+00007f83f0014c50	rorl	$0x19, r8
+00007f83f0014c54	xorl	r8, r7
+00007f83f0014c57	addl	r7, r6
+00007f83f0014c59	addl	$0x106aa070, r6
+00007f83f0014c5f	movl	r6, 0x188(sp)
+00007f83f0014c66	movl	0x208(sp), r7
+00007f83f0014c6d	rorl	$2, r7
+00007f83f0014c70	movl	0x208(sp), r8
+00007f83f0014c78	rorl	$0xd, r8
+00007f83f0014c7c	xorl	r8, r7
+00007f83f0014c7f	movl	0x208(sp), r8
+00007f83f0014c87	rorl	$0x16, r8
+00007f83f0014c8b	xorl	r8, r7
+00007f83f0014c8e	movl	0x208(sp), r8
+00007f83f0014c96	movl	0x248(sp), r9
+00007f83f0014c9e	movl	0x1b8(sp), r10
+00007f83f0014ca6	xorl	r10, r9
+00007f83f0014ca9	andl	r9, r8
+00007f83f0014cac	movl	0x1c0(sp), r9
+00007f83f0014cb4	xorl	r9, r8
+00007f83f0014cb7	addl	r8, r7
+00007f83f0014cba	movl	0x178(sp), r8
+00007f83f0014cc2	addl	r8, r7
+00007f83f0014cc5	movl	r7, 0x240(sp)
+00007f83f0014ccc	addl	r7, r6
+00007f83f0014cce	movl	r6, 0x1c0(sp)
+00007f83f0014cd5	movl	0x1c8(sp), r7
+00007f83f0014cdc	movl	0x238(sp), r8
+00007f83f0014ce4	xorl	r8, r7
+00007f83f0014ce7	andl	r7, r6
+00007f83f0014ce9	movl	0x238(sp), r7
+00007f83f0014cf0	xorl	r7, r6
+00007f83f0014cf2	addl	r6, r5
+00007f83f0014cf4	movl	0x1c0(sp), r6
+00007f83f0014cfb	rorl	$6, r6
+00007f83f0014cfe	movl	0x1c0(sp), r7
+00007f83f0014d05	rorl	$0xb, r7
+00007f83f0014d08	xorl	r7, r6
+00007f83f0014d0a	movl	0x1c0(sp), r7
+00007f83f0014d11	rorl	$0x19, r7
+00007f83f0014d14	xorl	r7, r6
+00007f83f0014d16	addl	r6, r5
+00007f83f0014d18	addl	$0x19a4c116, r5
+00007f83f0014d1e	movl	r5, 0x178(sp)
+00007f83f0014d25	movl	0x240(sp), r6
+00007f83f0014d2c	movl	0x208(sp), r7
+00007f83f0014d33	andl	r7, r6
+00007f83f0014d35	movl	r6, 0x170(sp)
+00007f83f0014d3c	movl	0x208(sp), r7
+00007f83f0014d43	movl	0x248(sp), r8
+00007f83f0014d4b	andl	r8, r7
+00007f83f0014d4e	xorl	r7, r6
+00007f83f0014d50	movl	0x240(sp), r7
+00007f83f0014d57	movl	0x248(sp), r8
+00007f83f0014d5f	andl	r8, r7
+00007f83f0014d62	xorl	r7, r6
+00007f83f0014d64	movl	0x240(sp), r7
+00007f83f0014d6b	rorl	$2, r7
+00007f83f0014d6e	movl	0x240(sp), r8
+00007f83f0014d76	rorl	$0xd, r8
+00007f83f0014d7a	xorl	r8, r7
+00007f83f0014d7d	movl	0x240(sp), r8
+00007f83f0014d85	rorl	$0x16, r8
+00007f83f0014d89	xorl	r8, r7
+00007f83f0014d8c	addl	r7, r6
+00007f83f0014d8e	movl	0x198(sp), r7
+00007f83f0014d95	addl	r7, r6
+00007f83f0014d97	movl	r6, 0x1b8(sp)
+00007f83f0014d9e	addl	r6, r5
+00007f83f0014da0	movl	r5, 0x1b0(sp)
+00007f83f0014da7	popq	r6
+00007f83f0014da9	addl	r5, r6
+00007f83f0014dab	movl	0xb8(sp), r5
+00007f83f0014db2	movl	0x1b8(sp), r7
+00007f83f0014db9	addl	r7, r5
+00007f83f0014dbb	movl	0xa0(sp), r7
+00007f83f0014dc2	movl	0x1c0(sp), r8
+00007f83f0014dca	addl	r8, r7
+00007f83f0014dcd	movl	0xc0(sp), r8
+00007f83f0014dd5	movl	0x230(sp), r9
+00007f83f0014ddd	addl	r9, r8
+00007f83f0014de0	movl	0x1a8(sp), r9
+00007f83f0014de8	movl	0x1b8(sp), r10
+00007f83f0014df0	movl	0x1c0(sp), r11
+00007f83f0014df8	xorl	r11, r10
+00007f83f0014dfb	andl	r10, r9
+00007f83f0014dfe	movl	0x1c0(sp), r10
+00007f83f0014e06	xorl	r10, r9
+00007f83f0014e09	addl	r9, r8
+00007f83f0014e0c	movl	0x1a8(sp), r9
+00007f83f0014e14	rorl	$6, r9
+00007f83f0014e18	movl	0x1a8(sp), r10
+00007f83f0014e20	rorl	$0xb, r10
+00007f83f0014e24	xorl	r10, r9
+00007f83f0014e27	movl	0x1a8(sp), r10
+00007f83f0014e2f	rorl	$0x19, r10
+00007f83f0014e33	xorl	r10, r9
+00007f83f0014e36	addl	r9, r8
+00007f83f0014e39	addl	$0x1e376c08, r8
+00007f83f0014e40	movl	r8, 0x160(sp)
+00007f83f0014e48	movl	0x1b0(sp), r9
+00007f83f0014e50	rorl	$2, r9
+00007f83f0014e54	movl	0x1b0(sp), r10
+00007f83f0014e5c	rorl	$0xd, r10
+00007f83f0014e60	xorl	r10, r9
+00007f83f0014e63	movl	0x1b0(sp), r10
+00007f83f0014e6b	rorl	$0x16, r10
+00007f83f0014e6f	xorl	r10, r9
+00007f83f0014e72	movl	0x1b0(sp), r10
+00007f83f0014e7a	movl	0x238(sp), r11
+00007f83f0014e82	movl	0x200(sp), r12
+00007f83f0014e8a	xorl	r12, r11
+00007f83f0014e8d	andl	r11, r10
+00007f83f0014e90	movl	0x168(sp), r11
+00007f83f0014e98	xorl	r11, r10
+00007f83f0014e9b	addl	r10, r9
+00007f83f0014e9e	movl	0x178(sp), r10
+00007f83f0014ea6	addl	r10, r9
+00007f83f0014ea9	movl	r9, 0x240(sp)
+00007f83f0014eb1	addl	r9, r8
+00007f83f0014eb4	movl	r8, 0x230(sp)
+00007f83f0014ebc	movl	0x1a8(sp), r9
+00007f83f0014ec4	movl	0x1b8(sp), r10
+00007f83f0014ecc	xorl	r10, r9
+00007f83f0014ecf	andl	r9, r8
+00007f83f0014ed2	movl	0x1b8(sp), r9
+00007f83f0014eda	xorl	r9, r8
+00007f83f0014edd	addl	r8, r7
+00007f83f0014ee0	movl	0x230(sp), r8
+00007f83f0014ee8	rorl	$6, r8
+00007f83f0014eec	movl	0x230(sp), r9
+00007f83f0014ef4	rorl	$0xb, r9
+00007f83f0014ef8	xorl	r9, r8
+00007f83f0014efb	movl	0x230(sp), r9
+00007f83f0014f03	rorl	$0x19, r9
+00007f83f0014f07	xorl	r9, r8
+00007f83f0014f0a	addl	r8, r7
+00007f83f0014f0d	addl	$0x2748774c, r7
+00007f83f0014f13	movl	r7, 0x178(sp)
+00007f83f0014f1a	movl	0x240(sp), r8
+00007f83f0014f22	movl	0x1b0(sp), r9
+00007f83f0014f2a	andl	r9, r8
+00007f83f0014f2d	movl	r8, 0x1b8(sp)
+00007f83f0014f35	movl	0x1b0(sp), r9
+00007f83f0014f3d	movl	0x238(sp), r10
+00007f83f0014f45	andl	r10, r9
+00007f83f0014f48	xorl	r9, r8
+00007f83f0014f4b	movl	0x240(sp), r9
+00007f83f0014f53	movl	0x238(sp), r10
+00007f83f0014f5b	andl	r10, r9
+00007f83f0014f5e	xorl	r9, r8
+00007f83f0014f61	movl	0x240(sp), r9
+00007f83f0014f69	rorl	$2, r9
+00007f83f0014f6d	movl	0x240(sp), r10
+00007f83f0014f75	rorl	$0xd, r10
+00007f83f0014f79	xorl	r10, r9
+00007f83f0014f7c	movl	0x240(sp), r10
+00007f83f0014f84	rorl	$0x16, r10
+00007f83f0014f88	xorl	r10, r9
+00007f83f0014f8b	addl	r9, r8
+00007f83f0014f8e	movl	0x188(sp), r9
+00007f83f0014f96	addl	r9, r8
+00007f83f0014f99	movl	r8, 0x200(sp)
+00007f83f0014fa1	addl	r8, r7
+00007f83f0014fa4	movl	r7, 0x1c0(sp)
+00007f83f0014fab	movl	0x230(sp), r8
+00007f83f0014fb3	movl	0x1a8(sp), r9
+00007f83f0014fbb	xorl	r9, r8
+00007f83f0014fbe	andl	r8, r7
+00007f83f0014fc1	movl	0x1a8(sp), r8
+00007f83f0014fc9	xorl	r8, r7
+00007f83f0014fcc	addl	r7, r5
+00007f83f0014fce	movl	0x1c0(sp), r7
+00007f83f0014fd5	rorl	$6, r7
+00007f83f0014fd8	movl	0x1c0(sp), r8
+00007f83f0014fe0	rorl	$0xb, r8
+00007f83f0014fe4	xorl	r8, r7
+00007f83f0014fe7	movl	0x1c0(sp), r8
+00007f83f0014fef	rorl	$0x19, r8
+00007f83f0014ff3	xorl	r8, r7
+00007f83f0014ff6	addl	r7, r5
+00007f83f0014ff8	addl	$0x34b0bcb5, r5
+00007f83f0014ffe	movl	r5, 0x188(sp)
+00007f83f0015005	movl	0x200(sp), r7
+00007f83f001500c	rorl	$2, r7
+00007f83f001500f	movl	0x200(sp), r8
+00007f83f0015017	rorl	$0xd, r8
+00007f83f001501b	xorl	r8, r7
+00007f83f001501e	movl	0x200(sp), r8
+00007f83f0015026	rorl	$0x16, r8
+00007f83f001502a	xorl	r8, r7
+00007f83f001502d	movl	0x200(sp), r8
+00007f83f0015035	movl	0x240(sp), r9
+00007f83f001503d	movl	0x1b0(sp), r10
+00007f83f0015045	xorl	r10, r9
+00007f83f0015048	andl	r9, r8
+00007f83f001504b	movl	0x1b8(sp), r9
+00007f83f0015053	xorl	r9, r8
+00007f83f0015056	addl	r8, r7
+00007f83f0015059	movl	0x180(sp), r8
+00007f83f0015061	addl	r8, r7
+00007f83f0015064	movl	r7, 0x238(sp)
+00007f83f001506b	addl	r7, r5
+00007f83f001506d	movl	r5, 0x1b8(sp)
+00007f83f0015074	movl	0x1c0(sp), r7
+00007f83f001507b	movl	0x230(sp), r8
+00007f83f0015083	xorl	r8, r7
+00007f83f0015086	andl	r7, r5
+00007f83f0015088	movl	0x230(sp), r7
+00007f83f001508f	xorl	r7, r5
+00007f83f0015091	addl	r5, r6
+00007f83f0015093	movl	0x1b8(sp), r5
+00007f83f001509a	rorl	$6, r5
+00007f83f001509d	movl	0x1b8(sp), r7
+00007f83f00150a4	rorl	$0xb, r7
+00007f83f00150a7	xorl	r7, r5
+00007f83f00150a9	movl	0x1b8(sp), r7
+00007f83f00150b0	rorl	$0x19, r7
+00007f83f00150b3	xorl	r7, r5
+00007f83f00150b5	addl	r5, r6
+00007f83f00150b7	addl	$0x391c0cb3, r6
+00007f83f00150bd	movl	r6, 0x180(sp)
+00007f83f00150c4	movl	0x238(sp), r5
+00007f83f00150cb	movl	0x200(sp), r7
+00007f83f00150d2	andl	r7, r5
+00007f83f00150d4	movl	r5, 0x168(sp)
+00007f83f00150db	movl	0x200(sp), r7
+00007f83f00150e2	movl	0x240(sp), r8
+00007f83f00150ea	andl	r8, r7
+00007f83f00150ed	xorl	r7, r5
+00007f83f00150ef	movl	0x238(sp), r7
+00007f83f00150f6	movl	0x240(sp), r8
+00007f83f00150fe	andl	r8, r7
+00007f83f0015101	xorl	r7, r5
+00007f83f0015103	movl	0x238(sp), r7
+00007f83f001510a	rorl	$2, r7
+00007f83f001510d	movl	0x238(sp), r8
+00007f83f0015115	rorl	$0xd, r8
+00007f83f0015119	xorl	r8, r7
+00007f83f001511c	movl	0x238(sp), r8
+00007f83f0015124	rorl	$0x16, r8
+00007f83f0015128	xorl	r8, r7
+00007f83f001512b	addl	r7, r5
+00007f83f001512d	movl	0x170(sp), r7
+00007f83f0015134	addl	r7, r5
+00007f83f0015136	movl	r5, 0x1b0(sp)
+00007f83f001513d	addl	r5, r6
+00007f83f001513f	movl	r6, 0x1a8(sp)
+00007f83f0015146	popq	r5
+00007f83f0015148	addl	r6, r5
+00007f83f001514a	movl	0xe0(sp), r6
+00007f83f0015151	roll	$0x19, r6
+00007f83f0015154	movl	0xe0(sp), r7
+00007f83f001515b	shrl	$3, r7
+00007f83f001515e	xorl	r7, r6
+00007f83f0015160	movl	0xe0(sp), r7
+00007f83f0015167	roll	$0xe, r7
+00007f83f001516a	xorl	r7, r6
+00007f83f001516c	movl	0x100(sp), r7
+00007f83f0015173	addl	r7, r6
+00007f83f0015175	movl	0xa0(sp), r7
+00007f83f001517c	addl	r7, r6
+00007f83f001517e	movl	0xa8(sp), r7
+00007f83f0015185	rorl	$0x11, r7
+00007f83f0015188	movl	0xa8(sp), r8
+00007f83f0015190	rorl	$0x13, r8
+00007f83f0015194	xorl	r8, r7
+00007f83f0015197	movl	0xa8(sp), r8
+00007f83f001519f	shrl	$0xa, r8
+00007f83f00151a3	xorl	r8, r7
+00007f83f00151a6	addl	r7, r6
+00007f83f00151a8	movl	r6, 0x188(sp)
+00007f83f00151af	movl	0x1b0(sp), r7
+00007f83f00151b6	addl	r7, r6
+00007f83f00151b8	movl	0x88(sp), r7
+00007f83f00151bf	movl	0x1b8(sp), r8
+00007f83f00151c7	addl	r8, r7
+00007f83f00151ca	movl	0xa8(sp), r8
+00007f83f00151d2	movl	0x228(sp), r9
+00007f83f00151da	addl	r9, r8
+00007f83f00151dd	movl	0x1a0(sp), r9
+00007f83f00151e5	movl	0x1b0(sp), r10
+00007f83f00151ed	movl	0x1b8(sp), r11
+00007f83f00151f5	xorl	r11, r10
+00007f83f00151f8	andl	r10, r9
+00007f83f00151fb	movl	0x1b8(sp), r10
+00007f83f0015203	xorl	r10, r9
+00007f83f0015206	addl	r9, r8
+00007f83f0015209	movl	0x1a0(sp), r9
+00007f83f0015211	rorl	$6, r9
+00007f83f0015215	movl	0x1a0(sp), r10
+00007f83f001521d	rorl	$0xb, r10
+00007f83f0015221	xorl	r10, r9
+00007f83f0015224	movl	0x1a0(sp), r10
+00007f83f001522c	rorl	$0x19, r10
+00007f83f0015230	xorl	r10, r9
+00007f83f0015233	addl	r9, r8
+00007f83f0015236	addl	$0x4ed8aa4a, r8
+00007f83f001523d	movl	r8, 0x168(sp)
+00007f83f0015245	movl	0x1a8(sp), r9
+00007f83f001524d	rorl	$2, r9
+00007f83f0015251	movl	0x1a8(sp), r10
+00007f83f0015259	rorl	$0xd, r10
+00007f83f001525d	xorl	r10, r9
+00007f83f0015260	movl	0x1a8(sp), r10
+00007f83f0015268	rorl	$0x16, r10
+00007f83f001526c	xorl	r10, r9
+00007f83f001526f	movl	0x1a8(sp), r10
+00007f83f0015277	movl	0x230(sp), r11
+00007f83f001527f	movl	0x1f8(sp), r12
+00007f83f0015287	xorl	r12, r11
+00007f83f001528a	andl	r11, r10
+00007f83f001528d	movl	0x160(sp), r11
+00007f83f0015295	xorl	r11, r10
+00007f83f0015298	addl	r10, r9
+00007f83f001529b	movl	0x158(sp), r10
+00007f83f00152a3	addl	r10, r9
+00007f83f00152a6	movl	r9, 0x238(sp)
+00007f83f00152ae	addl	r9, r8
+00007f83f00152b1	movl	r8, 0x228(sp)
+00007f83f00152b9	movl	0x1a0(sp), r9
+00007f83f00152c1	movl	0x1b0(sp), r10
+00007f83f00152c9	xorl	r10, r9
+00007f83f00152cc	andl	r9, r8
+00007f83f00152cf	movl	0x1b0(sp), r9
+00007f83f00152d7	xorl	r9, r8
+00007f83f00152da	addl	r8, r7
+00007f83f00152dd	movl	0x228(sp), r8
+00007f83f00152e5	rorl	$6, r8
+00007f83f00152e9	movl	0x228(sp), r9
+00007f83f00152f1	rorl	$0xb, r9
+00007f83f00152f5	xorl	r9, r8
+00007f83f00152f8	movl	0x228(sp), r9
+00007f83f0015300	rorl	$0x19, r9
+00007f83f0015304	xorl	r9, r8
+00007f83f0015307	addl	r8, r7
+00007f83f001530a	addl	$0x5b9cca4f, r7
+00007f83f0015310	movl	r7, 0x160(sp)
+00007f83f0015317	movl	0x238(sp), r8
+00007f83f001531f	movl	0x1a8(sp), r9
+00007f83f0015327	andl	r9, r8
+00007f83f001532a	movl	r8, 0x1b0(sp)
+00007f83f0015332	movl	0x1a8(sp), r9
+00007f83f001533a	movl	0x230(sp), r10
+00007f83f0015342	andl	r10, r9
+00007f83f0015345	xorl	r9, r8
+00007f83f0015348	movl	0x238(sp), r9
+00007f83f0015350	movl	0x230(sp), r10
+00007f83f0015358	andl	r10, r9
+00007f83f001535b	xorl	r9, r8
+00007f83f001535e	movl	0x238(sp), r9
+00007f83f0015366	rorl	$2, r9
+00007f83f001536a	movl	0x238(sp), r10
+00007f83f0015372	rorl	$0xd, r10
+00007f83f0015376	xorl	r10, r9
+00007f83f0015379	movl	0x238(sp), r10
+00007f83f0015381	rorl	$0x16, r10
+00007f83f0015385	xorl	r10, r9
+00007f83f0015388	addl	r9, r8
+00007f83f001538b	movl	0x170(sp), r9
+00007f83f0015393	addl	r9, r8
+00007f83f0015396	movl	r8, 0x1f8(sp)
+00007f83f001539e	addl	r8, r7
+00007f83f00153a1	movl	r7, 0x1b8(sp)
+00007f83f00153a8	movl	0x228(sp), r8
+00007f83f00153b0	movl	0x1a0(sp), r9
+00007f83f00153b8	xorl	r9, r8
+00007f83f00153bb	andl	r8, r7
+00007f83f00153be	movl	0x1a0(sp), r8
+00007f83f00153c6	xorl	r8, r7
+00007f83f00153c9	addl	r7, r6
+00007f83f00153cb	movl	0x1b8(sp), r7
+00007f83f00153d2	rorl	$6, r7
+00007f83f00153d5	movl	0x1b8(sp), r8
+00007f83f00153dd	rorl	$0xb, r8
+00007f83f00153e1	xorl	r8, r7
+00007f83f00153e4	movl	0x1b8(sp), r8
+00007f83f00153ec	rorl	$0x19, r8
+00007f83f00153f0	xorl	r8, r7
+00007f83f00153f3	addl	r7, r6
+00007f83f00153f5	addl	$0x682e6ff3, r6
+00007f83f00153fb	movl	r6, 0x170(sp)
+00007f83f0015402	movl	0x1f8(sp), r7
+00007f83f0015409	rorl	$2, r7
+00007f83f001540c	movl	0x1f8(sp), r8
+00007f83f0015414	rorl	$0xd, r8
+00007f83f0015418	xorl	r8, r7
+00007f83f001541b	movl	0x1f8(sp), r8
+00007f83f0015423	rorl	$0x16, r8
+00007f83f0015427	xorl	r8, r7
+00007f83f001542a	movl	0x1f8(sp), r8
+00007f83f0015432	movl	0x238(sp), r9
+00007f83f001543a	movl	0x1a8(sp), r10
+00007f83f0015442	xorl	r10, r9
+00007f83f0015445	andl	r9, r8
+00007f83f0015448	movl	0x1b0(sp), r9
+00007f83f0015450	xorl	r9, r8
+00007f83f0015453	addl	r8, r7
+00007f83f0015456	movl	0x180(sp), r8
+00007f83f001545e	addl	r8, r7
+00007f83f0015461	movl	r7, 0x230(sp)
+00007f83f0015468	addl	r7, r6
+00007f83f001546a	movl	r6, 0x1b0(sp)
+00007f83f0015471	movl	0x1b8(sp), r7
+00007f83f0015478	movl	0x228(sp), r8
+00007f83f0015480	xorl	r8, r7
+00007f83f0015483	andl	r7, r6
+00007f83f0015485	movl	0x228(sp), r7
+00007f83f001548c	xorl	r7, r6
+00007f83f001548e	addl	r6, r5
+00007f83f0015490	movl	0x1b0(sp), r6
+00007f83f0015497	rorl	$6, r6
+00007f83f001549a	movl	0x1b0(sp), r7
+00007f83f00154a1	rorl	$0xb, r7
+00007f83f00154a4	xorl	r7, r6
+00007f83f00154a6	movl	0x1b0(sp), r7
+00007f83f00154ad	rorl	$0x19, r7
+00007f83f00154b0	xorl	r7, r6
+00007f83f00154b2	addl	r6, r5
+00007f83f00154b4	addl	$0x748f82ee, r5
+00007f83f00154ba	movl	r5, 0x158(sp)
+00007f83f00154c1	movl	0x230(sp), r6
+00007f83f00154c8	movl	0x1f8(sp), r7
+00007f83f00154cf	andl	r7, r6
+00007f83f00154d1	movl	r6, 0x150(sp)
+00007f83f00154d8	movl	0x1f8(sp), r7
+00007f83f00154df	movl	0x238(sp), r8
+00007f83f00154e7	andl	r8, r7
+00007f83f00154ea	xorl	r7, r6
+00007f83f00154ec	movl	0x230(sp), r7
+00007f83f00154f3	movl	0x238(sp), r8
+00007f83f00154fb	andl	r8, r7
+00007f83f00154fe	xorl	r7, r6
+00007f83f0015500	movl	0x230(sp), r7
+00007f83f0015507	rorl	$2, r7
+00007f83f001550a	movl	0x230(sp), r8
+00007f83f0015512	rorl	$0xd, r8
+00007f83f0015516	xorl	r8, r7
+00007f83f0015519	movl	0x230(sp), r8
+00007f83f0015521	rorl	$0x16, r8
+00007f83f0015525	xorl	r8, r7
+00007f83f0015528	addl	r7, r6
+00007f83f001552a	movl	0x178(sp), r7
+00007f83f0015531	addl	r7, r6
+00007f83f0015533	movl	r6, 0x1a8(sp)
+00007f83f001553a	addl	r6, r5
+00007f83f001553c	movl	r5, 0x1a0(sp)
+00007f83f0015543	popq	r6
+00007f83f0015545	addl	r5, r6
+00007f83f0015547	movl	0xc8(sp), r5
+00007f83f001554e	roll	$0x19, r5
+00007f83f0015551	movl	0xc8(sp), r7
+00007f83f0015558	shrl	$3, r7
+00007f83f001555b	xorl	r7, r5
+00007f83f001555d	movl	0xc8(sp), r7
+00007f83f0015564	roll	$0xe, r7
+00007f83f0015567	xorl	r7, r5
+00007f83f0015569	movl	0xe8(sp), r7
+00007f83f0015570	addl	r7, r5
+00007f83f0015572	movl	0x88(sp), r7
+00007f83f0015579	addl	r7, r5
+00007f83f001557b	movl	0xd0(sp), r7
+00007f83f0015582	roll	$0x19, r7
+00007f83f0015585	movl	0xd0(sp), r8
+00007f83f001558d	shrl	$3, r8
+00007f83f0015591	xorl	r8, r7
+00007f83f0015594	movl	0xd0(sp), r8
+00007f83f001559c	roll	$0xe, r8
+00007f83f00155a0	xorl	r8, r7
+00007f83f00155a3	movl	0xf0(sp), r8
+00007f83f00155ab	addl	r8, r7
+00007f83f00155ae	movl	0x90(sp), r8
+00007f83f00155b6	addl	r8, r7
+00007f83f00155b9	movl	0x180(sp), r8
+00007f83f00155c1	rorl	$0x11, r8
+00007f83f00155c5	movl	0x180(sp), r9
+00007f83f00155cd	rorl	$0x13, r9
+00007f83f00155d1	xorl	r9, r8
+00007f83f00155d4	movl	0x180(sp), r9
+00007f83f00155dc	shrl	$0xa, r9
+00007f83f00155e0	xorl	r9, r8
+00007f83f00155e3	addl	r8, r7
+00007f83f00155e6	movl	r7, 0x230(sp)
+00007f83f00155ed	rorl	$0x11, r7
+00007f83f00155f0	movl	0x230(sp), r8
+00007f83f00155f8	rorl	$0x13, r8
+00007f83f00155fc	xorl	r8, r7
+00007f83f00155ff	movl	0x230(sp), r8
+00007f83f0015607	shrl	$0xa, r8
+00007f83f001560b	xorl	r8, r7
+00007f83f001560e	addl	r7, r5
+00007f83f0015610	movl	r5, 0x178(sp)
+00007f83f0015617	movl	0x1a8(sp), r7
+00007f83f001561e	addl	r7, r5
+00007f83f0015620	movl	0x70(sp), r7
+00007f83f0015624	movl	0x1b0(sp), r8
+00007f83f001562c	addl	r8, r7
+00007f83f001562f	movl	0x230(sp), r8
+00007f83f0015637	movl	0x220(sp), r9
+00007f83f001563f	addl	r9, r8
+00007f83f0015642	movl	0x198(sp), r9
+00007f83f001564a	movl	0x1a8(sp), r10
+00007f83f0015652	movl	0x1b0(sp), r11
+00007f83f001565a	xorl	r11, r10
+00007f83f001565d	andl	r10, r9
+00007f83f0015660	movl	0x1b0(sp), r10
+00007f83f0015668	xorl	r10, r9
+00007f83f001566b	addl	r9, r8
+00007f83f001566e	movl	0x198(sp), r9
+00007f83f0015676	rorl	$6, r9
+00007f83f001567a	movl	0x198(sp), r10
+00007f83f0015682	rorl	$0xb, r10
+00007f83f0015686	xorl	r10, r9
+00007f83f0015689	movl	0x198(sp), r10
+00007f83f0015691	rorl	$0x19, r10
+00007f83f0015695	xorl	r10, r9
+00007f83f0015698	addl	r9, r8
+00007f83f001569b	addl	$0x78a5636f, r8
+00007f83f00156a2	movl	r8, 0x170(sp)
+00007f83f00156aa	movl	0x1a0(sp), r9
+00007f83f00156b2	rorl	$2, r9
+00007f83f00156b6	movl	0x1a0(sp), r10
+00007f83f00156be	rorl	$0xd, r10
+00007f83f00156c2	xorl	r10, r9
+00007f83f00156c5	movl	0x1a0(sp), r10
+00007f83f00156cd	rorl	$0x16, r10
+00007f83f00156d1	xorl	r10, r9
+00007f83f00156d4	movl	0x1a0(sp), r10
+00007f83f00156dc	movl	0x228(sp), r11
+00007f83f00156e4	movl	0x1f0(sp), r12
+00007f83f00156ec	xorl	r12, r11
+00007f83f00156ef	andl	r11, r10
+00007f83f00156f2	movl	0x148(sp), r11
+00007f83f00156fa	xorl	r11, r10
+00007f83f00156fd	addl	r10, r9
+00007f83f0015700	movl	0x160(sp), r10
+00007f83f0015708	addl	r10, r9
+00007f83f001570b	movl	r9, 0x230(sp)
+00007f83f0015713	addl	r9, r8
+00007f83f0015716	movl	r8, 0x220(sp)
+00007f83f001571e	movl	0x198(sp), r9
+00007f83f0015726	movl	0x1a8(sp), r10
+00007f83f001572e	xorl	r10, r9
+00007f83f0015731	andl	r9, r8
+00007f83f0015734	movl	0x1a8(sp), r9
+00007f83f001573c	xorl	r9, r8
+00007f83f001573f	addl	r8, r7
+00007f83f0015742	movl	0x220(sp), r8
+00007f83f001574a	rorl	$6, r8
+00007f83f001574e	movl	0x220(sp), r9
+00007f83f0015756	rorl	$0xb, r9
+00007f83f001575a	xorl	r9, r8
+00007f83f001575d	movl	0x220(sp), r9
+00007f83f0015765	rorl	$0x19, r9
+00007f83f0015769	xorl	r9, r8
+00007f83f001576c	addl	r8, r7
+00007f83f001576f	addl	$0x84c87814, r7
+00007f83f0015775	movl	r7, 0x160(sp)
+00007f83f001577c	movl	0x230(sp), r8
+00007f83f0015784	movl	0x1a0(sp), r9
+00007f83f001578c	andl	r9, r8
+00007f83f001578f	movl	r8, 0x1a8(sp)
+00007f83f0015797	movl	0x1a0(sp), r9
+00007f83f001579f	movl	0x228(sp), r10
+00007f83f00157a7	andl	r10, r9
+00007f83f00157aa	xorl	r9, r8
+00007f83f00157ad	movl	0x230(sp), r9
+00007f83f00157b5	movl	0x228(sp), r10
+00007f83f00157bd	andl	r10, r9
+00007f83f00157c0	xorl	r9, r8
+00007f83f00157c3	movl	0x230(sp), r9
+00007f83f00157cb	rorl	$2, r9
+00007f83f00157cf	movl	0x230(sp), r10
+00007f83f00157d7	rorl	$0xd, r10
+00007f83f00157db	xorl	r10, r9
+00007f83f00157de	movl	0x230(sp), r10
+00007f83f00157e6	rorl	$0x16, r10
+00007f83f00157ea	xorl	r10, r9
+00007f83f00157ed	addl	r9, r8
+00007f83f00157f0	movl	0x158(sp), r9
+00007f83f00157f8	addl	r9, r8
+00007f83f00157fb	movl	r8, 0x1f0(sp)
+00007f83f0015803	addl	r8, r7
+00007f83f0015806	movl	r7, 0x1b0(sp)
+00007f83f001580d	movl	0x220(sp), r8
+00007f83f0015815	movl	0x198(sp), r9
+00007f83f001581d	xorl	r9, r8
+00007f83f0015820	andl	r8, r7
+00007f83f0015823	movl	0x198(sp), r8
+00007f83f001582b	xorl	r8, r7
+00007f83f001582e	addl	r7, r5
+00007f83f0015830	movl	0x1b0(sp), r7
+00007f83f0015837	rorl	$6, r7
+00007f83f001583a	movl	0x1b0(sp), r8
+00007f83f0015842	rorl	$0xb, r8
+00007f83f0015846	xorl	r8, r7
+00007f83f0015849	movl	0x1b0(sp), r8
+00007f83f0015851	rorl	$0x19, r8
+00007f83f0015855	xorl	r8, r7
+00007f83f0015858	addl	r7, r5
+00007f83f001585a	addl	$0x8cc70208, r5
+00007f83f0015860	movl	r5, 0x158(sp)
+00007f83f0015867	movl	0x1f0(sp), r7
+00007f83f001586e	rorl	$2, r7
+00007f83f0015871	movl	0x1f0(sp), r8
+00007f83f0015879	rorl	$0xd, r8
+00007f83f001587d	xorl	r8, r7
+00007f83f0015880	movl	0x1f0(sp), r8
+00007f83f0015888	rorl	$0x16, r8
+00007f83f001588c	xorl	r8, r7
+00007f83f001588f	movl	0x1f0(sp), r8
+00007f83f0015897	movl	0x230(sp), r9
+00007f83f001589f	movl	0x1a0(sp), r10
+00007f83f00158a7	xorl	r10, r9
+00007f83f00158aa	andl	r9, r8
+00007f83f00158ad	movl	0x1a8(sp), r9
+00007f83f00158b5	xorl	r9, r8
+00007f83f00158b8	addl	r8, r7
+00007f83f00158bb	movl	0x168(sp), r8
+00007f83f00158c3	addl	r8, r7
+00007f83f00158c6	movl	r7, 0x228(sp)
+00007f83f00158cd	addl	r7, r5
+00007f83f00158cf	movl	r5, 0x1a8(sp)
+00007f83f00158d6	movl	0x1b0(sp), r7
+00007f83f00158dd	movl	0x220(sp), r8
+00007f83f00158e5	xorl	r8, r7
+00007f83f00158e8	andl	r7, r5
+00007f83f00158ea	movl	0x220(sp), r7
+00007f83f00158f1	xorl	r7, r5
+00007f83f00158f3	addl	r5, r6
+00007f83f00158f5	movl	0x1a8(sp), r5
+00007f83f00158fc	rorl	$6, r5
+00007f83f00158ff	movl	0x1a8(sp), r7
+00007f83f0015906	rorl	$0xb, r7
+00007f83f0015909	xorl	r7, r5
+00007f83f001590b	movl	0x1a8(sp), r7
+00007f83f0015912	rorl	$0x19, r7
+00007f83f0015915	xorl	r7, r5
+00007f83f0015917	addl	r5, r6
+00007f83f0015919	addl	$0x90befffa, r6
+00007f83f001591f	movl	r6, 0x168(sp)
+00007f83f0015926	movl	0x228(sp), r5
+00007f83f001592d	movl	0x1f0(sp), r7
+00007f83f0015934	andl	r7, r5
+00007f83f0015936	movl	r5, 0x148(sp)
+00007f83f001593d	movl	0x1f0(sp), r7
+00007f83f0015944	movl	0x230(sp), r8
+00007f83f001594c	andl	r8, r7
+00007f83f001594f	xorl	r7, r5
+00007f83f0015951	movl	0x228(sp), r7
+00007f83f0015958	movl	0x230(sp), r8
+00007f83f0015960	andl	r8, r7
+00007f83f0015963	xorl	r7, r5
+00007f83f0015965	movl	0x228(sp), r7
+00007f83f001596c	rorl	$2, r7
+00007f83f001596f	movl	0x228(sp), r8
+00007f83f0015977	rorl	$0xd, r8
+00007f83f001597b	xorl	r8, r7
+00007f83f001597e	movl	0x228(sp), r8
+00007f83f0015986	rorl	$0x16, r8
+00007f83f001598a	xorl	r8, r7
+00007f83f001598d	addl	r7, r5
+00007f83f001598f	movl	0x150(sp), r7
+00007f83f0015996	addl	r7, r5
+00007f83f0015998	movl	r5, 0x1a0(sp)
+00007f83f001599f	addl	r5, r6
+00007f83f00159a1	movl	r6, 0x198(sp)
+00007f83f00159a8	movl	0x58(sp), r5
+00007f83f00159ac	addl	r5, r6
+00007f83f00159ae	popq	scratch
+00007f83f00159b0	addq	memory, scratch
+00007f83f00159b3	movl	r6, 0x1c(scratch)
+00007f83f00159b6	movl	0x240(sp), r5
+00007f83f00159bd	movl	0x38(sp), r6
+00007f83f00159c1	movl	0x198(sp), r7
+00007f83f00159c8	rorl	$2, r7
+00007f83f00159cb	movl	0x198(sp), r8
+00007f83f00159d3	rorl	$0xd, r8
+00007f83f00159d7	xorl	r8, r7
+00007f83f00159da	movl	0x198(sp), r8
+00007f83f00159e2	rorl	$0x16, r8
+00007f83f00159e6	xorl	r8, r7
+00007f83f00159e9	movl	0x198(sp), r8
+00007f83f00159f1	movl	0x220(sp), r9
+00007f83f00159f9	movl	0x1e8(sp), r10
+00007f83f0015a01	xorl	r10, r9
+00007f83f0015a04	andl	r9, r8
+00007f83f0015a07	movl	0x140(sp), r9
+00007f83f0015a0f	xorl	r9, r8
+00007f83f0015a12	addl	r8, r7
+00007f83f0015a15	movl	0x168(sp), r8
+00007f83f0015a1d	addl	r8, r7
+00007f83f0015a20	movl	r7, 0x228(sp)
+00007f83f0015a27	movl	0x198(sp), r8
+00007f83f0015a2f	andl	r8, r7
+00007f83f0015a32	movl	r7, 0x168(sp)
+00007f83f0015a39	movl	0x198(sp), r8
+00007f83f0015a41	movl	0x220(sp), r9
+00007f83f0015a49	andl	r9, r8
+00007f83f0015a4c	xorl	r8, r7
+00007f83f0015a4f	movl	0x228(sp), r8
+00007f83f0015a57	movl	0x220(sp), r9
+00007f83f0015a5f	andl	r9, r8
+00007f83f0015a62	xorl	r8, r7
+00007f83f0015a65	movl	0x228(sp), r8
+00007f83f0015a6d	rorl	$2, r8
+00007f83f0015a71	movl	0x228(sp), r9
+00007f83f0015a79	rorl	$0xd, r9
+00007f83f0015a7d	xorl	r9, r8
+00007f83f0015a80	movl	0x228(sp), r9
+00007f83f0015a88	rorl	$0x16, r9
+00007f83f0015a8c	xorl	r9, r8
+00007f83f0015a8f	addl	r8, r7
+00007f83f0015a92	movl	0x158(sp), r8
+00007f83f0015a9a	addl	r8, r7
+00007f83f0015a9d	movl	r7, 0x1e8(sp)
+00007f83f0015aa4	rorl	$2, r7
+00007f83f0015aa7	movl	0x1e8(sp), r8
+00007f83f0015aaf	rorl	$0xd, r8
+00007f83f0015ab3	xorl	r8, r7
+00007f83f0015ab6	movl	0x1e8(sp), r8
+00007f83f0015abe	rorl	$0x16, r8
+00007f83f0015ac2	xorl	r8, r7
+00007f83f0015ac5	movl	0x1e8(sp), r8
+00007f83f0015acd	movl	0x228(sp), r9
+00007f83f0015ad5	movl	0x198(sp), r10
+00007f83f0015add	xorl	r10, r9
+00007f83f0015ae0	andl	r9, r8
+00007f83f0015ae3	movl	0x168(sp), r9
+00007f83f0015aeb	xorl	r9, r8
+00007f83f0015aee	addl	r8, r7
+00007f83f0015af1	movl	0x150(sp), r8
+00007f83f0015af9	addl	r8, r7
+00007f83f0015afc	movl	r7, 0x220(sp)
+00007f83f0015b03	movl	0x1e8(sp), r8
+00007f83f0015b0b	andl	r8, r7
+00007f83f0015b0e	movl	r7, 0x168(sp)
+00007f83f0015b15	movl	0x1e8(sp), r8
+00007f83f0015b1d	movl	0x228(sp), r9
+00007f83f0015b25	andl	r9, r8
+00007f83f0015b28	xorl	r8, r7
+00007f83f0015b2b	movl	0x220(sp), r8
+00007f83f0015b33	movl	0x228(sp), r9
+00007f83f0015b3b	andl	r9, r8
+00007f83f0015b3e	xorl	r8, r7
+00007f83f0015b41	movl	0x220(sp), r8
+00007f83f0015b49	rorl	$2, r8
+00007f83f0015b4d	movl	0x220(sp), r9
+00007f83f0015b55	rorl	$0xd, r9
+00007f83f0015b59	xorl	r9, r8
+00007f83f0015b5c	movl	0x220(sp), r9
+00007f83f0015b64	rorl	$0x16, r9
+00007f83f0015b68	xorl	r9, r8
+00007f83f0015b6b	addl	r8, r7
+00007f83f0015b6e	movl	0x160(sp), r8
+00007f83f0015b76	addl	r8, r7
+00007f83f0015b79	movl	r7, 0x198(sp)
+00007f83f0015b80	addl	r7, r6
+00007f83f0015b82	movl	r5, scratch
+00007f83f0015b84	addq	memory, scratch
+00007f83f0015b87	movl	r6, 0xc(scratch)
+00007f83f0015b8a	movl	0x240(sp), r5
+00007f83f0015b91	movl	0x48(sp), r6
+00007f83f0015b95	movl	0xb8(sp), r7
+00007f83f0015b9c	roll	$0x19, r7
+00007f83f0015b9f	movl	0xb8(sp), r8
+00007f83f0015ba7	shrl	$3, r8
+00007f83f0015bab	xorl	r8, r7
+00007f83f0015bae	movl	0xb8(sp), r8
+00007f83f0015bb6	roll	$0xe, r8
+00007f83f0015bba	xorl	r8, r7
+00007f83f0015bbd	movl	0xd8(sp), r8
+00007f83f0015bc5	addl	r8, r7
+00007f83f0015bc8	movl	0x78(sp), r8
+00007f83f0015bcd	addl	r8, r7
+00007f83f0015bd0	movl	0x170(sp), r8
+00007f83f0015bd8	rorl	$0x11, r8
+00007f83f0015bdc	movl	0x170(sp), r9
+00007f83f0015be4	rorl	$0x13, r9
+00007f83f0015be8	xorl	r9, r8
+00007f83f0015beb	movl	0x170(sp), r9
+00007f83f0015bf3	shrl	$0xa, r9
+00007f83f0015bf7	xorl	r9, r8
+00007f83f0015bfa	addl	r8, r7
+00007f83f0015bfd	movl	r7, 0x170(sp)
+00007f83f0015c04	movl	0x218(sp), r8
+00007f83f0015c0c	addl	r8, r7
+00007f83f0015c0f	movl	0x190(sp), r8
+00007f83f0015c17	movl	0x1a0(sp), r9
+00007f83f0015c1f	movl	0x1a8(sp), r10
+00007f83f0015c27	xorl	r10, r9
+00007f83f0015c2a	andl	r9, r8
+00007f83f0015c2d	movl	0x1a8(sp), r9
+00007f83f0015c35	xorl	r9, r8
+00007f83f0015c38	addl	r8, r7
+00007f83f0015c3b	movl	0x190(sp), r8
+00007f83f0015c43	rorl	$6, r8
+00007f83f0015c47	movl	0x190(sp), r9
+00007f83f0015c4f	rorl	$0xb, r9
+00007f83f0015c53	xorl	r9, r8
+00007f83f0015c56	movl	0x190(sp), r9
+00007f83f0015c5e	rorl	$0x19, r9
+00007f83f0015c62	xorl	r9, r8
+00007f83f0015c65	addl	r8, r7
+00007f83f0015c68	addl	$0xa4506ceb, r7
+00007f83f0015c6e	movl	r7, 0x160(sp)
+00007f83f0015c75	movl	0x228(sp), r8
+00007f83f0015c7d	addl	r8, r7
+00007f83f0015c80	movl	r7, 0x218(sp)
+00007f83f0015c87	addl	r7, r6
+00007f83f0015c89	movl	r5, scratch
+00007f83f0015c8b	addq	memory, scratch
+00007f83f0015c8e	movl	r6, 0x18(scratch)
+00007f83f0015c91	movl	0x240(sp), r5
+00007f83f0015c98	movl	0x28(sp), r6
+00007f83f0015c9c	movl	0x198(sp), r7
+00007f83f0015ca3	rorl	$2, r7
+00007f83f0015ca6	movl	0x198(sp), r8
+00007f83f0015cae	rorl	$0xd, r8
+00007f83f0015cb2	xorl	r8, r7
+00007f83f0015cb5	movl	0x198(sp), r8
+00007f83f0015cbd	rorl	$0x16, r8
+00007f83f0015cc1	xorl	r8, r7
+00007f83f0015cc4	movl	0x198(sp), r8
+00007f83f0015ccc	movl	0x220(sp), r9
+00007f83f0015cd4	movl	0x1e8(sp), r10
+00007f83f0015cdc	xorl	r10, r9
+00007f83f0015cdf	andl	r9, r8
+00007f83f0015ce2	movl	0x168(sp), r9
+00007f83f0015cea	xorl	r9, r8
+00007f83f0015ced	addl	r8, r7
+00007f83f0015cf0	movl	0x160(sp), r8
+00007f83f0015cf8	addl	r8, r7
+00007f83f0015cfb	movl	r7, 0x228(sp)
+00007f83f0015d02	addl	r7, r6
+00007f83f0015d04	movl	r5, scratch
+00007f83f0015d06	addq	memory, scratch
+00007f83f0015d09	movl	r6, 8(scratch)
+00007f83f0015d0c	movl	0x240(sp), r5
+00007f83f0015d13	movl	0x40(sp), r6
+00007f83f0015d17	movl	0xb8(sp), r7
+00007f83f0015d1e	movl	0xb0(sp), r8
+00007f83f0015d26	roll	$0x19, r8
+00007f83f0015d2a	movl	0xb0(sp), r9
+00007f83f0015d32	shrl	$3, r9
+00007f83f0015d36	xorl	r9, r8
+00007f83f0015d39	movl	0xb0(sp), r9
+00007f83f0015d41	roll	$0xe, r9
+00007f83f0015d45	xorl	r9, r8
+00007f83f0015d48	addl	r8, r7
+00007f83f0015d4b	movl	0x178(sp), r8
+00007f83f0015d53	addl	r8, r7
+00007f83f0015d56	movl	0x60(sp), r8
+00007f83f0015d5b	rorl	$0x11, r8
+00007f83f0015d5f	movl	0x60(sp), r9
+00007f83f0015d64	rorl	$0x13, r9
+00007f83f0015d68	xorl	r9, r8
+00007f83f0015d6b	movl	0x60(sp), r9
+00007f83f0015d70	shrl	$0xa, r9
+00007f83f0015d74	xorl	r9, r8
+00007f83f0015d77	addl	r8, r7
+00007f83f0015d7a	movl	0x1a8(sp), r8
+00007f83f0015d82	addl	r8, r7
+00007f83f0015d85	movl	0x218(sp), r8
+00007f83f0015d8d	movl	0x190(sp), r9
+00007f83f0015d95	movl	0x1a0(sp), r10
+00007f83f0015d9d	xorl	r10, r9
+00007f83f0015da0	andl	r9, r8
+00007f83f0015da3	movl	0x1a0(sp), r9
+00007f83f0015dab	xorl	r9, r8
+00007f83f0015dae	addl	r8, r7
+00007f83f0015db1	movl	0x218(sp), r8
+00007f83f0015db9	rorl	$6, r8
+00007f83f0015dbd	movl	0x218(sp), r9
+00007f83f0015dc5	rorl	$0xb, r9
+00007f83f0015dc9	xorl	r9, r8
+00007f83f0015dcc	movl	0x218(sp), r9
+00007f83f0015dd4	rorl	$0x19, r9
+00007f83f0015dd8	xorl	r9, r8
+00007f83f0015ddb	addl	r8, r7
+00007f83f0015dde	addl	$0xbef9a3f7, r7
+00007f83f0015de4	movl	r7, 0x1a8(sp)
+00007f83f0015deb	movl	0x1e8(sp), r8
+00007f83f0015df3	addl	r8, r7
+00007f83f0015df6	movl	r7, 0x1e8(sp)
+00007f83f0015dfd	addl	r7, r6
+00007f83f0015dff	movl	r5, scratch
+00007f83f0015e01	addq	memory, scratch
+00007f83f0015e04	movl	r6, 0x14(scratch)
+00007f83f0015e07	movl	0x240(sp), r5
+00007f83f0015e0e	movl	0x18(sp), r6
+00007f83f0015e12	movl	0x228(sp), r7
+00007f83f0015e19	movl	0x198(sp), r8
+00007f83f0015e21	andl	r8, r7
+00007f83f0015e24	movl	r7, 0x178(sp)
+00007f83f0015e2b	movl	0x198(sp), r8
+00007f83f0015e33	movl	0x220(sp), r9
+00007f83f0015e3b	andl	r9, r8
+00007f83f0015e3e	xorl	r8, r7
+00007f83f0015e41	movl	0x228(sp), r8
+00007f83f0015e49	movl	0x220(sp), r9
+00007f83f0015e51	andl	r9, r8
+00007f83f0015e54	xorl	r8, r7
+00007f83f0015e57	movl	0x228(sp), r8
+00007f83f0015e5f	rorl	$2, r8
+00007f83f0015e63	movl	0x228(sp), r9
+00007f83f0015e6b	rorl	$0xd, r9
+00007f83f0015e6f	xorl	r9, r8
+00007f83f0015e72	movl	0x228(sp), r9
+00007f83f0015e7a	rorl	$0x16, r9
+00007f83f0015e7e	xorl	r9, r8
+00007f83f0015e81	addl	r8, r7
+00007f83f0015e84	movl	0x1a8(sp), r8
+00007f83f0015e8c	addl	r8, r7
+00007f83f0015e8f	movl	r7, 0x1a8(sp)
+00007f83f0015e96	addl	r7, r6
+00007f83f0015e98	movl	r5, scratch
+00007f83f0015e9a	addq	memory, scratch
+00007f83f0015e9d	movl	r6, 4(scratch)
+00007f83f0015ea0	movl	0x240(sp), r5
+00007f83f0015ea7	movl	0x220(sp), r6
+00007f83f0015eae	movl	0x58(sp), r7
+00007f83f0015eb2	addl	r7, r6
+00007f83f0015eb4	movl	0xb0(sp), r7
+00007f83f0015ebb	movl	0x90(sp), r8
+00007f83f0015ec3	roll	$0x19, r8
+00007f83f0015ec7	movl	0x90(sp), r9
+00007f83f0015ecf	shrl	$3, r9
+00007f83f0015ed3	xorl	r9, r8
+00007f83f0015ed6	movl	0x90(sp), r9
+00007f83f0015ede	roll	$0xe, r9
+00007f83f0015ee2	xorl	r9, r8
+00007f83f0015ee5	addl	r8, r7
+00007f83f0015ee8	movl	0x70(sp), r8
+00007f83f0015eed	addl	r8, r7
+00007f83f0015ef0	movl	0x170(sp), r8
+00007f83f0015ef8	rorl	$0x11, r8
+00007f83f0015efc	movl	0x170(sp), r9
+00007f83f0015f04	rorl	$0x13, r9
+00007f83f0015f08	xorl	r9, r8
+00007f83f0015f0b	movl	0x170(sp), r9
+00007f83f0015f13	shrl	$0xa, r9
+00007f83f0015f17	xorl	r9, r8
+00007f83f0015f1a	addl	r8, r7
+00007f83f0015f1d	movl	0x1a0(sp), r8
+00007f83f0015f25	addl	r8, r7
+00007f83f0015f28	movl	0x1e8(sp), r8
+00007f83f0015f30	movl	0x218(sp), r9
+00007f83f0015f38	movl	0x190(sp), r10
+00007f83f0015f40	xorl	r10, r9
+00007f83f0015f43	andl	r9, r8
+00007f83f0015f46	movl	0x190(sp), r9
+00007f83f0015f4e	xorl	r9, r8
+00007f83f0015f51	addl	r8, r7
+00007f83f0015f54	movl	0x1e8(sp), r8
+00007f83f0015f5c	rorl	$6, r8
+00007f83f0015f60	movl	0x1e8(sp), r9
+00007f83f0015f68	rorl	$0xb, r9
+00007f83f0015f6c	xorl	r9, r8
+00007f83f0015f6f	movl	0x1e8(sp), r9
+00007f83f0015f77	rorl	$0x19, r9
+00007f83f0015f7b	xorl	r9, r8
+00007f83f0015f7e	addl	r8, r7
+00007f83f0015f81	addl	$0xc67178f2, r7
+00007f83f0015f87	movl	r7, 0x220(sp)
+00007f83f0015f8e	addl	r7, r6
+00007f83f0015f90	movl	r5, scratch
+00007f83f0015f92	addq	memory, scratch
+00007f83f0015f95	movl	r6, 0x10(scratch)
+00007f83f0015f98	movl	0x240(sp), r5
+00007f83f0015f9f	movl	0x238(sp), r6
+00007f83f0015fa6	movl	0x1a8(sp), r7
+00007f83f0015fad	movl	0x228(sp), r8
+00007f83f0015fb5	movl	0x198(sp), r9
+00007f83f0015fbd	xorl	r9, r8
+00007f83f0015fc0	andl	r8, r7
+00007f83f0015fc3	movl	0x178(sp), r8
+00007f83f0015fcb	xorl	r8, r7
+00007f83f0015fce	addl	r7, r6
+00007f83f0015fd0	movl	0x1a8(sp), r7
+00007f83f0015fd7	rorl	$2, r7
+00007f83f0015fda	movl	0x1a8(sp), r8
+00007f83f0015fe2	rorl	$0xd, r8
+00007f83f0015fe6	xorl	r8, r7
+00007f83f0015fe9	movl	0x1a8(sp), r8
+00007f83f0015ff1	rorl	$0x16, r8
+00007f83f0015ff5	xorl	r8, r7
+00007f83f0015ff8	addl	r7, r6
+00007f83f0015ffa	movl	0x220(sp), r7
+00007f83f0016001	addl	r7, r6
+00007f83f0016003	movl	r5, scratch
+00007f83f0016005	addq	memory, scratch
+00007f83f0016008	movl	r6, (scratch)
+00007f83f001600a	xorl	result, result
+00007f83f001600c	leaq	0x230(sp), sp
+00007f83f0016014	retq
+
+__rust_alloc:
+00007f83f0016020	leaq	-0x10(sp), scratch
+00007f83f0016028	cmpq	stacklimit, scratch
+00007f83f001602b	jge	.1a
+00007f83f001602d	callq	trap.call_stack_exhausted
+00007f83f0016032 .1a:	movl	0x10(sp), r5
+00007f83f0016036	movl	8(sp), r6
+00007f83f001603a	pushq	r5
+00007f83f001603c	pushq	r6
+00007f83f001603e	callq	__rdl_alloc
+00007f83f0016043	leaq	0x10(sp), sp
+00007f83f0016048	movl	result, result
+00007f83f001604a	retq
+
+_ZN49_$LT$alloc..raw_vec..RawVec$LT$T$C$$u20$A$GT$$GT$11allocate_in28_$u7b$$u7b$closure$u7d$$u7d$17h2030fdde2f3687b4E.llvm.7857267965200689934:
+00007f83f0016050	leaq	(sp), scratch
+00007f83f0016058	cmpq	stacklimit, scratch
+00007f83f001605b	jge	.1b
+00007f83f001605d	callq	trap.call_stack_exhausted
+00007f83f0016062 .1b:	callq	_ZN5alloc7raw_vec17capacity_overflow17h3e8e96b3743e77c7E
+00007f83f0016067	callq	trap.unreachable
+00007f83f001606c	retq
+
+_ZN5alloc7raw_vec17capacity_overflow17h3e8e96b3743e77c7E:
+00007f83f0016070	leaq	-8(sp), scratch
+00007f83f0016078	cmpq	stacklimit, scratch
+00007f83f001607b	jge	.1c
+00007f83f001607d	callq	trap.call_stack_exhausted
+00007f83f0016082 .1c:	pushq	$0x100010
+00007f83f0016087	callq	_ZN4core9panicking5panic17h2629fd904a66558cE
+00007f83f001608c	leaq	8(sp), sp
+00007f83f0016091	callq	trap.unreachable
+00007f83f0016096	retq
+
+_ZN3std9panicking20rust_panic_with_hook17h51f1c855dfa04d94E:
+00007f83f00160a0	leaq	-0x10(sp), scratch
+00007f83f00160a8	cmpq	stacklimit, scratch
+00007f83f00160ab	jge	.1d
+00007f83f00160ad	callq	trap.call_stack_exhausted
+00007f83f00160b2 .1d:	pushq	zero
+00007f83f00160b3	pushq	zero
+00007f83f00160b4	movl	$1, scratch
+00007f83f00160ba	movl	scratch, 8(sp)
+00007f83f00160be	movl	0x1004f8(memory), r5
+00007f83f00160c5	movl	r5, result
+00007f83f00160c7	cmpl	$1, result
+00007f83f00160ca	jne	.1e
+00007f83f00160d0	movl	0x1004fc(memory), r5
+00007f83f00160d7	incl	r5
+00007f83f00160d9	movl	r5, 8(sp)
+00007f83f00160dd	movl	r5, 0x1004fc(memory)
+00007f83f00160e4	movl	8(sp), r5
+00007f83f00160e8	movl	r5, result
+00007f83f00160ea	cmpl	$3, result
+00007f83f00160ed	jb	.1f
+00007f83f00160f3	jmp	.20
+00007f83f00160f8 .1e:	movabsq	$0x100000001, result
+00007f83f0016102	movq	result, 0x1004f8(memory)
+00007f83f0016109 .1f:	movl	0x100500(memory), r5
+00007f83f0016110	movl	r5, (sp)
+00007f83f0016113	movl	r5, result
+00007f83f0016115	cmpl	$0xff, result
+00007f83f0016118	jle	.20
+00007f83f001611e	movl	(sp), r5
+00007f83f0016121	movl	r5, 0x100500(memory)
+00007f83f0016128	movl	8(sp), r5
+00007f83f001612c	movl	r5, result
+00007f83f001612e	cmpl	$2, result
+00007f83f0016131	jb	.21
+00007f83f0016137 .20:	callq	trap.unreachable
+00007f83f001613c .21:	callq	rust_panic
+00007f83f0016141	callq	trap.unreachable
+00007f83f0016146	leaq	0x10(sp), sp
+00007f83f001614b	retq
+
+rust_panic:
+00007f83f0016150	leaq	(sp), scratch
+00007f83f0016158	cmpq	stacklimit, scratch
+00007f83f001615b	jge	.22
+00007f83f001615d	callq	trap.call_stack_exhausted
+00007f83f0016162 .22:	callq	trap.unreachable
+00007f83f0016167	retq
+
+_ZN3std9panicking18continue_panic_fmt17h728aed66c815f8d0E:
+00007f83f0016170	leaq	-0x10(sp), scratch
+00007f83f0016178	cmpq	stacklimit, scratch
+00007f83f001617b	jge	.23
+00007f83f001617d	callq	trap.call_stack_exhausted
+00007f83f0016182 .23:	pushq	zero
+00007f83f0016183	movl	-0x18(memory), r5
+00007f83f0016187	subl	$0x10, r5
+00007f83f001618a	movl	r5, (sp)
+00007f83f001618d	movl	r5, -0x18(memory)
+00007f83f0016191	movl	0x10(sp), r5
+00007f83f0016195	movl	r5, scratch
+00007f83f0016197	addq	memory, scratch
+00007f83f001619a	movl	8(scratch), r5
+00007f83f001619d	pushq	r5
+00007f83f001619f	callq	_ZN38_$LT$core..option..Option$LT$T$GT$$GT$6unwrap17h68e77abe67ab4358E
+00007f83f00161a4	leaq	8(sp), sp
+00007f83f00161a9	movl	(sp), r5
+00007f83f00161ac	movl	0x10(sp), r6
+00007f83f00161b0	addl	$0x14, r6
+00007f83f00161b3	movl	r6, scratch
+00007f83f00161b5	addq	memory, scratch
+00007f83f00161b8	movq	(scratch), r6
+00007f83f00161bb	movl	r5, scratch
+00007f83f00161bd	addq	memory, scratch
+00007f83f00161c0	movq	r6, 8(scratch)
+00007f83f00161c4	movl	(sp), r5
+00007f83f00161c7	movl	0x10(sp), r6
+00007f83f00161cb	movl	r6, scratch
+00007f83f00161cd	addq	memory, scratch
+00007f83f00161d0	movq	0xc(scratch), r6
+00007f83f00161d4	movl	r5, scratch
+00007f83f00161d6	addq	memory, scratch
+00007f83f00161d9	movq	r6, (scratch)
+00007f83f00161dc	movl	(sp), r5
+00007f83f00161df	pushq	r5
+00007f83f00161e1	callq	_ZN3std9panicking20rust_panic_with_hook17h51f1c855dfa04d94E
+00007f83f00161e6	leaq	8(sp), sp
+00007f83f00161eb	callq	trap.unreachable
+00007f83f00161f0	leaq	8(sp), sp
+00007f83f00161f5	retq
+
+_ZN38_$LT$core..option..Option$LT$T$GT$$GT$6unwrap17h68e77abe67ab4358E:
+00007f83f0016200	leaq	-8(sp), scratch
+00007f83f0016208	cmpq	stacklimit, scratch
+00007f83f001620b	jge	.24
+00007f83f001620d	callq	trap.call_stack_exhausted
+00007f83f0016212 .24:	movl	8(sp), r5
+00007f83f0016216	testl	r5, r5
+00007f83f0016218	je	.25
+00007f83f001621e	movl	8(sp), r5
+00007f83f0016222	movl	r5, result
+00007f83f0016224	retq
+00007f83f0016225 .25:	pushq	$0x100088
+00007f83f001622a	callq	_ZN4core9panicking5panic17h2629fd904a66558cE
+00007f83f001622f	leaq	8(sp), sp
+00007f83f0016234	callq	trap.unreachable
+00007f83f0016239	retq
+
+_ZN4core9panicking5panic17h2629fd904a66558cE:
+00007f83f0016240	leaq	-0x30(sp), scratch
+00007f83f0016248	cmpq	stacklimit, scratch
+00007f83f001624b	jge	.26
+00007f83f001624d	callq	trap.call_stack_exhausted
+00007f83f0016252 .26:	pushq	zero
+00007f83f0016253	pushq	zero
+00007f83f0016254	pushq	zero
+00007f83f0016255	pushq	zero
+00007f83f0016256	movl	-0x18(memory), r5
+00007f83f001625a	subl	$0x30, r5
+00007f83f001625d	movl	r5, 0x18(sp)
+00007f83f0016261	movl	r5, -0x18(memory)
+00007f83f0016265	movl	0x28(sp), r5
+00007f83f0016269	movl	r5, scratch
+00007f83f001626b	addq	memory, scratch
+00007f83f001626e	movq	8(scratch), r5
+00007f83f0016272	movq	r5, 0x10(sp)
+00007f83f0016277	movl	0x28(sp), r5
+00007f83f001627b	movl	r5, scratch
+00007f83f001627d	addq	memory, scratch
+00007f83f0016280	movq	0x10(scratch), r5
+00007f83f0016284	movq	r5, 8(sp)
+00007f83f0016289	movl	0x28(sp), r5
+00007f83f001628d	movl	r5, scratch
+00007f83f001628f	addq	memory, scratch
+00007f83f0016292	movq	(scratch), r5
+00007f83f0016295	movq	r5, (sp)
+00007f83f0016299	movl	0x18(sp), r5
+00007f83f001629d	addl	$0x14, r5
+00007f83f00162a0	movl	r5, scratch
+00007f83f00162a2	addq	memory, scratch
+00007f83f00162a5	movl	zero, (scratch)
+00007f83f00162a7	movl	0x18(sp), r5
+00007f83f00162ab	movq	(sp), r6
+00007f83f00162af	movl	r5, scratch
+00007f83f00162b1	addq	memory, scratch
+00007f83f00162b4	movq	r6, 0x18(scratch)
+00007f83f00162b8	movl	0x18(sp), r5
+00007f83f00162bc	movl	r5, scratch
+00007f83f00162be	addq	memory, scratch
+00007f83f00162c1	movl	$0x10018c, 0x10(scratch)
+00007f83f00162c8	movl	0x18(sp), r5
+00007f83f00162cc	movl	r5, scratch
+00007f83f00162ce	addq	memory, scratch
+00007f83f00162d1	movq	$1, 4(scratch)
+00007f83f00162d9	movl	0x18(sp), r5
+00007f83f00162dd	movl	0x18(sp), r6
+00007f83f00162e1	addl	$0x18, r6
+00007f83f00162e4	movl	r5, scratch
+00007f83f00162e6	addq	memory, scratch
+00007f83f00162e9	movl	r6, (scratch)
+00007f83f00162eb	movl	0x18(sp), r5
+00007f83f00162ef	movq	8(sp), r6
+00007f83f00162f4	movl	r5, scratch
+00007f83f00162f6	addq	memory, scratch
+00007f83f00162f9	movq	r6, 0x28(scratch)
+00007f83f00162fd	movl	0x18(sp), r5
+00007f83f0016301	movq	0x10(sp), r6
+00007f83f0016306	movl	r5, scratch
+00007f83f0016308	addq	memory, scratch
+00007f83f001630b	movq	r6, 0x20(scratch)
+00007f83f001630f	movl	0x18(sp), r5
+00007f83f0016313	movl	0x18(sp), r6
+00007f83f0016317	addl	$0x20, r6
+00007f83f001631a	pushq	r5
+00007f83f001631c	pushq	r6
+00007f83f001631e	callq	_ZN4core9panicking9panic_fmt17h59066e1e00f1980fE
+00007f83f0016323	leaq	0x10(sp), sp
+00007f83f0016328	callq	trap.unreachable
+00007f83f001632d	leaq	0x20(sp), sp
+00007f83f0016332	retq
+
+__rdl_alloc:
+00007f83f0016340	leaq	-0x38(sp), scratch
+00007f83f0016348	cmpq	stacklimit, scratch
+00007f83f001634b	jge	.27
+00007f83f001634d	callq	trap.call_stack_exhausted
+00007f83f0016352 .27:	pushq	zero
+00007f83f0016353	pushq	zero
+00007f83f0016354	pushq	zero
+00007f83f0016355	pushq	zero
+00007f83f0016356	pushq	zero
+00007f83f0016357	movl	0x30(sp), r5
+00007f83f001635b	movl	r5, result
+00007f83f001635d	cmpl	$8, result
+00007f83f0016360	jbe	.28
+00007f83f0016366	movl	zero, scratch
+00007f83f0016368	movl	scratch, 0x20(sp)
+00007f83f001636c	movl	0x30(sp), r5
+00007f83f0016370	movl	0x30(sp), r6
+00007f83f0016374	movl	r6, result
+00007f83f0016376	cmpl	$0x10, result
+00007f83f0016379	movl	$0x10, r6
+00007f83f001637f	cmoval	r5, r6
+00007f83f0016382	movl	r6, 0x30(sp)
+00007f83f0016386	movl	$0xffffffc0, r5
+00007f83f001638c	subl	r6, r5
+00007f83f001638e	movl	0x38(sp), r6
+00007f83f0016392	movl	r5, result
+00007f83f0016394	cmpl	r6, result
+00007f83f0016396	jbe	.29
+00007f83f001639c	movl	0x30(sp), r5
+00007f83f00163a0	movl	0x38(sp), r6
+00007f83f00163a4	addl	$0xb, r6
+00007f83f00163a7	andl	$0xfffffffffffffff8, r6
+00007f83f00163aa	movl	0x38(sp), r7
+00007f83f00163ae	movl	r7, result
+00007f83f00163b0	cmpl	$0xb, result
+00007f83f00163b3	movl	$0x10, scratch
+00007f83f00163b9	cmovbl	scratch, r6
+00007f83f00163bc	movl	r6, 0x18(sp)
+00007f83f00163c0	addl	r6, r5
+00007f83f00163c2	addl	$0xc, r5
+00007f83f00163c5	pushq	r5
+00007f83f00163c7	callq	_ZN8dlmalloc8dlmalloc8Dlmalloc6malloc17hff21803f3d077ef2E
+00007f83f00163cc	leaq	8(sp), sp
+00007f83f00163d1	movl	result, 0x38(sp)
+00007f83f00163d5	testl	result, result
+00007f83f00163d7	je	.29
+00007f83f00163dd	movl	0x38(sp), r5
+00007f83f00163e1	addl	$-8, r5
+00007f83f00163e4	movl	r5, 0x20(sp)
+00007f83f00163e8	movl	0x30(sp), r5
+00007f83f00163ec	addl	$-1, r5
+00007f83f00163ef	movl	r5, 0x10(sp)
+00007f83f00163f3	movl	0x38(sp), r6
+00007f83f00163f7	andl	r6, r5
+00007f83f00163f9	testl	r5, r5
+00007f83f00163fb	je	.2a
+00007f83f0016401	movl	0x38(sp), r5
+00007f83f0016405	addl	$-4, r5
+00007f83f0016408	movl	r5, 8(sp)
+00007f83f001640c	movl	r5, scratch
+00007f83f001640e	addq	memory, scratch
+00007f83f0016411	movl	(scratch), r5
+00007f83f0016413	movl	r5, (sp)
+00007f83f0016416	andl	$0xfffffffffffffff8, r5
+00007f83f0016419	movl	0x10(sp), r6
+00007f83f001641d	movl	0x38(sp), r7
+00007f83f0016421	addl	r7, r6
+00007f83f0016423	movl	0x30(sp), r7
+00007f83f0016427	negl	r7
+00007f83f0016429	andl	r7, r6
+00007f83f001642b	addl	$-8, r6
+00007f83f001642e	movl	r6, 0x38(sp)
+00007f83f0016432	movl	0x38(sp), r7
+00007f83f0016436	movl	0x30(sp), r8
+00007f83f001643b	addl	r8, r7
+00007f83f001643e	movl	0x38(sp), r8
+00007f83f0016443	movl	0x20(sp), r9
+00007f83f0016448	subl	r9, r8
+00007f83f001644b	movl	r8, result
+00007f83f001644e	cmpl	$0x10, result
+00007f83f0016451	cmoval	r6, r7
+00007f83f0016454	movl	r7, 0x30(sp)
+00007f83f0016458	movl	0x20(sp), r6
+00007f83f001645c	subl	r6, r7
+00007f83f001645e	movl	r7, 0x38(sp)
+00007f83f0016462	subl	r7, r5
+00007f83f0016464	movl	r5, 0x10(sp)
+00007f83f0016468	movl	(sp), r5
+00007f83f001646b	andl	$3, r5
+00007f83f001646e	testl	r5, r5
+00007f83f0016470	je	.2b
+00007f83f0016476	movl	0x30(sp), r5
+00007f83f001647a	movl	0x10(sp), r6
+00007f83f001647e	movl	0x30(sp), r7
+00007f83f0016482	movl	r7, scratch
+00007f83f0016484	addq	memory, scratch
+00007f83f0016487	movl	4(scratch), r7
+00007f83f001648a	andl	$1, r7
+00007f83f001648d	orl	r7, r6
+00007f83f001648f	orl	$2, r6
+00007f83f0016492	movl	r5, scratch
+00007f83f0016494	addq	memory, scratch
+00007f83f0016497	movl	r6, 4(scratch)
+00007f83f001649a	movl	0x30(sp), r5
+00007f83f001649e	movl	0x10(sp), r6
+00007f83f00164a2	addl	r6, r5
+00007f83f00164a4	movl	r5, 0x10(sp)
+00007f83f00164a8	movl	0x10(sp), r6
+00007f83f00164ac	movl	r6, scratch
+00007f83f00164ae	addq	memory, scratch
+00007f83f00164b1	movl	4(scratch), r6
+00007f83f00164b4	orl	$1, r6
+00007f83f00164b7	movl	r5, scratch
+00007f83f00164b9	addq	memory, scratch
+00007f83f00164bc	movl	r6, 4(scratch)
+00007f83f00164bf	movl	8(sp), r5
+00007f83f00164c3	movl	0x38(sp), r6
+00007f83f00164c7	movl	8(sp), r7
+00007f83f00164cb	movl	r7, scratch
+00007f83f00164cd	addq	memory, scratch
+00007f83f00164d0	movl	(scratch), r7
+00007f83f00164d2	andl	$1, r7
+00007f83f00164d5	orl	r7, r6
+00007f83f00164d7	orl	$2, r6
+00007f83f00164da	movl	r5, scratch
+00007f83f00164dc	addq	memory, scratch
+00007f83f00164df	movl	r6, (scratch)
+00007f83f00164e1	movl	0x30(sp), r5
+00007f83f00164e5	movl	0x30(sp), r6
+00007f83f00164e9	movl	r6, scratch
+00007f83f00164eb	addq	memory, scratch
+00007f83f00164ee	movl	4(scratch), r6
+00007f83f00164f1	orl	$1, r6
+00007f83f00164f4	movl	r5, scratch
+00007f83f00164f6	addq	memory, scratch
+00007f83f00164f9	movl	r6, 4(scratch)
+00007f83f00164fc	movl	0x20(sp), r5
+00007f83f0016500	movl	0x38(sp), r6
+00007f83f0016504	pushq	r5
+00007f83f0016506	pushq	r6
+00007f83f0016508	callq	_ZN8dlmalloc8dlmalloc8Dlmalloc13dispose_chunk17h9a3d6cde9ae5dee4E
+00007f83f001650d	leaq	0x10(sp), sp
+00007f83f0016512	movl	0x30(sp), r5
+00007f83f0016516	movl	r5, scratch
+00007f83f0016518	addq	memory, scratch
+00007f83f001651b	movl	4(scratch), r5
+00007f83f001651e	movl	r5, 0x38(sp)
+00007f83f0016522	andl	$3, r5
+00007f83f0016525	testl	r5, r5
+00007f83f0016527	jne	.2c
+00007f83f001652d	jmp	.2d
+00007f83f0016532 .28:	movl	0x38(sp), r5
+00007f83f0016536	pushq	r5
+00007f83f0016538	callq	_ZN8dlmalloc8dlmalloc8Dlmalloc6malloc17hff21803f3d077ef2E
+00007f83f001653d	leaq	8(sp), sp
+00007f83f0016542	leaq	0x28(sp), sp
+00007f83f0016547	retq
+00007f83f0016548 .2a:	movl	0x20(sp), r5
+00007f83f001654c	movl	r5, 0x30(sp)
+00007f83f0016550	movl	r5, scratch
+00007f83f0016552	addq	memory, scratch
+00007f83f0016555	movl	4(scratch), r5
+00007f83f0016558	movl	r5, 0x38(sp)
+00007f83f001655c	andl	$3, r5
+00007f83f001655f	testl	r5, r5
+00007f83f0016561	jne	.2c
+00007f83f0016567	jmp	.2d
+00007f83f001656c .2b:	movl	0x20(sp), r5
+00007f83f0016570	movl	r5, scratch
+00007f83f0016572	addq	memory, scratch
+00007f83f0016575	movl	(scratch), r5
+00007f83f0016577	movl	r5, 0x20(sp)
+00007f83f001657b	movl	0x30(sp), r5
+00007f83f001657f	movl	0x10(sp), r6
+00007f83f0016583	movl	r5, scratch
+00007f83f0016585	addq	memory, scratch
+00007f83f0016588	movl	r6, 4(scratch)
+00007f83f001658b	movl	0x30(sp), r5
+00007f83f001658f	movl	0x20(sp), r6
+00007f83f0016593	movl	0x38(sp), r7
+00007f83f0016597	addl	r7, r6
+00007f83f0016599	movl	r5, scratch
+00007f83f001659b	addq	memory, scratch
+00007f83f001659e	movl	r6, (scratch)
+00007f83f00165a0	movl	0x30(sp), r5
+00007f83f00165a4	movl	r5, scratch
+00007f83f00165a6	addq	memory, scratch
+00007f83f00165a9	movl	4(scratch), r5
+00007f83f00165ac	movl	r5, 0x38(sp)
+00007f83f00165b0	andl	$3, r5
+00007f83f00165b3	testl	r5, r5
+00007f83f00165b5	je	.2d
+00007f83f00165bb .2c:	movl	0x38(sp), r5
+00007f83f00165bf	andl	$0xfffffffffffffff8, r5
+00007f83f00165c2	movl	r5, 0x20(sp)
+00007f83f00165c6	movl	0x18(sp), r6
+00007f83f00165ca	addl	$0x10, r6
+00007f83f00165cd	movl	r5, result
+00007f83f00165cf	cmpl	r6, result
+00007f83f00165d1	jbe	.2d
+00007f83f00165d7	movl	0x30(sp), r5
+00007f83f00165db	addl	$4, r5
+00007f83f00165de	movl	0x18(sp), r6
+00007f83f00165e2	movl	0x38(sp), r7
+00007f83f00165e6	andl	$1, r7
+00007f83f00165e9	orl	r7, r6
+00007f83f00165eb	orl	$2, r6
+00007f83f00165ee	movl	r5, scratch
+00007f83f00165f0	addq	memory, scratch
+00007f83f00165f3	movl	r6, (scratch)
+00007f83f00165f5	movl	0x30(sp), r5
+00007f83f00165f9	movl	0x18(sp), r6
+00007f83f00165fd	addl	r6, r5
+00007f83f00165ff	movl	r5, 0x38(sp)
+00007f83f0016603	movl	0x20(sp), r6
+00007f83f0016607	movl	0x18(sp), r7
+00007f83f001660b	subl	r7, r6
+00007f83f001660d	movl	r6, 0x18(sp)
+00007f83f0016611	orl	$3, r6
+00007f83f0016614	movl	r5, scratch
+00007f83f0016616	addq	memory, scratch
+00007f83f0016619	movl	r6, 4(scratch)
+00007f83f001661c	movl	0x30(sp), r5
+00007f83f0016620	movl	0x20(sp), r6
+00007f83f0016624	addl	r6, r5
+00007f83f0016626	movl	r5, 0x20(sp)
+00007f83f001662a	movl	0x20(sp), r6
+00007f83f001662e	movl	r6, scratch
+00007f83f0016630	addq	memory, scratch
+00007f83f0016633	movl	4(scratch), r6
+00007f83f0016636	orl	$1, r6
+00007f83f0016639	movl	r5, scratch
+00007f83f001663b	addq	memory, scratch
+00007f83f001663e	movl	r6, 4(scratch)
+00007f83f0016641	movl	0x38(sp), r5
+00007f83f0016645	movl	0x18(sp), r6
+00007f83f0016649	pushq	r5
+00007f83f001664b	pushq	r6
+00007f83f001664d	callq	_ZN8dlmalloc8dlmalloc8Dlmalloc13dispose_chunk17h9a3d6cde9ae5dee4E
+00007f83f0016652	leaq	0x10(sp), sp
+00007f83f0016657 .2d:	movl	0x30(sp), r5
+00007f83f001665b	addl	$8, r5
+00007f83f001665e	movl	r5, 0x20(sp)
+00007f83f0016662 .29:	movl	0x20(sp), r5
+00007f83f0016666	movl	r5, result
+00007f83f0016668	leaq	0x28(sp), sp
+00007f83f001666d	retq
+
+_ZN8dlmalloc8dlmalloc8Dlmalloc6malloc17hff21803f3d077ef2E:
+00007f83f0016670	leaq	-0x60(sp), scratch
+00007f83f0016678	cmpq	stacklimit, scratch
+00007f83f001667b	jge	.2e
+00007f83f001667d	callq	trap.call_stack_exhausted 
+00007f83f0016682 .2e:	movl	$0xb, scratch   // "12" 8-bytes words pour les variables
+00007f83f0016688 .2f:	pushq	zero        // il cree la liste des locals
+00007f83f0016689	loop	.2f			; back
+00007f83f001668b	movl	0x60(sp), r5
+00007f83f001668f	movl	r5, result
+00007f83f0016691	cmpl	$0xf4, result
+00007f83f0016697	ja	.30                         // (br_if $label$39
+00007f83f001669d	movl	0x100330(memory), r5
+00007f83f00166a4	movl	r5, 0x50(sp)
+00007f83f00166a8	movl	0x60(sp), r6
+00007f83f00166ac	addl	$0xb, r6
+00007f83f00166af	andl	$0xfffffffffffffff8, r6
+00007f83f00166b2	movl	0x60(sp), r7
+00007f83f00166b6	movl	r7, result
+00007f83f00166b8	cmpl	$0xb, result
+00007f83f00166bb	movl	$0x10, scratch
+00007f83f00166c1	cmovbl	scratch, r6
+00007f83f00166c4	movl	r6, 0x48(sp)
+00007f83f00166c8	shrl	$3, r6
+00007f83f00166cb	movl	r6, 0x40(sp)
+00007f83f00166cf	andl	$0x1f, r6
+00007f83f00166d2	movl	r6, 0x38(sp)
+00007f83f00166d6	movl	r6, scratch
+00007f83f00166d8	shrl	scratchb, r5
+00007f83f00166da	movl	r5, 0x60(sp)
+00007f83f00166de	andl	$3, r5
+00007f83f00166e1	testl	r5, r5
+00007f83f00166e3	je	.31                         // (br_if $label$38
+00007f83f00166e9	movl	0x60(sp), r5
+00007f83f00166ed	xorl	$0xffffffffffffffff, r5
+00007f83f00166f0	andl	$1, r5
+00007f83f00166f3	movl	0x40(sp), r6            // r6 == $var3
+00007f83f00166f7	addl	r6, r5
+00007f83f00166f9	movl	r5, 0x48(sp)
+00007f83f00166fd	shll	$3, r5
+00007f83f0016700	movl	r5, 0x38(sp)
+00007f83f0016704	addl	$0x100340, r5
+00007f83f001670a	movl	r5, scratch
+00007f83f001670c	addq	memory, scratch
+00007f83f001670f	movl	(scratch), r5
+00007f83f0016711	movl	r5, 0x60(sp)
+00007f83f0016715	addl	$8, r5
+00007f83f0016718	movl	r5, 0x30(sp)
+00007f83f001671c	movl	0x60(sp), r5
+00007f83f0016720	movl	r5, scratch
+00007f83f0016722	addq	memory, scratch
+00007f83f0016725	movl	8(scratch), r5
+00007f83f0016728	movl	r5, 0x40(sp)
+00007f83f001672c	movl	0x38(sp), r6
+00007f83f0016730	addl	$0x100338, r6
+00007f83f0016736	movl	r6, 0x38(sp)
+00007f83f001673a	movl	r5, result
+00007f83f001673c	cmpl	r6, result
+00007f83f001673e	je	.32
+00007f83f0016744	movl	0x40(sp), r5
+00007f83f0016748	movl	0x38(sp), r6
+00007f83f001674c	movl	r5, scratch
+00007f83f001674e	addq	memory, scratch
+00007f83f0016751	movl	r6, 0xc(scratch)
+00007f83f0016754	movl	0x38(sp), r5
+00007f83f0016758	addl	$8, r5
+00007f83f001675b	movl	0x40(sp), r6
+00007f83f001675f	movl	r5, scratch
+00007f83f0016761	addq	memory, scratch
+00007f83f0016764	movl	r6, (scratch)
+00007f83f0016766	jmp	.33
+00007f83f001676b .30:	movl	zero, scratch
+00007f83f001676d	movl	scratch, 0x40(sp)
+00007f83f0016771	movl	0x60(sp), r5
+00007f83f0016775	movl	r5, result
+00007f83f0016777	cmpl	$0xc0, result
+00007f83f001677a	jae	.34
+00007f83f0016780	movl	0x60(sp), r5
+00007f83f0016784	addl	$0xb, r5
+00007f83f0016787	movl	r5, 0x60(sp)
+00007f83f001678b	andl	$0xfffffffffffffff8, r5
+00007f83f001678e	movl	r5, 0x48(sp)
+00007f83f0016792	movl	0x100334(memory), r5
+00007f83f0016799	movl	r5, 0x28(sp)
+00007f83f001679d	testl	r5, r5
+00007f83f001679f	je	.35
+00007f83f00167a5	movl	zero, scratch
+00007f83f00167a7	movl	scratch, 0x20(sp)
+00007f83f00167ab	movl	0x60(sp), r5
+00007f83f00167af	shrl	$8, r5
+00007f83f00167b2	movl	r5, 0x60(sp)
+00007f83f00167b6	testl	r5, r5
+00007f83f00167b8	je	.36
+00007f83f00167be	movl	$0x1f, scratch
+00007f83f00167c4	movl	scratch, 0x20(sp)
+00007f83f00167c8	movl	0x48(sp), r5
+00007f83f00167cc	movl	r5, result
+00007f83f00167ce	cmpl	$0xffffff, result
+00007f83f00167d4	ja	.36
+00007f83f00167da	movl	0x48(sp), r5
+00007f83f00167de	movl	0x60(sp), r6
+00007f83f00167e2	lzcntl	r6, r6
+00007f83f00167e6	movl	r6, 0x60(sp)
+00007f83f00167ea	movl	$0x26, r7
+00007f83f00167f0	subl	r6, r7
+00007f83f00167f2	andl	$0x1f, r7
+00007f83f00167f5	movl	r7, scratch
+00007f83f00167f7	shrl	scratchb, r5
+00007f83f00167f9	andl	$1, r5
+00007f83f00167fc	movl	0x60(sp), r6
+00007f83f0016800	movl	$0x1f, r7
+00007f83f0016806	subl	r6, r7
+00007f83f0016808	shll	$1, r7
+00007f83f001680b	orl	r7, r5
+00007f83f001680d	movl	r5, 0x20(sp)
+00007f83f0016811 .36:	movl	0x48(sp), r5
+00007f83f0016815	negl	r5
+00007f83f0016817	movl	r5, 0x40(sp)
+00007f83f001681b	movl	0x20(sp), r5
+00007f83f001681f	shll	$2, r5
+00007f83f0016822	addl	$0x100440, r5
+00007f83f0016828	movl	r5, scratch
+00007f83f001682a	addq	memory, scratch
+00007f83f001682d	movl	(scratch), r5
+00007f83f001682f	movl	r5, 0x60(sp)
+00007f83f0016833	testl	r5, r5
+00007f83f0016835	je	.37
+00007f83f001683b	movl	zero, scratch
+00007f83f001683d	movl	scratch, 0x38(sp)
+00007f83f0016841	movl	0x48(sp), r5
+00007f83f0016845	movl	0x20(sp), r6
+00007f83f0016849	shrl	$1, r6
+00007f83f001684c	movl	$0x19, r7
+00007f83f0016852	subl	r6, r7
+00007f83f0016854	andl	$0x1f, r7
+00007f83f0016857	movl	0x20(sp), r6
+00007f83f001685b	movl	r6, result
+00007f83f001685d	cmpl	$0x1f, result
+00007f83f0016860	movl	zero, scratch
+00007f83f0016862	cmovel	scratch, r7
+00007f83f0016865	movl	r7, scratch
+00007f83f0016867	shll	scratchb, r5
+00007f83f0016869	movl	r5, 0x30(sp)
+00007f83f001686d	movl	zero, scratch
+00007f83f001686f	movl	scratch, 0x50(sp)
+00007f83f0016873 .3b:	movl	0x60(sp), r5
+00007f83f0016877	movl	r5, scratch
+00007f83f0016879	addq	memory, scratch
+00007f83f001687c	movl	4(scratch), r5
+00007f83f001687f	andl	$0xfffffffffffffff8, r5
+00007f83f0016882	movl	r5, 0x18(sp)
+00007f83f0016886	movl	0x48(sp), r6
+00007f83f001688a	movl	r5, result
+00007f83f001688c	cmpl	r6, result
+00007f83f001688e	jb	.38
+00007f83f0016894	movl	0x18(sp), r5
+00007f83f0016898	movl	0x48(sp), r6
+00007f83f001689c	subl	r6, r5
+00007f83f001689e	movl	r5, 0x18(sp)
+00007f83f00168a2	movl	0x40(sp), r6
+00007f83f00168a6	movl	r5, result
+00007f83f00168a8	cmpl	r6, result
+00007f83f00168aa	jae	.38
+00007f83f00168b0	movl	0x18(sp), r5
+00007f83f00168b4	movl	r5, 0x40(sp)
+00007f83f00168b8	movl	0x60(sp), r5
+00007f83f00168bc	movl	r5, 0x50(sp)
+00007f83f00168c0	movl	0x18(sp), r5
+00007f83f00168c4	testl	r5, r5
+00007f83f00168c6	je	.39
+00007f83f00168cc .38:	movl	0x60(sp), r5
+00007f83f00168d0	addl	$0x14, r5
+00007f83f00168d3	movl	r5, scratch
+00007f83f00168d5	addq	memory, scratch
+00007f83f00168d8	movl	(scratch), r5
+00007f83f00168da	movl	r5, 0x18(sp)
+00007f83f00168de	movl	0x38(sp), r6
+00007f83f00168e2	movl	0x18(sp), r7
+00007f83f00168e6	movl	0x60(sp), r8
+00007f83f00168eb	movl	0x30(sp), r9
+00007f83f00168f0	shrl	$0x1d, r9
+00007f83f00168f4	andl	$4, r9
+00007f83f00168f8	addl	r9, r8
+00007f83f00168fb	addl	$0x10, r8
+00007f83f00168ff	movl	r8, scratch
+00007f83f0016902	addq	memory, scratch
+00007f83f0016905	movl	(scratch), r8
+00007f83f0016908	movl	r8, 0x60(sp)
+00007f83f001690d	movl	r7, result
+00007f83f001690f	cmpl	r8, result
+00007f83f0016912	cmovnel	r5, r6
+00007f83f0016915	movl	0x38(sp), r5
+00007f83f0016919	movl	0x18(sp), r7
+00007f83f001691d	testl	r7, r7
+00007f83f001691f	cmovnel	r6, r5
+00007f83f0016922	movl	r5, 0x38(sp)
+00007f83f0016926	movl	0x30(sp), r5
+00007f83f001692a	shll	$1, r5
+00007f83f001692d	movl	r5, 0x30(sp)
+00007f83f0016931	movl	0x60(sp), r5
+00007f83f0016935	testl	r5, r5
+00007f83f0016937	je	.3a
+00007f83f0016939	testb	$1, suspendbit
+00007f83f001693d	je	.3b			; back
+00007f83f0016943	callq	.3c			; back
+00007f83f0016948	jmp	.3b			; back
+00007f83f001694d .3a:	movl	0x38(sp), r5
+00007f83f0016951	testl	r5, r5
+00007f83f0016953	je	.3d
+00007f83f0016959	movl	0x38(sp), r5
+00007f83f001695d	movl	r5, 0x60(sp)
+00007f83f0016961	jmp	.3e
+00007f83f0016966 .31:	movl	0x48(sp), r5
+00007f83f001696a	movl	0x1004c0(memory), r6
+00007f83f0016971	movl	r5, result
+00007f83f0016973	cmpl	r6, result
+00007f83f0016975	jbe	.35
+00007f83f001697b	movl	0x60(sp), r5
+00007f83f001697f	testl	r5, r5
+00007f83f0016981	je	.3f
+00007f83f0016987	movl	0x60(sp), r5
+00007f83f001698b	movl	0x38(sp), r6
+00007f83f001698f	movl	r6, scratch
+00007f83f0016991	shll	scratchb, r5
+00007f83f0016993	movl	0x38(sp), r6
+00007f83f0016997	movl	$2, r7
+00007f83f001699d	movl	r6, scratch
+00007f83f001699f	shll	scratchb, r7
+00007f83f00169a1	movl	r7, 0x60(sp)
+00007f83f00169a5	movl	0x60(sp), r6
+00007f83f00169a9	negl	r6
+00007f83f00169ab	orl	r6, r7
+00007f83f00169ad	andl	r7, r5
+00007f83f00169af	movl	r5, 0x60(sp)
+00007f83f00169b3	movl	0x60(sp), r6
+00007f83f00169b7	negl	r6
+00007f83f00169b9	andl	r6, r5
+00007f83f00169bb	tzcntl	r5, r5
+00007f83f00169bf	movl	r5, 0x40(sp)
+00007f83f00169c3	shll	$3, r5
+00007f83f00169c6	movl	r5, 0x30(sp)
+00007f83f00169ca	addl	$0x100340, r5
+00007f83f00169d0	movl	r5, scratch
+00007f83f00169d2	addq	memory, scratch
+00007f83f00169d5	movl	(scratch), r5
+00007f83f00169d7	movl	r5, 0x60(sp)
+00007f83f00169db	movl	r5, scratch
+00007f83f00169dd	addq	memory, scratch
+00007f83f00169e0	movl	8(scratch), r5
+00007f83f00169e3	movl	r5, 0x38(sp)
+00007f83f00169e7	movl	0x30(sp), r6
+00007f83f00169eb	addl	$0x100338, r6
+00007f83f00169f1	movl	r6, 0x30(sp)
+00007f83f00169f5	movl	r5, result
+00007f83f00169f7	cmpl	r6, result
+00007f83f00169f9	je	.40
+00007f83f00169ff	movl	0x38(sp), r5
+00007f83f0016a03	movl	0x30(sp), r6
+00007f83f0016a07	movl	r5, scratch
+00007f83f0016a09	addq	memory, scratch
+00007f83f0016a0c	movl	r6, 0xc(scratch)
+00007f83f0016a0f	movl	0x30(sp), r5
+00007f83f0016a13	addl	$8, r5
+00007f83f0016a16	movl	0x38(sp), r6
+00007f83f0016a1a	movl	r5, scratch
+00007f83f0016a1c	addq	memory, scratch
+00007f83f0016a1f	movl	r6, (scratch)
+00007f83f0016a21	jmp	.41
+00007f83f0016a26 .32:	movl	0x50(sp), r5
+00007f83f0016a2a	movl	0x48(sp), r6
+00007f83f0016a2e	movl	$0xfffffffe, r7
+00007f83f0016a34	movl	r6, scratch
+00007f83f0016a36	roll	scratchb, r7
+00007f83f0016a38	andl	r7, r5
+00007f83f0016a3a	movl	r5, 0x100330(memory)
+00007f83f0016a41 .33:	movl	0x60(sp), r5
+00007f83f0016a45	movl	0x48(sp), r6
+00007f83f0016a49	shll	$3, r6
+00007f83f0016a4c	movl	r6, 0x48(sp)
+00007f83f0016a50	orl	$3, r6
+00007f83f0016a53	movl	r5, scratch
+00007f83f0016a55	addq	memory, scratch
+00007f83f0016a58	movl	r6, 4(scratch)
+00007f83f0016a5b	movl	0x60(sp), r5
+00007f83f0016a5f	movl	0x48(sp), r6
+00007f83f0016a63	addl	r6, r5
+00007f83f0016a65	movl	r5, 0x60(sp)
+00007f83f0016a69	movl	0x60(sp), r6
+00007f83f0016a6d	movl	r6, scratch
+00007f83f0016a6f	addq	memory, scratch
+00007f83f0016a72	movl	4(scratch), r6
+00007f83f0016a75	orl	$1, r6
+00007f83f0016a78	movl	r5, scratch
+00007f83f0016a7a	addq	memory, scratch
+00007f83f0016a7d	movl	r6, 4(scratch)
+00007f83f0016a80	movl	0x30(sp), r5
+00007f83f0016a84	movl	r5, result
+00007f83f0016a86	leaq	0x58(sp), sp
+00007f83f0016a8b	retq
+00007f83f0016a8c .3f:	movl	0x100334(memory), r5
+00007f83f0016a93	movl	r5, 0x60(sp)
+00007f83f0016a97	testl	r5, r5
+00007f83f0016a99	je	.35
+00007f83f0016a9f	movl	0x60(sp), r5
+00007f83f0016aa3	movl	0x60(sp), r6
+00007f83f0016aa7	negl	r6
+00007f83f0016aa9	andl	r6, r5
+00007f83f0016aab	tzcntl	r5, r5
+00007f83f0016aaf	shll	$2, r5
+00007f83f0016ab2	addl	$0x100440, r5
+00007f83f0016ab8	movl	r5, scratch
+00007f83f0016aba	addq	memory, scratch
+00007f83f0016abd	movl	(scratch), r5
+00007f83f0016abf	movl	r5, 0x50(sp)
+00007f83f0016ac3	movl	r5, scratch
+00007f83f0016ac5	addq	memory, scratch
+00007f83f0016ac8	movl	4(scratch), r5
+00007f83f0016acb	andl	$0xfffffffffffffff8, r5
+00007f83f0016ace	movl	0x48(sp), r6
+00007f83f0016ad2	subl	r6, r5
+00007f83f0016ad4	movl	r5, 0x40(sp)
+00007f83f0016ad8	movl	0x50(sp), r5
+00007f83f0016adc	movl	r5, 0x38(sp)
+00007f83f0016ae0	movl	0x50(sp), r5
+00007f83f0016ae4	movl	r5, scratch
+00007f83f0016ae6	addq	memory, scratch
+00007f83f0016ae9	movl	0x10(scratch), r5
+00007f83f0016aec	movl	r5, 0x60(sp)
+00007f83f0016af0	testl	r5, r5
+00007f83f0016af2	je	.42
+00007f83f0016af8	movl	zero, scratch
+00007f83f0016afa	movl	scratch, 0x10(sp)
+00007f83f0016afe	jmp	.43
+00007f83f0016b03 .39:	movl	zero, scratch
+00007f83f0016b05	movl	scratch, 0x40(sp)
+00007f83f0016b09	movl	0x60(sp), r5
+00007f83f0016b0d	movl	r5, 0x50(sp)
+00007f83f0016b11	jmp	.3e
+00007f83f0016b16 .3d:	movl	0x50(sp), r5
+00007f83f0016b1a	testl	r5, r5
+00007f83f0016b1c	jne	.44
+00007f83f0016b22 .37:	movl	zero, scratch
+00007f83f0016b24	movl	scratch, 0x50(sp)
+00007f83f0016b28	movl	0x20(sp), r5
+00007f83f0016b2c	andl	$0x1f, r5
+00007f83f0016b2f	movl	$2, r6
+00007f83f0016b35	movl	r5, scratch
+00007f83f0016b37	shll	scratchb, r6
+00007f83f0016b39	movl	r6, 0x60(sp)
+00007f83f0016b3d	movl	0x60(sp), r5
+00007f83f0016b41	negl	r5
+00007f83f0016b43	orl	r5, r6
+00007f83f0016b45	movl	0x28(sp), r5
+00007f83f0016b49	andl	r5, r6
+00007f83f0016b4b	movl	r6, 0x60(sp)
+00007f83f0016b4f	testl	r6, r6
+00007f83f0016b51	je	.35
+00007f83f0016b57	movl	0x60(sp), r5
+00007f83f0016b5b	movl	0x60(sp), r6
+00007f83f0016b5f	negl	r6
+00007f83f0016b61	andl	r6, r5
+00007f83f0016b63	tzcntl	r5, r5
+00007f83f0016b67	shll	$2, r5
+00007f83f0016b6a	addl	$0x100440, r5
+00007f83f0016b70	movl	r5, scratch
+00007f83f0016b72	addq	memory, scratch
+00007f83f0016b75	movl	(scratch), r5
+00007f83f0016b77	movl	r5, 0x60(sp)
+00007f83f0016b7b	testl	r5, r5
+00007f83f0016b7d	je	.35
+00007f83f0016b83 .3e:	movl	0x60(sp), r5
+00007f83f0016b87	movl	r5, scratch
+00007f83f0016b89	addq	memory, scratch
+00007f83f0016b8c	movl	4(scratch), r5
+00007f83f0016b8f	andl	$0xfffffffffffffff8, r5
+00007f83f0016b92	movl	r5, 0x38(sp)
+00007f83f0016b96	movl	0x48(sp), r6
+00007f83f0016b9a	movl	r5, result
+00007f83f0016b9c	cmpl	r6, result
+00007f83f0016b9e	movl	0x38(sp), r5
+00007f83f0016ba2	movl	0x48(sp), r6
+00007f83f0016ba6	movl	zero, scratch
+00007f83f0016ba8	setae	scratchb
+00007f83f0016bac	movl	scratch, r7
+00007f83f0016bae	subl	r6, r5
+00007f83f0016bb0	movl	r5, 0x18(sp)
+00007f83f0016bb4	movl	0x40(sp), r6
+00007f83f0016bb8	movl	r5, result
+00007f83f0016bba	cmpl	r6, result
+00007f83f0016bbc	movl	zero, scratch
+00007f83f0016bbe	setb	scratchb
+00007f83f0016bc2	movl	scratch, r5
+00007f83f0016bc4	andl	r5, r7
+00007f83f0016bc6	movl	r7, 0x38(sp)
+00007f83f0016bca	movl	0x60(sp), r5
+00007f83f0016bce	movl	r5, scratch
+00007f83f0016bd0	addq	memory, scratch
+00007f83f0016bd3	movl	0x10(scratch), r5
+00007f83f0016bd6	movl	r5, 0x30(sp)
+00007f83f0016bda	testl	r5, r5
+00007f83f0016bdc	je	.45
+00007f83f0016be2	movl	0x60(sp), r5
+00007f83f0016be6	movl	0x50(sp), r6
+00007f83f0016bea	movl	0x38(sp), r7
+00007f83f0016bee	testl	r7, r7
+00007f83f0016bf0	cmovnel	r5, r6
+00007f83f0016bf3	movl	r6, 0x50(sp)
+00007f83f0016bf7	movl	0x18(sp), r5
+00007f83f0016bfb	movl	0x40(sp), r6
+00007f83f0016bff	movl	0x38(sp), r7
+00007f83f0016c03	testl	r7, r7
+00007f83f0016c05	cmovnel	r5, r6
+00007f83f0016c08	movl	r6, 0x40(sp)
+00007f83f0016c0c	movl	0x30(sp), r5
+00007f83f0016c10	movl	r5, 0x60(sp)
+00007f83f0016c14	movl	0x30(sp), r5
+00007f83f0016c18	testl	r5, r5
+00007f83f0016c1a	je	.46
+00007f83f0016c1c	testb	$1, suspendbit
+00007f83f0016c20	je	.3e
+00007f83f0016c26	callq	.3c			; back
+00007f83f0016c2b	jmp	.3e
+00007f83f0016c30 .46:	jmp	.47
+00007f83f0016c35 .45:	movl	0x60(sp), r5
+00007f83f0016c39	movl	0x50(sp), r6
+00007f83f0016c3d	movl	0x38(sp), r7
+00007f83f0016c41	testl	r7, r7
+00007f83f0016c43	cmovnel	r5, r6
+00007f83f0016c46	movl	r6, 0x50(sp)
+00007f83f0016c4a	movl	0x18(sp), r5
+00007f83f0016c4e	movl	0x40(sp), r6
+00007f83f0016c52	movl	0x38(sp), r7
+00007f83f0016c56	testl	r7, r7
+00007f83f0016c58	cmovnel	r5, r6
+00007f83f0016c5b	movl	r6, 0x40(sp)
+00007f83f0016c5f	movl	0x60(sp), r5
+00007f83f0016c63	addl	$0x14, r5
+00007f83f0016c66	movl	r5, scratch
+00007f83f0016c68	addq	memory, scratch
+00007f83f0016c6b	movl	(scratch), r5
+00007f83f0016c6d	movl	r5, 0x38(sp)
+00007f83f0016c71	movl	r5, 0x60(sp)
+00007f83f0016c75	movl	0x38(sp), r5
+00007f83f0016c79	testl	r5, r5
+00007f83f0016c7b	je	.47
+00007f83f0016c7d	testb	$1, suspendbit
+00007f83f0016c81	je	.3e
+00007f83f0016c87	callq	.3c			; back
+00007f83f0016c8c	jmp	.3e
+00007f83f0016c91 .47:	movl	0x50(sp), r5
+00007f83f0016c95	testl	r5, r5
+00007f83f0016c97	je	.35
+00007f83f0016c9d .44:	movl	0x1004c0(memory), r5
+00007f83f0016ca4	movl	r5, 0x60(sp)
+00007f83f0016ca8	movl	0x48(sp), r6
+00007f83f0016cac	movl	r5, result
+00007f83f0016cae	cmpl	r6, result
+00007f83f0016cb0	jb	.48
+00007f83f0016cb6	movl	0x40(sp), r5
+00007f83f0016cba	movl	0x60(sp), r6
+00007f83f0016cbe	movl	0x48(sp), r7
+00007f83f0016cc2	subl	r7, r6
+00007f83f0016cc4	movl	r5, result
+00007f83f0016cc6	cmpl	r6, result
+00007f83f0016cc8	jb	.48
+00007f83f0016cce .35:	movl	0x1004c0(memory), r5
+00007f83f0016cd5	movl	r5, 0x60(sp)
+00007f83f0016cd9	movl	0x48(sp), r6
+00007f83f0016cdd	movl	r5, result
+00007f83f0016cdf	cmpl	r6, result
+00007f83f0016ce1	jae	.49
+00007f83f0016ce7	movl	0x1004c4(memory), r5
+00007f83f0016cee	movl	r5, 0x60(sp)
+00007f83f0016cf2	movl	0x48(sp), r6
+00007f83f0016cf6	movl	r5, result
+00007f83f0016cf8	cmpl	r6, result
+00007f83f0016cfa	jbe	.4a
+00007f83f0016d00	movl	0x60(sp), r5
+00007f83f0016d04	movl	0x48(sp), r6
+00007f83f0016d08	subl	r6, r5
+00007f83f0016d0a	movl	r5, 0x40(sp)
+00007f83f0016d0e	movl	r5, 0x1004c4(memory)
+00007f83f0016d15	movl	0x1004cc(memory), r5
+00007f83f0016d1c	movl	r5, 0x60(sp)
+00007f83f0016d20	movl	0x48(sp), r6
+00007f83f0016d24	addl	r6, r5
+00007f83f0016d26	movl	r5, 0x38(sp)
+00007f83f0016d2a	movl	r5, 0x1004cc(memory)
+00007f83f0016d31	movl	0x38(sp), r5
+00007f83f0016d35	movl	0x40(sp), r6
+00007f83f0016d39	orl	$1, r6
+00007f83f0016d3c	movl	r5, scratch
+00007f83f0016d3e	addq	memory, scratch
+00007f83f0016d41	movl	r6, 4(scratch)
+00007f83f0016d44	movl	0x60(sp), r5
+00007f83f0016d48	movl	0x48(sp), r6
+00007f83f0016d4c	orl	$3, r6
+00007f83f0016d4f	movl	r5, scratch
+00007f83f0016d51	addq	memory, scratch
+00007f83f0016d54	movl	r6, 4(scratch)
+00007f83f0016d57	movl	0x60(sp), r5
+00007f83f0016d5b	addl	$8, r5
+00007f83f0016d5e	movl	r5, result
+00007f83f0016d60	leaq	0x58(sp), sp
+00007f83f0016d65	retq
+00007f83f0016d66 .49:	movl	0x1004c8(memory), r5
+00007f83f0016d6d	movl	r5, 0x40(sp)
+00007f83f0016d71	movl	0x60(sp), r5
+00007f83f0016d75	movl	0x48(sp), r6
+00007f83f0016d79	subl	r6, r5
+00007f83f0016d7b	movl	r5, 0x38(sp)
+00007f83f0016d7f	movl	r5, result
+00007f83f0016d81	cmpl	$0x10, result
+00007f83f0016d84	jae	.4b
+00007f83f0016d8a	movl	zero, 0x1004c8(memory)
+00007f83f0016d91	movl	zero, 0x1004c0(memory)
+00007f83f0016d98	movl	0x40(sp), r5
+00007f83f0016d9c	movl	0x60(sp), r6
+00007f83f0016da0	orl	$3, r6
+00007f83f0016da3	movl	r5, scratch
+00007f83f0016da5	addq	memory, scratch
+00007f83f0016da8	movl	r6, 4(scratch)
+00007f83f0016dab	movl	0x40(sp), r5
+00007f83f0016daf	movl	0x60(sp), r6
+00007f83f0016db3	addl	r6, r5
+00007f83f0016db5	movl	r5, 0x60(sp)
+00007f83f0016db9	addl	$4, r5
+00007f83f0016dbc	movl	0x60(sp), r6
+00007f83f0016dc0	movl	r6, scratch
+00007f83f0016dc2	addq	memory, scratch
+00007f83f0016dc5	movl	4(scratch), r6
+00007f83f0016dc8	orl	$1, r6
+00007f83f0016dcb	movl	r5, scratch
+00007f83f0016dcd	addq	memory, scratch
+00007f83f0016dd0	movl	r6, (scratch)
+00007f83f0016dd2	movl	0x40(sp), r5
+00007f83f0016dd6	addl	$8, r5
+00007f83f0016dd9	movl	r5, result
+00007f83f0016ddb	leaq	0x58(sp), sp
+00007f83f0016de0	retq
+00007f83f0016de1 .4a:	movl	zero, scratch
+00007f83f0016de3	movl	scratch, 0x40(sp)
+00007f83f0016de7	movl	0x48(sp), r5
+00007f83f0016deb	addl	$0x1002f, r5
+00007f83f0016df1	movl	r5, 0x38(sp)
+00007f83f0016df5	shrl	$0x10, r5
+00007f83f0016df8	pushq	r5
+00007f83f0016dfa	popq	result
+00007f83f0016dfc	movq	-0x10(text), scratch
+// Je sais pas encore trop pourquoi mais il va chercher
+// la valeur d'ecx dans un byte juste avant du code et
+// c'est 0 quand ca devrait etre autre chose...
+// addr: 000fff8, c'est juste avant trap.no_function
+// Il faut que je trouve ou il ecrit ca DINOSAURE
+// Si c'est ecrit nulle-part, on peut deja deviner
+// que c'est pour ca que c'est 0. Mais je voudrais
+// savoir pourquoi le code finit ainsi, ca pourrait etre
+// un probleme du contrat.
+00007f83f0016e00	callq	retpoline
+00007f83f0016e05	movl	result, 0x60(sp)
+00007f83f0016e09	movl	result, r5
+00007f83f0016e0b	movl	r5, result
+00007f83f0016e0d	cmpl	$0xff, result
+00007f83f0016e10	je	.4c
+00007f83f0016e16	movl	0x60(sp), r5
+00007f83f0016e1a	shll	$0x10, r5
+00007f83f0016e1d	movl	r5, 0x50(sp)
+00007f83f0016e21	testl	r5, r5
+00007f83f0016e23	je	.4d
+00007f83f0016e29	movl	0x1004d0(memory), r5
+00007f83f0016e30	movl	0x38(sp), r6
+00007f83f0016e34	andl	$0xffff0000, r6
+00007f83f0016e3a	movl	r6, 0x18(sp)
+00007f83f0016e3e	addl	r6, r5
+00007f83f0016e40	movl	r5, 0x60(sp)
+00007f83f0016e44	movl	r5, 0x1004d0(memory)
+00007f83f0016e4b	movl	0x1004d4(memory), r5
+00007f83f0016e52	movl	r5, 0x40(sp)
+00007f83f0016e56	movl	0x60(sp), r6
+00007f83f0016e5a	movl	0x60(sp), r7
+00007f83f0016e5e	movl	0x40(sp), r8
+00007f83f0016e63	movl	r7, result
+00007f83f0016e65	cmpl	r8, result
+00007f83f0016e68	cmovbl	r5, r6
+00007f83f0016e6b	movl	r6, 0x1004d4(memory)
+00007f83f0016e72	movl	0x1004cc(memory), r5
+00007f83f0016e79	movl	r5, 0x40(sp)
+00007f83f0016e7d	testl	r5, r5
+00007f83f0016e7f	je	.4e
+00007f83f0016e85	movl	$0x1004d8, scratch
+00007f83f0016e8b	movl	scratch, 0x60(sp)
+00007f83f0016e8f .51:	movl	0x60(sp), r5
+00007f83f0016e93	movl	r5, scratch
+00007f83f0016e95	addq	memory, scratch
+00007f83f0016e98	movl	(scratch), r5
+00007f83f0016e9a	movl	r5, 0x38(sp)
+00007f83f0016e9e	movl	0x60(sp), r6
+00007f83f0016ea2	movl	r6, scratch
+00007f83f0016ea4	addq	memory, scratch
+00007f83f0016ea7	movl	4(scratch), r6
+00007f83f0016eaa	movl	r6, 0x30(sp)
+00007f83f0016eae	addl	r6, r5
+00007f83f0016eb0	movl	0x50(sp), r6
+00007f83f0016eb4	movl	r5, result
+00007f83f0016eb6	cmpl	r6, result
+00007f83f0016eb8	je	.4f
+00007f83f0016ebe	movl	0x60(sp), r5
+00007f83f0016ec2	movl	r5, scratch
+00007f83f0016ec4	addq	memory, scratch
+00007f83f0016ec7	movl	8(scratch), r5
+00007f83f0016eca	movl	r5, 0x60(sp)
+00007f83f0016ece	testl	r5, r5
+00007f83f0016ed0	je	.50
+00007f83f0016ed2	testb	$1, suspendbit
+00007f83f0016ed6	je	.51			; back
+00007f83f0016edc	callq	.3c			; back
+00007f83f0016ee1	jmp	.51			; back
+00007f83f0016ee6 .50:	jmp	.52
+00007f83f0016eeb .4b:	movl	0x38(sp), r5
+00007f83f0016eef	movl	r5, 0x1004c0(memory)
+00007f83f0016ef6	movl	0x40(sp), r5
+00007f83f0016efa	movl	0x48(sp), r6
+00007f83f0016efe	addl	r6, r5
+00007f83f0016f00	movl	r5, 0x50(sp)
+00007f83f0016f04	movl	r5, 0x1004c8(memory)
+00007f83f0016f0b	movl	0x50(sp), r5
+00007f83f0016f0f	movl	0x38(sp), r6
+00007f83f0016f13	orl	$1, r6
+00007f83f0016f16	movl	r5, scratch
+00007f83f0016f18	addq	memory, scratch
+00007f83f0016f1b	movl	r6, 4(scratch)
+00007f83f0016f1e	movl	0x40(sp), r5
+00007f83f0016f22	movl	0x60(sp), r6
+00007f83f0016f26	addl	r6, r5
+00007f83f0016f28	movl	0x38(sp), r6
+00007f83f0016f2c	movl	r5, scratch
+00007f83f0016f2e	addq	memory, scratch
+00007f83f0016f31	movl	r6, (scratch)
+00007f83f0016f33	movl	0x40(sp), r5
+00007f83f0016f37	addl	$4, r5
+00007f83f0016f3a	movl	0x48(sp), r6
+00007f83f0016f3e	orl	$3, r6
+00007f83f0016f41	movl	r5, scratch
+00007f83f0016f43	addq	memory, scratch
+00007f83f0016f46	movl	r6, (scratch)
+00007f83f0016f48	movl	0x40(sp), r5
+00007f83f0016f4c	addl	$8, r5
+00007f83f0016f4f	movl	r5, result
+00007f83f0016f51	leaq	0x58(sp), sp
+00007f83f0016f56	retq
+00007f83f0016f57 .48:	movl	0x50(sp), r5
+00007f83f0016f5b	movl	r5, scratch
+00007f83f0016f5d	addq	memory, scratch
+00007f83f0016f60	movl	0x18(scratch), r5
+00007f83f0016f63	movl	r5, 0x20(sp)
+00007f83f0016f67	movl	0x50(sp), r5
+00007f83f0016f6b	movl	r5, scratch
+00007f83f0016f6d	addq	memory, scratch
+00007f83f0016f70	movl	0xc(scratch), r5
+00007f83f0016f73	movl	r5, 0x38(sp)
+00007f83f0016f77	movl	0x50(sp), r6
+00007f83f0016f7b	movl	r5, result
+00007f83f0016f7d	cmpl	r6, result
+00007f83f0016f7f	je	.53
+00007f83f0016f85	movl	0x50(sp), r5
+00007f83f0016f89	movl	r5, scratch
+00007f83f0016f8b	addq	memory, scratch
+00007f83f0016f8e	movl	8(scratch), r5
+00007f83f0016f91	movl	r5, 0x60(sp)
+00007f83f0016f95	movl	0x38(sp), r6
+00007f83f0016f99	movl	r5, scratch
+00007f83f0016f9b	addq	memory, scratch
+00007f83f0016f9e	movl	r6, 0xc(scratch)
+00007f83f0016fa1	movl	0x38(sp), r5
+00007f83f0016fa5	movl	0x60(sp), r6
+00007f83f0016fa9	movl	r5, scratch
+00007f83f0016fab	addq	memory, scratch
+00007f83f0016fae	movl	r6, 8(scratch)
+00007f83f0016fb1	movl	0x20(sp), r5
+00007f83f0016fb5	testl	r5, r5
+00007f83f0016fb7	jne	.54
+00007f83f0016fbd	jmp	.55
+00007f83f0016fc2 .40:	movl	0x50(sp), r5
+00007f83f0016fc6	movl	0x40(sp), r6
+00007f83f0016fca	movl	$0xfffffffe, r7
+00007f83f0016fd0	movl	r6, scratch
+00007f83f0016fd2	roll	scratchb, r7
+00007f83f0016fd4	andl	r7, r5
+00007f83f0016fd6	movl	r5, 0x100330(memory)
+00007f83f0016fdd .41:	movl	0x60(sp), r5
+00007f83f0016fe1	addl	$8, r5
+00007f83f0016fe4	movl	r5, 0x38(sp)
+00007f83f0016fe8	movl	0x60(sp), r5
+00007f83f0016fec	movl	0x48(sp), r6
+00007f83f0016ff0	orl	$3, r6
+00007f83f0016ff3	movl	r5, scratch
+00007f83f0016ff5	addq	memory, scratch
+00007f83f0016ff8	movl	r6, 4(scratch)
+00007f83f0016ffb	movl	0x60(sp), r5
+00007f83f0016fff	movl	0x48(sp), r6
+00007f83f0017003	addl	r6, r5
+00007f83f0017005	movl	r5, 0x50(sp)
+00007f83f0017009	movl	0x40(sp), r6
+00007f83f001700d	shll	$3, r6
+00007f83f0017010	movl	r6, 0x40(sp)
+00007f83f0017014	movl	0x48(sp), r7
+00007f83f0017018	subl	r7, r6
+00007f83f001701a	movl	r6, 0x48(sp)
+00007f83f001701e	orl	$1, r6
+00007f83f0017021	movl	r5, scratch
+00007f83f0017023	addq	memory, scratch
+00007f83f0017026	movl	r6, 4(scratch)
+00007f83f0017029	movl	0x60(sp), r5
+00007f83f001702d	movl	0x40(sp), r6
+00007f83f0017031	addl	r6, r5
+00007f83f0017033	movl	0x48(sp), r6
+00007f83f0017037	movl	r5, scratch
+00007f83f0017039	addq	memory, scratch
+00007f83f001703c	movl	r6, (scratch)
+00007f83f001703e	movl	0x1004c0(memory), r5
+00007f83f0017045	movl	r5, 0x60(sp)
+00007f83f0017049	testl	r5, r5
+00007f83f001704b	je	.56
+00007f83f0017051	movl	0x60(sp), r5
+00007f83f0017055	shrl	$3, r5
+00007f83f0017058	movl	r5, 0x30(sp)
+00007f83f001705c	shll	$3, r5
+00007f83f001705f	addl	$0x100338, r5
+00007f83f0017065	movl	r5, 0x40(sp)
+00007f83f0017069	movl	0x1004c8(memory), r5
+00007f83f0017070	movl	r5, 0x60(sp)
+00007f83f0017074	movl	0x100330(memory), r5
+00007f83f001707b	movl	r5, 0x18(sp)
+00007f83f001707f	movl	0x30(sp), r6
+00007f83f0017083	andl	$0x1f, r6
+00007f83f0017086	movl	$1, r7
+00007f83f001708c	movl	r6, scratch
+00007f83f001708e	shll	scratchb, r7
+00007f83f0017090	movl	r7, 0x30(sp)
+00007f83f0017094	andl	r7, r5
+00007f83f0017096	testl	r5, r5
+00007f83f0017098	je	.57
+00007f83f001709e	movl	0x40(sp), r5
+00007f83f00170a2	movl	r5, scratch
+00007f83f00170a4	addq	memory, scratch
+00007f83f00170a7	movl	8(scratch), r5
+00007f83f00170aa	movl	r5, 0x30(sp)
+00007f83f00170ae	jmp	.58
+00007f83f00170b3 .53:	movl	0x50(sp), r5
+00007f83f00170b7	movl	0x50(sp), r6
+00007f83f00170bb	addl	$0x14, r6
+00007f83f00170be	movl	r6, 0x38(sp)
+00007f83f00170c2	movl	r6, scratch
+00007f83f00170c4	addq	memory, scratch
+00007f83f00170c7	movl	(scratch), r6
+00007f83f00170c9	movl	r6, 0x30(sp)
+00007f83f00170cd	testl	r6, r6
+00007f83f00170cf	movl	$0x10, r6
+00007f83f00170d5	movl	$0x14, scratch
+00007f83f00170db	cmovnel	scratch, r6
+00007f83f00170de	addl	r6, r5
+00007f83f00170e0	movl	r5, scratch
+00007f83f00170e2	addq	memory, scratch
+00007f83f00170e5	movl	(scratch), r5
+00007f83f00170e7	movl	r5, 0x60(sp)
+00007f83f00170eb	testl	r5, r5
+00007f83f00170ed	je	.59
+00007f83f00170f3	movl	0x38(sp), r5
+00007f83f00170f7	movl	0x50(sp), r6
+00007f83f00170fb	addl	$0x10, r6
+00007f83f00170fe	movl	0x30(sp), r7
+00007f83f0017102	testl	r7, r7
+00007f83f0017104	cmovnel	r5, r6
+00007f83f0017107	movl	r6, 0x30(sp)
+00007f83f001710b .5c:	movl	0x30(sp), r5
+00007f83f001710f	movl	r5, 0x18(sp)
+00007f83f0017113	movl	0x60(sp), r5
+00007f83f0017117	movl	r5, 0x38(sp)
+00007f83f001711b	addl	$0x14, r5
+00007f83f001711e	movl	r5, 0x30(sp)
+00007f83f0017122	movl	r5, scratch
+00007f83f0017124	addq	memory, scratch
+00007f83f0017127	movl	(scratch), r5
+00007f83f0017129	movl	r5, 0x60(sp)
+00007f83f001712d	testl	r5, r5
+00007f83f001712f	je	.5a
+00007f83f0017135	movl	0x60(sp), r5
+00007f83f0017139	testl	r5, r5
+00007f83f001713b	je	.5b
+00007f83f001713d	testb	$1, suspendbit
+00007f83f0017141	je	.5c			; back
+00007f83f0017147	callq	.3c			; back
+00007f83f001714c	jmp	.5c			; back
+00007f83f0017151 .5b:	jmp	.5d
+00007f83f0017156 .5a:	movl	0x38(sp), r5
+00007f83f001715a	addl	$0x10, r5
+00007f83f001715d	movl	r5, 0x30(sp)
+00007f83f0017161	movl	0x38(sp), r5
+00007f83f0017165	movl	r5, scratch
+00007f83f0017167	addq	memory, scratch
+00007f83f001716a	movl	0x10(scratch), r5
+00007f83f001716d	movl	r5, 0x60(sp)
+00007f83f0017171	testl	r5, r5
+00007f83f0017173	je	.5d
+00007f83f0017175	testb	$1, suspendbit
+00007f83f0017179	je	.5c			; back
+00007f83f001717f	callq	.3c			; back
+00007f83f0017184	jmp	.5c			; back
+00007f83f0017189 .5d:	movl	0x18(sp), r5
+00007f83f001718d	movl	r5, scratch
+00007f83f001718f	addq	memory, scratch
+00007f83f0017192	movl	zero, (scratch)
+00007f83f0017194	movl	0x20(sp), r5
+00007f83f0017198	testl	r5, r5
+00007f83f001719a	jne	.54
+00007f83f00171a0	jmp	.55
+00007f83f00171a5 .57:	movl	0x18(sp), r5
+00007f83f00171a9	movl	0x30(sp), r6
+00007f83f00171ad	orl	r6, r5
+00007f83f00171af	movl	r5, 0x100330(memory)
+00007f83f00171b6	movl	0x40(sp), r5
+00007f83f00171ba	movl	r5, 0x30(sp)
+00007f83f00171be .58:	movl	0x40(sp), r5
+00007f83f00171c2	addl	$8, r5
+00007f83f00171c5	movl	0x60(sp), r6
+00007f83f00171c9	movl	r5, scratch
+00007f83f00171cb	addq	memory, scratch
+00007f83f00171ce	movl	r6, (scratch)
+00007f83f00171d0	movl	0x30(sp), r5
+00007f83f00171d4	movl	0x60(sp), r6
+00007f83f00171d8	movl	r5, scratch
+00007f83f00171da	addq	memory, scratch
+00007f83f00171dd	movl	r6, 0xc(scratch)
+00007f83f00171e0	movl	0x60(sp), r5
+00007f83f00171e4	movl	0x40(sp), r6
+00007f83f00171e8	movl	r5, scratch
+00007f83f00171ea	addq	memory, scratch
+00007f83f00171ed	movl	r6, 0xc(scratch)
+00007f83f00171f0	movl	0x60(sp), r5
+00007f83f00171f4	movl	0x30(sp), r6
+00007f83f00171f8	movl	r5, scratch
+00007f83f00171fa	addq	memory, scratch
+00007f83f00171fd	movl	r6, 8(scratch)
+00007f83f0017200 .56:	movl	0x50(sp), r5
+00007f83f0017204	movl	r5, 0x1004c8(memory)
+00007f83f001720b	movl	0x48(sp), r5
+00007f83f001720f	movl	r5, 0x1004c0(memory)
+00007f83f0017216	movl	0x38(sp), r5
+00007f83f001721a	movl	r5, result
+00007f83f001721c	leaq	0x58(sp), sp
+00007f83f0017221	retq
+00007f83f0017222 .4e:	movl	0x1004ec(memory), r5
+00007f83f0017229	movl	r5, 0x60(sp)
+00007f83f001722d	testl	r5, r5
+00007f83f001722f	je	.5e
+00007f83f0017235	movl	0x60(sp), r5
+00007f83f0017239	movl	0x50(sp), r6
+00007f83f001723d	movl	r5, result
+00007f83f001723f	cmpl	r6, result
+00007f83f0017241	jbe	.5f
+00007f83f0017247 .5e:	movl	0x50(sp), r5
+00007f83f001724b	movl	r5, 0x1004ec(memory)
+00007f83f0017252 .5f:	movl	$0xfff, 0x1004f0(memory)
+00007f83f001725d	movl	0x18(sp), r5
+00007f83f0017261	movl	r5, 0x1004dc(memory)
+00007f83f0017268	movl	0x50(sp), r5
+00007f83f001726c	movl	r5, 0x1004d8(memory)
+00007f83f0017273	movl	$0x100338, 0x100344(memory)
+00007f83f001727e	movl	$0x100340, 0x10034c(memory)
+00007f83f0017289	movl	$0x100338, 0x100340(memory)
+00007f83f0017294	movl	$0x100348, 0x100354(memory)
+00007f83f001729f	movl	$0x100340, 0x100348(memory)
+00007f83f00172aa	movl	$0x100350, 0x10035c(memory)
+00007f83f00172b5	movl	$0x100348, 0x100350(memory)
+00007f83f00172c0	movl	$0x100358, 0x100364(memory)
+00007f83f00172cb	movl	$0x100350, 0x100358(memory)
+00007f83f00172d6	movl	$0x100360, 0x10036c(memory)
+00007f83f00172e1	movl	$0x100358, 0x100360(memory)
+00007f83f00172ec	movl	$0x100368, 0x100374(memory)
+00007f83f00172f7	movl	$0x100360, 0x100368(memory)
+00007f83f0017302	movl	$0x100370, 0x10037c(memory)
+00007f83f001730d	movl	$0x100368, 0x100370(memory)
+00007f83f0017318	movl	zero, 0x1004e4(memory)
+00007f83f001731f	movl	$0x100378, 0x100384(memory)
+00007f83f001732a	movl	$0x100370, 0x100378(memory)
+00007f83f0017335	movl	$0x100380, 0x10038c(memory)
+00007f83f0017340	movl	$0x100378, 0x100380(memory)
+00007f83f001734b	movl	$0x100388, 0x100394(memory)
+00007f83f0017356	movl	$0x100380, 0x100388(memory)
+00007f83f0017361	movl	$0x100390, 0x10039c(memory)
+00007f83f001736c	movl	$0x100388, 0x100390(memory)
+00007f83f0017377	movl	$0x100398, 0x1003a4(memory)
+00007f83f0017382	movl	$0x100390, 0x100398(memory)
+00007f83f001738d	movl	$0x1003a0, 0x1003ac(memory)
+00007f83f0017398	movl	$0x100398, 0x1003a0(memory)
+00007f83f00173a3	movl	$0x1003a8, 0x1003b4(memory)
+00007f83f00173ae	movl	$0x1003a0, 0x1003a8(memory)
+00007f83f00173b9	movl	$0x1003b0, 0x1003bc(memory)
+00007f83f00173c4	movl	$0x1003a8, 0x1003b0(memory)
+00007f83f00173cf	movl	$0x1003b8, 0x1003c4(memory)
+00007f83f00173da	movl	$0x1003b0, 0x1003b8(memory)
+00007f83f00173e5	movl	$0x1003c0, 0x1003cc(memory)
+00007f83f00173f0	movl	$0x1003b8, 0x1003c0(memory)
+00007f83f00173fb	movl	$0x1003c8, 0x1003d4(memory)
+00007f83f0017406	movl	$0x1003c0, 0x1003c8(memory)
+00007f83f0017411	movl	$0x1003d0, 0x1003dc(memory)
+00007f83f001741c	movl	$0x1003c8, 0x1003d0(memory)
+00007f83f0017427	movl	$0x1003d8, 0x1003e4(memory)
+00007f83f0017432	movl	$0x1003d0, 0x1003d8(memory)
+00007f83f001743d	movl	$0x1003e0, 0x1003ec(memory)
+00007f83f0017448	movl	$0x1003d8, 0x1003e0(memory)
+00007f83f0017453	movl	$0x1003e8, 0x1003f4(memory)
+00007f83f001745e	movl	$0x1003e0, 0x1003e8(memory)
+00007f83f0017469	movl	$0x1003f0, 0x1003fc(memory)
+00007f83f0017474	movl	$0x1003e8, 0x1003f0(memory)
+00007f83f001747f	movl	$0x1003f8, 0x100404(memory)
+00007f83f001748a	movl	$0x1003f0, 0x1003f8(memory)
+00007f83f0017495	movl	$0x100400, 0x10040c(memory)
+00007f83f00174a0	movl	$0x1003f8, 0x100400(memory)
+00007f83f00174ab	movl	$0x100408, 0x100414(memory)
+00007f83f00174b6	movl	$0x100400, 0x100408(memory)
+00007f83f00174c1	movl	$0x100410, 0x10041c(memory)
+00007f83f00174cc	movl	$0x100408, 0x100410(memory)
+00007f83f00174d7	movl	$0x100418, 0x100424(memory)
+00007f83f00174e2	movl	$0x100410, 0x100418(memory)
+00007f83f00174ed	movl	$0x100420, 0x10042c(memory)
+00007f83f00174f8	movl	$0x100418, 0x100420(memory)
+00007f83f0017503	movl	$0x100428, 0x100434(memory)
+00007f83f001750e	movl	$0x100420, 0x100428(memory)
+00007f83f0017519	movl	$0x100430, 0x10043c(memory)
+00007f83f0017524	movl	$0x100428, 0x100430(memory)
+00007f83f001752f	movl	0x50(sp), r5
+00007f83f0017533	movl	r5, 0x1004cc(memory)
+00007f83f001753a	movl	$0x100430, 0x100438(memory)
+00007f83f0017545	movl	0x18(sp), r5
+00007f83f0017549	addl	$-0x28, r5
+00007f83f001754c	movl	r5, 0x60(sp)
+00007f83f0017550	movl	r5, 0x1004c4(memory)
+00007f83f0017557	movl	0x50(sp), r5
+00007f83f001755b	movl	0x60(sp), r6
+00007f83f001755f	orl	$1, r6
+00007f83f0017562	movl	r5, scratch
+00007f83f0017564	addq	memory, scratch
+00007f83f0017567	movl	r6, 4(scratch)
+00007f83f001756a	movl	0x50(sp), r5
+00007f83f001756e	movl	0x60(sp), r6
+00007f83f0017572	addl	r6, r5
+00007f83f0017574	movl	r5, scratch
+00007f83f0017576	addq	memory, scratch
+00007f83f0017579	movl	$0x28, 4(scratch)
+00007f83f0017580	movl	$0x200000, 0x1004e8(memory)
+00007f83f001758b	movl	zero, scratch
+00007f83f001758d	movl	scratch, 0x40(sp)
+00007f83f0017591	movl	0x1004c4(memory), r5
+00007f83f0017598	movl	r5, 0x60(sp)
+00007f83f001759c	movl	0x48(sp), r6
+00007f83f00175a0	movl	r5, result
+00007f83f00175a2	cmpl	r6, result
+00007f83f00175a4	ja	.60
+00007f83f00175aa	jmp	.61
+00007f83f00175af .4f:	movl	0x60(sp), r5
+00007f83f00175b3	movl	r5, scratch
+00007f83f00175b5	addq	memory, scratch
+00007f83f00175b8	movl	0xc(scratch), r5
+00007f83f00175bb	testl	r5, r5
+00007f83f00175bd	je	.62
+00007f83f00175c3	jmp	.52
+00007f83f00175c8 .59:	movl	zero, scratch
+00007f83f00175ca	movl	scratch, 0x38(sp)
+00007f83f00175ce	movl	0x20(sp), r5
+00007f83f00175d2	testl	r5, r5
+00007f83f00175d4	je	.55
+00007f83f00175da .54:	movl	0x50(sp), r5
+00007f83f00175de	movl	r5, scratch
+00007f83f00175e0	addq	memory, scratch
+00007f83f00175e3	movl	0x1c(scratch), r5
+00007f83f00175e6	shll	$2, r5
+00007f83f00175e9	addl	$0x100440, r5
+00007f83f00175ef	movl	r5, 0x60(sp)
+00007f83f00175f3	movl	r5, scratch
+00007f83f00175f5	addq	memory, scratch
+00007f83f00175f8	movl	(scratch), r5
+00007f83f00175fa	movl	0x50(sp), r6
+00007f83f00175fe	movl	r5, result
+00007f83f0017600	cmpl	r6, result
+00007f83f0017602	je	.63
+00007f83f0017608	movl	0x20(sp), r5
+00007f83f001760c	movl	0x20(sp), r6
+00007f83f0017610	movl	r6, scratch
+00007f83f0017612	addq	memory, scratch
+00007f83f0017615	movl	0x10(scratch), r6
+00007f83f0017618	movl	0x50(sp), r7
+00007f83f001761c	movl	r6, result
+00007f83f001761e	cmpl	r7, result
+00007f83f0017620	movl	$0x14, r6
+00007f83f0017626	movl	$0x10, scratch
+00007f83f001762c	cmovel	scratch, r6
+00007f83f001762f	addl	r6, r5
+00007f83f0017631	movl	0x38(sp), r6
+00007f83f0017635	movl	r5, scratch
+00007f83f0017637	addq	memory, scratch
+00007f83f001763a	movl	r6, (scratch)
+00007f83f001763c	movl	0x38(sp), r5
+00007f83f0017640	testl	r5, r5
+00007f83f0017642	jne	.64
+00007f83f0017648	jmp	.55
+00007f83f001764d .63:	movl	0x60(sp), r5
+00007f83f0017651	movl	0x38(sp), r6
+00007f83f0017655	movl	r5, scratch
+00007f83f0017657	addq	memory, scratch
+00007f83f001765a	movl	r6, (scratch)
+00007f83f001765c	movl	0x38(sp), r5
+00007f83f0017660	testl	r5, r5
+00007f83f0017662	je	.65
+00007f83f0017668 .64:	movl	0x38(sp), r5
+00007f83f001766c	movl	0x20(sp), r6
+00007f83f0017670	movl	r5, scratch
+00007f83f0017672	addq	memory, scratch
+00007f83f0017675	movl	r6, 0x18(scratch)
+00007f83f0017678	movl	0x50(sp), r5
+00007f83f001767c	movl	r5, scratch
+00007f83f001767e	addq	memory, scratch
+00007f83f0017681	movl	0x10(scratch), r5
+00007f83f0017684	movl	r5, 0x60(sp)
+00007f83f0017688	testl	r5, r5
+00007f83f001768a	je	.66
+00007f83f0017690	movl	0x38(sp), r5
+00007f83f0017694	movl	0x60(sp), r6
+00007f83f0017698	movl	r5, scratch
+00007f83f001769a	addq	memory, scratch
+00007f83f001769d	movl	r6, 0x10(scratch)
+00007f83f00176a0	movl	0x60(sp), r5
+00007f83f00176a4	movl	0x38(sp), r6
+00007f83f00176a8	movl	r5, scratch
+00007f83f00176aa	addq	memory, scratch
+00007f83f00176ad	movl	r6, 0x18(scratch)
+00007f83f00176b0 .66:	movl	0x50(sp), r5
+00007f83f00176b4	addl	$0x14, r5
+00007f83f00176b7	movl	r5, scratch
+00007f83f00176b9	addq	memory, scratch
+00007f83f00176bc	movl	(scratch), r5
+00007f83f00176be	movl	r5, 0x60(sp)
+00007f83f00176c2	testl	r5, r5
+00007f83f00176c4	je	.55
+00007f83f00176ca	movl	0x38(sp), r5
+00007f83f00176ce	addl	$0x14, r5
+00007f83f00176d1	movl	0x60(sp), r6
+00007f83f00176d5	movl	r5, scratch
+00007f83f00176d7	addq	memory, scratch
+00007f83f00176da	movl	r6, (scratch)
+00007f83f00176dc	movl	0x60(sp), r5
+00007f83f00176e0	movl	0x38(sp), r6
+00007f83f00176e4	movl	r5, scratch
+00007f83f00176e6	addq	memory, scratch
+00007f83f00176e9	movl	r6, 0x18(scratch)
+00007f83f00176ec	movl	0x40(sp), r5
+00007f83f00176f0	movl	r5, result
+00007f83f00176f2	cmpl	$0xf, result
+00007f83f00176f5	jbe	.67
+00007f83f00176fb	jmp	.68
+00007f83f0017700 .62:	movl	0x50(sp), r5
+00007f83f0017704	movl	0x40(sp), r6
+00007f83f0017708	movl	r5, result
+00007f83f001770a	cmpl	r6, result
+00007f83f001770c	jbe	.52
+00007f83f0017712	movl	0x38(sp), r5
+00007f83f0017716	movl	0x40(sp), r6
+00007f83f001771a	movl	r5, result
+00007f83f001771c	cmpl	r6, result
+00007f83f001771e	ja	.52
+00007f83f0017724	movl	0x60(sp), r5
+00007f83f0017728	addl	$4, r5
+00007f83f001772b	movl	0x30(sp), r6
+00007f83f001772f	movl	0x18(sp), r7
+00007f83f0017733	addl	r7, r6
+00007f83f0017735	movl	r5, scratch
+00007f83f0017737	addq	memory, scratch
+00007f83f001773a	movl	r6, (scratch)
+00007f83f001773c	movl	0x1004cc(memory), r5
+00007f83f0017743	movl	r5, 0x60(sp)
+00007f83f0017747	addl	$0xf, r5
+00007f83f001774a	andl	$0xfffffffffffffff8, r5
+00007f83f001774d	movl	r5, 0x40(sp)
+00007f83f0017751	addl	$-8, r5
+00007f83f0017754	movl	r5, 0x38(sp)
+00007f83f0017758	movl	r5, 0x1004cc(memory)
+00007f83f001775f	movl	0x1004c4(memory), r5
+00007f83f0017766	movl	0x18(sp), r6
+00007f83f001776a	addl	r6, r5
+00007f83f001776c	movl	r5, 0x50(sp)
+00007f83f0017770	movl	0x60(sp), r6
+00007f83f0017774	addl	$8, r6
+00007f83f0017777	movl	0x40(sp), r7
+00007f83f001777b	subl	r7, r6
+00007f83f001777d	addl	r6, r5
+00007f83f001777f	movl	r5, 0x40(sp)
+00007f83f0017783	movl	r5, 0x1004c4(memory)
+00007f83f001778a	movl	0x38(sp), r5
+00007f83f001778e	movl	0x40(sp), r6
+00007f83f0017792	orl	$1, r6
+00007f83f0017795	movl	r5, scratch
+00007f83f0017797	addq	memory, scratch
+00007f83f001779a	movl	r6, 4(scratch)
+00007f83f001779d	movl	0x60(sp), r5
+00007f83f00177a1	movl	0x50(sp), r6
+00007f83f00177a5	addl	r6, r5
+00007f83f00177a7	movl	r5, scratch
+00007f83f00177a9	addq	memory, scratch
+00007f83f00177ac	movl	$0x28, 4(scratch)
+00007f83f00177b3	movl	$0x200000, 0x1004e8(memory)
+00007f83f00177be	movl	zero, scratch
+00007f83f00177c0	movl	scratch, 0x40(sp)
+00007f83f00177c4	movl	0x1004c4(memory), r5
+00007f83f00177cb	movl	r5, 0x60(sp)
+00007f83f00177cf	movl	0x48(sp), r6
+00007f83f00177d3	movl	r5, result
+00007f83f00177d5	cmpl	r6, result
+00007f83f00177d7	ja	.69
+00007f83f00177dd	jmp	.6a
+00007f83f00177e2 .65:	movl	0x100334(memory), r5
+00007f83f00177e9	movl	0x50(sp), r6
+00007f83f00177ed	addl	$0x1c, r6
+00007f83f00177f0	movl	r6, scratch
+00007f83f00177f2	addq	memory, scratch
+00007f83f00177f5	movl	(scratch), r6
+00007f83f00177f7	movl	$0xfffffffe, r7
+00007f83f00177fd	movl	r6, scratch
+00007f83f00177ff	roll	scratchb, r7
+00007f83f0017801	andl	r7, r5
+00007f83f0017803	movl	r5, 0x100334(memory)
+00007f83f001780a .55:	movl	0x40(sp), r5
+00007f83f001780e	movl	r5, result
+00007f83f0017810	cmpl	$0xf, result
+00007f83f0017813	ja	.68
+00007f83f0017819 .67:	movl	0x50(sp), r5
+00007f83f001781d	movl	0x40(sp), r6
+00007f83f0017821	movl	0x48(sp), r7
+00007f83f0017825	addl	r7, r6
+00007f83f0017827	movl	r6, 0x60(sp)
+00007f83f001782b	orl	$3, r6
+00007f83f001782e	movl	r5, scratch
+00007f83f0017830	addq	memory, scratch
+00007f83f0017833	movl	r6, 4(scratch)
+00007f83f0017836	movl	0x50(sp), r5
+00007f83f001783a	movl	0x60(sp), r6
+00007f83f001783e	addl	r6, r5
+00007f83f0017840	movl	r5, 0x60(sp)
+00007f83f0017844	movl	0x60(sp), r6
+00007f83f0017848	movl	r6, scratch
+00007f83f001784a	addq	memory, scratch
+00007f83f001784d	movl	4(scratch), r6
+00007f83f0017850	orl	$1, r6
+00007f83f0017853	movl	r5, scratch
+00007f83f0017855	addq	memory, scratch
+00007f83f0017858	movl	r6, 4(scratch)
+00007f83f001785b	jmp	.6b
+00007f83f0017860 .68:	movl	0x50(sp), r5
+00007f83f0017864	movl	0x48(sp), r6
+00007f83f0017868	orl	$3, r6
+00007f83f001786b	movl	r5, scratch
+00007f83f001786d	addq	memory, scratch
+00007f83f0017870	movl	r6, 4(scratch)
+00007f83f0017873	movl	0x50(sp), r5
+00007f83f0017877	movl	0x48(sp), r6
+00007f83f001787b	addl	r6, r5
+00007f83f001787d	movl	r5, 0x48(sp)
+00007f83f0017881	movl	0x40(sp), r6
+00007f83f0017885	orl	$1, r6
+00007f83f0017888	movl	r5, scratch
+00007f83f001788a	addq	memory, scratch
+00007f83f001788d	movl	r6, 4(scratch)
+00007f83f0017890	movl	0x48(sp), r5
+00007f83f0017894	movl	0x40(sp), r6
+00007f83f0017898	addl	r6, r5
+00007f83f001789a	movl	0x40(sp), r6
+00007f83f001789e	movl	r5, scratch
+00007f83f00178a0	addq	memory, scratch
+00007f83f00178a3	movl	r6, (scratch)
+00007f83f00178a5	movl	0x40(sp), r5
+00007f83f00178a9	movl	r5, result
+00007f83f00178ab	cmpl	$0xff, result
+00007f83f00178b1	ja	.6c
+00007f83f00178b7	movl	0x40(sp), r5
+00007f83f00178bb	shrl	$3, r5
+00007f83f00178be	movl	r5, 0x40(sp)
+00007f83f00178c2	shll	$3, r5
+00007f83f00178c5	addl	$0x100338, r5
+00007f83f00178cb	movl	r5, 0x60(sp)
+00007f83f00178cf	movl	0x100330(memory), r5
+00007f83f00178d6	movl	r5, 0x38(sp)
+00007f83f00178da	movl	0x40(sp), r6
+00007f83f00178de	andl	$0x1f, r6
+00007f83f00178e1	movl	$1, r7
+00007f83f00178e7	movl	r6, scratch
+00007f83f00178e9	shll	scratchb, r7
+00007f83f00178eb	movl	r7, 0x40(sp)
+00007f83f00178ef	andl	r7, r5
+00007f83f00178f1	testl	r5, r5
+00007f83f00178f3	je	.6d
+00007f83f00178f9	movl	0x60(sp), r5
+00007f83f00178fd	addl	$8, r5
+00007f83f0017900	movl	r5, 0x38(sp)
+00007f83f0017904	movl	0x60(sp), r5
+00007f83f0017908	movl	r5, scratch
+00007f83f001790a	addq	memory, scratch
+00007f83f001790d	movl	8(scratch), r5
+00007f83f0017910	movl	r5, 0x40(sp)
+00007f83f0017914	jmp	.6e
+00007f83f0017919 .6c:	movl	zero, scratch
+00007f83f001791b	movl	scratch, 0x60(sp)
+00007f83f001791f	movl	0x40(sp), r5
+00007f83f0017923	shrl	$8, r5
+00007f83f0017926	movl	r5, 0x38(sp)
+00007f83f001792a	testl	r5, r5
+00007f83f001792c	je	.6f
+00007f83f0017932	movl	$0x1f, scratch
+00007f83f0017938	movl	scratch, 0x60(sp)
+00007f83f001793c	movl	0x40(sp), r5
+00007f83f0017940	movl	r5, result
+00007f83f0017942	cmpl	$0xffffff, result
+00007f83f0017948	ja	.6f
+00007f83f001794e	movl	0x40(sp), r5
+00007f83f0017952	movl	0x38(sp), r6
+00007f83f0017956	lzcntl	r6, r6
+00007f83f001795a	movl	r6, 0x60(sp)
+00007f83f001795e	movl	$0x26, r7
+00007f83f0017964	subl	r6, r7
+00007f83f0017966	andl	$0x1f, r7
+00007f83f0017969	movl	r7, scratch
+00007f83f001796b	shrl	scratchb, r5
+00007f83f001796d	andl	$1, r5
+00007f83f0017970	movl	0x60(sp), r6
+00007f83f0017974	movl	$0x1f, r7
+00007f83f001797a	subl	r6, r7
+00007f83f001797c	shll	$1, r7
+00007f83f001797f	orl	r7, r5
+00007f83f0017981	movl	r5, 0x60(sp)
+00007f83f0017985 .6f:	movl	0x48(sp), r5
+00007f83f0017989	movl	r5, scratch
+00007f83f001798b	addq	memory, scratch
+00007f83f001798e	movq	zero, 0x10(scratch)
+00007f83f0017992	movl	0x48(sp), r5
+00007f83f0017996	movl	0x60(sp), r6
+00007f83f001799a	movl	r5, scratch
+00007f83f001799c	addq	memory, scratch
+00007f83f001799f	movl	r6, 0x1c(scratch)
+00007f83f00179a2	movl	0x60(sp), r5
+00007f83f00179a6	shll	$2, r5
+00007f83f00179a9	addl	$0x100440, r5
+00007f83f00179af	movl	r5, 0x38(sp)
+00007f83f00179b3	movl	0x100334(memory), r5
+00007f83f00179ba	movl	r5, 0x30(sp)
+00007f83f00179be	movl	0x60(sp), r6
+00007f83f00179c2	andl	$0x1f, r6
+00007f83f00179c5	movl	$1, r7
+00007f83f00179cb	movl	r6, scratch
+00007f83f00179cd	shll	scratchb, r7
+00007f83f00179cf	movl	r7, 0x18(sp)
+00007f83f00179d3	andl	r7, r5
+00007f83f00179d5	testl	r5, r5
+00007f83f00179d7	je	.70
+00007f83f00179dd	movl	0x38(sp), r5
+00007f83f00179e1	movl	r5, scratch
+00007f83f00179e3	addq	memory, scratch
+00007f83f00179e6	movl	(scratch), r5
+00007f83f00179e8	movl	r5, 0x30(sp)
+00007f83f00179ec	movl	r5, scratch
+00007f83f00179ee	addq	memory, scratch
+00007f83f00179f1	movl	4(scratch), r5
+00007f83f00179f4	andl	$0xfffffffffffffff8, r5
+00007f83f00179f7	movl	0x40(sp), r6
+00007f83f00179fb	movl	r5, result
+00007f83f00179fd	cmpl	r6, result
+00007f83f00179ff	jne	.71
+00007f83f0017a05	movl	0x30(sp), r5
+00007f83f0017a09	movl	r5, 0x60(sp)
+00007f83f0017a0d	jmp	.72
+00007f83f0017a12 .6d:	movl	0x38(sp), r5
+00007f83f0017a16	movl	0x40(sp), r6
+00007f83f0017a1a	orl	r6, r5
+00007f83f0017a1c	movl	r5, 0x100330(memory)
+00007f83f0017a23	movl	0x60(sp), r5
+00007f83f0017a27	addl	$8, r5
+00007f83f0017a2a	movl	r5, 0x38(sp)
+00007f83f0017a2e	movl	0x60(sp), r5
+00007f83f0017a32	movl	r5, 0x40(sp)
+00007f83f0017a36 .6e:	movl	0x38(sp), r5
+00007f83f0017a3a	movl	0x48(sp), r6
+00007f83f0017a3e	movl	r5, scratch
+00007f83f0017a40	addq	memory, scratch
+00007f83f0017a43	movl	r6, (scratch)
+00007f83f0017a45	movl	0x40(sp), r5
+00007f83f0017a49	movl	0x48(sp), r6
+00007f83f0017a4d	movl	r5, scratch
+00007f83f0017a4f	addq	memory, scratch
+00007f83f0017a52	movl	r6, 0xc(scratch)
+00007f83f0017a55	movl	0x48(sp), r5
+00007f83f0017a59	movl	0x60(sp), r6
+00007f83f0017a5d	movl	r5, scratch
+00007f83f0017a5f	addq	memory, scratch
+00007f83f0017a62	movl	r6, 0xc(scratch)
+00007f83f0017a65	movl	0x48(sp), r5
+00007f83f0017a69	movl	0x40(sp), r6
+00007f83f0017a6d	movl	r5, scratch
+00007f83f0017a6f	addq	memory, scratch
+00007f83f0017a72	movl	r6, 8(scratch)
+00007f83f0017a75	jmp	.6b
+00007f83f0017a7a .70:	movl	0x30(sp), r5
+00007f83f0017a7e	movl	0x18(sp), r6
+00007f83f0017a82	orl	r6, r5
+00007f83f0017a84	movl	r5, 0x100334(memory)
+00007f83f0017a8b	movl	0x38(sp), r5
+00007f83f0017a8f	movl	0x48(sp), r6
+00007f83f0017a93	movl	r5, scratch
+00007f83f0017a95	addq	memory, scratch
+00007f83f0017a98	movl	r6, (scratch)
+00007f83f0017a9a	movl	0x48(sp), r5
+00007f83f0017a9e	movl	0x38(sp), r6
+00007f83f0017aa2	movl	r5, scratch
+00007f83f0017aa4	addq	memory, scratch
+00007f83f0017aa7	movl	r6, 0x18(scratch)
+00007f83f0017aaa	jmp	.73
+00007f83f0017aaf .71:	movl	0x40(sp), r5
+00007f83f0017ab3	movl	0x60(sp), r6
+00007f83f0017ab7	shrl	$1, r6
+00007f83f0017aba	movl	$0x19, r7
+00007f83f0017ac0	subl	r6, r7
+00007f83f0017ac2	andl	$0x1f, r7
+00007f83f0017ac5	movl	0x60(sp), r6
+00007f83f0017ac9	movl	r6, result
+00007f83f0017acb	cmpl	$0x1f, result
+00007f83f0017ace	movl	zero, scratch
+00007f83f0017ad0	cmovel	scratch, r7
+00007f83f0017ad3	movl	r7, scratch
+00007f83f0017ad5	shll	scratchb, r5
+00007f83f0017ad7	movl	r5, 0x38(sp)
+00007f83f0017adb .75:	movl	0x30(sp), r5
+00007f83f0017adf	movl	0x38(sp), r6
+00007f83f0017ae3	shrl	$0x1d, r6
+00007f83f0017ae6	andl	$4, r6
+00007f83f0017ae9	addl	r6, r5
+00007f83f0017aeb	addl	$0x10, r5
+00007f83f0017aee	movl	r5, 0x18(sp)
+00007f83f0017af2	movl	r5, scratch
+00007f83f0017af4	addq	memory, scratch
+00007f83f0017af7	movl	(scratch), r5
+00007f83f0017af9	movl	r5, 0x60(sp)
+00007f83f0017afd	testl	r5, r5
+00007f83f0017aff	je	.74
+00007f83f0017b05	movl	0x38(sp), r5
+00007f83f0017b09	shll	$1, r5
+00007f83f0017b0c	movl	r5, 0x38(sp)
+00007f83f0017b10	movl	0x60(sp), r5
+00007f83f0017b14	movl	r5, 0x30(sp)
+00007f83f0017b18	movl	0x60(sp), r5
+00007f83f0017b1c	movl	r5, scratch
+00007f83f0017b1e	addq	memory, scratch
+00007f83f0017b21	movl	4(scratch), r5
+00007f83f0017b24	andl	$0xfffffffffffffff8, r5
+00007f83f0017b27	movl	0x40(sp), r6
+00007f83f0017b2b	movl	r5, result
+00007f83f0017b2d	cmpl	r6, result
+00007f83f0017b2f	je	.72
+00007f83f0017b31	testb	$1, suspendbit
+00007f83f0017b35	je	.75			; back
+00007f83f0017b3b	callq	.3c			; back
+00007f83f0017b40	jmp	.75			; back
+00007f83f0017b45 .72:	movl	0x60(sp), r5
+00007f83f0017b49	movl	r5, scratch
+00007f83f0017b4b	addq	memory, scratch
+00007f83f0017b4e	movl	8(scratch), r5
+00007f83f0017b51	movl	r5, 0x40(sp)
+00007f83f0017b55	movl	0x48(sp), r6
+00007f83f0017b59	movl	r5, scratch
+00007f83f0017b5b	addq	memory, scratch
+00007f83f0017b5e	movl	r6, 0xc(scratch)
+00007f83f0017b61	movl	0x60(sp), r5
+00007f83f0017b65	movl	0x48(sp), r6
+00007f83f0017b69	movl	r5, scratch
+00007f83f0017b6b	addq	memory, scratch
+00007f83f0017b6e	movl	r6, 8(scratch)
+00007f83f0017b71	movl	0x48(sp), r5
+00007f83f0017b75	movl	r5, scratch
+00007f83f0017b77	addq	memory, scratch
+00007f83f0017b7a	movl	zero, 0x18(scratch)
+00007f83f0017b7d	movl	0x48(sp), r5
+00007f83f0017b81	movl	0x60(sp), r6
+00007f83f0017b85	movl	r5, scratch
+00007f83f0017b87	addq	memory, scratch
+00007f83f0017b8a	movl	r6, 0xc(scratch)
+00007f83f0017b8d	movl	0x48(sp), r5
+00007f83f0017b91	movl	0x40(sp), r6
+00007f83f0017b95	movl	r5, scratch
+00007f83f0017b97	addq	memory, scratch
+00007f83f0017b9a	movl	r6, 8(scratch)
+00007f83f0017b9d	jmp	.6b
+00007f83f0017ba2 .74:	movl	0x18(sp), r5
+00007f83f0017ba6	movl	0x48(sp), r6
+00007f83f0017baa	movl	r5, scratch
+00007f83f0017bac	addq	memory, scratch
+00007f83f0017baf	movl	r6, (scratch)
+00007f83f0017bb1	movl	0x48(sp), r5
+00007f83f0017bb5	movl	0x30(sp), r6
+00007f83f0017bb9	movl	r5, scratch
+00007f83f0017bbb	addq	memory, scratch
+00007f83f0017bbe	movl	r6, 0x18(scratch)
+00007f83f0017bc1 .73:	movl	0x48(sp), r5
+00007f83f0017bc5	movl	0x48(sp), r6
+00007f83f0017bc9	movl	r5, scratch
+00007f83f0017bcb	addq	memory, scratch
+00007f83f0017bce	movl	r6, 0xc(scratch)
+00007f83f0017bd1	movl	0x48(sp), r5
+00007f83f0017bd5	movl	0x48(sp), r6
+00007f83f0017bd9	movl	r5, scratch
+00007f83f0017bdb	addq	memory, scratch
+00007f83f0017bde	movl	r6, 8(scratch)
+00007f83f0017be1 .6b:	movl	0x50(sp), r5
+00007f83f0017be5	addl	$8, r5
+00007f83f0017be8	movl	r5, 0x40(sp)
+00007f83f0017bec	jmp	.76
+00007f83f0017bf1 .42:	movl	$1, scratch
+00007f83f0017bf7	movl	scratch, 0x10(sp)
+00007f83f0017bfb	jmp	.43
+00007f83f0017c00 .34:	movl	$0x2a, scratch
+00007f83f0017c06	movl	scratch, 0x10(sp)
+00007f83f0017c0a	jmp	.43
+00007f83f0017c0f .76:	movl	$0x2a, scratch
+00007f83f0017c15	movl	scratch, 0x10(sp)
+00007f83f0017c19	jmp	.43
+00007f83f0017c1e .4d:	movl	$0x2a, scratch
+00007f83f0017c24	movl	scratch, 0x10(sp)
+00007f83f0017c28	jmp	.43
+00007f83f0017c2d .4c:	movl	$0x2a, scratch
+00007f83f0017c33	movl	scratch, 0x10(sp)
+00007f83f0017c37	jmp	.43
+00007f83f0017c3c .69:	movl	$0x2b, scratch
+00007f83f0017c42	movl	scratch, 0x10(sp)
+00007f83f0017c46	jmp	.43
+00007f83f0017c4b .6a:	movl	$0x2a, scratch
+00007f83f0017c51	movl	scratch, 0x10(sp)
+00007f83f0017c55	jmp	.43
+00007f83f0017c5a .60:	movl	$0x2b, scratch
+00007f83f0017c60	movl	scratch, 0x10(sp)
+00007f83f0017c64	jmp	.43
+00007f83f0017c69 .61:	movl	$0x2a, scratch
+00007f83f0017c6f	movl	scratch, 0x10(sp)
+00007f83f0017c73	jmp	.43
+00007f83f0017c78 .52:	movl	0x1004ec(memory), r5
+00007f83f0017c7f	movl	r5, 0x60(sp)
+00007f83f0017c83	movl	0x50(sp), r6
+00007f83f0017c87	movl	0x60(sp), r7
+00007f83f0017c8b	movl	0x50(sp), r8
+00007f83f0017c90	movl	r7, result
+00007f83f0017c92	cmpl	r8, result
+00007f83f0017c95	cmovbl	r5, r6
+00007f83f0017c98	movl	r6, 0x1004ec(memory)
+00007f83f0017c9f	movl	0x50(sp), r5
+00007f83f0017ca3	movl	0x18(sp), r6
+00007f83f0017ca7	addl	r6, r5
+00007f83f0017ca9	movl	r5, 0x38(sp)
+00007f83f0017cad	movl	$0x1004d8, scratch
+00007f83f0017cb3	movl	scratch, 0x60(sp)
+00007f83f0017cb7 .79:	movl	0x60(sp), r5
+00007f83f0017cbb	movl	r5, scratch
+00007f83f0017cbd	addq	memory, scratch
+00007f83f0017cc0	movl	(scratch), r5
+00007f83f0017cc2	movl	0x38(sp), r6
+00007f83f0017cc6	movl	r5, result
+00007f83f0017cc8	cmpl	r6, result
+00007f83f0017cca	je	.77
+00007f83f0017cd0	movl	0x60(sp), r5
+00007f83f0017cd4	movl	r5, scratch
+00007f83f0017cd6	addq	memory, scratch
+00007f83f0017cd9	movl	8(scratch), r5
+00007f83f0017cdc	movl	r5, 0x60(sp)
+00007f83f0017ce0	testl	r5, r5
+00007f83f0017ce2	je	.78
+00007f83f0017ce4	testb	$1, suspendbit
+00007f83f0017ce8	je	.79			; back
+00007f83f0017cee	callq	.3c			; back
+00007f83f0017cf3	jmp	.79			; back
+00007f83f0017cf8 .78:	jmp	.7a
+00007f83f0017cfd .77:	movl	0x60(sp), r5
+00007f83f0017d01	movl	r5, scratch
+00007f83f0017d03	addq	memory, scratch
+00007f83f0017d06	movl	0xc(scratch), r5
+00007f83f0017d09	testl	r5, r5
+00007f83f0017d0b	je	.7b
+00007f83f0017d11 .7a:	movl	$0x1004d8, scratch
+00007f83f0017d17	movl	scratch, 0x60(sp)
+00007f83f0017d1b	movl	0x1004d8(memory), r5
+00007f83f0017d22	movl	r5, 0x38(sp)
+00007f83f0017d26	movl	0x40(sp), r6
+00007f83f0017d2a	movl	r5, result
+00007f83f0017d2c	cmpl	r6, result
+00007f83f0017d2e	jbe	.7c
+00007f83f0017d34	movl	$0x1c, scratch
+00007f83f0017d3a	movl	scratch, 0x10(sp)
+00007f83f0017d3e	jmp	.43
+00007f83f0017d43 .7b:	movl	0x60(sp), r5
+00007f83f0017d47	movl	0x50(sp), r6
+00007f83f0017d4b	movl	r5, scratch
+00007f83f0017d4d	addq	memory, scratch
+00007f83f0017d50	movl	r6, (scratch)
+00007f83f0017d52	movl	0x60(sp), r5
+00007f83f0017d56	movl	0x60(sp), r6
+00007f83f0017d5a	movl	r6, scratch
+00007f83f0017d5c	addq	memory, scratch
+00007f83f0017d5f	movl	4(scratch), r6
+00007f83f0017d62	movl	0x18(sp), r7
+00007f83f0017d66	addl	r7, r6
+00007f83f0017d68	movl	r5, scratch
+00007f83f0017d6a	addq	memory, scratch
+00007f83f0017d6d	movl	r6, 4(scratch)
+00007f83f0017d70	movl	0x50(sp), r5
+00007f83f0017d74	movl	0x48(sp), r6
+00007f83f0017d78	orl	$3, r6
+00007f83f0017d7b	movl	r5, scratch
+00007f83f0017d7d	addq	memory, scratch
+00007f83f0017d80	movl	r6, 4(scratch)
+00007f83f0017d83	movl	0x50(sp), r5
+00007f83f0017d87	movl	0x48(sp), r6
+00007f83f0017d8b	addl	r6, r5
+00007f83f0017d8d	movl	r5, 0x60(sp)
+00007f83f0017d91	movl	0x38(sp), r5
+00007f83f0017d95	movl	0x50(sp), r6
+00007f83f0017d99	subl	r6, r5
+00007f83f0017d9b	movl	0x48(sp), r6
+00007f83f0017d9f	subl	r6, r5
+00007f83f0017da1	movl	r5, 0x48(sp)
+00007f83f0017da5	movl	0x1004cc(memory), r5
+00007f83f0017dac	movl	0x38(sp), r6
+00007f83f0017db0	movl	r5, result
+00007f83f0017db2	cmpl	r6, result
+00007f83f0017db4	je	.7d
+00007f83f0017dba	movl	0x1004c8(memory), r5
+00007f83f0017dc1	movl	0x38(sp), r6
+00007f83f0017dc5	movl	r5, result
+00007f83f0017dc7	cmpl	r6, result
+00007f83f0017dc9	je	.7e
+00007f83f0017dcf	movl	0x38(sp), r5
+00007f83f0017dd3	movl	r5, scratch
+00007f83f0017dd5	addq	memory, scratch
+00007f83f0017dd8	movl	4(scratch), r5
+00007f83f0017ddb	movl	r5, 0x40(sp)
+00007f83f0017ddf	andl	$3, r5
+00007f83f0017de2	movl	r5, result
+00007f83f0017de4	cmpl	$1, result
+00007f83f0017de7	jne	.7f
+00007f83f0017ded	movl	0x40(sp), r5
+00007f83f0017df1	andl	$0xfffffffffffffff8, r5
+00007f83f0017df4	movl	r5, 0x28(sp)
+00007f83f0017df8	movl	r5, result
+00007f83f0017dfa	cmpl	$0xff, result
+00007f83f0017e00	ja	.80
+00007f83f0017e06	movl	0x38(sp), r5
+00007f83f0017e0a	movl	r5, scratch
+00007f83f0017e0c	addq	memory, scratch
+00007f83f0017e0f	movl	0xc(scratch), r5
+00007f83f0017e12	movl	r5, 0x30(sp)
+00007f83f0017e16	movl	0x38(sp), r6
+00007f83f0017e1a	movl	r6, scratch
+00007f83f0017e1c	addq	memory, scratch
+00007f83f0017e1f	movl	8(scratch), r6
+00007f83f0017e22	movl	r6, 0x18(sp)
+00007f83f0017e26	movl	r5, result
+00007f83f0017e28	cmpl	r6, result
+00007f83f0017e2a	je	.81
+00007f83f0017e30	movl	0x18(sp), r5
+00007f83f0017e34	movl	0x30(sp), r6
+00007f83f0017e38	movl	r5, scratch
+00007f83f0017e3a	addq	memory, scratch
+00007f83f0017e3d	movl	r6, 0xc(scratch)
+00007f83f0017e40	movl	0x30(sp), r5
+00007f83f0017e44	movl	0x18(sp), r6
+00007f83f0017e48	movl	r5, scratch
+00007f83f0017e4a	addq	memory, scratch
+00007f83f0017e4d	movl	r6, 8(scratch)
+00007f83f0017e50	jmp	.82
+00007f83f0017e55 .7d:	movl	0x60(sp), r5
+00007f83f0017e59	movl	r5, 0x1004cc(memory)
+00007f83f0017e60	movl	0x1004c4(memory), r5
+00007f83f0017e67	movl	0x48(sp), r6
+00007f83f0017e6b	addl	r6, r5
+00007f83f0017e6d	movl	r5, 0x48(sp)
+00007f83f0017e71	movl	r5, 0x1004c4(memory)
+00007f83f0017e78	movl	0x60(sp), r5
+00007f83f0017e7c	movl	0x48(sp), r6
+00007f83f0017e80	orl	$1, r6
+00007f83f0017e83	movl	r5, scratch
+00007f83f0017e85	addq	memory, scratch
+00007f83f0017e88	movl	r6, 4(scratch)
+00007f83f0017e8b	movl	0x50(sp), r5
+00007f83f0017e8f	addl	$8, r5
+00007f83f0017e92	movl	r5, result
+00007f83f0017e94	leaq	0x58(sp), sp
+00007f83f0017e99	retq
+00007f83f0017e9a .7e:	movl	0x60(sp), r5
+00007f83f0017e9e	movl	r5, 0x1004c8(memory)
+00007f83f0017ea5	movl	0x1004c0(memory), r5
+00007f83f0017eac	movl	0x48(sp), r6
+00007f83f0017eb0	addl	r6, r5
+00007f83f0017eb2	movl	r5, 0x48(sp)
+00007f83f0017eb6	movl	r5, 0x1004c0(memory)
+00007f83f0017ebd	movl	0x60(sp), r5
+00007f83f0017ec1	movl	0x48(sp), r6
+00007f83f0017ec5	orl	$1, r6
+00007f83f0017ec8	movl	r5, scratch
+00007f83f0017eca	addq	memory, scratch
+00007f83f0017ecd	movl	r6, 4(scratch)
+00007f83f0017ed0	movl	0x60(sp), r5
+00007f83f0017ed4	movl	0x48(sp), r6
+00007f83f0017ed8	addl	r6, r5
+00007f83f0017eda	movl	0x48(sp), r6
+00007f83f0017ede	movl	r5, scratch
+00007f83f0017ee0	addq	memory, scratch
+00007f83f0017ee3	movl	r6, (scratch)
+00007f83f0017ee5	movl	0x50(sp), r5
+00007f83f0017ee9	addl	$8, r5
+00007f83f0017eec	movl	r5, result
+00007f83f0017eee	leaq	0x58(sp), sp
+00007f83f0017ef3	retq
+00007f83f0017ef4 .80:	movl	0x38(sp), r5
+00007f83f0017ef8	movl	r5, scratch
+00007f83f0017efa	addq	memory, scratch
+00007f83f0017efd	movl	0x18(scratch), r5
+00007f83f0017f00	movl	r5, (sp)
+00007f83f0017f03	movl	0x38(sp), r5
+00007f83f0017f07	movl	r5, scratch
+00007f83f0017f09	addq	memory, scratch
+00007f83f0017f0c	movl	0xc(scratch), r5
+00007f83f0017f0f	movl	r5, 0x30(sp)
+00007f83f0017f13	movl	0x38(sp), r6
+00007f83f0017f17	movl	r5, result
+00007f83f0017f19	cmpl	r6, result
+00007f83f0017f1b	je	.83
+00007f83f0017f21	movl	0x38(sp), r5
+00007f83f0017f25	movl	r5, scratch
+00007f83f0017f27	addq	memory, scratch
+00007f83f0017f2a	movl	8(scratch), r5
+00007f83f0017f2d	movl	r5, 0x40(sp)
+00007f83f0017f31	movl	0x30(sp), r6
+00007f83f0017f35	movl	r5, scratch
+00007f83f0017f37	addq	memory, scratch
+00007f83f0017f3a	movl	r6, 0xc(scratch)
+00007f83f0017f3d	movl	0x30(sp), r5
+00007f83f0017f41	movl	0x40(sp), r6
+00007f83f0017f45	movl	r5, scratch
+00007f83f0017f47	addq	memory, scratch
+00007f83f0017f4a	movl	r6, 8(scratch)
+00007f83f0017f4d	movl	(sp), r5
+00007f83f0017f50	testl	r5, r5
+00007f83f0017f52	jne	.84
+00007f83f0017f58	jmp	.82
+00007f83f0017f5d .81:	movl	0x100330(memory), r5
+00007f83f0017f64	movl	0x40(sp), r6
+00007f83f0017f68	shrl	$3, r6
+00007f83f0017f6b	movl	$0xfffffffe, r7
+00007f83f0017f71	movl	r6, scratch
+00007f83f0017f73	roll	scratchb, r7
+00007f83f0017f75	andl	r7, r5
+00007f83f0017f77	movl	r5, 0x100330(memory)
+00007f83f0017f7e	jmp	.82
+00007f83f0017f83 .83:	movl	0x38(sp), r5
+00007f83f0017f87	movl	0x38(sp), r6
+00007f83f0017f8b	movl	r6, scratch
+00007f83f0017f8d	addq	memory, scratch
+00007f83f0017f90	movl	0x14(scratch), r6
+00007f83f0017f93	movl	r6, 0x30(sp)
+00007f83f0017f97	testl	r6, r6
+00007f83f0017f99	movl	$0x10, r6
+00007f83f0017f9f	movl	$0x14, scratch
+00007f83f0017fa5	cmovnel	scratch, r6
+00007f83f0017fa8	addl	r6, r5
+00007f83f0017faa	movl	r5, scratch
+00007f83f0017fac	addq	memory, scratch
+00007f83f0017faf	movl	(scratch), r5
+00007f83f0017fb1	movl	r5, 0x40(sp)
+00007f83f0017fb5	testl	r5, r5
+00007f83f0017fb7	je	.85
+00007f83f0017fbd	movl	0x38(sp), r5
+00007f83f0017fc1	addl	$0x14, r5
+00007f83f0017fc4	movl	0x38(sp), r6
+00007f83f0017fc8	addl	$0x10, r6
+00007f83f0017fcb	movl	0x30(sp), r7
+00007f83f0017fcf	testl	r7, r7
+00007f83f0017fd1	cmovnel	r5, r6
+00007f83f0017fd4	movl	r6, 0x18(sp)
+00007f83f0017fd8 .88:	movl	0x18(sp), r5
+00007f83f0017fdc	movl	r5, 0x20(sp)
+00007f83f0017fe0	movl	0x40(sp), r5
+00007f83f0017fe4	movl	r5, 0x30(sp)
+00007f83f0017fe8	addl	$0x14, r5
+00007f83f0017feb	movl	r5, 0x18(sp)
+00007f83f0017fef	movl	r5, scratch
+00007f83f0017ff1	addq	memory, scratch
+00007f83f0017ff4	movl	(scratch), r5
+00007f83f0017ff6	movl	r5, 0x40(sp)
+00007f83f0017ffa	testl	r5, r5
+00007f83f0017ffc	jne	.86
+00007f83f0018002	movl	0x30(sp), r5
+00007f83f0018006	addl	$0x10, r5
+00007f83f0018009	movl	r5, 0x18(sp)
+00007f83f001800d	movl	0x30(sp), r5
+00007f83f0018011	movl	r5, scratch
+00007f83f0018013	addq	memory, scratch
+00007f83f0018016	movl	0x10(scratch), r5
+00007f83f0018019	movl	r5, 0x40(sp)
+00007f83f001801d .86:	movl	0x40(sp), r5
+00007f83f0018021	testl	r5, r5
+00007f83f0018023	je	.87
+00007f83f0018025	testb	$1, suspendbit
+00007f83f0018029	je	.88			; back
+00007f83f001802f	callq	.3c			; back
+00007f83f0018034	jmp	.88			; back
+00007f83f0018039 .87:	movl	0x20(sp), r5
+00007f83f001803d	movl	r5, scratch
+00007f83f001803f	addq	memory, scratch
+00007f83f0018042	movl	zero, (scratch)
+00007f83f0018044	movl	(sp), r5
+00007f83f0018047	testl	r5, r5
+00007f83f0018049	jne	.84
+00007f83f001804f	jmp	.82
+00007f83f0018054 .85:	movl	zero, scratch
+00007f83f0018056	movl	scratch, 0x30(sp)
+00007f83f001805a	movl	(sp), r5
+00007f83f001805d	testl	r5, r5
+00007f83f001805f	je	.82
+00007f83f0018065 .84:	movl	0x38(sp), r5
+00007f83f0018069	movl	r5, scratch
+00007f83f001806b	addq	memory, scratch
+00007f83f001806e	movl	0x1c(scratch), r5
+00007f83f0018071	shll	$2, r5
+00007f83f0018074	addl	$0x100440, r5
+00007f83f001807a	movl	r5, 0x40(sp)
+00007f83f001807e	movl	r5, scratch
+00007f83f0018080	addq	memory, scratch
+00007f83f0018083	movl	(scratch), r5
+00007f83f0018085	movl	0x38(sp), r6
+00007f83f0018089	movl	r5, result
+00007f83f001808b	cmpl	r6, result
+00007f83f001808d	je	.89
+00007f83f0018093	movl	(sp), r5
+00007f83f0018096	movl	(sp), r6
+00007f83f0018099	movl	r6, scratch
+00007f83f001809b	addq	memory, scratch
+00007f83f001809e	movl	0x10(scratch), r6
+00007f83f00180a1	movl	0x38(sp), r7
+00007f83f00180a5	movl	r6, result
+00007f83f00180a7	cmpl	r7, result
+00007f83f00180a9	movl	$0x14, r6
+00007f83f00180af	movl	$0x10, scratch
+00007f83f00180b5	cmovel	scratch, r6
+00007f83f00180b8	addl	r6, r5
+00007f83f00180ba	movl	0x30(sp), r6
+00007f83f00180be	movl	r5, scratch
+00007f83f00180c0	addq	memory, scratch
+00007f83f00180c3	movl	r6, (scratch)
+00007f83f00180c5	movl	0x30(sp), r5
+00007f83f00180c9	testl	r5, r5
+00007f83f00180cb	jne	.8a
+00007f83f00180d1	jmp	.82
+00007f83f00180d6 .89:	movl	0x40(sp), r5
+00007f83f00180da	movl	0x30(sp), r6
+00007f83f00180de	movl	r5, scratch
+00007f83f00180e0	addq	memory, scratch
+00007f83f00180e3	movl	r6, (scratch)
+00007f83f00180e5	movl	0x30(sp), r5
+00007f83f00180e9	testl	r5, r5
+00007f83f00180eb	je	.8b
+00007f83f00180f1 .8a:	movl	0x30(sp), r5
+00007f83f00180f5	movl	(sp), r6
+00007f83f00180f8	movl	r5, scratch
+00007f83f00180fa	addq	memory, scratch
+00007f83f00180fd	movl	r6, 0x18(scratch)
+00007f83f0018100	movl	0x38(sp), r5
+00007f83f0018104	movl	r5, scratch
+00007f83f0018106	addq	memory, scratch
+00007f83f0018109	movl	0x10(scratch), r5
+00007f83f001810c	movl	r5, 0x40(sp)
+00007f83f0018110	testl	r5, r5
+00007f83f0018112	je	.8c
+00007f83f0018118	movl	0x30(sp), r5
+00007f83f001811c	movl	0x40(sp), r6
+00007f83f0018120	movl	r5, scratch
+00007f83f0018122	addq	memory, scratch
+00007f83f0018125	movl	r6, 0x10(scratch)
+00007f83f0018128	movl	0x40(sp), r5
+00007f83f001812c	movl	0x30(sp), r6
+00007f83f0018130	movl	r5, scratch
+00007f83f0018132	addq	memory, scratch
+00007f83f0018135	movl	r6, 0x18(scratch)
+00007f83f0018138 .8c:	movl	0x38(sp), r5
+00007f83f001813c	movl	r5, scratch
+00007f83f001813e	addq	memory, scratch
+00007f83f0018141	movl	0x14(scratch), r5
+00007f83f0018144	movl	r5, 0x40(sp)
+00007f83f0018148	testl	r5, r5
+00007f83f001814a	je	.82
+00007f83f0018150	movl	0x30(sp), r5
+00007f83f0018154	addl	$0x14, r5
+00007f83f0018157	movl	0x40(sp), r6
+00007f83f001815b	movl	r5, scratch
+00007f83f001815d	addq	memory, scratch
+00007f83f0018160	movl	r6, (scratch)
+00007f83f0018162	movl	0x40(sp), r5
+00007f83f0018166	movl	0x30(sp), r6
+00007f83f001816a	movl	r5, scratch
+00007f83f001816c	addq	memory, scratch
+00007f83f001816f	movl	r6, 0x18(scratch)
+00007f83f0018172	jmp	.82
+00007f83f0018177 .8b:	movl	0x100334(memory), r5
+00007f83f001817e	movl	0x38(sp), r6
+00007f83f0018182	addl	$0x1c, r6
+00007f83f0018185	movl	r6, scratch
+00007f83f0018187	addq	memory, scratch
+00007f83f001818a	movl	(scratch), r6
+00007f83f001818c	movl	$0xfffffffe, r7
+00007f83f0018192	movl	r6, scratch
+00007f83f0018194	roll	scratchb, r7
+00007f83f0018196	andl	r7, r5
+00007f83f0018198	movl	r5, 0x100334(memory)
+00007f83f001819f .82:	movl	0x28(sp), r5
+00007f83f00181a3	movl	0x48(sp), r6
+00007f83f00181a7	addl	r6, r5
+00007f83f00181a9	movl	r5, 0x48(sp)
+00007f83f00181ad	movl	0x38(sp), r5
+00007f83f00181b1	movl	0x28(sp), r6
+00007f83f00181b5	addl	r6, r5
+00007f83f00181b7	movl	r5, 0x38(sp)
+00007f83f00181bb .7f:	movl	0x38(sp), r5
+00007f83f00181bf	movl	0x38(sp), r6
+00007f83f00181c3	movl	r6, scratch
+00007f83f00181c5	addq	memory, scratch
+00007f83f00181c8	movl	4(scratch), r6
+00007f83f00181cb	andl	$0xfffffffffffffffe, r6
+00007f83f00181ce	movl	r5, scratch
+00007f83f00181d0	addq	memory, scratch
+00007f83f00181d3	movl	r6, 4(scratch)
+00007f83f00181d6	movl	0x60(sp), r5
+00007f83f00181da	movl	0x48(sp), r6
+00007f83f00181de	orl	$1, r6
+00007f83f00181e1	movl	r5, scratch
+00007f83f00181e3	addq	memory, scratch
+00007f83f00181e6	movl	r6, 4(scratch)
+00007f83f00181e9	movl	0x60(sp), r5
+00007f83f00181ed	movl	0x48(sp), r6
+00007f83f00181f1	addl	r6, r5
+00007f83f00181f3	movl	0x48(sp), r6
+00007f83f00181f7	movl	r5, scratch
+00007f83f00181f9	addq	memory, scratch
+00007f83f00181fc	movl	r6, (scratch)
+00007f83f00181fe	movl	0x48(sp), r5
+00007f83f0018202	movl	r5, result
+00007f83f0018204	cmpl	$0xff, result
+00007f83f001820a	ja	.8d
+00007f83f0018210	movl	0x48(sp), r5
+00007f83f0018214	shrl	$3, r5
+00007f83f0018217	movl	r5, 0x40(sp)
+00007f83f001821b	shll	$3, r5
+00007f83f001821e	addl	$0x100338, r5
+00007f83f0018224	movl	r5, 0x48(sp)
+00007f83f0018228	movl	0x100330(memory), r5
+00007f83f001822f	movl	r5, 0x38(sp)
+00007f83f0018233	movl	0x40(sp), r6
+00007f83f0018237	andl	$0x1f, r6
+00007f83f001823a	movl	$1, r7
+00007f83f0018240	movl	r6, scratch
+00007f83f0018242	shll	scratchb, r7
+00007f83f0018244	movl	r7, 0x40(sp)
+00007f83f0018248	andl	r7, r5
+00007f83f001824a	testl	r5, r5
+00007f83f001824c	je	.8e
+00007f83f0018252	movl	0x48(sp), r5
+00007f83f0018256	addl	$8, r5
+00007f83f0018259	movl	r5, 0x38(sp)
+00007f83f001825d	movl	0x48(sp), r5
+00007f83f0018261	movl	r5, scratch
+00007f83f0018263	addq	memory, scratch
+00007f83f0018266	movl	8(scratch), r5
+00007f83f0018269	movl	r5, 0x40(sp)
+00007f83f001826d	jmp	.8f
+00007f83f0018272 .8d:	movl	zero, scratch
+00007f83f0018274	movl	scratch, 0x40(sp)
+00007f83f0018278	movl	0x48(sp), r5
+00007f83f001827c	shrl	$8, r5
+00007f83f001827f	movl	r5, 0x38(sp)
+00007f83f0018283	testl	r5, r5
+00007f83f0018285	je	.90
+00007f83f001828b	movl	$0x1f, scratch
+00007f83f0018291	movl	scratch, 0x40(sp)
+00007f83f0018295	movl	0x48(sp), r5
+00007f83f0018299	movl	r5, result
+00007f83f001829b	cmpl	$0xffffff, result
+00007f83f00182a1	ja	.90
+00007f83f00182a7	movl	0x48(sp), r5
+00007f83f00182ab	movl	0x38(sp), r6
+00007f83f00182af	lzcntl	r6, r6
+00007f83f00182b3	movl	r6, 0x40(sp)
+00007f83f00182b7	movl	$0x26, r7
+00007f83f00182bd	subl	r6, r7
+00007f83f00182bf	andl	$0x1f, r7
+00007f83f00182c2	movl	r7, scratch
+00007f83f00182c4	shrl	scratchb, r5
+00007f83f00182c6	andl	$1, r5
+00007f83f00182c9	movl	0x40(sp), r6
+00007f83f00182cd	movl	$0x1f, r7
+00007f83f00182d3	subl	r6, r7
+00007f83f00182d5	shll	$1, r7
+00007f83f00182d8	orl	r7, r5
+00007f83f00182da	movl	r5, 0x40(sp)
+00007f83f00182de .90:	movl	0x60(sp), r5
+00007f83f00182e2	movl	r5, scratch
+00007f83f00182e4	addq	memory, scratch
+00007f83f00182e7	movq	zero, 0x10(scratch)
+00007f83f00182eb	movl	0x60(sp), r5
+00007f83f00182ef	movl	0x40(sp), r6
+00007f83f00182f3	movl	r5, scratch
+00007f83f00182f5	addq	memory, scratch
+00007f83f00182f8	movl	r6, 0x1c(scratch)
+00007f83f00182fb	movl	0x40(sp), r5
+00007f83f00182ff	shll	$2, r5
+00007f83f0018302	addl	$0x100440, r5
+00007f83f0018308	movl	r5, 0x38(sp)
+00007f83f001830c	movl	0x100334(memory), r5
+00007f83f0018313	movl	r5, 0x30(sp)
+00007f83f0018317	movl	0x40(sp), r6
+00007f83f001831b	andl	$0x1f, r6
+00007f83f001831e	movl	$1, r7
+00007f83f0018324	movl	r6, scratch
+00007f83f0018326	shll	scratchb, r7
+00007f83f0018328	movl	r7, 0x18(sp)
+00007f83f001832c	andl	r7, r5
+00007f83f001832e	testl	r5, r5
+00007f83f0018330	je	.91
+00007f83f0018336	movl	0x38(sp), r5
+00007f83f001833a	movl	r5, scratch
+00007f83f001833c	addq	memory, scratch
+00007f83f001833f	movl	(scratch), r5
+00007f83f0018341	movl	r5, 0x30(sp)
+00007f83f0018345	movl	r5, scratch
+00007f83f0018347	addq	memory, scratch
+00007f83f001834a	movl	4(scratch), r5
+00007f83f001834d	andl	$0xfffffffffffffff8, r5
+00007f83f0018350	movl	0x48(sp), r6
+00007f83f0018354	movl	r5, result
+00007f83f0018356	cmpl	r6, result
+00007f83f0018358	jne	.92
+00007f83f001835e	movl	0x30(sp), r5
+00007f83f0018362	movl	r5, 0x40(sp)
+00007f83f0018366	jmp	.93
+00007f83f001836b .8e:	movl	0x38(sp), r5
+00007f83f001836f	movl	0x40(sp), r6
+00007f83f0018373	orl	r6, r5
+00007f83f0018375	movl	r5, 0x100330(memory)
+00007f83f001837c	movl	0x48(sp), r5
+00007f83f0018380	addl	$8, r5
+00007f83f0018383	movl	r5, 0x38(sp)
+00007f83f0018387	movl	0x48(sp), r5
+00007f83f001838b	movl	r5, 0x40(sp)
+00007f83f001838f .8f:	movl	0x38(sp), r5
+00007f83f0018393	movl	0x60(sp), r6
+00007f83f0018397	movl	r5, scratch
+00007f83f0018399	addq	memory, scratch
+00007f83f001839c	movl	r6, (scratch)
+00007f83f001839e	movl	0x40(sp), r5
+00007f83f00183a2	movl	0x60(sp), r6
+00007f83f00183a6	movl	r5, scratch
+00007f83f00183a8	addq	memory, scratch
+00007f83f00183ab	movl	r6, 0xc(scratch)
+00007f83f00183ae	movl	0x60(sp), r5
+00007f83f00183b2	movl	0x48(sp), r6
+00007f83f00183b6	movl	r5, scratch
+00007f83f00183b8	addq	memory, scratch
+00007f83f00183bb	movl	r6, 0xc(scratch)
+00007f83f00183be	movl	0x60(sp), r5
+00007f83f00183c2	movl	0x40(sp), r6
+00007f83f00183c6	movl	r5, scratch
+00007f83f00183c8	addq	memory, scratch
+00007f83f00183cb	movl	r6, 8(scratch)
+00007f83f00183ce	movl	0x50(sp), r5
+00007f83f00183d2	addl	$8, r5
+00007f83f00183d5	movl	r5, result
+00007f83f00183d7	leaq	0x58(sp), sp
+00007f83f00183dc	retq
+00007f83f00183dd .91:	movl	0x30(sp), r5
+00007f83f00183e1	movl	0x18(sp), r6
+00007f83f00183e5	orl	r6, r5
+00007f83f00183e7	movl	r5, 0x100334(memory)
+00007f83f00183ee	movl	0x38(sp), r5
+00007f83f00183f2	movl	0x60(sp), r6
+00007f83f00183f6	movl	r5, scratch
+00007f83f00183f8	addq	memory, scratch
+00007f83f00183fb	movl	r6, (scratch)
+00007f83f00183fd	movl	0x60(sp), r5
+00007f83f0018401	movl	0x38(sp), r6
+00007f83f0018405	movl	r5, scratch
+00007f83f0018407	addq	memory, scratch
+00007f83f001840a	movl	r6, 0x18(scratch)
+00007f83f001840d	jmp	.94
+00007f83f0018412 .92:	movl	0x48(sp), r5
+00007f83f0018416	movl	0x40(sp), r6
+00007f83f001841a	shrl	$1, r6
+00007f83f001841d	movl	$0x19, r7
+00007f83f0018423	subl	r6, r7
+00007f83f0018425	andl	$0x1f, r7
+00007f83f0018428	movl	0x40(sp), r6
+00007f83f001842c	movl	r6, result
+00007f83f001842e	cmpl	$0x1f, result
+00007f83f0018431	movl	zero, scratch
+00007f83f0018433	cmovel	scratch, r7
+00007f83f0018436	movl	r7, scratch
+00007f83f0018438	shll	scratchb, r5
+00007f83f001843a	movl	r5, 0x38(sp)
+00007f83f001843e .96:	movl	0x30(sp), r5
+00007f83f0018442	movl	0x38(sp), r6
+00007f83f0018446	shrl	$0x1d, r6
+00007f83f0018449	andl	$4, r6
+00007f83f001844c	addl	r6, r5
+00007f83f001844e	addl	$0x10, r5
+00007f83f0018451	movl	r5, 0x18(sp)
+00007f83f0018455	movl	r5, scratch
+00007f83f0018457	addq	memory, scratch
+00007f83f001845a	movl	(scratch), r5
+00007f83f001845c	movl	r5, 0x40(sp)
+00007f83f0018460	testl	r5, r5
+00007f83f0018462	je	.95
+00007f83f0018468	movl	0x38(sp), r5
+00007f83f001846c	shll	$1, r5
+00007f83f001846f	movl	r5, 0x38(sp)
+00007f83f0018473	movl	0x40(sp), r5
+00007f83f0018477	movl	r5, 0x30(sp)
+00007f83f001847b	movl	0x40(sp), r5
+00007f83f001847f	movl	r5, scratch
+00007f83f0018481	addq	memory, scratch
+00007f83f0018484	movl	4(scratch), r5
+00007f83f0018487	andl	$0xfffffffffffffff8, r5
+00007f83f001848a	movl	0x48(sp), r6
+00007f83f001848e	movl	r5, result
+00007f83f0018490	cmpl	r6, result
+00007f83f0018492	je	.93
+00007f83f0018494	testb	$1, suspendbit
+00007f83f0018498	je	.96			; back
+00007f83f001849e	callq	.3c			; back
+00007f83f00184a3	jmp	.96			; back
+00007f83f00184a8 .93:	movl	0x40(sp), r5
+00007f83f00184ac	movl	r5, scratch
+00007f83f00184ae	addq	memory, scratch
+00007f83f00184b1	movl	8(scratch), r5
+00007f83f00184b4	movl	r5, 0x48(sp)
+00007f83f00184b8	movl	0x60(sp), r6
+00007f83f00184bc	movl	r5, scratch
+00007f83f00184be	addq	memory, scratch
+00007f83f00184c1	movl	r6, 0xc(scratch)
+00007f83f00184c4	movl	0x40(sp), r5
+00007f83f00184c8	movl	0x60(sp), r6
+00007f83f00184cc	movl	r5, scratch
+00007f83f00184ce	addq	memory, scratch
+00007f83f00184d1	movl	r6, 8(scratch)
+00007f83f00184d4	movl	0x60(sp), r5
+00007f83f00184d8	movl	r5, scratch
+00007f83f00184da	addq	memory, scratch
+00007f83f00184dd	movl	zero, 0x18(scratch)
+00007f83f00184e0	movl	0x60(sp), r5
+00007f83f00184e4	movl	0x40(sp), r6
+00007f83f00184e8	movl	r5, scratch
+00007f83f00184ea	addq	memory, scratch
+00007f83f00184ed	movl	r6, 0xc(scratch)
+00007f83f00184f0	movl	0x60(sp), r5
+00007f83f00184f4	movl	0x48(sp), r6
+00007f83f00184f8	movl	r5, scratch
+00007f83f00184fa	addq	memory, scratch
+00007f83f00184fd	movl	r6, 8(scratch)
+00007f83f0018500	movl	0x50(sp), r5
+00007f83f0018504	addl	$8, r5
+00007f83f0018507	movl	r5, result
+00007f83f0018509	leaq	0x58(sp), sp
+00007f83f001850e	retq
+00007f83f001850f .95:	movl	0x18(sp), r5
+00007f83f0018513	movl	0x60(sp), r6
+00007f83f0018517	movl	r5, scratch
+00007f83f0018519	addq	memory, scratch
+00007f83f001851c	movl	r6, (scratch)
+00007f83f001851e	movl	0x60(sp), r5
+00007f83f0018522	movl	0x30(sp), r6
+00007f83f0018526	movl	r5, scratch
+00007f83f0018528	addq	memory, scratch
+00007f83f001852b	movl	r6, 0x18(scratch)
+00007f83f001852e .94:	movl	0x60(sp), r5
+00007f83f0018532	movl	0x60(sp), r6
+00007f83f0018536	movl	r5, scratch
+00007f83f0018538	addq	memory, scratch
+00007f83f001853b	movl	r6, 0xc(scratch)
+00007f83f001853e	movl	0x60(sp), r5
+00007f83f0018542	movl	0x60(sp), r6
+00007f83f0018546	movl	r5, scratch
+00007f83f0018548	addq	memory, scratch
+00007f83f001854b	movl	r6, 8(scratch)
+00007f83f001854e	movl	0x50(sp), r5
+00007f83f0018552	addl	$8, r5
+00007f83f0018555	movl	r5, result
+00007f83f0018557	leaq	0x58(sp), sp
+00007f83f001855c	retq
+00007f83f001855d .7c:	movl	$0x1b, scratch
+00007f83f0018563	movl	scratch, 0x10(sp)
+00007f83f0018567 .43:	movl	0x10(sp), r5
+00007f83f001856b	movl	$0x35, scratch
+00007f83f0018571	testl	r5, r5
+00007f83f0018573	cmovll	scratch, r5
+00007f83f0018576	cmpl	r5, scratch
+00007f83f0018578	jle	.97
+00007f83f001857e	movl	0x8590(text, r5, 4), r5
+00007f83f0018586	movl	r5, scratch
+00007f83f0018588	addq	text, scratch
+00007f83f001858b	jmp	retpoline
+00007f83f0018590	xchgb	resultb, %fs:(result)
+00007f83f0018593	addb	zerow, suspendbit
+00007f83f0018595	xchgb	resultb, (result)
+00007f83f0018597	addb	scratchw, (stacklimit)
+00007f83f0018599	xchgl	result, (result)
+00007f83f001859b	addb	zerow, -0x79(r7)
+00007f83f001859e	addb	resultb, (result)
+00007f83f00185a0	movl	$0x900008d, r5
+00007f83f00185a5	movl	(result), %es
+00007f83f00185a7	addb	resultb, -0x32ffff72(r7)
+00007f83f00185ad	movl	(result), %es
+00007f83f00185af	addb	scratchb, (stacklimit)
+00007f83f00185b1	popq	(result)
+00007f83f00185b3	addb	resultb, -0x71(stacklimit)
+00007f83f00185b6	addb	resultb, (result)
+00007f83f00185b8	cmpl	$0xb3000090, result
+00007f83f00185bd	nop
+00007f83f00185be	addb	resultb, (result)
+00007f83f00185c4	pushq	$0x91
+00007f83f00185c6	addb	resultb, (result)
+00007f83f00185c8	lretl	$0x91
+00007f83f00185cb	addb	zerow, (stacklimit)
+00007f83f00185cd	xchgl	scratch, result
+00007f83f00185ce	addb	resultb, (result)
+00007f83f00185d0	inb	%dx, resultb
+00007f83f00185d1	popq	(result)
+00007f83f00185d3	addb	suspendbit, 0x4e00008f(r7)
+00007f83f00185d9	movl	(result), %es
+00007f83f00185db	addb	suspendbit, -0x71(scratch)
+00007f83f00185de	addb	resultb, (result)
+00007f83f00185e0	movb	$0x8a, zerob
+00007f83f00185e2	addb	resultb, (result)
+00007f83f00185e4	adcb	scratchb, -0x74ba0000(stacklimit)
+00007f83f00185ea	addb	resultb, (result)
+00007f83f00185ec	movl	-0x74200000(stacklimit), %cs
+00007f83f00185f2	addb	resultb, (result)
+00007f83f00185f4	lahf
+00007f83f00185f5	movl	(result), result
+00007f83f00185f7	addb	scratchb, -0x4ffff73(r5)
+00007f83f00185fd	xchgl	result, (result)
+00007f83f00185ff	addb	zerow, -0x77c30000(r7, result, 4)
+00007f83f0018606	addb	resultb, (result)
+00007f83f0018608	pushq	result
+00007f83f0018609	movl	result, (result)
+00007f83f001860b	addb	zerob, -0x39ffff77(r6)
+00007f83f0018611	movl	result, (result)
+00007f83f0018613	addb	suspendbit, resultw
+00007f83f0018615	movl	(result), result
+00007f83f0018617	addb	zerow, (stacklimit)
+00007f83f0018619	movl	%es, (result)
+00007f83f001861b	addb	scratchw, -0x74(r5)
+00007f83f001861e	addb	resultb, (result)
+00007f83f0018620	retq	$0x8c
+00007f83f0018623	addb	suspendbit, (zero)
+00007f83f0018625	leal	(result), result
+00007f83f0018627	addb	resultb, suspendbit
+00007f83f0018629	xchgl	zero, result
+00007f83f001862a	addb	resultb, (result)
+00007f83f001862c	orl	$0x55000093, result
+00007f83f0018631	xchgl	suspendbit, result
+00007f83f0018632	addb	resultb, (result)
+00007f83f0018634	movabsl	result, 0xdb00009541000093
+00007f83f001863d	xchgl	%esp, result
+00007f83f001863e	addb	resultb, (result)
+00007f83f0018640	andl	zero, 0x946000(result, result)
+00007f83f0018647	addb	suspendbit, -0x7fffff6c(r6)
+00007f83f001864d	leal	(result), result
+00007f83f001864f	addb	scratchb, -0x75c30000(zero, zero, 4)
+00007f83f0018656	addb	resultb, (result)
+00007f83f0018658	popfq
+00007f83f0018659	movb	(result), resultb
+00007f83f001865b	addb	resultw, (r6)
+00007f83f001865d	xchgl	zero, result
+00007f83f001865e	addb	resultb, (result)
+00007f83f0018660	outl	result, %dx
+00007f83f0018661	xchgl	scratch, result
+00007f83f0018662	addb	resultb, (result)
+00007f83f0018664	movl	0x60(sp), r5
+00007f83f0018668	movl	r5, scratch
+00007f83f001866a	addq	memory, scratch
+00007f83f001866d	movl	4(scratch), r5
+00007f83f0018670	andl	$0xfffffffffffffff8, r5
+00007f83f0018673	movl	0x48(sp), r6
+00007f83f0018677	subl	r6, r5
+00007f83f0018679	movl	r5, 0x50(sp)
+00007f83f001867d	movl	0x40(sp), r6
+00007f83f0018681	movl	0x50(sp), r7
+00007f83f0018685	movl	0x40(sp), r8
+00007f83f001868a	movl	r7, result
+00007f83f001868c	cmpl	r8, result
+00007f83f001868f	movl	zero, scratch
+00007f83f0018691	setb	scratchb
+00007f83f0018695	movl	scratch, r7
+00007f83f0018697	movl	r7, 0x50(sp)
+00007f83f001869b	testl	r7, r7
+00007f83f001869d	cmovnel	r5, r6
+00007f83f00186a0	movl	r6, 0x40(sp)
+00007f83f00186a4	movl	0x60(sp), r5
+00007f83f00186a8	movl	0x38(sp), r6
+00007f83f00186ac	movl	0x50(sp), r7
+00007f83f00186b0	testl	r7, r7
+00007f83f00186b2	cmovnel	r5, r6
+00007f83f00186b5	movl	r6, 0x38(sp)
+00007f83f00186b9	movl	0x60(sp), r5
+00007f83f00186bd	movl	r5, 0x50(sp)
+00007f83f00186c1	movl	r5, scratch
+00007f83f00186c3	addq	memory, scratch
+00007f83f00186c6	movl	0x10(scratch), r5
+00007f83f00186c9	movl	r5, 0x60(sp)
+00007f83f00186cd	testl	r5, r5
+00007f83f00186cf	jne	.98
+00007f83f00186d5	movl	$1, scratch
+00007f83f00186db	movl	scratch, 0x10(sp)
+00007f83f00186df	testb	$1, suspendbit
+00007f83f00186e3	je	.43
+00007f83f00186e9	callq	.3c			; back
+00007f83f00186ee	jmp	.43
+00007f83f00186f3	movl	0x50(sp), r5
+00007f83f00186f7	addl	$0x14, r5
+00007f83f00186fa	movl	r5, scratch
+00007f83f00186fc	addq	memory, scratch
+00007f83f00186ff	movl	(scratch), r5
+00007f83f0018701	movl	r5, 0x60(sp)
+00007f83f0018705	testl	r5, r5
+00007f83f0018707	jne	.99
+00007f83f001870d	movl	$2, scratch
+00007f83f0018713	movl	scratch, 0x10(sp)
+00007f83f0018717	testb	$1, suspendbit
+00007f83f001871b	je	.43
+00007f83f0018721	callq	.3c			; back
+00007f83f0018726	jmp	.43
+00007f83f001872b	movl	0x38(sp), r5
+00007f83f001872f	movl	r5, scratch
+00007f83f0018731	addq	memory, scratch
+00007f83f0018734	movl	0x18(scratch), r5
+00007f83f0018737	movl	r5, 0x20(sp)
+00007f83f001873b	movl	0x38(sp), r5
+00007f83f001873f	movl	r5, scratch
+00007f83f0018741	addq	memory, scratch
+00007f83f0018744	movl	0xc(scratch), r5
+00007f83f0018747	movl	r5, 0x50(sp)
+00007f83f001874b	movl	0x38(sp), r6
+00007f83f001874f	movl	r5, result
+00007f83f0018751	cmpl	r6, result
+00007f83f0018753	je	.9a
+00007f83f0018759	movl	$3, scratch
+00007f83f001875f	movl	scratch, 0x10(sp)
+00007f83f0018763	testb	$1, suspendbit
+00007f83f0018767	je	.43
+00007f83f001876d	callq	.3c			; back
+00007f83f0018772	jmp	.43
+00007f83f0018777	movl	0x38(sp), r5
+00007f83f001877b	movl	r5, scratch
+00007f83f001877d	addq	memory, scratch
+00007f83f0018780	movl	8(scratch), r5
+00007f83f0018783	movl	r5, 0x60(sp)
+00007f83f0018787	movl	0x50(sp), r6
+00007f83f001878b	movl	r5, scratch
+00007f83f001878d	addq	memory, scratch
+00007f83f0018790	movl	r6, 0xc(scratch)
+00007f83f0018793	movl	0x50(sp), r5
+00007f83f0018797	movl	0x60(sp), r6
+00007f83f001879b	movl	r5, scratch
+00007f83f001879d	addq	memory, scratch
+00007f83f00187a0	movl	r6, 8(scratch)
+00007f83f00187a3	movl	0x20(sp), r5
+00007f83f00187a7	testl	r5, r5
+00007f83f00187a9	jne	.9b
+00007f83f00187af	jmp	.9c
+00007f83f00187b4	movl	0x60(sp), r5
+00007f83f00187b8	movl	r5, scratch
+00007f83f00187ba	addq	memory, scratch
+00007f83f00187bd	movl	8(scratch), r5
+00007f83f00187c0	movl	r5, 0x60(sp)
+00007f83f00187c4	movl	r5, scratch
+00007f83f00187c6	addq	memory, scratch
+00007f83f00187c9	movl	(scratch), r5
+00007f83f00187cb	movl	r5, 0x38(sp)
+00007f83f00187cf	movl	0x40(sp), r6
+00007f83f00187d3	movl	r5, result
+00007f83f00187d5	cmpl	r6, result
+00007f83f00187d7	ja	.9d
+00007f83f00187dd	movl	$0x1b, scratch
+00007f83f00187e3	movl	scratch, 0x10(sp)
+00007f83f00187e7	testb	$1, suspendbit
+00007f83f00187eb	je	.43
+00007f83f00187f1	callq	.3c			; back
+00007f83f00187f6	jmp	.43
+00007f83f00187fb	movl	0x38(sp), r5
+00007f83f00187ff	movl	0x60(sp), r6
+00007f83f0018803	movl	r6, scratch
+00007f83f0018805	addq	memory, scratch
+00007f83f0018808	movl	4(scratch), r6
+00007f83f001880b	addl	r6, r5
+00007f83f001880d	movl	r5, 0x38(sp)
+00007f83f0018811	movl	0x40(sp), r6
+00007f83f0018815	movl	r5, result
+00007f83f0018817	cmpl	r6, result
+00007f83f0018819	jbe	.9e
+00007f83f001881f	movl	$0x1d, scratch
+00007f83f0018825	movl	scratch, 0x10(sp)
+00007f83f0018829	testb	$1, suspendbit
+00007f83f001882d	je	.43
+00007f83f0018833	callq	.3c			; back
+00007f83f0018838	jmp	.43
+00007f83f001883d	movl	0x50(sp), r5
+00007f83f0018841	movl	r5, 0x1004cc(memory)
+00007f83f0018848	movl	0x18(sp), r5
+00007f83f001884c	addl	$-0x28, r5
+00007f83f001884f	movl	r5, 0x60(sp)
+00007f83f0018853	movl	r5, 0x1004c4(memory)
+00007f83f001885a	movl	0x50(sp), r5
+00007f83f001885e	movl	0x60(sp), r6
+00007f83f0018862	orl	$1, r6
+00007f83f0018865	movl	r5, scratch
+00007f83f0018867	addq	memory, scratch
+00007f83f001886a	movl	r6, 4(scratch)
+00007f83f001886d	movl	0x50(sp), r5
+00007f83f0018871	movl	0x60(sp), r6
+00007f83f0018875	addl	r6, r5
+00007f83f0018877	movl	r5, scratch
+00007f83f0018879	addq	memory, scratch
+00007f83f001887c	movl	$0x28, 4(scratch)
+00007f83f0018883	movl	$0x200000, 0x1004e8(memory)
+00007f83f001888e	movl	0x40(sp), r5
+00007f83f0018892	movl	0x38(sp), r6
+00007f83f0018896	addl	$-0x20, r6
+00007f83f0018899	andl	$0xfffffffffffffff8, r6
+00007f83f001889c	addl	$-8, r6
+00007f83f001889f	movl	r6, 0x60(sp)
+00007f83f00188a3	movl	0x60(sp), r7
+00007f83f00188a7	movl	0x40(sp), r8
+00007f83f00188ac	addl	$0x10, r8
+00007f83f00188b0	movl	r7, result
+00007f83f00188b2	cmpl	r8, result
+00007f83f00188b5	cmovbl	r5, r6
+00007f83f00188b8	movl	r6, 0x30(sp)
+00007f83f00188bc	movl	r6, scratch
+00007f83f00188be	addq	memory, scratch
+00007f83f00188c1	movl	$0x1b, 4(scratch)
+00007f83f00188c8	movq	0x1004d8(memory), r5
+00007f83f00188cf	movq	r5, 8(sp)
+00007f83f00188d4	movl	0x30(sp), r5
+00007f83f00188d8	addl	$0x10, r5
+00007f83f00188db	movq	0x1004e0(memory), r6
+00007f83f00188e2	movl	r5, scratch
+00007f83f00188e4	addq	memory, scratch
+00007f83f00188e7	movq	r6, (scratch)
+00007f83f00188ea	movl	0x30(sp), r5
+00007f83f00188ee	movq	8(sp), r6
+00007f83f00188f3	movl	r5, scratch
+00007f83f00188f5	addq	memory, scratch
+00007f83f00188f8	movq	r6, 8(scratch)
+00007f83f00188fc	movl	0x18(sp), r5
+00007f83f0018900	movl	r5, 0x1004dc(memory)
+00007f83f0018907	movl	0x50(sp), r5
+00007f83f001890b	movl	r5, 0x1004d8(memory)
+00007f83f0018912	movl	0x30(sp), r5
+00007f83f0018916	addl	$8, r5
+00007f83f0018919	movl	r5, 0x1004e0(memory)
+00007f83f0018920	movl	zero, 0x1004e4(memory)
+00007f83f0018927	movl	0x30(sp), r5
+00007f83f001892b	addl	$0x1c, r5
+00007f83f001892e	movl	r5, 0x60(sp)
+00007f83f0018932	movl	$0x1e, scratch
+00007f83f0018938	movl	scratch, 0x10(sp)
+00007f83f001893c	testb	$1, suspendbit
+00007f83f0018940	je	.43
+00007f83f0018946	callq	.3c			; back
+00007f83f001894b	jmp	.43
+00007f83f0018950	movl	0x60(sp), r5
+00007f83f0018954	movl	r5, scratch
+00007f83f0018956	addq	memory, scratch
+00007f83f0018959	movl	$7, (scratch)
+00007f83f001895f	movl	0x38(sp), r5
+00007f83f0018963	movl	0x60(sp), r6
+00007f83f0018967	addl	$4, r6
+00007f83f001896a	movl	r6, 0x60(sp)
+00007f83f001896e	movl	r5, result
+00007f83f0018970	cmpl	r6, result
+00007f83f0018972	ja	.9f
+00007f83f0018978	movl	$0x1f, scratch
+00007f83f001897e	movl	scratch, 0x10(sp)
+00007f83f0018982	testb	$1, suspendbit
+00007f83f0018986	je	.43
+00007f83f001898c	callq	.3c			; back
+00007f83f0018991	jmp	.43
+00007f83f0018996	movl	0x30(sp), r5
+00007f83f001899a	movl	0x40(sp), r6
+00007f83f001899e	movl	r5, result
+00007f83f00189a0	cmpl	r6, result
+00007f83f00189a2	je	.a0
+00007f83f00189a8	movl	$0x20, scratch
+00007f83f00189ae	movl	scratch, 0x10(sp)
+00007f83f00189b2	testb	$1, suspendbit
+00007f83f00189b6	je	.43
+00007f83f00189bc	callq	.3c			; back
+00007f83f00189c1	jmp	.43
+00007f83f00189c6	movl	0x30(sp), r5
+00007f83f00189ca	movl	0x30(sp), r6
+00007f83f00189ce	movl	r6, scratch
+00007f83f00189d0	addq	memory, scratch
+00007f83f00189d3	movl	4(scratch), r6
+00007f83f00189d6	andl	$0xfffffffffffffffe, r6
+00007f83f00189d9	movl	r5, scratch
+00007f83f00189db	addq	memory, scratch
+00007f83f00189de	movl	r6, 4(scratch)
+00007f83f00189e1	movl	0x40(sp), r5
+00007f83f00189e5	movl	0x30(sp), r6
+00007f83f00189e9	movl	0x40(sp), r7
+00007f83f00189ed	subl	r7, r6
+00007f83f00189ef	movl	r6, 0x50(sp)
+00007f83f00189f3	orl	$1, r6
+00007f83f00189f6	movl	r5, scratch
+00007f83f00189f8	addq	memory, scratch
+00007f83f00189fb	movl	r6, 4(scratch)
+00007f83f00189fe	movl	0x30(sp), r5
+00007f83f0018a02	movl	0x50(sp), r6
+00007f83f0018a06	movl	r5, scratch
+00007f83f0018a08	addq	memory, scratch
+00007f83f0018a0b	movl	r6, (scratch)
+00007f83f0018a0d	movl	0x50(sp), r5
+00007f83f0018a11	movl	r5, result
+00007f83f0018a13	cmpl	$0xff, result
+00007f83f0018a19	ja	.a1
+00007f83f0018a1f	movl	$0x31, scratch
+00007f83f0018a25	movl	scratch, 0x10(sp)
+00007f83f0018a29	testb	$1, suspendbit
+00007f83f0018a2d	je	.43
+00007f83f0018a33	callq	.3c			; back
+00007f83f0018a38	jmp	.43
+00007f83f0018a3d	movl	0x50(sp), r5
+00007f83f0018a41	shrl	$3, r5
+00007f83f0018a44	movl	r5, 0x38(sp)
+00007f83f0018a48	shll	$3, r5
+00007f83f0018a4b	addl	$0x100338, r5
+00007f83f0018a51	movl	r5, 0x60(sp)
+00007f83f0018a55	movl	0x100330(memory), r5
+00007f83f0018a5c	movl	r5, 0x50(sp)
+00007f83f0018a60	movl	0x38(sp), r6
+00007f83f0018a64	andl	$0x1f, r6
+00007f83f0018a67	movl	$1, r7
+00007f83f0018a6d	movl	r6, scratch
+00007f83f0018a6f	shll	scratchb, r7
+00007f83f0018a71	movl	r7, 0x38(sp)
+00007f83f0018a75	andl	r7, r5
+00007f83f0018a77	testl	r5, r5
+00007f83f0018a79	je	.a2
+00007f83f0018a7f	movl	$0x32, scratch
+00007f83f0018a85	movl	scratch, 0x10(sp)
+00007f83f0018a89	testb	$1, suspendbit
+00007f83f0018a8d	je	.43
+00007f83f0018a93	callq	.3c			; back
+00007f83f0018a98	jmp	.43
+00007f83f0018a9d	movl	0x60(sp), r5
+00007f83f0018aa1	movl	r5, scratch
+00007f83f0018aa3	addq	memory, scratch
+00007f83f0018aa6	movl	8(scratch), r5
+00007f83f0018aa9	movl	r5, 0x38(sp)
+00007f83f0018aad	jmp	.a3
+00007f83f0018ab2	movl	0x38(sp), r5
+00007f83f0018ab6	movl	0x38(sp), r6
+00007f83f0018aba	addl	$0x14, r6
+00007f83f0018abd	movl	r6, 0x50(sp)
+00007f83f0018ac1	movl	r6, scratch
+00007f83f0018ac3	addq	memory, scratch
+00007f83f0018ac6	movl	(scratch), r6
+00007f83f0018ac8	movl	r6, 0x30(sp)
+00007f83f0018acc	testl	r6, r6
+00007f83f0018ace	movl	$0x10, r6
+00007f83f0018ad4	movl	$0x14, scratch
+00007f83f0018ada	cmovnel	scratch, r6
+00007f83f0018add	addl	r6, r5
+00007f83f0018adf	movl	r5, scratch
+00007f83f0018ae1	addq	memory, scratch
+00007f83f0018ae4	movl	(scratch), r5
+00007f83f0018ae6	movl	r5, 0x60(sp)
+00007f83f0018aea	testl	r5, r5
+00007f83f0018aec	je	.a4
+00007f83f0018af2	movl	$0x15, scratch
+00007f83f0018af8	movl	scratch, 0x10(sp)
+00007f83f0018afc	testb	$1, suspendbit
+00007f83f0018b00	je	.43
+00007f83f0018b06	callq	.3c			; back
+00007f83f0018b0b	jmp	.43
+00007f83f0018b10	movl	0x50(sp), r5
+00007f83f0018b14	movl	0x38(sp), r6
+00007f83f0018b18	addl	$0x10, r6
+00007f83f0018b1b	movl	0x30(sp), r7
+00007f83f0018b1f	testl	r7, r7
+00007f83f0018b21	cmovnel	r5, r6
+00007f83f0018b24	movl	r6, 0x30(sp)
+00007f83f0018b28	movl	$0x16, scratch
+00007f83f0018b2e	movl	scratch, 0x10(sp)
+00007f83f0018b32	testb	$1, suspendbit
+00007f83f0018b36	je	.43
+00007f83f0018b3c	callq	.3c			; back
+00007f83f0018b41	jmp	.43
+00007f83f0018b46	movl	0x30(sp), r5
+00007f83f0018b4a	movl	r5, 0x18(sp)
+00007f83f0018b4e	movl	0x60(sp), r5
+00007f83f0018b52	movl	r5, 0x50(sp)
+00007f83f0018b56	addl	$0x14, r5
+00007f83f0018b59	movl	r5, 0x30(sp)
+00007f83f0018b5d	movl	r5, scratch
+00007f83f0018b5f	addq	memory, scratch
+00007f83f0018b62	movl	(scratch), r5
+00007f83f0018b64	movl	r5, 0x60(sp)
+00007f83f0018b68	testl	r5, r5
+00007f83f0018b6a	je	.a5
+00007f83f0018b70	movl	$0x17, scratch
+00007f83f0018b76	movl	scratch, 0x10(sp)
+00007f83f0018b7a	testb	$1, suspendbit
+00007f83f0018b7e	je	.43
+00007f83f0018b84	callq	.3c			; back
+00007f83f0018b89	jmp	.43
+00007f83f0018b8e	movl	0x60(sp), r5
+00007f83f0018b92	testl	r5, r5
+00007f83f0018b94	jne	.a6
+00007f83f0018b9a	jmp	.a7
+00007f83f0018b9f	movl	0x50(sp), r5
+00007f83f0018ba3	addl	$0x10, r5
+00007f83f0018ba6	movl	r5, 0x30(sp)
+00007f83f0018baa	movl	0x50(sp), r5
+00007f83f0018bae	movl	r5, scratch
+00007f83f0018bb0	addq	memory, scratch
+00007f83f0018bb3	movl	0x10(scratch), r5
+00007f83f0018bb6	movl	r5, 0x60(sp)
+00007f83f0018bba	testl	r5, r5
+00007f83f0018bbc	jne	.a8
+00007f83f0018bc2	movl	$0x18, scratch
+00007f83f0018bc8	movl	scratch, 0x10(sp)
+00007f83f0018bcc	testb	$1, suspendbit
+00007f83f0018bd0	je	.43
+00007f83f0018bd6	callq	.3c			; back
+00007f83f0018bdb	jmp	.43
+00007f83f0018be0	movl	0x18(sp), r5
+00007f83f0018be4	movl	r5, scratch
+00007f83f0018be6	addq	memory, scratch
+00007f83f0018be9	movl	zero, (scratch)
+00007f83f0018beb	movl	0x20(sp), r5
+00007f83f0018bef	testl	r5, r5
+00007f83f0018bf1	jne	.a9
+00007f83f0018bf7	jmp	.aa
+00007f83f0018bfc	movl	zero, scratch
+00007f83f0018bfe	movl	scratch, 0x60(sp)
+00007f83f0018c02	movl	0x50(sp), r5
+00007f83f0018c06	shrl	$8, r5
+00007f83f0018c09	movl	r5, 0x38(sp)
+00007f83f0018c0d	testl	r5, r5
+00007f83f0018c0f	je	.ab
+00007f83f0018c15	movl	$0x22, scratch
+00007f83f0018c1b	movl	scratch, 0x10(sp)
+00007f83f0018c1f	testb	$1, suspendbit
+00007f83f0018c23	je	.43
+00007f83f0018c29	callq	.3c			; back
+00007f83f0018c2e	jmp	.43
+00007f83f0018c33	movl	$0x1f, scratch
+00007f83f0018c39	movl	scratch, 0x60(sp)
+00007f83f0018c3d	movl	0x50(sp), r5
+00007f83f0018c41	movl	r5, result
+00007f83f0018c43	cmpl	$0xffffff, result
+00007f83f0018c49	ja	.ac
+00007f83f0018c4f	movl	$0x23, scratch
+00007f83f0018c55	movl	scratch, 0x10(sp)
+00007f83f0018c59	testb	$1, suspendbit
+00007f83f0018c5d	je	.43
+00007f83f0018c63	callq	.3c			; back
+00007f83f0018c68	jmp	.43
+00007f83f0018c6d	movl	0x50(sp), r5
+00007f83f0018c71	movl	0x38(sp), r6
+00007f83f0018c75	lzcntl	r6, r6
+00007f83f0018c79	movl	r6, 0x60(sp)
+00007f83f0018c7d	movl	$0x26, r7
+00007f83f0018c83	subl	r6, r7
+00007f83f0018c85	andl	$0x1f, r7
+00007f83f0018c88	movl	r7, scratch
+00007f83f0018c8a	shrl	scratchb, r5
+00007f83f0018c8c	andl	$1, r5
+00007f83f0018c8f	movl	0x60(sp), r6
+00007f83f0018c93	movl	$0x1f, r7
+00007f83f0018c99	subl	r6, r7
+00007f83f0018c9b	shll	$1, r7
+00007f83f0018c9e	orl	r7, r5
+00007f83f0018ca0	movl	r5, 0x60(sp)
+00007f83f0018ca4	movl	$0x24, scratch
+00007f83f0018caa	movl	scratch, 0x10(sp)
+00007f83f0018cae	testb	$1, suspendbit
+00007f83f0018cb2	je	.43
+00007f83f0018cb8	callq	.3c			; back
+00007f83f0018cbd	jmp	.43
+00007f83f0018cc2	movl	0x40(sp), r5
+00007f83f0018cc6	movl	r5, scratch
+00007f83f0018cc8	addq	memory, scratch
+00007f83f0018ccb	movq	zero, 0x10(scratch)
+00007f83f0018ccf	movl	0x40(sp), r5
+00007f83f0018cd3	addl	$0x1c, r5
+00007f83f0018cd6	movl	0x60(sp), r6
+00007f83f0018cda	movl	r5, scratch
+00007f83f0018cdc	addq	memory, scratch
+00007f83f0018cdf	movl	r6, (scratch)
+00007f83f0018ce1	movl	0x60(sp), r5
+00007f83f0018ce5	shll	$2, r5
+00007f83f0018ce8	addl	$0x100440, r5
+00007f83f0018cee	movl	r5, 0x38(sp)
+00007f83f0018cf2	movl	0x100334(memory), r5
+00007f83f0018cf9	movl	r5, 0x30(sp)
+00007f83f0018cfd	movl	0x60(sp), r6
+00007f83f0018d01	andl	$0x1f, r6
+00007f83f0018d04	movl	$1, r7
+00007f83f0018d0a	movl	r6, scratch
+00007f83f0018d0c	shll	scratchb, r7
+00007f83f0018d0e	movl	r7, 0x18(sp)
+00007f83f0018d12	andl	r7, r5
+00007f83f0018d14	testl	r5, r5
+00007f83f0018d16	je	.ad
+00007f83f0018d1c	movl	$0x25, scratch
+00007f83f0018d22	movl	scratch, 0x10(sp)
+00007f83f0018d26	testb	$1, suspendbit
+00007f83f0018d2a	je	.43
+00007f83f0018d30	callq	.3c			; back
+00007f83f0018d35	jmp	.43
+00007f83f0018d3a	movl	0x38(sp), r5
+00007f83f0018d3e	movl	r5, scratch
+00007f83f0018d40	addq	memory, scratch
+00007f83f0018d43	movl	(scratch), r5
+00007f83f0018d45	movl	r5, 0x30(sp)
+00007f83f0018d49	movl	r5, scratch
+00007f83f0018d4b	addq	memory, scratch
+00007f83f0018d4e	movl	4(scratch), r5
+00007f83f0018d51	andl	$0xfffffffffffffff8, r5
+00007f83f0018d54	movl	0x50(sp), r6
+00007f83f0018d58	movl	r5, result
+00007f83f0018d5a	cmpl	r6, result
+00007f83f0018d5c	jne	.ae
+00007f83f0018d62	movl	$0x2f, scratch
+00007f83f0018d68	movl	scratch, 0x10(sp)
+00007f83f0018d6c	testb	$1, suspendbit
+00007f83f0018d70	je	.43
+00007f83f0018d76	callq	.3c			; back
+00007f83f0018d7b	jmp	.43
+00007f83f0018d80	movl	0x30(sp), r5
+00007f83f0018d84	movl	r5, 0x60(sp)
+00007f83f0018d88	jmp	.af
+00007f83f0018d8d	movl	zero, scratch
+00007f83f0018d8f	movl	scratch, 0x50(sp)
+00007f83f0018d93	movl	0x20(sp), r5
+00007f83f0018d97	testl	r5, r5
+00007f83f0018d99	je	.b0
+00007f83f0018d9f	movl	$4, scratch
+00007f83f0018da5	movl	scratch, 0x10(sp)
+00007f83f0018da9	testb	$1, suspendbit
+00007f83f0018dad	je	.43
+00007f83f0018db3	callq	.3c			; back
+00007f83f0018db8	jmp	.43
+00007f83f0018dbd	movl	0x38(sp), r5
+00007f83f0018dc1	movl	r5, scratch
+00007f83f0018dc3	addq	memory, scratch
+00007f83f0018dc6	movl	0x1c(scratch), r5
+00007f83f0018dc9	shll	$2, r5
+00007f83f0018dcc	addl	$0x100440, r5
+00007f83f0018dd2	movl	r5, 0x60(sp)
+00007f83f0018dd6	movl	r5, scratch
+00007f83f0018dd8	addq	memory, scratch
+00007f83f0018ddb	movl	(scratch), r5
+00007f83f0018ddd	movl	0x38(sp), r6
+00007f83f0018de1	movl	r5, result
+00007f83f0018de3	cmpl	r6, result
+00007f83f0018de5	je	.b1
+00007f83f0018deb	movl	$5, scratch
+00007f83f0018df1	movl	scratch, 0x10(sp)
+00007f83f0018df5	testb	$1, suspendbit
+00007f83f0018df9	je	.43
+00007f83f0018dff	callq	.3c			; back
+00007f83f0018e04	jmp	.43
+00007f83f0018e09	movl	0x20(sp), r5
+00007f83f0018e0d	movl	0x20(sp), r6
+00007f83f0018e11	movl	r6, scratch
+00007f83f0018e13	addq	memory, scratch
+00007f83f0018e16	movl	0x10(scratch), r6
+00007f83f0018e19	movl	0x38(sp), r7
+00007f83f0018e1d	movl	r6, result
+00007f83f0018e1f	cmpl	r7, result
+00007f83f0018e21	movl	$0x14, r6
+00007f83f0018e27	movl	$0x10, scratch
+00007f83f0018e2d	cmovel	scratch, r6
+00007f83f0018e30	addl	r6, r5
+00007f83f0018e32	movl	0x50(sp), r6
+00007f83f0018e36	movl	r5, scratch
+00007f83f0018e38	addq	memory, scratch
+00007f83f0018e3b	movl	r6, (scratch)
+00007f83f0018e3d	movl	0x50(sp), r5
+00007f83f0018e41	testl	r5, r5
+00007f83f0018e43	jne	.b2
+00007f83f0018e49	jmp	.b3
+00007f83f0018e4e	movl	0x60(sp), r5
+00007f83f0018e52	movl	0x50(sp), r6
+00007f83f0018e56	movl	r5, scratch
+00007f83f0018e58	addq	memory, scratch
+00007f83f0018e5b	movl	r6, (scratch)
+00007f83f0018e5d	movl	0x50(sp), r5
+00007f83f0018e61	testl	r5, r5
+00007f83f0018e63	je	.b4
+00007f83f0018e69	movl	$6, scratch
+00007f83f0018e6f	movl	scratch, 0x10(sp)
+00007f83f0018e73	testb	$1, suspendbit
+00007f83f0018e77	je	.43
+00007f83f0018e7d	callq	.3c			; back
+00007f83f0018e82	jmp	.43
+00007f83f0018e87	movl	0x50(sp), r5
+00007f83f0018e8b	movl	0x20(sp), r6
+00007f83f0018e8f	movl	r5, scratch
+00007f83f0018e91	addq	memory, scratch
+00007f83f0018e94	movl	r6, 0x18(scratch)
+00007f83f0018e97	movl	0x38(sp), r5
+00007f83f0018e9b	movl	r5, scratch
+00007f83f0018e9d	addq	memory, scratch
+00007f83f0018ea0	movl	0x10(scratch), r5
+00007f83f0018ea3	movl	r5, 0x60(sp)
+00007f83f0018ea7	testl	r5, r5
+00007f83f0018ea9	je	.b5
+00007f83f0018eaf	movl	$7, scratch
+00007f83f0018eb5	movl	scratch, 0x10(sp)
+00007f83f0018eb9	testb	$1, suspendbit
+00007f83f0018ebd	je	.43
+00007f83f0018ec3	callq	.3c			; back
+00007f83f0018ec8	jmp	.43
+00007f83f0018ecd	movl	0x50(sp), r5
+00007f83f0018ed1	movl	0x60(sp), r6
+00007f83f0018ed5	movl	r5, scratch
+00007f83f0018ed7	addq	memory, scratch
+00007f83f0018eda	movl	r6, 0x10(scratch)
+00007f83f0018edd	movl	0x60(sp), r5
+00007f83f0018ee1	movl	0x50(sp), r6
+00007f83f0018ee5	movl	r5, scratch
+00007f83f0018ee7	addq	memory, scratch
+00007f83f0018eea	movl	r6, 0x18(scratch)
+00007f83f0018eed	movl	$8, scratch
+00007f83f0018ef3	movl	scratch, 0x10(sp)
+00007f83f0018ef7	testb	$1, suspendbit
+00007f83f0018efb	je	.43
+00007f83f0018f01	callq	.3c			; back
+00007f83f0018f06	jmp	.43
+00007f83f0018f0b	movl	0x38(sp), r5
+00007f83f0018f0f	addl	$0x14, r5
+00007f83f0018f12	movl	r5, scratch
+00007f83f0018f14	addq	memory, scratch
+00007f83f0018f17	movl	(scratch), r5
+00007f83f0018f19	movl	r5, 0x60(sp)
+00007f83f0018f1d	testl	r5, r5
+00007f83f0018f1f	je	.b6
+00007f83f0018f25	movl	$9, scratch
+00007f83f0018f2b	movl	scratch, 0x10(sp)
+00007f83f0018f2f	testb	$1, suspendbit
+00007f83f0018f33	je	.43
+00007f83f0018f39	callq	.3c			; back
+00007f83f0018f3e	jmp	.43
+00007f83f0018f43	movl	0x50(sp), r5
+00007f83f0018f47	addl	$0x14, r5
+00007f83f0018f4a	movl	0x60(sp), r6
+00007f83f0018f4e	movl	r5, scratch
+00007f83f0018f50	addq	memory, scratch
+00007f83f0018f53	movl	r6, (scratch)
+00007f83f0018f55	movl	0x60(sp), r5
+00007f83f0018f59	movl	0x50(sp), r6
+00007f83f0018f5d	movl	r5, scratch
+00007f83f0018f5f	addq	memory, scratch
+00007f83f0018f62	movl	r6, 0x18(scratch)
+00007f83f0018f65	movl	0x40(sp), r5
+00007f83f0018f69	movl	r5, result
+00007f83f0018f6b	cmpl	$0x10, result
+00007f83f0018f6e	jb	.b7
+00007f83f0018f74	jmp	.b8
+00007f83f0018f79	movl	0x100334(memory), r5
+00007f83f0018f80	movl	0x38(sp), r6
+00007f83f0018f84	addl	$0x1c, r6
+00007f83f0018f87	movl	r6, scratch
+00007f83f0018f89	addq	memory, scratch
+00007f83f0018f8c	movl	(scratch), r6
+00007f83f0018f8e	movl	$0xfffffffe, r7
+00007f83f0018f94	movl	r6, scratch
+00007f83f0018f96	roll	scratchb, r7
+00007f83f0018f98	andl	r7, r5
+00007f83f0018f9a	movl	r5, 0x100334(memory)
+00007f83f0018fa1	movl	$0x11, scratch
+00007f83f0018fa7	movl	scratch, 0x10(sp)
+00007f83f0018fab	testb	$1, suspendbit
+00007f83f0018faf	je	.43
+00007f83f0018fb5	callq	.3c			; back
+00007f83f0018fba	jmp	.43
+00007f83f0018fbf	movl	0x40(sp), r5
+00007f83f0018fc3	movl	r5, result
+00007f83f0018fc5	cmpl	$0x10, result
+00007f83f0018fc8	jae	.b9
+00007f83f0018fce	movl	$0x10, scratch
+00007f83f0018fd4	movl	scratch, 0x10(sp)
+00007f83f0018fd8	testb	$1, suspendbit
+00007f83f0018fdc	je	.43
+00007f83f0018fe2	callq	.3c			; back
+00007f83f0018fe7	jmp	.43
+00007f83f0018fec	movl	0x38(sp), r5
+00007f83f0018ff0	movl	0x40(sp), r6
+00007f83f0018ff4	movl	0x48(sp), r7
+00007f83f0018ff8	addl	r7, r6
+00007f83f0018ffa	movl	r6, 0x60(sp)
+00007f83f0018ffe	orl	$3, r6
+00007f83f0019001	movl	r5, scratch
+00007f83f0019003	addq	memory, scratch
+00007f83f0019006	movl	r6, 4(scratch)
+00007f83f0019009	movl	0x38(sp), r5
+00007f83f001900d	movl	0x60(sp), r6
+00007f83f0019011	addl	r6, r5
+00007f83f0019013	movl	r5, 0x60(sp)
+00007f83f0019017	movl	0x60(sp), r6
+00007f83f001901b	movl	r6, scratch
+00007f83f001901d	addq	memory, scratch
+00007f83f0019020	movl	4(scratch), r6
+00007f83f0019023	orl	$1, r6
+00007f83f0019026	movl	r5, scratch
+00007f83f0019028	addq	memory, scratch
+00007f83f001902b	movl	r6, 4(scratch)
+00007f83f001902e	movl	0x38(sp), r5
+00007f83f0019032	addl	$8, r5
+00007f83f0019035	movl	r5, result
+00007f83f0019037	leaq	0x58(sp), sp
+00007f83f001903c	retq
+00007f83f001903d	movl	0x38(sp), r5
+00007f83f0019041	movl	0x48(sp), r6
+00007f83f0019045	orl	$3, r6
+00007f83f0019048	movl	r5, scratch
+00007f83f001904a	addq	memory, scratch
+00007f83f001904d	movl	r6, 4(scratch)
+00007f83f0019050	movl	0x38(sp), r5
+00007f83f0019054	movl	0x48(sp), r6
+00007f83f0019058	addl	r6, r5
+00007f83f001905a	movl	r5, 0x48(sp)
+00007f83f001905e	movl	0x40(sp), r6
+00007f83f0019062	orl	$1, r6
+00007f83f0019065	movl	r5, scratch
+00007f83f0019067	addq	memory, scratch
+00007f83f001906a	movl	r6, 4(scratch)
+00007f83f001906d	movl	0x48(sp), r5
+00007f83f0019071	movl	0x40(sp), r6
+00007f83f0019075	addl	r6, r5
+00007f83f0019077	movl	0x40(sp), r6
+00007f83f001907b	movl	r5, scratch
+00007f83f001907d	addq	memory, scratch
+00007f83f0019080	movl	r6, (scratch)
+00007f83f0019082	movl	0x1004c0(memory), r5
+00007f83f0019089	movl	r5, 0x60(sp)
+00007f83f001908d	testl	r5, r5
+00007f83f001908f	je	.ba
+00007f83f0019095	movl	$0xb, scratch
+00007f83f001909b	movl	scratch, 0x10(sp)
+00007f83f001909f	testb	$1, suspendbit
+00007f83f00190a3	je	.43
+00007f83f00190a9	callq	.3c			; back
+00007f83f00190ae	jmp	.43
+00007f83f00190b3	movl	0x60(sp), r5
+00007f83f00190b7	shrl	$3, r5
+00007f83f00190ba	movl	r5, 0x30(sp)
+00007f83f00190be	shll	$3, r5
+00007f83f00190c1	addl	$0x100338, r5
+00007f83f00190c7	movl	r5, 0x50(sp)
+00007f83f00190cb	movl	0x1004c8(memory), r5
+00007f83f00190d2	movl	r5, 0x60(sp)
+00007f83f00190d6	movl	0x100330(memory), r5
+00007f83f00190dd	movl	r5, 0x18(sp)
+00007f83f00190e1	movl	0x30(sp), r6
+00007f83f00190e5	andl	$0x1f, r6
+00007f83f00190e8	movl	$1, r7
+00007f83f00190ee	movl	r6, scratch
+00007f83f00190f0	shll	scratchb, r7
+00007f83f00190f2	movl	r7, 0x30(sp)
+00007f83f00190f6	andl	r7, r5
+00007f83f00190f8	testl	r5, r5
+00007f83f00190fa	je	.bb
+00007f83f0019100	movl	$0xc, scratch
+00007f83f0019106	movl	scratch, 0x10(sp)
+00007f83f001910a	testb	$1, suspendbit
+00007f83f001910e	je	.43
+00007f83f0019114	callq	.3c			; back
+00007f83f0019119	jmp	.43
+00007f83f001911e	movl	0x50(sp), r5
+00007f83f0019122	movl	r5, scratch
+00007f83f0019124	addq	memory, scratch
+00007f83f0019127	movl	8(scratch), r5
+00007f83f001912a	movl	r5, 0x30(sp)
+00007f83f001912e	jmp	.bc
+00007f83f0019133	movl	0x18(sp), r5
+00007f83f0019137	movl	0x30(sp), r6
+00007f83f001913b	orl	r6, r5
+00007f83f001913d	movl	r5, 0x100330(memory)
+00007f83f0019144	movl	0x50(sp), r5
+00007f83f0019148	movl	r5, 0x30(sp)
+00007f83f001914c	movl	$0xd, scratch
+00007f83f0019152	movl	scratch, 0x10(sp)
+00007f83f0019156	testb	$1, suspendbit
+00007f83f001915a	je	.43
+00007f83f0019160	callq	.3c			; back
+00007f83f0019165	jmp	.43
+00007f83f001916a	movl	0x50(sp), r5
+00007f83f001916e	addl	$8, r5
+00007f83f0019171	movl	0x60(sp), r6
+00007f83f0019175	movl	r5, scratch
+00007f83f0019177	addq	memory, scratch
+00007f83f001917a	movl	r6, (scratch)
+00007f83f001917c	movl	0x30(sp), r5
+00007f83f0019180	movl	0x60(sp), r6
+00007f83f0019184	movl	r5, scratch
+00007f83f0019186	addq	memory, scratch
+00007f83f0019189	movl	r6, 0xc(scratch)
+00007f83f001918c	movl	0x60(sp), r5
+00007f83f0019190	movl	0x50(sp), r6
+00007f83f0019194	movl	r5, scratch
+00007f83f0019196	addq	memory, scratch
+00007f83f0019199	movl	r6, 0xc(scratch)
+00007f83f001919c	movl	0x60(sp), r5
+00007f83f00191a0	movl	0x30(sp), r6
+00007f83f00191a4	movl	r5, scratch
+00007f83f00191a6	addq	memory, scratch
+00007f83f00191a9	movl	r6, 8(scratch)
+00007f83f00191ac	movl	$0xe, scratch
+00007f83f00191b2	movl	scratch, 0x10(sp)
+00007f83f00191b6	testb	$1, suspendbit
+00007f83f00191ba	je	.43
+00007f83f00191c0	callq	.3c			; back
+00007f83f00191c5	jmp	.43
+00007f83f00191ca	movl	0x48(sp), r5
+00007f83f00191ce	movl	r5, 0x1004c8(memory)
+00007f83f00191d5	movl	0x40(sp), r5
+00007f83f00191d9	movl	r5, 0x1004c0(memory)
+00007f83f00191e0	movl	0x38(sp), r5
+00007f83f00191e4	addl	$8, r5
+00007f83f00191e7	movl	r5, result
+00007f83f00191e9	leaq	0x58(sp), sp
+00007f83f00191ee	retq
+00007f83f00191ef .97:	movl	0x50(sp), r5
+00007f83f00191f3	movl	0x38(sp), r6
+00007f83f00191f7	orl	r6, r5
+00007f83f00191f9	movl	r5, 0x100330(memory)
+00007f83f0019200	movl	0x60(sp), r5
+00007f83f0019204	movl	r5, 0x38(sp)
+00007f83f0019208	movl	$0x33, scratch
+00007f83f001920e	movl	scratch, 0x10(sp)
+00007f83f0019212	testb	$1, suspendbit
+00007f83f0019216	je	.43
+00007f83f001921c	callq	.3c			; back
+00007f83f0019221	jmp	.43
+00007f83f0019226	movl	0x60(sp), r5
+00007f83f001922a	addl	$8, r5
+00007f83f001922d	movl	0x40(sp), r6
+00007f83f0019231	movl	r5, scratch
+00007f83f0019233	addq	memory, scratch
+00007f83f0019236	movl	r6, (scratch)
+00007f83f0019238	movl	0x38(sp), r5
+00007f83f001923c	movl	0x40(sp), r6
+00007f83f0019240	movl	r5, scratch
+00007f83f0019242	addq	memory, scratch
+00007f83f0019245	movl	r6, 0xc(scratch)
+00007f83f0019248	movl	0x40(sp), r5
+00007f83f001924c	movl	0x60(sp), r6
+00007f83f0019250	movl	r5, scratch
+00007f83f0019252	addq	memory, scratch
+00007f83f0019255	movl	r6, 0xc(scratch)
+00007f83f0019258	movl	0x40(sp), r5
+00007f83f001925c	movl	0x38(sp), r6
+00007f83f0019260	movl	r5, scratch
+00007f83f0019262	addq	memory, scratch
+00007f83f0019265	movl	r6, 8(scratch)
+00007f83f0019268	movl	zero, scratch
+00007f83f001926a	movl	scratch, 0x40(sp)
+00007f83f001926e	movl	0x1004c4(memory), r5
+00007f83f0019275	movl	r5, 0x60(sp)
+00007f83f0019279	movl	0x48(sp), r6
+00007f83f001927d	movl	r5, result
+00007f83f001927f	cmpl	r6, result
+00007f83f0019281	ja	.bd
+00007f83f0019287	jmp	.be
+00007f83f001928c	movl	0x30(sp), r5
+00007f83f0019290	movl	0x18(sp), r6
+00007f83f0019294	orl	r6, r5
+00007f83f0019296	movl	r5, 0x100334(memory)
+00007f83f001929d	movl	0x38(sp), r5
+00007f83f00192a1	movl	0x40(sp), r6
+00007f83f00192a5	movl	r5, scratch
+00007f83f00192a7	addq	memory, scratch
+00007f83f00192aa	movl	r6, (scratch)
+00007f83f00192ac	movl	0x40(sp), r5
+00007f83f00192b0	addl	$0x18, r5
+00007f83f00192b3	movl	0x38(sp), r6
+00007f83f00192b7	movl	r5, scratch
+00007f83f00192b9	addq	memory, scratch
+00007f83f00192bc	movl	r6, (scratch)
+00007f83f00192be	jmp	.bf
+00007f83f00192c3	movl	0x50(sp), r5
+00007f83f00192c7	movl	0x60(sp), r6
+00007f83f00192cb	shrl	$1, r6
+00007f83f00192ce	movl	$0x19, r7
+00007f83f00192d4	subl	r6, r7
+00007f83f00192d6	andl	$0x1f, r7
+00007f83f00192d9	movl	0x60(sp), r6
+00007f83f00192dd	movl	r6, result
+00007f83f00192df	cmpl	$0x1f, result
+00007f83f00192e2	movl	zero, scratch
+00007f83f00192e4	cmovel	scratch, r7
+00007f83f00192e7	movl	r7, scratch
+00007f83f00192e9	shll	scratchb, r5
+00007f83f00192eb	movl	r5, 0x38(sp)
+00007f83f00192ef	movl	$0x27, scratch
+00007f83f00192f5	movl	scratch, 0x10(sp)
+00007f83f00192f9	testb	$1, suspendbit
+00007f83f00192fd	je	.43
+00007f83f0019303	callq	.3c			; back
+00007f83f0019308	jmp	.43
+00007f83f001930d	movl	0x30(sp), r5
+00007f83f0019311	movl	0x38(sp), r6
+00007f83f0019315	shrl	$0x1d, r6
+00007f83f0019318	andl	$4, r6
+00007f83f001931b	addl	r6, r5
+00007f83f001931d	addl	$0x10, r5
+00007f83f0019320	movl	r5, 0x18(sp)
+00007f83f0019324	movl	r5, scratch
+00007f83f0019326	addq	memory, scratch
+00007f83f0019329	movl	(scratch), r5
+00007f83f001932b	movl	r5, 0x60(sp)
+00007f83f001932f	testl	r5, r5
+00007f83f0019331	je	.c0
+00007f83f0019337	movl	$0x28, scratch
+00007f83f001933d	movl	scratch, 0x10(sp)
+00007f83f0019341	testb	$1, suspendbit
+00007f83f0019345	je	.43
+00007f83f001934b	callq	.3c			; back
+00007f83f0019350	jmp	.43
+00007f83f0019355	movl	0x38(sp), r5
+00007f83f0019359	shll	$1, r5
+00007f83f001935c	movl	r5, 0x38(sp)
+00007f83f0019360	movl	0x60(sp), r5
+00007f83f0019364	movl	r5, 0x30(sp)
+00007f83f0019368	movl	0x60(sp), r5
+00007f83f001936c	movl	r5, scratch
+00007f83f001936e	addq	memory, scratch
+00007f83f0019371	movl	4(scratch), r5
+00007f83f0019374	andl	$0xfffffffffffffff8, r5
+00007f83f0019377	movl	0x50(sp), r6
+00007f83f001937b	movl	r5, result
+00007f83f001937d	cmpl	r6, result
+00007f83f001937f	jne	.c1
+00007f83f0019385	movl	$0x29, scratch
+00007f83f001938b	movl	scratch, 0x10(sp)
+00007f83f001938f	testb	$1, suspendbit
+00007f83f0019393	je	.43
+00007f83f0019399	callq	.3c			; back
+00007f83f001939e	jmp	.43
+00007f83f00193a3	movl	0x60(sp), r5
+00007f83f00193a7	movl	r5, scratch
+00007f83f00193a9	addq	memory, scratch
+00007f83f00193ac	movl	8(scratch), r5
+00007f83f00193af	movl	r5, 0x38(sp)
+00007f83f00193b3	movl	0x40(sp), r6
+00007f83f00193b7	movl	r5, scratch
+00007f83f00193b9	addq	memory, scratch
+00007f83f00193bc	movl	r6, 0xc(scratch)
+00007f83f00193bf	movl	0x60(sp), r5
+00007f83f00193c3	movl	0x40(sp), r6
+00007f83f00193c7	movl	r5, scratch
+00007f83f00193c9	addq	memory, scratch
+00007f83f00193cc	movl	r6, 8(scratch)
+00007f83f00193cf	movl	0x40(sp), r5
+00007f83f00193d3	addl	$0x18, r5
+00007f83f00193d6	movl	r5, scratch
+00007f83f00193d8	addq	memory, scratch
+00007f83f00193db	movl	zero, (scratch)
+00007f83f00193dd	movl	0x40(sp), r5
+00007f83f00193e1	movl	0x60(sp), r6
+00007f83f00193e5	movl	r5, scratch
+00007f83f00193e7	addq	memory, scratch
+00007f83f00193ea	movl	r6, 0xc(scratch)
+00007f83f00193ed	movl	0x40(sp), r5
+00007f83f00193f1	movl	0x38(sp), r6
+00007f83f00193f5	movl	r5, scratch
+00007f83f00193f7	addq	memory, scratch
+00007f83f00193fa	movl	r6, 8(scratch)
+00007f83f00193fd	movl	zero, scratch
+00007f83f00193ff	movl	scratch, 0x40(sp)
+00007f83f0019403	movl	0x1004c4(memory), r5
+00007f83f001940a	movl	r5, 0x60(sp)
+00007f83f001940e	movl	0x48(sp), r6
+00007f83f0019412	movl	r5, result
+00007f83f0019414	cmpl	r6, result
+00007f83f0019416	ja	.c2
+00007f83f001941c	jmp	.c3
+00007f83f0019421	movl	0x18(sp), r5
+00007f83f0019425	movl	0x40(sp), r6
+00007f83f0019429	movl	r5, scratch
+00007f83f001942b	addq	memory, scratch
+00007f83f001942e	movl	r6, (scratch)
+00007f83f0019430	movl	0x40(sp), r5
+00007f83f0019434	addl	$0x18, r5
+00007f83f0019437	movl	0x30(sp), r6
+00007f83f001943b	movl	r5, scratch
+00007f83f001943d	addq	memory, scratch
+00007f83f0019440	movl	r6, (scratch)
+00007f83f0019442	movl	$0x2d, scratch
+00007f83f0019448	movl	scratch, 0x10(sp)
+00007f83f001944c	testb	$1, suspendbit
+00007f83f0019450	je	.43
+00007f83f0019456	callq	.3c			; back
+00007f83f001945b	jmp	.43
+00007f83f0019460	movl	0x40(sp), r5
+00007f83f0019464	movl	0x40(sp), r6
+00007f83f0019468	movl	r5, scratch
+00007f83f001946a	addq	memory, scratch
+00007f83f001946d	movl	r6, 0xc(scratch)
+00007f83f0019470	movl	0x40(sp), r5
+00007f83f0019474	movl	0x40(sp), r6
+00007f83f0019478	movl	r5, scratch
+00007f83f001947a	addq	memory, scratch
+00007f83f001947d	movl	r6, 8(scratch)
+00007f83f0019480	movl	$0x2e, scratch
+00007f83f0019486	movl	scratch, 0x10(sp)
+00007f83f001948a	testb	$1, suspendbit
+00007f83f001948e	je	.43
+00007f83f0019494	callq	.3c			; back
+00007f83f0019499	jmp	.43
+00007f83f001949e	movl	zero, scratch
+00007f83f00194a0	movl	scratch, 0x40(sp)
+00007f83f00194a4	movl	0x1004c4(memory), r5
+00007f83f00194ab	movl	r5, 0x60(sp)
+00007f83f00194af	movl	0x48(sp), r6
+00007f83f00194b3	movl	r5, result
+00007f83f00194b5	cmpl	r6, result
+00007f83f00194b7	jbe	.c4
+00007f83f00194bd	movl	$0x2b, scratch
+00007f83f00194c3	movl	scratch, 0x10(sp)
+00007f83f00194c7	testb	$1, suspendbit
+00007f83f00194cb	je	.43
+00007f83f00194d1	callq	.3c			; back
+00007f83f00194d6	jmp	.43
+00007f83f00194db	movl	0x60(sp), r5
+00007f83f00194df	movl	0x48(sp), r6
+00007f83f00194e3	subl	r6, r5
+00007f83f00194e5	movl	r5, 0x40(sp)
+00007f83f00194e9	movl	r5, 0x1004c4(memory)
+00007f83f00194f0	movl	0x1004cc(memory), r5
+00007f83f00194f7	movl	r5, 0x60(sp)
+00007f83f00194fb	movl	0x48(sp), r6
+00007f83f00194ff	addl	r6, r5
+00007f83f0019501	movl	r5, 0x38(sp)
+00007f83f0019505	movl	r5, 0x1004cc(memory)
+00007f83f001950c	movl	0x38(sp), r5
+00007f83f0019510	movl	0x40(sp), r6
+00007f83f0019514	orl	$1, r6
+00007f83f0019517	movl	r5, scratch
+00007f83f0019519	addq	memory, scratch
+00007f83f001951c	movl	r6, 4(scratch)
+00007f83f001951f	movl	0x60(sp), r5
+00007f83f0019523	movl	0x48(sp), r6
+00007f83f0019527	orl	$3, r6
+00007f83f001952a	movl	r5, scratch
+00007f83f001952c	addq	memory, scratch
+00007f83f001952f	movl	r6, 4(scratch)
+00007f83f0019532	movl	0x60(sp), r5
+00007f83f0019536	addl	$8, r5
+00007f83f0019539	movl	r5, result
+00007f83f001953b	leaq	0x58(sp), sp
+00007f83f0019540	retq
+00007f83f0019541	movl	0x40(sp), r5
+00007f83f0019545	movl	r5, result
+00007f83f0019547	leaq	0x58(sp), sp
+00007f83f001954c	retq
+00007f83f001954d .9e:	movl	$0x1c, scratch
+00007f83f0019553	movl	scratch, 0x10(sp)
+00007f83f0019557	testb	$1, suspendbit
+00007f83f001955b	je	.43
+00007f83f0019561	callq	.3c			; back
+00007f83f0019566	jmp	.43
+00007f83f001956b .98:	movl	zero, scratch
+00007f83f001956d	movl	scratch, 0x10(sp)
+00007f83f0019571	testb	$1, suspendbit
+00007f83f0019575	je	.43
+00007f83f001957b	callq	.3c			; back
+00007f83f0019580	jmp	.43
+00007f83f0019585 .99:	movl	zero, scratch
+00007f83f0019587	movl	scratch, 0x10(sp)
+00007f83f001958b	testb	$1, suspendbit
+00007f83f001958f	je	.43
+00007f83f0019595	callq	.3c			; back
+00007f83f001959a	jmp	.43
+00007f83f001959f .9a:	movl	$0x14, scratch
+00007f83f00195a5	movl	scratch, 0x10(sp)
+00007f83f00195a9	testb	$1, suspendbit
+00007f83f00195ad	je	.43
+00007f83f00195b3	callq	.3c			; back
+00007f83f00195b8	jmp	.43
+00007f83f00195bd .9c:	movl	$0x11, scratch
+00007f83f00195c3	movl	scratch, 0x10(sp)
+00007f83f00195c7	testb	$1, suspendbit
+00007f83f00195cb	je	.43
+00007f83f00195d1	callq	.3c			; back
+00007f83f00195d6	jmp	.43
+00007f83f00195db .9b:	movl	$4, scratch
+00007f83f00195e1	movl	scratch, 0x10(sp)
+00007f83f00195e5	testb	$1, suspendbit
+00007f83f00195e9	je	.43
+00007f83f00195ef	callq	.3c			; back
+00007f83f00195f4	jmp	.43
+00007f83f00195f9 .aa:	movl	$0x11, scratch
+00007f83f00195ff	movl	scratch, 0x10(sp)
+00007f83f0019603	testb	$1, suspendbit
+00007f83f0019607	je	.43
+00007f83f001960d	callq	.3c			; back
+00007f83f0019612	jmp	.43
+00007f83f0019617 .a9:	movl	$4, scratch
+00007f83f001961d	movl	scratch, 0x10(sp)
+00007f83f0019621	testb	$1, suspendbit
+00007f83f0019625	je	.43
+00007f83f001962b	callq	.3c			; back
+00007f83f0019630	jmp	.43
+00007f83f0019635 .b0:	movl	$0x11, scratch
+00007f83f001963b	movl	scratch, 0x10(sp)
+00007f83f001963f	testb	$1, suspendbit
+00007f83f0019643	je	.43
+00007f83f0019649	callq	.3c			; back
+00007f83f001964e	jmp	.43
+00007f83f0019653 .b1:	movl	$0x12, scratch
+00007f83f0019659	movl	scratch, 0x10(sp)
+00007f83f001965d	testb	$1, suspendbit
+00007f83f0019661	je	.43
+00007f83f0019667	callq	.3c			; back
+00007f83f001966c	jmp	.43
+00007f83f0019671 .b3:	movl	$0x11, scratch
+00007f83f0019677	movl	scratch, 0x10(sp)
+00007f83f001967b	testb	$1, suspendbit
+00007f83f001967f	je	.43
+00007f83f0019685	callq	.3c			; back
+00007f83f001968a	jmp	.43
+00007f83f001968f .b2:	movl	$6, scratch
+00007f83f0019695	movl	scratch, 0x10(sp)
+00007f83f0019699	testb	$1, suspendbit
+00007f83f001969d	je	.43
+00007f83f00196a3	callq	.3c			; back
+00007f83f00196a8	jmp	.43
+00007f83f00196ad .b4:	movl	$0x13, scratch
+00007f83f00196b3	movl	scratch, 0x10(sp)
+00007f83f00196b7	testb	$1, suspendbit
+00007f83f00196bb	je	.43
+00007f83f00196c1	callq	.3c			; back
+00007f83f00196c6	jmp	.43
+00007f83f00196cb .b5:	movl	$8, scratch
+00007f83f00196d1	movl	scratch, 0x10(sp)
+00007f83f00196d5	testb	$1, suspendbit
+00007f83f00196d9	je	.43
+00007f83f00196df	callq	.3c			; back
+00007f83f00196e4	jmp	.43
+00007f83f00196e9 .b6:	movl	$0x11, scratch
+00007f83f00196ef	movl	scratch, 0x10(sp)
+00007f83f00196f3	testb	$1, suspendbit
+00007f83f00196f7	je	.43
+00007f83f00196fd	callq	.3c			; back
+00007f83f0019702	jmp	.43
+00007f83f0019707 .b9:	movl	$0xa, scratch
+00007f83f001970d	movl	scratch, 0x10(sp)
+00007f83f0019711	testb	$1, suspendbit
+00007f83f0019715	je	.43
+00007f83f001971b	callq	.3c			; back
+00007f83f0019720	jmp	.43
+00007f83f0019725 .b7:	movl	$0x10, scratch
+00007f83f001972b	movl	scratch, 0x10(sp)
+00007f83f001972f	testb	$1, suspendbit
+00007f83f0019733	je	.43
+00007f83f0019739	callq	.3c			; back
+00007f83f001973e	jmp	.43
+00007f83f0019743 .b8:	movl	$0xa, scratch
+00007f83f0019749	movl	scratch, 0x10(sp)
+00007f83f001974d	testb	$1, suspendbit
+00007f83f0019751	je	.43
+00007f83f0019757	callq	.3c			; back
+00007f83f001975c	jmp	.43
+00007f83f0019761 .ba:	movl	$0xe, scratch
+00007f83f0019767	movl	scratch, 0x10(sp)
+00007f83f001976b	testb	$1, suspendbit
+00007f83f001976f	je	.43
+00007f83f0019775	callq	.3c			; back
+00007f83f001977a	jmp	.43
+00007f83f001977f .bb:	movl	$0xf, scratch
+00007f83f0019785	movl	scratch, 0x10(sp)
+00007f83f0019789	testb	$1, suspendbit
+00007f83f001978d	je	.43
+00007f83f0019793	callq	.3c			; back
+00007f83f0019798	jmp	.43
+00007f83f001979d .bc:	movl	$0xd, scratch
+00007f83f00197a3	movl	scratch, 0x10(sp)
+00007f83f00197a7	testb	$1, suspendbit
+00007f83f00197ab	je	.43
+00007f83f00197b1	callq	.3c			; back
+00007f83f00197b6	jmp	.43
+00007f83f00197bb .a4:	movl	$0x1a, scratch
+00007f83f00197c1	movl	scratch, 0x10(sp)
+00007f83f00197c5	testb	$1, suspendbit
+00007f83f00197c9	je	.43
+00007f83f00197cf	callq	.3c			; back
+00007f83f00197d4	jmp	.43
+00007f83f00197d9 .a7:	movl	$0x18, scratch
+00007f83f00197df	movl	scratch, 0x10(sp)
+00007f83f00197e3	testb	$1, suspendbit
+00007f83f00197e7	je	.43
+00007f83f00197ed	callq	.3c			; back
+00007f83f00197f2	jmp	.43
+00007f83f00197f7 .a6:	movl	$0x16, scratch
+00007f83f00197fd	movl	scratch, 0x10(sp)
+00007f83f0019801	testb	$1, suspendbit
+00007f83f0019805	je	.43
+00007f83f001980b	callq	.3c			; back
+00007f83f0019810	jmp	.43
+00007f83f0019815 .a8:	movl	$0x16, scratch
+00007f83f001981b	movl	scratch, 0x10(sp)
+00007f83f001981f	testb	$1, suspendbit
+00007f83f0019823	je	.43
+00007f83f0019829	callq	.3c			; back
+00007f83f001982e	jmp	.43
+00007f83f0019833 .a5:	movl	$0x19, scratch
+00007f83f0019839	movl	scratch, 0x10(sp)
+00007f83f001983d	testb	$1, suspendbit
+00007f83f0019841	je	.43
+00007f83f0019847	callq	.3c			; back
+00007f83f001984c	jmp	.43
+00007f83f0019851 .9d:	movl	$0x1c, scratch
+00007f83f0019857	movl	scratch, 0x10(sp)
+00007f83f001985b	testb	$1, suspendbit
+00007f83f001985f	je	.43
+00007f83f0019865	callq	.3c			; back
+00007f83f001986a	jmp	.43
+00007f83f001986f .9f:	movl	$0x1e, scratch
+00007f83f0019875	movl	scratch, 0x10(sp)
+00007f83f0019879	testb	$1, suspendbit
+00007f83f001987d	je	.43
+00007f83f0019883	callq	.3c			; back
+00007f83f0019888	jmp	.43
+00007f83f001988d .a0:	movl	$0x2e, scratch
+00007f83f0019893	movl	scratch, 0x10(sp)
+00007f83f0019897	testb	$1, suspendbit
+00007f83f001989b	je	.43
+00007f83f00198a1	callq	.3c			; back
+00007f83f00198a6	jmp	.43
+00007f83f00198ab .a1:	movl	$0x21, scratch
+00007f83f00198b1	movl	scratch, 0x10(sp)
+00007f83f00198b5	testb	$1, suspendbit
+00007f83f00198b9	je	.43
+00007f83f00198bf	callq	.3c			; back
+00007f83f00198c4	jmp	.43
+00007f83f00198c9 .ab:	movl	$0x24, scratch
+00007f83f00198cf	movl	scratch, 0x10(sp)
+00007f83f00198d3	testb	$1, suspendbit
+00007f83f00198d7	je	.43
+00007f83f00198dd	callq	.3c			; back
+00007f83f00198e2	jmp	.43
+00007f83f00198e7 .ac:	movl	$0x24, scratch
+00007f83f00198ed	movl	scratch, 0x10(sp)
+00007f83f00198f1	testb	$1, suspendbit
+00007f83f00198f5	je	.43
+00007f83f00198fb	callq	.3c			; back
+00007f83f0019900	jmp	.43
+00007f83f0019905 .ad:	movl	$0x30, scratch
+00007f83f001990b	movl	scratch, 0x10(sp)
+00007f83f001990f	testb	$1, suspendbit
+00007f83f0019913	je	.43
+00007f83f0019919	callq	.3c			; back
+00007f83f001991e	jmp	.43
+00007f83f0019923 .ae:	movl	$0x26, scratch
+00007f83f0019929	movl	scratch, 0x10(sp)
+00007f83f001992d	testb	$1, suspendbit
+00007f83f0019931	je	.43
+00007f83f0019937	callq	.3c			; back
+00007f83f001993c	jmp	.43
+00007f83f0019941 .c1:	movl	$0x27, scratch
+00007f83f0019947	movl	scratch, 0x10(sp)
+00007f83f001994b	testb	$1, suspendbit
+00007f83f001994f	je	.43
+00007f83f0019955	callq	.3c			; back
+00007f83f001995a	jmp	.43
+00007f83f001995f .c0:	movl	$0x2c, scratch
+00007f83f0019965	movl	scratch, 0x10(sp)
+00007f83f0019969	testb	$1, suspendbit
+00007f83f001996d	je	.43
+00007f83f0019973	callq	.3c			; back
+00007f83f0019978	jmp	.43
+00007f83f001997d .af:	movl	$0x29, scratch
+00007f83f0019983	movl	scratch, 0x10(sp)
+00007f83f0019987	testb	$1, suspendbit
+00007f83f001998b	je	.43
+00007f83f0019991	callq	.3c			; back
+00007f83f0019996	jmp	.43
+00007f83f001999b .c4:	movl	$0x2a, scratch
+00007f83f00199a1	movl	scratch, 0x10(sp)
+00007f83f00199a5	testb	$1, suspendbit
+00007f83f00199a9	je	.43
+00007f83f00199af	callq	.3c			; back
+00007f83f00199b4	jmp	.43
+00007f83f00199b9 .c2:	movl	$0x2b, scratch
+00007f83f00199bf	movl	scratch, 0x10(sp)
+00007f83f00199c3	testb	$1, suspendbit
+00007f83f00199c7	je	.43
+00007f83f00199cd	callq	.3c			; back
+00007f83f00199d2	jmp	.43
+00007f83f00199d7 .c3:	movl	$0x2a, scratch
+00007f83f00199dd	movl	scratch, 0x10(sp)
+00007f83f00199e1	testb	$1, suspendbit
+00007f83f00199e5	je	.43
+00007f83f00199eb	callq	.3c			; back
+00007f83f00199f0	jmp	.43
+00007f83f00199f5 .bd:	movl	$0x2b, scratch
+00007f83f00199fb	movl	scratch, 0x10(sp)
+00007f83f00199ff	testb	$1, suspendbit
+00007f83f0019a03	je	.43
+00007f83f0019a09	callq	.3c			; back
+00007f83f0019a0e	jmp	.43
+00007f83f0019a13 .be:	movl	$0x2a, scratch
+00007f83f0019a19	movl	scratch, 0x10(sp)
+00007f83f0019a1d	testb	$1, suspendbit
+00007f83f0019a21	je	.43
+00007f83f0019a27	callq	.3c			; back
+00007f83f0019a2c	jmp	.43
+00007f83f0019a31 .bf:	movl	$0x2d, scratch
+00007f83f0019a37	movl	scratch, 0x10(sp)
+00007f83f0019a3b	testb	$1, suspendbit
+00007f83f0019a3f	je	.43
+00007f83f0019a45	callq	.3c			; back
+00007f83f0019a4a	jmp	.43
+00007f83f0019a4f .a2:	movl	$0x34, scratch
+00007f83f0019a55	movl	scratch, 0x10(sp)
+00007f83f0019a59	testb	$1, suspendbit
+00007f83f0019a5d	je	.43
+00007f83f0019a63	callq	.3c			; back
+00007f83f0019a68	jmp	.43
+00007f83f0019a6d .a3:	movl	$0x33, scratch
+00007f83f0019a73	movl	scratch, 0x10(sp)
+00007f83f0019a77	testb	$1, suspendbit
+00007f83f0019a7b	je	.43
+00007f83f0019a81	callq	.3c			; back
+00007f83f0019a86	jmp	.43
+00007f83f0019a8b	leaq	0x58(sp), sp
+00007f83f0019a90	retq
+
+_ZN8dlmalloc8dlmalloc8Dlmalloc13dispose_chunk17h9a3d6cde9ae5dee4E:
+00007f83f0019aa0	leaq	-0x30(sp), scratch
+00007f83f0019aa8	cmpq	stacklimit, scratch
+00007f83f0019aab	jge	.c5
+00007f83f0019aad	callq	trap.call_stack_exhausted
+00007f83f0019ab2 .c5:	pushq	zero
+00007f83f0019ab3	pushq	zero
+00007f83f0019ab4	pushq	zero
+00007f83f0019ab5	pushq	zero
+00007f83f0019ab6	pushq	zero
+00007f83f0019ab7	pushq	zero
+00007f83f0019ab8	movl	0x40(sp), r5
+00007f83f0019abc	movl	0x38(sp), r6
+00007f83f0019ac0	addl	r6, r5
+00007f83f0019ac2	movl	r5, 0x28(sp)
+00007f83f0019ac6	movl	0x40(sp), r5
+00007f83f0019aca	movl	r5, scratch
+00007f83f0019acc	addq	memory, scratch
+00007f83f0019acf	movl	4(scratch), r5
+00007f83f0019ad2	movl	r5, 0x20(sp)
+00007f83f0019ad6	andl	$1, r5
+00007f83f0019ad9	testl	r5, r5
+00007f83f0019adb	jne	.c6
+00007f83f0019ae1	movl	0x20(sp), r5
+00007f83f0019ae5	andl	$3, r5
+00007f83f0019ae8	testl	r5, r5
+00007f83f0019aea	je	.c7
+00007f83f0019af0	movl	0x40(sp), r5
+00007f83f0019af4	movl	r5, scratch
+00007f83f0019af6	addq	memory, scratch
+00007f83f0019af9	movl	(scratch), r5
+00007f83f0019afb	movl	r5, 0x20(sp)
+00007f83f0019aff	movl	0x38(sp), r6
+00007f83f0019b03	addl	r6, r5
+00007f83f0019b05	movl	r5, 0x38(sp)
+00007f83f0019b09	movl	0x1004c8(memory), r5
+00007f83f0019b10	movl	0x40(sp), r6
+00007f83f0019b14	movl	0x20(sp), r7
+00007f83f0019b18	subl	r7, r6
+00007f83f0019b1a	movl	r6, 0x40(sp)
+00007f83f0019b1e	movl	r5, result
+00007f83f0019b20	cmpl	r6, result
+00007f83f0019b22	je	.c8
+00007f83f0019b28	movl	0x20(sp), r5
+00007f83f0019b2c	movl	r5, result
+00007f83f0019b2e	cmpl	$0xff, result
+00007f83f0019b34	ja	.c9
+00007f83f0019b3a	movl	0x40(sp), r5
+00007f83f0019b3e	movl	r5, scratch
+00007f83f0019b40	addq	memory, scratch
+00007f83f0019b43	movl	0xc(scratch), r5
+00007f83f0019b46	movl	r5, 0x18(sp)
+00007f83f0019b4a	movl	0x40(sp), r6
+00007f83f0019b4e	movl	r6, scratch
+00007f83f0019b50	addq	memory, scratch
+00007f83f0019b53	movl	8(scratch), r6
+00007f83f0019b56	movl	r6, 0x10(sp)
+00007f83f0019b5a	movl	r5, result
+00007f83f0019b5c	cmpl	r6, result
+00007f83f0019b5e	je	.ca
+00007f83f0019b64	movl	0x10(sp), r5
+00007f83f0019b68	movl	0x18(sp), r6
+00007f83f0019b6c	movl	r5, scratch
+00007f83f0019b6e	addq	memory, scratch
+00007f83f0019b71	movl	r6, 0xc(scratch)
+00007f83f0019b74	movl	0x18(sp), r5
+00007f83f0019b78	movl	0x10(sp), r6
+00007f83f0019b7c	movl	r5, scratch
+00007f83f0019b7e	addq	memory, scratch
+00007f83f0019b81	movl	r6, 8(scratch)
+00007f83f0019b84	movl	0x28(sp), r5
+00007f83f0019b88	movl	r5, scratch
+00007f83f0019b8a	addq	memory, scratch
+00007f83f0019b8d	movl	4(scratch), r5
+00007f83f0019b90	movl	r5, 0x20(sp)
+00007f83f0019b94	andl	$2, r5
+00007f83f0019b97	testl	r5, r5
+00007f83f0019b99	je	.cb
+00007f83f0019b9f	jmp	.cc
+00007f83f0019ba4 .c8:	movl	0x28(sp), r5
+00007f83f0019ba8	movl	r5, scratch
+00007f83f0019baa	addq	memory, scratch
+00007f83f0019bad	movl	4(scratch), r5
+00007f83f0019bb0	andl	$3, r5
+00007f83f0019bb3	movl	r5, result
+00007f83f0019bb5	cmpl	$3, result
+00007f83f0019bb8	jne	.c6
+00007f83f0019bbe	movl	0x38(sp), r5
+00007f83f0019bc2	movl	r5, 0x1004c0(memory)
+00007f83f0019bc9	movl	0x28(sp), r5
+00007f83f0019bcd	addl	$4, r5
+00007f83f0019bd0	movl	r5, 0x20(sp)
+00007f83f0019bd4	movl	0x20(sp), r6
+00007f83f0019bd8	movl	r6, scratch
+00007f83f0019bda	addq	memory, scratch
+00007f83f0019bdd	movl	(scratch), r6
+00007f83f0019bdf	andl	$0xfffffffffffffffe, r6
+00007f83f0019be2	movl	r5, scratch
+00007f83f0019be4	addq	memory, scratch
+00007f83f0019be7	movl	r6, (scratch)
+00007f83f0019be9	movl	0x40(sp), r5
+00007f83f0019bed	movl	0x38(sp), r6
+00007f83f0019bf1	orl	$1, r6
+00007f83f0019bf4	movl	r5, scratch
+00007f83f0019bf6	addq	memory, scratch
+00007f83f0019bf9	movl	r6, 4(scratch)
+00007f83f0019bfc	movl	0x28(sp), r5
+00007f83f0019c00	movl	0x38(sp), r6
+00007f83f0019c04	movl	r5, scratch
+00007f83f0019c06	addq	memory, scratch
+00007f83f0019c09	movl	r6, (scratch)
+00007f83f0019c0b	leaq	0x30(sp), sp
+00007f83f0019c10	retq
+00007f83f0019c11 .c9:	movl	0x40(sp), r5
+00007f83f0019c15	movl	r5, scratch
+00007f83f0019c17	addq	memory, scratch
+00007f83f0019c1a	movl	0x18(scratch), r5
+00007f83f0019c1d	movl	r5, 8(sp)
+00007f83f0019c21	movl	0x40(sp), r5
+00007f83f0019c25	movl	r5, scratch
+00007f83f0019c27	addq	memory, scratch
+00007f83f0019c2a	movl	0xc(scratch), r5
+00007f83f0019c2d	movl	r5, 0x18(sp)
+00007f83f0019c31	movl	0x40(sp), r6
+00007f83f0019c35	movl	r5, result
+00007f83f0019c37	cmpl	r6, result
+00007f83f0019c39	je	.cd
+00007f83f0019c3f	movl	0x40(sp), r5
+00007f83f0019c43	movl	r5, scratch
+00007f83f0019c45	addq	memory, scratch
+00007f83f0019c48	movl	8(scratch), r5
+00007f83f0019c4b	movl	r5, 0x20(sp)
+00007f83f0019c4f	movl	0x18(sp), r6
+00007f83f0019c53	movl	r5, scratch
+00007f83f0019c55	addq	memory, scratch
+00007f83f0019c58	movl	r6, 0xc(scratch)
+00007f83f0019c5b	movl	0x18(sp), r5
+00007f83f0019c5f	movl	0x20(sp), r6
+00007f83f0019c63	movl	r5, scratch
+00007f83f0019c65	addq	memory, scratch
+00007f83f0019c68	movl	r6, 8(scratch)
+00007f83f0019c6b	movl	8(sp), r5
+00007f83f0019c6f	testl	r5, r5
+00007f83f0019c71	jne	.ce
+00007f83f0019c77	jmp	.c6
+00007f83f0019c7c .ca:	movl	0x100330(memory), r5
+00007f83f0019c83	movl	0x20(sp), r6
+00007f83f0019c87	shrl	$3, r6
+00007f83f0019c8a	movl	$0xfffffffe, r7
+00007f83f0019c90	movl	r6, scratch
+00007f83f0019c92	roll	scratchb, r7
+00007f83f0019c94	andl	r7, r5
+00007f83f0019c96	movl	r5, 0x100330(memory)
+00007f83f0019c9d	movl	0x28(sp), r5
+00007f83f0019ca1	movl	r5, scratch
+00007f83f0019ca3	addq	memory, scratch
+00007f83f0019ca6	movl	4(scratch), r5
+00007f83f0019ca9	movl	r5, 0x20(sp)
+00007f83f0019cad	andl	$2, r5
+00007f83f0019cb0	testl	r5, r5
+00007f83f0019cb2	je	.cb
+00007f83f0019cb8	jmp	.cc
+00007f83f0019cbd .cd:	movl	0x40(sp), r5
+00007f83f0019cc1	movl	0x40(sp), r6
+00007f83f0019cc5	movl	r6, scratch
+00007f83f0019cc7	addq	memory, scratch
+00007f83f0019cca	movl	0x14(scratch), r6
+00007f83f0019ccd	movl	r6, 0x18(sp)
+00007f83f0019cd1	testl	r6, r6
+00007f83f0019cd3	movl	$0x10, r6
+00007f83f0019cd9	movl	$0x14, scratch
+00007f83f0019cdf	cmovnel	scratch, r6
+00007f83f0019ce2	addl	r6, r5
+00007f83f0019ce4	movl	r5, scratch
+00007f83f0019ce6	addq	memory, scratch
+00007f83f0019ce9	movl	(scratch), r5
+00007f83f0019ceb	movl	r5, 0x20(sp)
+00007f83f0019cef	testl	r5, r5
+00007f83f0019cf1	je	.cf
+00007f83f0019cf7	movl	0x40(sp), r5
+00007f83f0019cfb	addl	$0x14, r5
+00007f83f0019cfe	movl	0x40(sp), r6
+00007f83f0019d02	addl	$0x10, r6
+00007f83f0019d05	movl	0x18(sp), r7
+00007f83f0019d09	testl	r7, r7
+00007f83f0019d0b	cmovnel	r5, r6
+00007f83f0019d0e	movl	r6, 0x10(sp)
+00007f83f0019d12 .d2:	movl	0x10(sp), r5
+00007f83f0019d16	movl	r5, (sp)
+00007f83f0019d19	movl	0x20(sp), r5
+00007f83f0019d1d	movl	r5, 0x18(sp)
+00007f83f0019d21	addl	$0x14, r5
+00007f83f0019d24	movl	r5, 0x10(sp)
+00007f83f0019d28	movl	r5, scratch
+00007f83f0019d2a	addq	memory, scratch
+00007f83f0019d2d	movl	(scratch), r5
+00007f83f0019d2f	movl	r5, 0x20(sp)
+00007f83f0019d33	testl	r5, r5
+00007f83f0019d35	je	.d0
+00007f83f0019d3b	movl	0x20(sp), r5
+00007f83f0019d3f	testl	r5, r5
+00007f83f0019d41	je	.d1
+00007f83f0019d43	testb	$1, suspendbit
+00007f83f0019d47	je	.d2			; back
+00007f83f0019d4d	callq	.3c			; back
+00007f83f0019d52	jmp	.d2			; back
+00007f83f0019d57 .d1:	jmp	.d3
+00007f83f0019d5c .d0:	movl	0x18(sp), r5
+00007f83f0019d60	addl	$0x10, r5
+00007f83f0019d63	movl	r5, 0x10(sp)
+00007f83f0019d67	movl	0x18(sp), r5
+00007f83f0019d6b	movl	r5, scratch
+00007f83f0019d6d	addq	memory, scratch
+00007f83f0019d70	movl	0x10(scratch), r5
+00007f83f0019d73	movl	r5, 0x20(sp)
+00007f83f0019d77	testl	r5, r5
+00007f83f0019d79	je	.d3
+00007f83f0019d7b	testb	$1, suspendbit
+00007f83f0019d7f	je	.d2			; back
+00007f83f0019d85	callq	.3c			; back
+00007f83f0019d8a	jmp	.d2			; back
+00007f83f0019d8f .d3:	movl	(sp), r5
+00007f83f0019d92	movl	r5, scratch
+00007f83f0019d94	addq	memory, scratch
+00007f83f0019d97	movl	zero, (scratch)
+00007f83f0019d99	movl	8(sp), r5
+00007f83f0019d9d	testl	r5, r5
+00007f83f0019d9f	jne	.ce
+00007f83f0019da5	jmp	.c6
+00007f83f0019daa .cf:	movl	zero, scratch
+00007f83f0019dac	movl	scratch, 0x18(sp)
+00007f83f0019db0	movl	8(sp), r5
+00007f83f0019db4	testl	r5, r5
+00007f83f0019db6	je	.c6
+00007f83f0019dbc .ce:	movl	0x40(sp), r5
+00007f83f0019dc0	movl	r5, scratch
+00007f83f0019dc2	addq	memory, scratch
+00007f83f0019dc5	movl	0x1c(scratch), r5
+00007f83f0019dc8	shll	$2, r5
+00007f83f0019dcb	addl	$0x100440, r5
+00007f83f0019dd1	movl	r5, 0x20(sp)
+00007f83f0019dd5	movl	r5, scratch
+00007f83f0019dd7	addq	memory, scratch
+00007f83f0019dda	movl	(scratch), r5
+00007f83f0019ddc	movl	0x40(sp), r6
+00007f83f0019de0	movl	r5, result
+00007f83f0019de2	cmpl	r6, result
+00007f83f0019de4	je	.d4
+00007f83f0019dea	movl	8(sp), r5
+00007f83f0019dee	movl	8(sp), r6
+00007f83f0019df2	movl	r6, scratch
+00007f83f0019df4	addq	memory, scratch
+00007f83f0019df7	movl	0x10(scratch), r6
+00007f83f0019dfa	movl	0x40(sp), r7
+00007f83f0019dfe	movl	r6, result
+00007f83f0019e00	cmpl	r7, result
+00007f83f0019e02	movl	$0x14, r6
+00007f83f0019e08	movl	$0x10, scratch
+00007f83f0019e0e	cmovel	scratch, r6
+00007f83f0019e11	addl	r6, r5
+00007f83f0019e13	movl	0x18(sp), r6
+00007f83f0019e17	movl	r5, scratch
+00007f83f0019e19	addq	memory, scratch
+00007f83f0019e1c	movl	r6, (scratch)
+00007f83f0019e1e	movl	0x18(sp), r5
+00007f83f0019e22	testl	r5, r5
+00007f83f0019e24	jne	.d5
+00007f83f0019e2a	jmp	.c6
+00007f83f0019e2f .d4:	movl	0x20(sp), r5
+00007f83f0019e33	movl	0x18(sp), r6
+00007f83f0019e37	movl	r5, scratch
+00007f83f0019e39	addq	memory, scratch
+00007f83f0019e3c	movl	r6, (scratch)
+00007f83f0019e3e	movl	0x18(sp), r5
+00007f83f0019e42	testl	r5, r5
+00007f83f0019e44	je	.d6
+00007f83f0019e4a .d5:	movl	0x18(sp), r5
+00007f83f0019e4e	movl	8(sp), r6
+00007f83f0019e52	movl	r5, scratch
+00007f83f0019e54	addq	memory, scratch
+00007f83f0019e57	movl	r6, 0x18(scratch)
+00007f83f0019e5a	movl	0x40(sp), r5
+00007f83f0019e5e	movl	r5, scratch
+00007f83f0019e60	addq	memory, scratch
+00007f83f0019e63	movl	0x10(scratch), r5
+00007f83f0019e66	movl	r5, 0x20(sp)
+00007f83f0019e6a	testl	r5, r5
+00007f83f0019e6c	je	.d7
+00007f83f0019e72	movl	0x18(sp), r5
+00007f83f0019e76	movl	0x20(sp), r6
+00007f83f0019e7a	movl	r5, scratch
+00007f83f0019e7c	addq	memory, scratch
+00007f83f0019e7f	movl	r6, 0x10(scratch)
+00007f83f0019e82	movl	0x20(sp), r5
+00007f83f0019e86	movl	0x18(sp), r6
+00007f83f0019e8a	movl	r5, scratch
+00007f83f0019e8c	addq	memory, scratch
+00007f83f0019e8f	movl	r6, 0x18(scratch)
+00007f83f0019e92 .d7:	movl	0x40(sp), r5
+00007f83f0019e96	movl	r5, scratch
+00007f83f0019e98	addq	memory, scratch
+00007f83f0019e9b	movl	0x14(scratch), r5
+00007f83f0019e9e	movl	r5, 0x20(sp)
+00007f83f0019ea2	testl	r5, r5
+00007f83f0019ea4	je	.c6
+00007f83f0019eaa	movl	0x18(sp), r5
+00007f83f0019eae	addl	$0x14, r5
+00007f83f0019eb1	movl	0x20(sp), r6
+00007f83f0019eb5	movl	r5, scratch
+00007f83f0019eb7	addq	memory, scratch
+00007f83f0019eba	movl	r6, (scratch)
+00007f83f0019ebc	movl	0x20(sp), r5
+00007f83f0019ec0	movl	0x18(sp), r6
+00007f83f0019ec4	movl	r5, scratch
+00007f83f0019ec6	addq	memory, scratch
+00007f83f0019ec9	movl	r6, 0x18(scratch)
+00007f83f0019ecc .c6:	movl	0x28(sp), r5
+00007f83f0019ed0	movl	r5, scratch
+00007f83f0019ed2	addq	memory, scratch
+00007f83f0019ed5	movl	4(scratch), r5
+00007f83f0019ed8	movl	r5, 0x20(sp)
+00007f83f0019edc	andl	$2, r5
+00007f83f0019edf	testl	r5, r5
+00007f83f0019ee1	jne	.cc
+00007f83f0019ee7	jmp	.cb
+00007f83f0019eec .d6:	movl	0x100334(memory), r5
+00007f83f0019ef3	movl	0x40(sp), r6
+00007f83f0019ef7	addl	$0x1c, r6
+00007f83f0019efa	movl	r6, scratch
+00007f83f0019efc	addq	memory, scratch
+00007f83f0019eff	movl	(scratch), r6
+00007f83f0019f01	movl	$0xfffffffe, r7
+00007f83f0019f07	movl	r6, scratch
+00007f83f0019f09	roll	scratchb, r7
+00007f83f0019f0b	andl	r7, r5
+00007f83f0019f0d	movl	r5, 0x100334(memory)
+00007f83f0019f14	movl	0x28(sp), r5
+00007f83f0019f18	movl	r5, scratch
+00007f83f0019f1a	addq	memory, scratch
+00007f83f0019f1d	movl	4(scratch), r5
+00007f83f0019f20	movl	r5, 0x20(sp)
+00007f83f0019f24	andl	$2, r5
+00007f83f0019f27	testl	r5, r5
+00007f83f0019f29	je	.cb
+00007f83f0019f2f .cc:	movl	0x28(sp), r5
+00007f83f0019f33	addl	$4, r5
+00007f83f0019f36	movl	0x20(sp), r6
+00007f83f0019f3a	andl	$0xfffffffffffffffe, r6
+00007f83f0019f3d	movl	r5, scratch
+00007f83f0019f3f	addq	memory, scratch
+00007f83f0019f42	movl	r6, (scratch)
+00007f83f0019f44	movl	0x40(sp), r5
+00007f83f0019f48	movl	0x38(sp), r6
+00007f83f0019f4c	orl	$1, r6
+00007f83f0019f4f	movl	r5, scratch
+00007f83f0019f51	addq	memory, scratch
+00007f83f0019f54	movl	r6, 4(scratch)
+00007f83f0019f57	movl	0x40(sp), r5
+00007f83f0019f5b	movl	0x38(sp), r6
+00007f83f0019f5f	addl	r6, r5
+00007f83f0019f61	movl	0x38(sp), r6
+00007f83f0019f65	movl	r5, scratch
+00007f83f0019f67	addq	memory, scratch
+00007f83f0019f6a	movl	r6, (scratch)
+00007f83f0019f6c	jmp	.d8
+00007f83f0019f71 .cb:	movl	0x1004cc(memory), r5
+00007f83f0019f78	movl	0x28(sp), r6
+00007f83f0019f7c	movl	r5, result
+00007f83f0019f7e	cmpl	r6, result
+00007f83f0019f80	je	.d9
+00007f83f0019f86	movl	0x1004c8(memory), r5
+00007f83f0019f8d	movl	0x28(sp), r6
+00007f83f0019f91	movl	r5, result
+00007f83f0019f93	cmpl	r6, result
+00007f83f0019f95	je	.da
+00007f83f0019f9b	movl	0x20(sp), r5
+00007f83f0019f9f	andl	$0xfffffffffffffff8, r5
+00007f83f0019fa2	movl	r5, 0x18(sp)
+00007f83f0019fa6	movl	0x38(sp), r6
+00007f83f0019faa	addl	r6, r5
+00007f83f0019fac	movl	r5, 0x38(sp)
+00007f83f0019fb0	movl	0x18(sp), r5
+00007f83f0019fb4	movl	r5, result
+00007f83f0019fb6	cmpl	$0xff, result
+00007f83f0019fbc	ja	.db
+00007f83f0019fc2	movl	0x28(sp), r5
+00007f83f0019fc6	movl	r5, scratch
+00007f83f0019fc8	addq	memory, scratch
+00007f83f0019fcb	movl	0xc(scratch), r5
+00007f83f0019fce	movl	r5, 0x18(sp)
+00007f83f0019fd2	movl	0x28(sp), r6
+00007f83f0019fd6	movl	r6, scratch
+00007f83f0019fd8	addq	memory, scratch
+00007f83f0019fdb	movl	8(scratch), r6
+00007f83f0019fde	movl	r6, 0x28(sp)
+00007f83f0019fe2	movl	r5, result
+00007f83f0019fe4	cmpl	r6, result
+00007f83f0019fe6	je	.dc
+00007f83f0019fec	movl	0x28(sp), r5
+00007f83f0019ff0	movl	0x18(sp), r6
+00007f83f0019ff4	movl	r5, scratch
+00007f83f0019ff6	addq	memory, scratch
+00007f83f0019ff9	movl	r6, 0xc(scratch)
+00007f83f0019ffc	movl	0x18(sp), r5
+00007f83f001a000	movl	0x28(sp), r6
+00007f83f001a004	movl	r5, scratch
+00007f83f001a006	addq	memory, scratch
+00007f83f001a009	movl	r6, 8(scratch)
+00007f83f001a00c	jmp	.dd
+00007f83f001a011 .d9:	movl	0x40(sp), r5
+00007f83f001a015	movl	r5, 0x1004cc(memory)
+00007f83f001a01c	movl	0x1004c4(memory), r5
+00007f83f001a023	movl	0x38(sp), r6
+00007f83f001a027	addl	r6, r5
+00007f83f001a029	movl	r5, 0x38(sp)
+00007f83f001a02d	movl	r5, 0x1004c4(memory)
+00007f83f001a034	movl	0x40(sp), r5
+00007f83f001a038	movl	0x38(sp), r6
+00007f83f001a03c	orl	$1, r6
+00007f83f001a03f	movl	r5, scratch
+00007f83f001a041	addq	memory, scratch
+00007f83f001a044	movl	r6, 4(scratch)
+00007f83f001a047	movl	0x40(sp), r5
+00007f83f001a04b	movl	0x1004c8(memory), r6
+00007f83f001a052	movl	r5, result
+00007f83f001a054	cmpl	r6, result
+00007f83f001a056	je	.de
+00007f83f001a05c .c7:	leaq	0x30(sp), sp
+00007f83f001a061	retq
+00007f83f001a062 .da:	movl	0x40(sp), r5
+00007f83f001a066	movl	r5, 0x1004c8(memory)
+00007f83f001a06d	movl	0x1004c0(memory), r5
+00007f83f001a074	movl	0x38(sp), r6
+00007f83f001a078	addl	r6, r5
+00007f83f001a07a	movl	r5, 0x38(sp)
+00007f83f001a07e	movl	r5, 0x1004c0(memory)
+00007f83f001a085	movl	0x40(sp), r5
+00007f83f001a089	movl	0x38(sp), r6
+00007f83f001a08d	orl	$1, r6
+00007f83f001a090	movl	r5, scratch
+00007f83f001a092	addq	memory, scratch
+00007f83f001a095	movl	r6, 4(scratch)
+00007f83f001a098	movl	0x40(sp), r5
+00007f83f001a09c	movl	0x38(sp), r6
+00007f83f001a0a0	addl	r6, r5
+00007f83f001a0a2	movl	0x38(sp), r6
+00007f83f001a0a6	movl	r5, scratch
+00007f83f001a0a8	addq	memory, scratch
+00007f83f001a0ab	movl	r6, (scratch)
+00007f83f001a0ad	leaq	0x30(sp), sp
+00007f83f001a0b2	retq
+00007f83f001a0b3 .db:	movl	0x28(sp), r5
+00007f83f001a0b7	movl	r5, scratch
+00007f83f001a0b9	addq	memory, scratch
+00007f83f001a0bc	movl	0x18(scratch), r5
+00007f83f001a0bf	movl	r5, 8(sp)
+00007f83f001a0c3	movl	0x28(sp), r5
+00007f83f001a0c7	movl	r5, scratch
+00007f83f001a0c9	addq	memory, scratch
+00007f83f001a0cc	movl	0xc(scratch), r5
+00007f83f001a0cf	movl	r5, 0x18(sp)
+00007f83f001a0d3	movl	0x28(sp), r6
+00007f83f001a0d7	movl	r5, result
+00007f83f001a0d9	cmpl	r6, result
+00007f83f001a0db	je	.df
+00007f83f001a0e1	movl	0x28(sp), r5
+00007f83f001a0e5	movl	r5, scratch
+00007f83f001a0e7	addq	memory, scratch
+00007f83f001a0ea	movl	8(scratch), r5
+00007f83f001a0ed	movl	r5, 0x20(sp)
+00007f83f001a0f1	movl	0x18(sp), r6
+00007f83f001a0f5	movl	r5, scratch
+00007f83f001a0f7	addq	memory, scratch
+00007f83f001a0fa	movl	r6, 0xc(scratch)
+00007f83f001a0fd	movl	0x18(sp), r5
+00007f83f001a101	movl	0x20(sp), r6
+00007f83f001a105	movl	r5, scratch
+00007f83f001a107	addq	memory, scratch
+00007f83f001a10a	movl	r6, 8(scratch)
+00007f83f001a10d	movl	8(sp), r5
+00007f83f001a111	testl	r5, r5
+00007f83f001a113	jne	.e0
+00007f83f001a119	jmp	.dd
+00007f83f001a11e .de:	movl	zero, 0x1004c0(memory)
+00007f83f001a125	movl	zero, 0x1004c8(memory)
+00007f83f001a12c	leaq	0x30(sp), sp
+00007f83f001a131	retq
+00007f83f001a132 .dc:	movl	0x100330(memory), r5
+00007f83f001a139	movl	0x20(sp), r6
+00007f83f001a13d	shrl	$3, r6
+00007f83f001a140	movl	$0xfffffffe, r7
+00007f83f001a146	movl	r6, scratch
+00007f83f001a148	roll	scratchb, r7
+00007f83f001a14a	andl	r7, r5
+00007f83f001a14c	movl	r5, 0x100330(memory)
+00007f83f001a153	jmp	.dd
+00007f83f001a158 .df:	movl	0x28(sp), r5
+00007f83f001a15c	movl	0x28(sp), r6
+00007f83f001a160	movl	r6, scratch
+00007f83f001a162	addq	memory, scratch
+00007f83f001a165	movl	0x14(scratch), r6
+00007f83f001a168	movl	r6, 0x18(sp)
+00007f83f001a16c	testl	r6, r6
+00007f83f001a16e	movl	$0x10, r6
+00007f83f001a174	movl	$0x14, scratch
+00007f83f001a17a	cmovnel	scratch, r6
+00007f83f001a17d	addl	r6, r5
+00007f83f001a17f	movl	r5, scratch
+00007f83f001a181	addq	memory, scratch
+00007f83f001a184	movl	(scratch), r5
+00007f83f001a186	movl	r5, 0x20(sp)
+00007f83f001a18a	testl	r5, r5
+00007f83f001a18c	je	.e1
+00007f83f001a192	movl	0x28(sp), r5
+00007f83f001a196	addl	$0x14, r5
+00007f83f001a199	movl	0x28(sp), r6
+00007f83f001a19d	addl	$0x10, r6
+00007f83f001a1a0	movl	0x18(sp), r7
+00007f83f001a1a4	testl	r7, r7
+00007f83f001a1a6	cmovnel	r5, r6
+00007f83f001a1a9	movl	r6, 0x10(sp)
+00007f83f001a1ad .e4:	movl	0x10(sp), r5
+00007f83f001a1b1	movl	r5, (sp)
+00007f83f001a1b4	movl	0x20(sp), r5
+00007f83f001a1b8	movl	r5, 0x18(sp)
+00007f83f001a1bc	addl	$0x14, r5
+00007f83f001a1bf	movl	r5, 0x10(sp)
+00007f83f001a1c3	movl	r5, scratch
+00007f83f001a1c5	addq	memory, scratch
+00007f83f001a1c8	movl	(scratch), r5
+00007f83f001a1ca	movl	r5, 0x20(sp)
+00007f83f001a1ce	testl	r5, r5
+00007f83f001a1d0	je	.e2
+00007f83f001a1d6	movl	0x20(sp), r5
+00007f83f001a1da	testl	r5, r5
+00007f83f001a1dc	je	.e3
+00007f83f001a1de	testb	$1, suspendbit
+00007f83f001a1e2	je	.e4			; back
+00007f83f001a1e8	callq	.3c			; back
+00007f83f001a1ed	jmp	.e4			; back
+00007f83f001a1f2 .e3:	jmp	.e5
+00007f83f001a1f7 .e2:	movl	0x18(sp), r5
+00007f83f001a1fb	addl	$0x10, r5
+00007f83f001a1fe	movl	r5, 0x10(sp)
+00007f83f001a202	movl	0x18(sp), r5
+00007f83f001a206	movl	r5, scratch
+00007f83f001a208	addq	memory, scratch
+00007f83f001a20b	movl	0x10(scratch), r5
+00007f83f001a20e	movl	r5, 0x20(sp)
+00007f83f001a212	testl	r5, r5
+00007f83f001a214	je	.e5
+00007f83f001a216	testb	$1, suspendbit
+00007f83f001a21a	je	.e4			; back
+00007f83f001a220	callq	.3c			; back
+00007f83f001a225	jmp	.e4			; back
+00007f83f001a22a .e5:	movl	(sp), r5
+00007f83f001a22d	movl	r5, scratch
+00007f83f001a22f	addq	memory, scratch
+00007f83f001a232	movl	zero, (scratch)
+00007f83f001a234	movl	8(sp), r5
+00007f83f001a238	testl	r5, r5
+00007f83f001a23a	jne	.e0
+00007f83f001a240	jmp	.dd
+00007f83f001a245 .e1:	movl	zero, scratch
+00007f83f001a247	movl	scratch, 0x18(sp)
+00007f83f001a24b	movl	8(sp), r5
+00007f83f001a24f	testl	r5, r5
+00007f83f001a251	je	.dd
+00007f83f001a257 .e0:	movl	0x28(sp), r5
+00007f83f001a25b	movl	r5, scratch
+00007f83f001a25d	addq	memory, scratch
+00007f83f001a260	movl	0x1c(scratch), r5
+00007f83f001a263	shll	$2, r5
+00007f83f001a266	addl	$0x100440, r5
+00007f83f001a26c	movl	r5, 0x20(sp)
+00007f83f001a270	movl	r5, scratch
+00007f83f001a272	addq	memory, scratch
+00007f83f001a275	movl	(scratch), r5
+00007f83f001a277	movl	0x28(sp), r6
+00007f83f001a27b	movl	r5, result
+00007f83f001a27d	cmpl	r6, result
+00007f83f001a27f	je	.e6
+00007f83f001a285	movl	8(sp), r5
+00007f83f001a289	movl	8(sp), r6
+00007f83f001a28d	movl	r6, scratch
+00007f83f001a28f	addq	memory, scratch
+00007f83f001a292	movl	0x10(scratch), r6
+00007f83f001a295	movl	0x28(sp), r7
+00007f83f001a299	movl	r6, result
+00007f83f001a29b	cmpl	r7, result
+00007f83f001a29d	movl	$0x14, r6
+00007f83f001a2a3	movl	$0x10, scratch
+00007f83f001a2a9	cmovel	scratch, r6
+00007f83f001a2ac	addl	r6, r5
+00007f83f001a2ae	movl	0x18(sp), r6
+00007f83f001a2b2	movl	r5, scratch
+00007f83f001a2b4	addq	memory, scratch
+00007f83f001a2b7	movl	r6, (scratch)
+00007f83f001a2b9	movl	0x18(sp), r5
+00007f83f001a2bd	testl	r5, r5
+00007f83f001a2bf	jne	.e7
+00007f83f001a2c5	jmp	.dd
+00007f83f001a2ca .e6:	movl	0x20(sp), r5
+00007f83f001a2ce	movl	0x18(sp), r6
+00007f83f001a2d2	movl	r5, scratch
+00007f83f001a2d4	addq	memory, scratch
+00007f83f001a2d7	movl	r6, (scratch)
+00007f83f001a2d9	movl	0x18(sp), r5
+00007f83f001a2dd	testl	r5, r5
+00007f83f001a2df	je	.e8
+00007f83f001a2e5 .e7:	movl	0x18(sp), r5
+00007f83f001a2e9	movl	8(sp), r6
+00007f83f001a2ed	movl	r5, scratch
+00007f83f001a2ef	addq	memory, scratch
+00007f83f001a2f2	movl	r6, 0x18(scratch)
+00007f83f001a2f5	movl	0x28(sp), r5
+00007f83f001a2f9	movl	r5, scratch
+00007f83f001a2fb	addq	memory, scratch
+00007f83f001a2fe	movl	0x10(scratch), r5
+00007f83f001a301	movl	r5, 0x20(sp)
+00007f83f001a305	testl	r5, r5
+00007f83f001a307	je	.e9
+00007f83f001a30d	movl	0x18(sp), r5
+00007f83f001a311	movl	0x20(sp), r6
+00007f83f001a315	movl	r5, scratch
+00007f83f001a317	addq	memory, scratch
+00007f83f001a31a	movl	r6, 0x10(scratch)
+00007f83f001a31d	movl	0x20(sp), r5
+00007f83f001a321	movl	0x18(sp), r6
+00007f83f001a325	movl	r5, scratch
+00007f83f001a327	addq	memory, scratch
+00007f83f001a32a	movl	r6, 0x18(scratch)
+00007f83f001a32d .e9:	movl	0x28(sp), r5
+00007f83f001a331	movl	r5, scratch
+00007f83f001a333	addq	memory, scratch
+00007f83f001a336	movl	0x14(scratch), r5
+00007f83f001a339	movl	r5, 0x28(sp)
+00007f83f001a33d	testl	r5, r5
+00007f83f001a33f	je	.dd
+00007f83f001a345	movl	0x18(sp), r5
+00007f83f001a349	addl	$0x14, r5
+00007f83f001a34c	movl	0x28(sp), r6
+00007f83f001a350	movl	r5, scratch
+00007f83f001a352	addq	memory, scratch
+00007f83f001a355	movl	r6, (scratch)
+00007f83f001a357	movl	0x28(sp), r5
+00007f83f001a35b	movl	0x18(sp), r6
+00007f83f001a35f	movl	r5, scratch
+00007f83f001a361	addq	memory, scratch
+00007f83f001a364	movl	r6, 0x18(scratch)
+00007f83f001a367	jmp	.dd
+00007f83f001a36c .e8:	movl	0x100334(memory), r5
+00007f83f001a373	movl	0x28(sp), r6
+00007f83f001a377	addl	$0x1c, r6
+00007f83f001a37a	movl	r6, scratch
+00007f83f001a37c	addq	memory, scratch
+00007f83f001a37f	movl	(scratch), r6
+00007f83f001a381	movl	$0xfffffffe, r7
+00007f83f001a387	movl	r6, scratch
+00007f83f001a389	roll	scratchb, r7
+00007f83f001a38b	andl	r7, r5
+00007f83f001a38d	movl	r5, 0x100334(memory)
+00007f83f001a394 .dd:	movl	0x40(sp), r5
+00007f83f001a398	movl	0x38(sp), r6
+00007f83f001a39c	orl	$1, r6
+00007f83f001a39f	movl	r5, scratch
+00007f83f001a3a1	addq	memory, scratch
+00007f83f001a3a4	movl	r6, 4(scratch)
+00007f83f001a3a7	movl	0x40(sp), r5
+00007f83f001a3ab	movl	0x38(sp), r6
+00007f83f001a3af	addl	r6, r5
+00007f83f001a3b1	movl	0x38(sp), r6
+00007f83f001a3b5	movl	r5, scratch
+00007f83f001a3b7	addq	memory, scratch
+00007f83f001a3ba	movl	r6, (scratch)
+00007f83f001a3bc	movl	0x40(sp), r5
+00007f83f001a3c0	movl	0x1004c8(memory), r6
+00007f83f001a3c7	movl	r5, result
+00007f83f001a3c9	cmpl	r6, result
+00007f83f001a3cb	jne	.d8
+00007f83f001a3d1	movl	0x38(sp), r5
+00007f83f001a3d5	movl	r5, 0x1004c0(memory)
+00007f83f001a3dc	leaq	0x30(sp), sp
+00007f83f001a3e1	retq
+00007f83f001a3e2 .d8:	movl	0x38(sp), r5
+00007f83f001a3e6	movl	r5, result
+00007f83f001a3e8	cmpl	$0xff, result
+00007f83f001a3ee	ja	.ea
+00007f83f001a3f4	movl	0x38(sp), r5
+00007f83f001a3f8	shrl	$3, r5
+00007f83f001a3fb	movl	r5, 0x28(sp)
+00007f83f001a3ff	shll	$3, r5
+00007f83f001a402	addl	$0x100338, r5
+00007f83f001a408	movl	r5, 0x38(sp)
+00007f83f001a40c	movl	0x100330(memory), r5
+00007f83f001a413	movl	r5, 0x20(sp)
+00007f83f001a417	movl	0x28(sp), r6
+00007f83f001a41b	andl	$0x1f, r6
+00007f83f001a41e	movl	$1, r7
+00007f83f001a424	movl	r6, scratch
+00007f83f001a426	shll	scratchb, r7
+00007f83f001a428	movl	r7, 0x28(sp)
+00007f83f001a42c	andl	r7, r5
+00007f83f001a42e	testl	r5, r5
+00007f83f001a430	je	.eb
+00007f83f001a436	movl	0x38(sp), r5
+00007f83f001a43a	movl	r5, scratch
+00007f83f001a43c	addq	memory, scratch
+00007f83f001a43f	movl	8(scratch), r5
+00007f83f001a442	movl	r5, 0x28(sp)
+00007f83f001a446	jmp	.ec
+00007f83f001a44b .ea:	movl	zero, scratch
+00007f83f001a44d	movl	scratch, 0x28(sp)
+00007f83f001a451	movl	0x38(sp), r5
+00007f83f001a455	shrl	$8, r5
+00007f83f001a458	movl	r5, 0x20(sp)
+00007f83f001a45c	testl	r5, r5
+00007f83f001a45e	je	.ed
+00007f83f001a464	movl	$0x1f, scratch
+00007f83f001a46a	movl	scratch, 0x28(sp)
+00007f83f001a46e	movl	0x38(sp), r5
+00007f83f001a472	movl	r5, result
+00007f83f001a474	cmpl	$0xffffff, result
+00007f83f001a47a	ja	.ed
+00007f83f001a480	movl	0x38(sp), r5
+00007f83f001a484	movl	0x20(sp), r6
+00007f83f001a488	lzcntl	r6, r6
+00007f83f001a48c	movl	r6, 0x28(sp)
+00007f83f001a490	movl	$0x26, r7
+00007f83f001a496	subl	r6, r7
+00007f83f001a498	andl	$0x1f, r7
+00007f83f001a49b	movl	r7, scratch
+00007f83f001a49d	shrl	scratchb, r5
+00007f83f001a49f	andl	$1, r5
+00007f83f001a4a2	movl	0x28(sp), r6
+00007f83f001a4a6	movl	$0x1f, r7
+00007f83f001a4ac	subl	r6, r7
+00007f83f001a4ae	shll	$1, r7
+00007f83f001a4b1	orl	r7, r5
+00007f83f001a4b3	movl	r5, 0x28(sp)
+00007f83f001a4b7 .ed:	movl	0x40(sp), r5
+00007f83f001a4bb	movl	r5, scratch
+00007f83f001a4bd	addq	memory, scratch
+00007f83f001a4c0	movq	zero, 0x10(scratch)
+00007f83f001a4c4	movl	0x40(sp), r5
+00007f83f001a4c8	addl	$0x1c, r5
+00007f83f001a4cb	movl	0x28(sp), r6
+00007f83f001a4cf	movl	r5, scratch
+00007f83f001a4d1	addq	memory, scratch
+00007f83f001a4d4	movl	r6, (scratch)
+00007f83f001a4d6	movl	0x28(sp), r5
+00007f83f001a4da	shll	$2, r5
+00007f83f001a4dd	addl	$0x100440, r5
+00007f83f001a4e3	movl	r5, 0x20(sp)
+00007f83f001a4e7	movl	0x100334(memory), r5
+00007f83f001a4ee	movl	r5, 0x18(sp)
+00007f83f001a4f2	movl	0x28(sp), r6
+00007f83f001a4f6	andl	$0x1f, r6
+00007f83f001a4f9	movl	$1, r7
+00007f83f001a4ff	movl	r6, scratch
+00007f83f001a501	shll	scratchb, r7
+00007f83f001a503	movl	r7, 0x10(sp)
+00007f83f001a507	andl	r7, r5
+00007f83f001a509	testl	r5, r5
+00007f83f001a50b	je	.ee
+00007f83f001a511	movl	0x20(sp), r5
+00007f83f001a515	movl	r5, scratch
+00007f83f001a517	addq	memory, scratch
+00007f83f001a51a	movl	(scratch), r5
+00007f83f001a51c	movl	r5, 0x18(sp)
+00007f83f001a520	movl	r5, scratch
+00007f83f001a522	addq	memory, scratch
+00007f83f001a525	movl	4(scratch), r5
+00007f83f001a528	andl	$0xfffffffffffffff8, r5
+00007f83f001a52b	movl	0x38(sp), r6
+00007f83f001a52f	movl	r5, result
+00007f83f001a531	cmpl	r6, result
+00007f83f001a533	jne	.ef
+00007f83f001a539	movl	0x18(sp), r5
+00007f83f001a53d	movl	r5, 0x28(sp)
+00007f83f001a541	jmp	.f0
+00007f83f001a546 .eb:	movl	0x20(sp), r5
+00007f83f001a54a	movl	0x28(sp), r6
+00007f83f001a54e	orl	r6, r5
+00007f83f001a550	movl	r5, 0x100330(memory)
+00007f83f001a557	movl	0x38(sp), r5
+00007f83f001a55b	movl	r5, 0x28(sp)
+00007f83f001a55f .ec:	movl	0x38(sp), r5
+00007f83f001a563	addl	$8, r5
+00007f83f001a566	movl	0x40(sp), r6
+00007f83f001a56a	movl	r5, scratch
+00007f83f001a56c	addq	memory, scratch
+00007f83f001a56f	movl	r6, (scratch)
+00007f83f001a571	movl	0x28(sp), r5
+00007f83f001a575	movl	0x40(sp), r6
+00007f83f001a579	movl	r5, scratch
+00007f83f001a57b	addq	memory, scratch
+00007f83f001a57e	movl	r6, 0xc(scratch)
+00007f83f001a581	movl	0x40(sp), r5
+00007f83f001a585	movl	0x38(sp), r6
+00007f83f001a589	movl	r5, scratch
+00007f83f001a58b	addq	memory, scratch
+00007f83f001a58e	movl	r6, 0xc(scratch)
+00007f83f001a591	movl	0x40(sp), r5
+00007f83f001a595	movl	0x28(sp), r6
+00007f83f001a599	movl	r5, scratch
+00007f83f001a59b	addq	memory, scratch
+00007f83f001a59e	movl	r6, 8(scratch)
+00007f83f001a5a1	leaq	0x30(sp), sp
+00007f83f001a5a6	retq
+00007f83f001a5a7 .ee:	movl	0x18(sp), r5
+00007f83f001a5ab	movl	0x10(sp), r6
+00007f83f001a5af	orl	r6, r5
+00007f83f001a5b1	movl	r5, 0x100334(memory)
+00007f83f001a5b8	movl	0x20(sp), r5
+00007f83f001a5bc	movl	0x40(sp), r6
+00007f83f001a5c0	movl	r5, scratch
+00007f83f001a5c2	addq	memory, scratch
+00007f83f001a5c5	movl	r6, (scratch)
+00007f83f001a5c7	movl	0x40(sp), r5
+00007f83f001a5cb	addl	$0x18, r5
+00007f83f001a5ce	movl	0x20(sp), r6
+00007f83f001a5d2	movl	r5, scratch
+00007f83f001a5d4	addq	memory, scratch
+00007f83f001a5d7	movl	r6, (scratch)
+00007f83f001a5d9	movl	0x40(sp), r5
+00007f83f001a5dd	movl	0x40(sp), r6
+00007f83f001a5e1	movl	r5, scratch
+00007f83f001a5e3	addq	memory, scratch
+00007f83f001a5e6	movl	r6, 0xc(scratch)
+00007f83f001a5e9	movl	0x40(sp), r5
+00007f83f001a5ed	movl	0x40(sp), r6
+00007f83f001a5f1	movl	r5, scratch
+00007f83f001a5f3	addq	memory, scratch
+00007f83f001a5f6	movl	r6, 8(scratch)
+00007f83f001a5f9	leaq	0x30(sp), sp
+00007f83f001a5fe	retq
+00007f83f001a5ff .ef:	movl	0x38(sp), r5
+00007f83f001a603	movl	0x28(sp), r6
+00007f83f001a607	shrl	$1, r6
+00007f83f001a60a	movl	$0x19, r7
+00007f83f001a610	subl	r6, r7
+00007f83f001a612	andl	$0x1f, r7
+00007f83f001a615	movl	0x28(sp), r6
+00007f83f001a619	movl	r6, result
+00007f83f001a61b	cmpl	$0x1f, result
+00007f83f001a61e	movl	zero, scratch
+00007f83f001a620	cmovel	scratch, r7
+00007f83f001a623	movl	r7, scratch
+00007f83f001a625	shll	scratchb, r5
+00007f83f001a627	movl	r5, 0x20(sp)
+00007f83f001a62b .f2:	movl	0x18(sp), r5
+00007f83f001a62f	movl	0x20(sp), r6
+00007f83f001a633	shrl	$0x1d, r6
+00007f83f001a636	andl	$4, r6
+00007f83f001a639	addl	r6, r5
+00007f83f001a63b	addl	$0x10, r5
+00007f83f001a63e	movl	r5, 0x10(sp)
+00007f83f001a642	movl	r5, scratch
+00007f83f001a644	addq	memory, scratch
+00007f83f001a647	movl	(scratch), r5
+00007f83f001a649	movl	r5, 0x28(sp)
+00007f83f001a64d	testl	r5, r5
+00007f83f001a64f	je	.f1
+00007f83f001a655	movl	0x20(sp), r5
+00007f83f001a659	shll	$1, r5
+00007f83f001a65c	movl	r5, 0x20(sp)
+00007f83f001a660	movl	0x28(sp), r5
+00007f83f001a664	movl	r5, 0x18(sp)
+00007f83f001a668	movl	0x28(sp), r5
+00007f83f001a66c	movl	r5, scratch
+00007f83f001a66e	addq	memory, scratch
+00007f83f001a671	movl	4(scratch), r5
+00007f83f001a674	andl	$0xfffffffffffffff8, r5
+00007f83f001a677	movl	0x38(sp), r6
+00007f83f001a67b	movl	r5, result
+00007f83f001a67d	cmpl	r6, result
+00007f83f001a67f	je	.f0
+00007f83f001a681	testb	$1, suspendbit
+00007f83f001a685	je	.f2			; back
+00007f83f001a68b	callq	.3c			; back
+00007f83f001a690	jmp	.f2			; back
+00007f83f001a695 .f0:	movl	0x28(sp), r5
+00007f83f001a699	movl	r5, scratch
+00007f83f001a69b	addq	memory, scratch
+00007f83f001a69e	movl	8(scratch), r5
+00007f83f001a6a1	movl	r5, 0x38(sp)
+00007f83f001a6a5	movl	0x40(sp), r6
+00007f83f001a6a9	movl	r5, scratch
+00007f83f001a6ab	addq	memory, scratch
+00007f83f001a6ae	movl	r6, 0xc(scratch)
+00007f83f001a6b1	movl	0x28(sp), r5
+00007f83f001a6b5	movl	0x40(sp), r6
+00007f83f001a6b9	movl	r5, scratch
+00007f83f001a6bb	addq	memory, scratch
+00007f83f001a6be	movl	r6, 8(scratch)
+00007f83f001a6c1	movl	0x40(sp), r5
+00007f83f001a6c5	addl	$0x18, r5
+00007f83f001a6c8	movl	r5, scratch
+00007f83f001a6ca	addq	memory, scratch
+00007f83f001a6cd	movl	zero, (scratch)
+00007f83f001a6cf	movl	0x40(sp), r5
+00007f83f001a6d3	movl	0x28(sp), r6
+00007f83f001a6d7	movl	r5, scratch
+00007f83f001a6d9	addq	memory, scratch
+00007f83f001a6dc	movl	r6, 0xc(scratch)
+00007f83f001a6df	movl	0x40(sp), r5
+00007f83f001a6e3	movl	0x38(sp), r6
+00007f83f001a6e7	movl	r5, scratch
+00007f83f001a6e9	addq	memory, scratch
+00007f83f001a6ec	movl	r6, 8(scratch)
+00007f83f001a6ef	leaq	0x30(sp), sp
+00007f83f001a6f4	retq
+00007f83f001a6f5 .f1:	movl	0x10(sp), r5
+00007f83f001a6f9	movl	0x40(sp), r6
+00007f83f001a6fd	movl	r5, scratch
+00007f83f001a6ff	addq	memory, scratch
+00007f83f001a702	movl	r6, (scratch)
+00007f83f001a704	movl	0x40(sp), r5
+00007f83f001a708	addl	$0x18, r5
+00007f83f001a70b	movl	0x18(sp), r6
+00007f83f001a70f	movl	r5, scratch
+00007f83f001a711	addq	memory, scratch
+00007f83f001a714	movl	r6, (scratch)
+00007f83f001a716	movl	0x40(sp), r5
+00007f83f001a71a	movl	0x40(sp), r6
+00007f83f001a71e	movl	r5, scratch
+00007f83f001a720	addq	memory, scratch
+00007f83f001a723	movl	r6, 0xc(scratch)
+00007f83f001a726	movl	0x40(sp), r5
+00007f83f001a72a	movl	0x40(sp), r6
+00007f83f001a72e	movl	r5, scratch
+00007f83f001a730	addq	memory, scratch
+00007f83f001a733	movl	r6, 8(scratch)
+00007f83f001a736	xorl	result, result
+00007f83f001a738	leaq	0x30(sp), sp
+00007f83f001a73d	retq
+
+rust_begin_unwind:
+00007f83f001a740	leaq	-8(sp), scratch
+00007f83f001a748	cmpq	stacklimit, scratch
+00007f83f001a74b	jge	.f3
+00007f83f001a74d	callq	trap.call_stack_exhausted
+00007f83f001a752 .f3:	movl	8(sp), r5
+00007f83f001a756	pushq	r5
+00007f83f001a758	callq	_ZN3std9panicking18continue_panic_fmt17h728aed66c815f8d0E
+00007f83f001a75d	leaq	8(sp), sp
+00007f83f001a762	callq	trap.unreachable
+00007f83f001a767	retq
+
+_ZN4core5slice20slice_index_len_fail17hf8ba41da06b62445E:
+00007f83f001a770	leaq	-0x18(sp), scratch
+00007f83f001a778	cmpq	stacklimit, scratch
+00007f83f001a77b	jge	.f4
+00007f83f001a77d	callq	trap.call_stack_exhausted
+00007f83f001a782 .f4:	pushq	zero
+00007f83f001a783	movl	-0x18(memory), r5
+00007f83f001a787	subl	$0x30, r5
+00007f83f001a78a	movl	r5, (sp)
+00007f83f001a78d	movl	r5, -0x18(memory)
+00007f83f001a791	movl	(sp), r5
+00007f83f001a794	movl	r5, scratch
+00007f83f001a796	addq	memory, scratch
+00007f83f001a799	movl	$0x40, 4(scratch)
+00007f83f001a7a0	movl	(sp), r5
+00007f83f001a7a3	movl	0x10(sp), r6
+00007f83f001a7a7	movl	r5, scratch
+00007f83f001a7a9	addq	memory, scratch
+00007f83f001a7ac	movl	r6, (scratch)
+00007f83f001a7ae	movl	(sp), r5
+00007f83f001a7b1	addl	$0x20, r5
+00007f83f001a7b4	addl	$0xc, r5
+00007f83f001a7b7	movl	r5, scratch
+00007f83f001a7b9	addq	memory, scratch
+00007f83f001a7bc	movl	$1, (scratch)
+00007f83f001a7c2	movl	(sp), r5
+00007f83f001a7c5	addl	$0x1c, r5
+00007f83f001a7c8	movl	r5, scratch
+00007f83f001a7ca	addq	memory, scratch
+00007f83f001a7cd	movl	$2, (scratch)
+00007f83f001a7d3	movl	(sp), r5
+00007f83f001a7d6	addl	$8, r5
+00007f83f001a7d9	addl	$0xc, r5
+00007f83f001a7dc	movl	r5, scratch
+00007f83f001a7de	addq	memory, scratch
+00007f83f001a7e1	movl	$2, (scratch)
+00007f83f001a7e7	movl	(sp), r5
+00007f83f001a7ea	movl	r5, scratch
+00007f83f001a7ec	addq	memory, scratch
+00007f83f001a7ef	movl	$1, 0x24(scratch)
+00007f83f001a7f6	movl	(sp), r5
+00007f83f001a7f9	movl	r5, scratch
+00007f83f001a7fb	addq	memory, scratch
+00007f83f001a7fe	movl	$0x100144, 0x10(scratch)
+00007f83f001a805	movl	(sp), r5
+00007f83f001a808	movl	r5, scratch
+00007f83f001a80a	addq	memory, scratch
+00007f83f001a80d	movl	$2, 0xc(scratch)
+00007f83f001a814	movl	(sp), r5
+00007f83f001a817	movl	r5, scratch
+00007f83f001a819	addq	memory, scratch
+00007f83f001a81c	movl	$0x100048, 8(scratch)
+00007f83f001a823	movl	(sp), r5
+00007f83f001a826	movl	(sp), r6
+00007f83f001a829	addl	$4, r6
+00007f83f001a82c	movl	r5, scratch
+00007f83f001a82e	addq	memory, scratch
+00007f83f001a831	movl	r6, 0x28(scratch)
+00007f83f001a834	movl	(sp), r5
+00007f83f001a837	movl	(sp), r6
+00007f83f001a83a	movl	r5, scratch
+00007f83f001a83c	addq	memory, scratch
+00007f83f001a83f	movl	r6, 0x20(scratch)
+00007f83f001a842	movl	(sp), r5
+00007f83f001a845	movl	(sp), r6
+00007f83f001a848	addl	$0x20, r6
+00007f83f001a84b	movl	r5, scratch
+00007f83f001a84d	addq	memory, scratch
+00007f83f001a850	movl	r6, 0x18(scratch)
+00007f83f001a853	movl	(sp), r5
+00007f83f001a856	addl	$8, r5
+00007f83f001a859	pushq	r5
+00007f83f001a85b	pushq	$0x100058
+00007f83f001a860	callq	_ZN4core9panicking9panic_fmt17h59066e1e00f1980fE
+00007f83f001a865	leaq	0x10(sp), sp
+00007f83f001a86a	callq	trap.unreachable
+00007f83f001a86f	leaq	8(sp), sp
+00007f83f001a874	retq
+
+_ZN4core3fmt3num52_$LT$impl$u20$core..fmt..Display$u20$for$u20$u32$GT$3fmt17h73b149566d800c7bE:
+00007f83f001a880	leaq	-0x48(sp), scratch
+00007f83f001a888	cmpq	stacklimit, scratch
+00007f83f001a88b	jge	.f5
+00007f83f001a88d	callq	trap.call_stack_exhausted
+00007f83f001a892 .f5:	pushq	zero
+00007f83f001a893	pushq	zero
+00007f83f001a894	pushq	zero
+00007f83f001a895	pushq	zero
+00007f83f001a896	pushq	zero
+00007f83f001a897	pushq	zero
+00007f83f001a898	movl	-0x18(memory), r5
+00007f83f001a89c	subl	$0x50, r5
+00007f83f001a89f	movl	r5, 0x28(sp)
+00007f83f001a8a3	movl	r5, -0x18(memory)
+00007f83f001a8a7	movl	$0x27, scratch
+00007f83f001a8ad	movl	scratch, 0x20(sp)
+00007f83f001a8b1	movl	0x40(sp), r5
+00007f83f001a8b5	movl	r5, scratch
+00007f83f001a8b7	addq	memory, scratch
+00007f83f001a8ba	movl	(scratch), r5
+00007f83f001a8bc	movl	r5, 0x40(sp)
+00007f83f001a8c0	movl	r5, result
+00007f83f001a8c2	cmpl	$0x2710, result
+00007f83f001a8c8	jb	.f6
+00007f83f001a8ce	movl	$0x27, scratch
+00007f83f001a8d4	movl	scratch, 0x20(sp)
+00007f83f001a8d8 .f8:	movl	0x28(sp), r5
+00007f83f001a8dc	addl	$9, r5
+00007f83f001a8df	movl	0x20(sp), r6
+00007f83f001a8e3	addl	r6, r5
+00007f83f001a8e5	movl	r5, 0x18(sp)
+00007f83f001a8e9	addl	$-4, r5
+00007f83f001a8ec	movl	0x40(sp), r6
+00007f83f001a8f0	movl	0x40(sp), r7
+00007f83f001a8f4	movl	$0x2710, scratch
+00007f83f001a8fa	movl	r7, result
+00007f83f001a8fc	divl	scratch
+00007f83f001a8fe	xorl	zero, zero
+00007f83f001a900	movl	result, 0x10(sp)
+00007f83f001a904	movl	result, r7
+00007f83f001a906	imull	$0xffffd8f0, r7, r7
+00007f83f001a90c	addl	r7, r6
+00007f83f001a90e	movl	r6, 8(sp)
+00007f83f001a912	movl	$0x64, scratch
+00007f83f001a918	movl	r6, result
+00007f83f001a91a	divl	scratch
+00007f83f001a91c	xorl	zero, zero
+00007f83f001a91e	movl	result, (sp)
+00007f83f001a921	movl	result, r6
+00007f83f001a923	shll	$1, r6
+00007f83f001a926	addl	$0x1001be, r6
+00007f83f001a92c	movl	r6, scratch
+00007f83f001a92e	addq	memory, scratch
+00007f83f001a931	movzwl	(scratch), r6
+00007f83f001a934	movl	r5, scratch
+00007f83f001a936	addq	memory, scratch
+00007f83f001a939	movw	r6w, (scratch)
+00007f83f001a93c	movl	0x18(sp), r5
+00007f83f001a940	addl	$-2, r5
+00007f83f001a943	movl	8(sp), r6
+00007f83f001a947	movl	(sp), r7
+00007f83f001a94a	imull	$-0x64, r7, r7
+00007f83f001a94d	addl	r7, r6
+00007f83f001a94f	shll	$1, r6
+00007f83f001a952	addl	$0x1001be, r6
+00007f83f001a958	movl	r6, scratch
+00007f83f001a95a	addq	memory, scratch
+00007f83f001a95d	movzwl	(scratch), r6
+00007f83f001a960	movl	r5, scratch
+00007f83f001a962	addq	memory, scratch
+00007f83f001a965	movw	r6w, (scratch)
+00007f83f001a968	movl	0x20(sp), r5
+00007f83f001a96c	addl	$-4, r5
+00007f83f001a96f	movl	r5, 0x20(sp)
+00007f83f001a973	movl	0x40(sp), r5
+00007f83f001a977	movl	r5, result
+00007f83f001a979	cmpl	$0x5f5e0ff, result
+00007f83f001a97f	movl	zero, scratch
+00007f83f001a981	seta	scratchb
+00007f83f001a985	movl	scratch, 0x18(sp)
+00007f83f001a989	movl	0x10(sp), r5
+00007f83f001a98d	movl	r5, 0x40(sp)
+00007f83f001a991	movl	0x18(sp), r5
+00007f83f001a995	testl	r5, r5
+00007f83f001a997	je	.f7
+00007f83f001a999	testb	$1, suspendbit
+00007f83f001a99d	je	.f8			; back
+00007f83f001a9a3	callq	.3c			; back
+00007f83f001a9a8	jmp	.f8			; back
+00007f83f001a9ad .f7:	movl	$0x64, scratch
+00007f83f001a9b3	movl	scratch, 0x18(sp)
+00007f83f001a9b7	movl	0x10(sp), r5
+00007f83f001a9bb	movl	r5, result
+00007f83f001a9bd	cmpl	$0x64, result
+00007f83f001a9c0	jl	.f9
+00007f83f001a9c6	jmp	.fa
+00007f83f001a9cb .f6:	movl	$0x64, scratch
+00007f83f001a9d1	movl	scratch, 0x18(sp)
+00007f83f001a9d5	movl	0x40(sp), r5
+00007f83f001a9d9	movl	r5, 0x10(sp)
+00007f83f001a9dd	movl	r5, result
+00007f83f001a9df	cmpl	$0x64, result
+00007f83f001a9e2	jge	.fa
+00007f83f001a9e8 .f9:	movl	0x10(sp), r5
+00007f83f001a9ec	movl	r5, 0x40(sp)
+00007f83f001a9f0	movl	r5, result
+00007f83f001a9f2	cmpl	$9, result
+00007f83f001a9f5	jg	.fb
+00007f83f001a9fb	jmp	.fc
+00007f83f001aa00 .fa:	movl	0x28(sp), r5
+00007f83f001aa04	addl	$9, r5
+00007f83f001aa07	movl	0x20(sp), r6
+00007f83f001aa0b	addl	$-2, r6
+00007f83f001aa0e	movl	r6, 0x20(sp)
+00007f83f001aa12	addl	r6, r5
+00007f83f001aa14	movl	0x10(sp), r6
+00007f83f001aa18	andl	$0xffff, r6
+00007f83f001aa1e	movl	0x18(sp), r7
+00007f83f001aa22	testl	r7, r7
+00007f83f001aa24	jne	.fd
+00007f83f001aa26	callq	trap.integer_divide_by_zero
+00007f83f001aa2b .fd:	movl	r6, result
+00007f83f001aa2d	divl	r7
+00007f83f001aa2f	xorl	zero, zero
+00007f83f001aa31	movl	result, 0x40(sp)
+00007f83f001aa35	movl	result, r6
+00007f83f001aa37	imull	$-0x64, r6, r6
+00007f83f001aa3a	movl	0x10(sp), r7
+00007f83f001aa3e	addl	r7, r6
+00007f83f001aa40	andl	$0xffff, r6
+00007f83f001aa46	shll	$1, r6
+00007f83f001aa49	addl	$0x1001be, r6
+00007f83f001aa4f	movl	r6, scratch
+00007f83f001aa51	addq	memory, scratch
+00007f83f001aa54	movzwl	(scratch), r6
+00007f83f001aa57	movl	r5, scratch
+00007f83f001aa59	addq	memory, scratch
+00007f83f001aa5c	movw	r6w, (scratch)
+00007f83f001aa5f	movl	0x40(sp), r5
+00007f83f001aa63	movl	r5, result
+00007f83f001aa65	cmpl	$9, result
+00007f83f001aa68	jle	.fc
+00007f83f001aa6e .fb:	movl	0x28(sp), r5
+00007f83f001aa72	addl	$9, r5
+00007f83f001aa75	movl	0x20(sp), r6
+00007f83f001aa79	addl	$-2, r6
+00007f83f001aa7c	movl	r6, 0x20(sp)
+00007f83f001aa80	addl	r6, r5
+00007f83f001aa82	movl	r5, 8(sp)
+00007f83f001aa86	movl	0x40(sp), r6
+00007f83f001aa8a	shll	$1, r6
+00007f83f001aa8d	addl	$0x1001be, r6
+00007f83f001aa93	movl	r6, scratch
+00007f83f001aa95	addq	memory, scratch
+00007f83f001aa98	movzwl	(scratch), r6
+00007f83f001aa9b	movl	r5, scratch
+00007f83f001aa9d	addq	memory, scratch
+00007f83f001aaa0	movw	r6w, (scratch)
+00007f83f001aaa3	jmp	.fe
+00007f83f001aaa8 .fc:	movl	0x28(sp), r5
+00007f83f001aaac	addl	$9, r5
+00007f83f001aaaf	movl	0x20(sp), r6
+00007f83f001aab3	addl	$-1, r6
+00007f83f001aab6	movl	r6, 0x20(sp)
+00007f83f001aaba	addl	r6, r5
+00007f83f001aabc	movl	r5, 8(sp)
+00007f83f001aac0	movl	0x40(sp), r6
+00007f83f001aac4	addl	$0x30, r6
+00007f83f001aac7	movl	r5, scratch
+00007f83f001aac9	addq	memory, scratch
+00007f83f001aacc	movb	r6b, (scratch)
+00007f83f001aacf .fe:	movl	0x28(sp), r5
+00007f83f001aad3	movl	r5, scratch
+00007f83f001aad5	addq	memory, scratch
+00007f83f001aad8	movl	zero, 0x34(scratch)
+00007f83f001aadb	movl	0x28(sp), r5
+00007f83f001aadf	movl	r5, scratch
+00007f83f001aae1	addq	memory, scratch
+00007f83f001aae4	movl	$0x10018c, 0x30(scratch)
+00007f83f001aaeb	movl	0x28(sp), r5
+00007f83f001aaef	movl	r5, scratch
+00007f83f001aaf1	addq	memory, scratch
+00007f83f001aaf4	movl	$0x110000, 0x38(scratch)
+00007f83f001aafb	movl	0x20(sp), r5
+00007f83f001aaff	movl	$0x27, r6
+00007f83f001ab05	subl	r5, r6
+00007f83f001ab07	movl	r6, 0x18(sp)
+00007f83f001ab0b	movl	r6, 0x20(sp)
+00007f83f001ab0f	movl	0x38(sp), r5
+00007f83f001ab13	movl	r5, scratch
+00007f83f001ab15	addq	memory, scratch
+00007f83f001ab18	movl	(scratch), r5
+00007f83f001ab1a	movl	r5, 0x40(sp)
+00007f83f001ab1e	andl	$1, r5
+00007f83f001ab21	testl	r5, r5
+00007f83f001ab23	je	.ff
+00007f83f001ab29	movl	0x28(sp), r5
+00007f83f001ab2d	movl	r5, scratch
+00007f83f001ab2f	addq	memory, scratch
+00007f83f001ab32	movl	$0x2b, 0x38(scratch)
+00007f83f001ab39	movl	0x18(sp), r5
+00007f83f001ab3d	incl	r5
+00007f83f001ab3f	movl	r5, 0x20(sp)
+00007f83f001ab43 .ff:	movl	0x28(sp), r5
+00007f83f001ab47	movl	0x40(sp), r6
+00007f83f001ab4b	shrl	$2, r6
+00007f83f001ab4e	andl	$1, r6
+00007f83f001ab51	movl	r5, scratch
+00007f83f001ab53	addq	memory, scratch
+00007f83f001ab56	movb	r6b, 0x3f(scratch)
+00007f83f001ab5a	movl	0x38(sp), r5
+00007f83f001ab5e	movl	r5, scratch
+00007f83f001ab60	addq	memory, scratch
+00007f83f001ab63	movl	8(scratch), r5
+00007f83f001ab66	movl	r5, 0x10(sp)
+00007f83f001ab6a	movl	0x28(sp), r5
+00007f83f001ab6e	movl	0x28(sp), r6
+00007f83f001ab72	addl	$0x30, r6
+00007f83f001ab75	movl	r5, scratch
+00007f83f001ab77	addq	memory, scratch
+00007f83f001ab7a	movl	r6, 0x48(scratch)
+00007f83f001ab7d	movl	0x28(sp), r5
+00007f83f001ab81	movl	0x28(sp), r6
+00007f83f001ab85	addl	$0x3f, r6
+00007f83f001ab88	movl	r5, scratch
+00007f83f001ab8a	addq	memory, scratch
+00007f83f001ab8d	movl	r6, 0x44(scratch)
+00007f83f001ab90	movl	0x28(sp), r5
+00007f83f001ab94	movl	0x28(sp), r6
+00007f83f001ab98	addl	$0x38, r6
+00007f83f001ab9b	movl	r5, scratch
+00007f83f001ab9d	addq	memory, scratch
+00007f83f001aba0	movl	r6, 0x40(scratch)
+00007f83f001aba3	movl	0x10(sp), r5
+00007f83f001aba7	movl	r5, result
+00007f83f001aba9	cmpl	$1, result
+00007f83f001abac	jne	.100
+00007f83f001abb2	movl	0x38(sp), r5
+00007f83f001abb6	addl	$0xc, r5
+00007f83f001abb9	movl	r5, scratch
+00007f83f001abbb	addq	memory, scratch
+00007f83f001abbe	movl	(scratch), r5
+00007f83f001abc0	movl	r5, 0x10(sp)
+00007f83f001abc4	movl	0x20(sp), r6
+00007f83f001abc8	movl	r5, result
+00007f83f001abca	cmpl	r6, result
+00007f83f001abcc	jbe	.101
+00007f83f001abd2	movl	0x40(sp), r5
+00007f83f001abd6	andl	$8, r5
+00007f83f001abd9	testl	r5, r5
+00007f83f001abdb	jne	.102
+00007f83f001abe1	movl	0x10(sp), r5
+00007f83f001abe5	movl	0x20(sp), r6
+00007f83f001abe9	subl	r6, r5
+00007f83f001abeb	movl	r5, 0x10(sp)
+00007f83f001abef	movl	0x38(sp), r5
+00007f83f001abf3	movl	r5, scratch
+00007f83f001abf5	addq	memory, scratch
+00007f83f001abf8	movzbl	0x30(scratch), r5
+00007f83f001abfc	movl	r5, 0x40(sp)
+00007f83f001ac00	movl	0x40(sp), r6
+00007f83f001ac04	movl	r6, result
+00007f83f001ac06	cmpl	$3, result
+00007f83f001ac09	movl	$1, scratch
+00007f83f001ac0f	cmovel	scratch, r5
+00007f83f001ac12	andl	$3, r5
+00007f83f001ac15	movl	r5, 0x40(sp)
+00007f83f001ac19	testl	r5, r5
+00007f83f001ac1b	je	.103
+00007f83f001ac21	movl	0x40(sp), r5
+00007f83f001ac25	movl	r5, result
+00007f83f001ac27	cmpl	$2, result
+00007f83f001ac2a	je	.104
+00007f83f001ac30	movl	zero, scratch
+00007f83f001ac32	movl	scratch, (sp)
+00007f83f001ac35	jmp	.105
+00007f83f001ac3a .100:	movl	0x28(sp), r5
+00007f83f001ac3e	addl	$0x40, r5
+00007f83f001ac41	movl	0x38(sp), r6
+00007f83f001ac45	pushq	r5
+00007f83f001ac47	pushq	r6
+00007f83f001ac49	callq	_ZN4core3fmt9Formatter12pad_integral28_$u7b$$u7b$closure$u7d$$u7d$17h83b03ce049820748E
+00007f83f001ac4e	leaq	0x10(sp), sp
+00007f83f001ac53	testl	result, result
+00007f83f001ac55	jne	.106
+00007f83f001ac5b	movl	0x38(sp), r5
+00007f83f001ac5f	movl	r5, scratch
+00007f83f001ac61	addq	memory, scratch
+00007f83f001ac64	movl	0x18(scratch), r5
+00007f83f001ac67	movl	8(sp), r6
+00007f83f001ac6b	movl	0x18(sp), r7
+00007f83f001ac6f	movl	0x38(sp), r8
+00007f83f001ac74	addl	$0x1c, r8
+00007f83f001ac78	movl	r8, scratch
+00007f83f001ac7b	addq	memory, scratch
+00007f83f001ac7e	movl	(scratch), r8
+00007f83f001ac81	movl	r8, scratch
+00007f83f001ac84	addq	memory, scratch
+00007f83f001ac87	movl	0xc(scratch), r8
+00007f83f001ac8b	pushq	r5
+00007f83f001ac8d	pushq	r6
+00007f83f001ac8f	pushq	r7
+00007f83f001ac91	movl	$4, scratch
+00007f83f001ac97	testl	r8, r8
+00007f83f001ac9a	cmovll	scratch, r8
+00007f83f001ac9e	cmpl	r8, scratch
+00007f83f001aca1	jle	.107
+00007f83f001aca3	movq	0xe0(text, r8, 8), result
+00007f83f001acab	movl	result, scratch
+00007f83f001acad	shrq	$0x20, result
+00007f83f001acb1	cmpl	$0, result
+00007f83f001acb4	je	.108
+00007f83f001acb6	callq	trap.indirect_call_signature_mismatch
+00007f83f001acbb .107:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001acc0 .108:	addq	text, scratch
+00007f83f001acc3	callq	retpoline
+00007f83f001acc8	leaq	0x18(sp), sp
+00007f83f001accd	movl	result, 0x40(sp)
+00007f83f001acd1	movl	0x28(sp), r5
+00007f83f001acd5	addl	$0x50, r5
+00007f83f001acd8	movl	r5, -0x18(memory)
+00007f83f001acdc	movl	0x40(sp), r5
+00007f83f001ace0	movl	r5, result
+00007f83f001ace2	leaq	0x30(sp), sp
+00007f83f001ace7	retq
+00007f83f001ace8 .101:	movl	0x28(sp), r5
+00007f83f001acec	addl	$0x40, r5
+00007f83f001acef	movl	0x38(sp), r6
+00007f83f001acf3	pushq	r5
+00007f83f001acf5	pushq	r6
+00007f83f001acf7	callq	_ZN4core3fmt9Formatter12pad_integral28_$u7b$$u7b$closure$u7d$$u7d$17h83b03ce049820748E
+00007f83f001acfc	leaq	0x10(sp), sp
+00007f83f001ad01	testl	result, result
+00007f83f001ad03	jne	.106
+00007f83f001ad09	movl	0x38(sp), r5
+00007f83f001ad0d	movl	r5, scratch
+00007f83f001ad0f	addq	memory, scratch
+00007f83f001ad12	movl	0x18(scratch), r5
+00007f83f001ad15	movl	8(sp), r6
+00007f83f001ad19	movl	0x18(sp), r7
+00007f83f001ad1d	movl	0x38(sp), r8
+00007f83f001ad22	addl	$0x1c, r8
+00007f83f001ad26	movl	r8, scratch
+00007f83f001ad29	addq	memory, scratch
+00007f83f001ad2c	movl	(scratch), r8
+00007f83f001ad2f	movl	r8, scratch
+00007f83f001ad32	addq	memory, scratch
+00007f83f001ad35	movl	0xc(scratch), r8
+00007f83f001ad39	pushq	r5
+00007f83f001ad3b	pushq	r6
+00007f83f001ad3d	pushq	r7
+00007f83f001ad3f	movl	$4, scratch
+00007f83f001ad45	testl	r8, r8
+00007f83f001ad48	cmovll	scratch, r8
+00007f83f001ad4c	cmpl	r8, scratch
+00007f83f001ad4f	jle	.109
+00007f83f001ad51	movq	0xe0(text, r8, 8), result
+00007f83f001ad59	movl	result, scratch
+00007f83f001ad5b	shrq	$0x20, result
+00007f83f001ad5f	cmpl	$0, result
+00007f83f001ad62	je	.10a
+00007f83f001ad64	callq	trap.indirect_call_signature_mismatch
+00007f83f001ad69 .109:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001ad6e .10a:	addq	text, scratch
+00007f83f001ad71	callq	retpoline
+00007f83f001ad76	leaq	0x18(sp), sp
+00007f83f001ad7b	movl	result, 0x40(sp)
+00007f83f001ad7f	movl	0x28(sp), r5
+00007f83f001ad83	addl	$0x50, r5
+00007f83f001ad86	movl	r5, -0x18(memory)
+00007f83f001ad8a	movl	0x40(sp), r5
+00007f83f001ad8e	movl	r5, result
+00007f83f001ad90	leaq	0x30(sp), sp
+00007f83f001ad95	retq
+00007f83f001ad96 .102:	movl	0x38(sp), r5
+00007f83f001ad9a	movl	r5, scratch
+00007f83f001ad9c	addq	memory, scratch
+00007f83f001ad9f	movb	$1, 0x30(scratch)
+00007f83f001ada3	movl	0x38(sp), r5
+00007f83f001ada7	movl	r5, scratch
+00007f83f001ada9	addq	memory, scratch
+00007f83f001adac	movl	$0x30, 4(scratch)
+00007f83f001adb3	movl	0x28(sp), r5
+00007f83f001adb7	addl	$0x40, r5
+00007f83f001adba	movl	0x38(sp), r6
+00007f83f001adbe	pushq	r5
+00007f83f001adc0	pushq	r6
+00007f83f001adc2	callq	_ZN4core3fmt9Formatter12pad_integral28_$u7b$$u7b$closure$u7d$$u7d$17h83b03ce049820748E
+00007f83f001adc7	leaq	0x10(sp), sp
+00007f83f001adcc	testl	result, result
+00007f83f001adce	jne	.106
+00007f83f001add4	movl	0x10(sp), r5
+00007f83f001add8	movl	0x20(sp), r6
+00007f83f001addc	subl	r6, r5
+00007f83f001adde	movl	r5, 0x10(sp)
+00007f83f001ade2	movl	0x38(sp), r5
+00007f83f001ade6	addl	$0x30, r5
+00007f83f001ade9	movl	r5, scratch
+00007f83f001adeb	addq	memory, scratch
+00007f83f001adee	movzbl	(scratch), r5
+00007f83f001adf1	movl	r5, 0x40(sp)
+00007f83f001adf5	movl	0x40(sp), r6
+00007f83f001adf9	movl	r6, result
+00007f83f001adfb	cmpl	$3, result
+00007f83f001adfe	movl	$1, scratch
+00007f83f001ae04	cmovel	scratch, r5
+00007f83f001ae07	andl	$3, r5
+00007f83f001ae0a	movl	r5, 0x40(sp)
+00007f83f001ae0e	testl	r5, r5
+00007f83f001ae10	je	.10b
+00007f83f001ae16	movl	0x40(sp), r5
+00007f83f001ae1a	movl	r5, result
+00007f83f001ae1c	cmpl	$2, result
+00007f83f001ae1f	je	.10c
+00007f83f001ae25	movl	zero, scratch
+00007f83f001ae27	movl	scratch, (sp)
+00007f83f001ae2a	jmp	.10d
+00007f83f001ae2f .104:	movl	0x10(sp), r5
+00007f83f001ae33	incl	r5
+00007f83f001ae35	shrl	$1, r5
+00007f83f001ae38	movl	r5, (sp)
+00007f83f001ae3b	movl	0x10(sp), r5
+00007f83f001ae3f	shrl	$1, r5
+00007f83f001ae42	movl	r5, 0x10(sp)
+00007f83f001ae46	jmp	.105
+00007f83f001ae4b .103:	movl	0x10(sp), r5
+00007f83f001ae4f	movl	r5, (sp)
+00007f83f001ae52	movl	zero, scratch
+00007f83f001ae54	movl	scratch, 0x10(sp)
+00007f83f001ae58 .105:	movl	0x28(sp), r5
+00007f83f001ae5c	movl	r5, scratch
+00007f83f001ae5e	addq	memory, scratch
+00007f83f001ae61	movl	zero, 0x4c(scratch)
+00007f83f001ae64	movl	0x38(sp), r5
+00007f83f001ae68	movl	r5, scratch
+00007f83f001ae6a	addq	memory, scratch
+00007f83f001ae6d	movl	4(scratch), r5
+00007f83f001ae70	movl	r5, 0x40(sp)
+00007f83f001ae74	movl	r5, result
+00007f83f001ae76	cmpl	$0x7f, result
+00007f83f001ae79	ja	.10e
+00007f83f001ae7f	movl	0x28(sp), r5
+00007f83f001ae83	movl	0x40(sp), r6
+00007f83f001ae87	movl	r5, scratch
+00007f83f001ae89	addq	memory, scratch
+00007f83f001ae8c	movb	r6b, 0x4c(scratch)
+00007f83f001ae90	movl	$1, scratch
+00007f83f001ae96	movl	scratch, 0x20(sp)
+00007f83f001ae9a	jmp	.10f
+00007f83f001ae9f .10e:	movl	0x40(sp), r5
+00007f83f001aea3	movl	r5, result
+00007f83f001aea5	cmpl	$0x7ff, result
+00007f83f001aeab	ja	.110
+00007f83f001aeb1	movl	0x28(sp), r5
+00007f83f001aeb5	movl	0x40(sp), r6
+00007f83f001aeb9	andl	$0x3f, r6
+00007f83f001aebc	orl	$0x80, r6
+00007f83f001aec2	movl	r5, scratch
+00007f83f001aec4	addq	memory, scratch
+00007f83f001aec7	movb	r6b, 0x4d(scratch)
+00007f83f001aecb	movl	0x28(sp), r5
+00007f83f001aecf	movl	0x40(sp), r6
+00007f83f001aed3	shrl	$6, r6
+00007f83f001aed6	andl	$0x1f, r6
+00007f83f001aed9	orl	$0xc0, r6
+00007f83f001aedf	movl	r5, scratch
+00007f83f001aee1	addq	memory, scratch
+00007f83f001aee4	movb	r6b, 0x4c(scratch)
+00007f83f001aee8	movl	$2, scratch
+00007f83f001aeee	movl	scratch, 0x20(sp)
+00007f83f001aef2	jmp	.10f
+00007f83f001aef7 .110:	movl	0x40(sp), r5
+00007f83f001aefb	movl	r5, result
+00007f83f001aefd	cmpl	$0xffff, result
+00007f83f001af03	ja	.111
+00007f83f001af09	movl	0x28(sp), r5
+00007f83f001af0d	movl	0x40(sp), r6
+00007f83f001af11	andl	$0x3f, r6
+00007f83f001af14	orl	$0x80, r6
+00007f83f001af1a	movl	r5, scratch
+00007f83f001af1c	addq	memory, scratch
+00007f83f001af1f	movb	r6b, 0x4e(scratch)
+00007f83f001af23	movl	0x28(sp), r5
+00007f83f001af27	movl	0x40(sp), r6
+00007f83f001af2b	shrl	$6, r6
+00007f83f001af2e	andl	$0x3f, r6
+00007f83f001af31	orl	$0x80, r6
+00007f83f001af37	movl	r5, scratch
+00007f83f001af39	addq	memory, scratch
+00007f83f001af3c	movb	r6b, 0x4d(scratch)
+00007f83f001af40	movl	0x28(sp), r5
+00007f83f001af44	movl	0x40(sp), r6
+00007f83f001af48	shrl	$0xc, r6
+00007f83f001af4b	andl	$0xf, r6
+00007f83f001af4e	orl	$0xe0, r6
+00007f83f001af54	movl	r5, scratch
+00007f83f001af56	addq	memory, scratch
+00007f83f001af59	movb	r6b, 0x4c(scratch)
+00007f83f001af5d	movl	$3, scratch
+00007f83f001af63	movl	scratch, 0x20(sp)
+00007f83f001af67	jmp	.10f
+00007f83f001af6c .10c:	movl	0x10(sp), r5
+00007f83f001af70	incl	r5
+00007f83f001af72	shrl	$1, r5
+00007f83f001af75	movl	r5, (sp)
+00007f83f001af78	movl	0x10(sp), r5
+00007f83f001af7c	shrl	$1, r5
+00007f83f001af7f	movl	r5, 0x10(sp)
+00007f83f001af83	jmp	.10d
+00007f83f001af88 .10b:	movl	0x10(sp), r5
+00007f83f001af8c	movl	r5, (sp)
+00007f83f001af8f	movl	zero, scratch
+00007f83f001af91	movl	scratch, 0x10(sp)
+00007f83f001af95 .10d:	movl	0x28(sp), r5
+00007f83f001af99	movl	r5, scratch
+00007f83f001af9b	addq	memory, scratch
+00007f83f001af9e	movl	zero, 0x4c(scratch)
+00007f83f001afa1	movl	0x38(sp), r5
+00007f83f001afa5	addl	$4, r5
+00007f83f001afa8	movl	r5, scratch
+00007f83f001afaa	addq	memory, scratch
+00007f83f001afad	movl	(scratch), r5
+00007f83f001afaf	movl	r5, 0x40(sp)
+00007f83f001afb3	movl	r5, result
+00007f83f001afb5	cmpl	$0x7f, result
+00007f83f001afb8	ja	.112
+00007f83f001afbe	movl	0x28(sp), r5
+00007f83f001afc2	movl	0x40(sp), r6
+00007f83f001afc6	movl	r5, scratch
+00007f83f001afc8	addq	memory, scratch
+00007f83f001afcb	movb	r6b, 0x4c(scratch)
+00007f83f001afcf	movl	$1, scratch
+00007f83f001afd5	movl	scratch, 0x20(sp)
+00007f83f001afd9	jmp	.113
+00007f83f001afde .112:	movl	0x40(sp), r5
+00007f83f001afe2	movl	r5, result
+00007f83f001afe4	cmpl	$0x7ff, result
+00007f83f001afea	ja	.114
+00007f83f001aff0	movl	0x28(sp), r5
+00007f83f001aff4	movl	0x40(sp), r6
+00007f83f001aff8	andl	$0x3f, r6
+00007f83f001affb	orl	$0x80, r6
+00007f83f001b001	movl	r5, scratch
+00007f83f001b003	addq	memory, scratch
+00007f83f001b006	movb	r6b, 0x4d(scratch)
+00007f83f001b00a	movl	0x28(sp), r5
+00007f83f001b00e	movl	0x40(sp), r6
+00007f83f001b012	shrl	$6, r6
+00007f83f001b015	andl	$0x1f, r6
+00007f83f001b018	orl	$0xc0, r6
+00007f83f001b01e	movl	r5, scratch
+00007f83f001b020	addq	memory, scratch
+00007f83f001b023	movb	r6b, 0x4c(scratch)
+00007f83f001b027	movl	$2, scratch
+00007f83f001b02d	movl	scratch, 0x20(sp)
+00007f83f001b031	jmp	.113
+00007f83f001b036 .111:	movl	0x28(sp), r5
+00007f83f001b03a	movl	0x40(sp), r6
+00007f83f001b03e	andl	$0x3f, r6
+00007f83f001b041	orl	$0x80, r6
+00007f83f001b047	movl	r5, scratch
+00007f83f001b049	addq	memory, scratch
+00007f83f001b04c	movb	r6b, 0x4f(scratch)
+00007f83f001b050	movl	0x28(sp), r5
+00007f83f001b054	movl	0x40(sp), r6
+00007f83f001b058	shrl	$0x12, r6
+00007f83f001b05b	orl	$0xf0, r6
+00007f83f001b061	movl	r5, scratch
+00007f83f001b063	addq	memory, scratch
+00007f83f001b066	movb	r6b, 0x4c(scratch)
+00007f83f001b06a	movl	0x28(sp), r5
+00007f83f001b06e	movl	0x40(sp), r6
+00007f83f001b072	shrl	$6, r6
+00007f83f001b075	andl	$0x3f, r6
+00007f83f001b078	orl	$0x80, r6
+00007f83f001b07e	movl	r5, scratch
+00007f83f001b080	addq	memory, scratch
+00007f83f001b083	movb	r6b, 0x4e(scratch)
+00007f83f001b087	movl	0x28(sp), r5
+00007f83f001b08b	movl	0x40(sp), r6
+00007f83f001b08f	shrl	$0xc, r6
+00007f83f001b092	andl	$0x3f, r6
+00007f83f001b095	orl	$0x80, r6
+00007f83f001b09b	movl	r5, scratch
+00007f83f001b09d	addq	memory, scratch
+00007f83f001b0a0	movb	r6b, 0x4d(scratch)
+00007f83f001b0a4	movl	$4, scratch
+00007f83f001b0aa	movl	scratch, 0x20(sp)
+00007f83f001b0ae .10f:	movl	$0xffffffff, scratch
+00007f83f001b0b4	movl	scratch, 0x40(sp)
+00007f83f001b0b8 .118:	movl	0x40(sp), r5
+00007f83f001b0bc	incl	r5
+00007f83f001b0be	movl	r5, 0x40(sp)
+00007f83f001b0c2	movl	0x10(sp), r6
+00007f83f001b0c6	movl	r5, result
+00007f83f001b0c8	cmpl	r6, result
+00007f83f001b0ca	jae	.115
+00007f83f001b0d0	movl	0x38(sp), r5
+00007f83f001b0d4	addl	$0x18, r5
+00007f83f001b0d7	movl	r5, scratch
+00007f83f001b0d9	addq	memory, scratch
+00007f83f001b0dc	movl	(scratch), r5
+00007f83f001b0de	movl	0x28(sp), r6
+00007f83f001b0e2	addl	$0x4c, r6
+00007f83f001b0e5	movl	0x20(sp), r7
+00007f83f001b0e9	movl	0x38(sp), r8
+00007f83f001b0ee	addl	$0x1c, r8
+00007f83f001b0f2	movl	r8, scratch
+00007f83f001b0f5	addq	memory, scratch
+00007f83f001b0f8	movl	(scratch), r8
+00007f83f001b0fb	movl	r8, scratch
+00007f83f001b0fe	addq	memory, scratch
+00007f83f001b101	movl	0xc(scratch), r8
+00007f83f001b105	pushq	r5
+00007f83f001b107	pushq	r6
+00007f83f001b109	pushq	r7
+00007f83f001b10b	movl	$4, scratch
+00007f83f001b111	testl	r8, r8
+00007f83f001b114	cmovll	scratch, r8
+00007f83f001b118	cmpl	r8, scratch
+00007f83f001b11b	jle	.116
+00007f83f001b11d	movq	0xe0(text, r8, 8), result
+00007f83f001b125	movl	result, scratch
+00007f83f001b127	shrq	$0x20, result
+00007f83f001b12b	cmpl	$0, result
+00007f83f001b12e	je	.117
+00007f83f001b130	callq	trap.indirect_call_signature_mismatch
+00007f83f001b135 .116:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001b13a .117:	addq	text, scratch
+00007f83f001b13d	callq	retpoline
+00007f83f001b142	leaq	0x18(sp), sp
+00007f83f001b147	testl	result, result
+00007f83f001b149	je	.118			; back
+00007f83f001b14f	jmp	.106
+00007f83f001b154 .115:	movl	0x28(sp), r5
+00007f83f001b158	addl	$0x40, r5
+00007f83f001b15b	movl	0x38(sp), r6
+00007f83f001b15f	pushq	r5
+00007f83f001b161	pushq	r6
+00007f83f001b163	callq	_ZN4core3fmt9Formatter12pad_integral28_$u7b$$u7b$closure$u7d$$u7d$17h83b03ce049820748E
+00007f83f001b168	leaq	0x10(sp), sp
+00007f83f001b16d	testl	result, result
+00007f83f001b16f	jne	.106
+00007f83f001b175	movl	0x38(sp), r5
+00007f83f001b179	addl	$0x18, r5
+00007f83f001b17c	movl	r5, 0x10(sp)
+00007f83f001b180	movl	r5, scratch
+00007f83f001b182	addq	memory, scratch
+00007f83f001b185	movl	(scratch), r5
+00007f83f001b187	movl	8(sp), r6
+00007f83f001b18b	movl	0x18(sp), r7
+00007f83f001b18f	movl	0x38(sp), r8
+00007f83f001b194	addl	$0x1c, r8
+00007f83f001b198	movl	r8, 0x38(sp)
+00007f83f001b19d	movl	r8, scratch
+00007f83f001b1a0	addq	memory, scratch
+00007f83f001b1a3	movl	(scratch), r8
+00007f83f001b1a6	movl	r8, scratch
+00007f83f001b1a9	addq	memory, scratch
+00007f83f001b1ac	movl	0xc(scratch), r8
+00007f83f001b1b0	pushq	r5
+00007f83f001b1b2	pushq	r6
+00007f83f001b1b4	pushq	r7
+00007f83f001b1b6	movl	$4, scratch
+00007f83f001b1bc	testl	r8, r8
+00007f83f001b1bf	cmovll	scratch, r8
+00007f83f001b1c3	cmpl	r8, scratch
+00007f83f001b1c6	jle	.119
+00007f83f001b1c8	movq	0xe0(text, r8, 8), result
+00007f83f001b1d0	movl	result, scratch
+00007f83f001b1d2	shrq	$0x20, result
+00007f83f001b1d6	cmpl	$0, result
+00007f83f001b1d9	je	.11a
+00007f83f001b1db	callq	trap.indirect_call_signature_mismatch
+00007f83f001b1e0 .119:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001b1e5 .11a:	addq	text, scratch
+00007f83f001b1e8	callq	retpoline
+00007f83f001b1ed	leaq	0x18(sp), sp
+00007f83f001b1f2	testl	result, result
+00007f83f001b1f4	jne	.106
+00007f83f001b1fa	movl	$0xffffffff, scratch
+00007f83f001b200	movl	scratch, 0x40(sp)
+00007f83f001b204 .11e:	movl	0x40(sp), r5
+00007f83f001b208	incl	r5
+00007f83f001b20a	movl	r5, 0x40(sp)
+00007f83f001b20e	movl	(sp), r6
+00007f83f001b211	movl	r5, result
+00007f83f001b213	cmpl	r6, result
+00007f83f001b215	jae	.11b
+00007f83f001b21b	movl	0x10(sp), r5
+00007f83f001b21f	movl	r5, scratch
+00007f83f001b221	addq	memory, scratch
+00007f83f001b224	movl	(scratch), r5
+00007f83f001b226	movl	0x28(sp), r6
+00007f83f001b22a	addl	$0x4c, r6
+00007f83f001b22d	movl	0x20(sp), r7
+00007f83f001b231	movl	0x38(sp), r8
+00007f83f001b236	movl	r8, scratch
+00007f83f001b239	addq	memory, scratch
+00007f83f001b23c	movl	(scratch), r8
+00007f83f001b23f	movl	r8, scratch
+00007f83f001b242	addq	memory, scratch
+00007f83f001b245	movl	0xc(scratch), r8
+00007f83f001b249	pushq	r5
+00007f83f001b24b	pushq	r6
+00007f83f001b24d	pushq	r7
+00007f83f001b24f	movl	$4, scratch
+00007f83f001b255	testl	r8, r8
+00007f83f001b258	cmovll	scratch, r8
+00007f83f001b25c	cmpl	r8, scratch
+00007f83f001b25f	jle	.11c
+00007f83f001b261	movq	0xe0(text, r8, 8), result
+00007f83f001b269	movl	result, scratch
+00007f83f001b26b	shrq	$0x20, result
+00007f83f001b26f	cmpl	$0, result
+00007f83f001b272	je	.11d
+00007f83f001b274	callq	trap.indirect_call_signature_mismatch
+00007f83f001b279 .11c:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001b27e .11d:	addq	text, scratch
+00007f83f001b281	callq	retpoline
+00007f83f001b286	leaq	0x18(sp), sp
+00007f83f001b28b	testl	result, result
+00007f83f001b28d	je	.11e			; back
+00007f83f001b293	jmp	.106
+00007f83f001b298 .114:	movl	0x40(sp), r5
+00007f83f001b29c	movl	r5, result
+00007f83f001b29e	cmpl	$0xffff, result
+00007f83f001b2a4	ja	.11f
+00007f83f001b2aa	movl	0x28(sp), r5
+00007f83f001b2ae	movl	0x40(sp), r6
+00007f83f001b2b2	andl	$0x3f, r6
+00007f83f001b2b5	orl	$0x80, r6
+00007f83f001b2bb	movl	r5, scratch
+00007f83f001b2bd	addq	memory, scratch
+00007f83f001b2c0	movb	r6b, 0x4e(scratch)
+00007f83f001b2c4	movl	0x28(sp), r5
+00007f83f001b2c8	movl	0x40(sp), r6
+00007f83f001b2cc	shrl	$6, r6
+00007f83f001b2cf	andl	$0x3f, r6
+00007f83f001b2d2	orl	$0x80, r6
+00007f83f001b2d8	movl	r5, scratch
+00007f83f001b2da	addq	memory, scratch
+00007f83f001b2dd	movb	r6b, 0x4d(scratch)
+00007f83f001b2e1	movl	0x28(sp), r5
+00007f83f001b2e5	movl	0x40(sp), r6
+00007f83f001b2e9	shrl	$0xc, r6
+00007f83f001b2ec	andl	$0xf, r6
+00007f83f001b2ef	orl	$0xe0, r6
+00007f83f001b2f5	movl	r5, scratch
+00007f83f001b2f7	addq	memory, scratch
+00007f83f001b2fa	movb	r6b, 0x4c(scratch)
+00007f83f001b2fe	movl	$3, scratch
+00007f83f001b304	movl	scratch, 0x20(sp)
+00007f83f001b308	jmp	.113
+00007f83f001b30d .11b:	movl	0x28(sp), r5
+00007f83f001b311	addl	$0x50, r5
+00007f83f001b314	movl	r5, -0x18(memory)
+00007f83f001b318	movl	zero, result
+00007f83f001b31a	leaq	0x30(sp), sp
+00007f83f001b31f	retq
+00007f83f001b320 .11f:	movl	0x28(sp), r5
+00007f83f001b324	movl	0x40(sp), r6
+00007f83f001b328	andl	$0x3f, r6
+00007f83f001b32b	orl	$0x80, r6
+00007f83f001b331	movl	r5, scratch
+00007f83f001b333	addq	memory, scratch
+00007f83f001b336	movb	r6b, 0x4f(scratch)
+00007f83f001b33a	movl	0x28(sp), r5
+00007f83f001b33e	movl	0x40(sp), r6
+00007f83f001b342	shrl	$0x12, r6
+00007f83f001b345	orl	$0xf0, r6
+00007f83f001b34b	movl	r5, scratch
+00007f83f001b34d	addq	memory, scratch
+00007f83f001b350	movb	r6b, 0x4c(scratch)
+00007f83f001b354	movl	0x28(sp), r5
+00007f83f001b358	movl	0x40(sp), r6
+00007f83f001b35c	shrl	$6, r6
+00007f83f001b35f	andl	$0x3f, r6
+00007f83f001b362	orl	$0x80, r6
+00007f83f001b368	movl	r5, scratch
+00007f83f001b36a	addq	memory, scratch
+00007f83f001b36d	movb	r6b, 0x4e(scratch)
+00007f83f001b371	movl	0x28(sp), r5
+00007f83f001b375	movl	0x40(sp), r6
+00007f83f001b379	shrl	$0xc, r6
+00007f83f001b37c	andl	$0x3f, r6
+00007f83f001b37f	orl	$0x80, r6
+00007f83f001b385	movl	r5, scratch
+00007f83f001b387	addq	memory, scratch
+00007f83f001b38a	movb	r6b, 0x4d(scratch)
+00007f83f001b38e	movl	$4, scratch
+00007f83f001b394	movl	scratch, 0x20(sp)
+00007f83f001b398 .113:	movl	$0xffffffff, scratch
+00007f83f001b39e	movl	scratch, 0x40(sp)
+00007f83f001b3a2 .123:	movl	0x40(sp), r5
+00007f83f001b3a6	incl	r5
+00007f83f001b3a8	movl	r5, 0x40(sp)
+00007f83f001b3ac	movl	0x10(sp), r6
+00007f83f001b3b0	movl	r5, result
+00007f83f001b3b2	cmpl	r6, result
+00007f83f001b3b4	jae	.120
+00007f83f001b3ba	movl	0x38(sp), r5
+00007f83f001b3be	addl	$0x18, r5
+00007f83f001b3c1	movl	r5, scratch
+00007f83f001b3c3	addq	memory, scratch
+00007f83f001b3c6	movl	(scratch), r5
+00007f83f001b3c8	movl	0x28(sp), r6
+00007f83f001b3cc	addl	$0x4c, r6
+00007f83f001b3cf	movl	0x20(sp), r7
+00007f83f001b3d3	movl	0x38(sp), r8
+00007f83f001b3d8	addl	$0x1c, r8
+00007f83f001b3dc	movl	r8, scratch
+00007f83f001b3df	addq	memory, scratch
+00007f83f001b3e2	movl	(scratch), r8
+00007f83f001b3e5	movl	r8, scratch
+00007f83f001b3e8	addq	memory, scratch
+00007f83f001b3eb	movl	0xc(scratch), r8
+00007f83f001b3ef	pushq	r5
+00007f83f001b3f1	pushq	r6
+00007f83f001b3f3	pushq	r7
+00007f83f001b3f5	movl	$4, scratch
+00007f83f001b3fb	testl	r8, r8
+00007f83f001b3fe	cmovll	scratch, r8
+00007f83f001b402	cmpl	r8, scratch
+00007f83f001b405	jle	.121
+00007f83f001b407	movq	0xe0(text, r8, 8), result
+00007f83f001b40f	movl	result, scratch
+00007f83f001b411	shrq	$0x20, result
+00007f83f001b415	cmpl	$0, result
+00007f83f001b418	je	.122
+00007f83f001b41a	callq	trap.indirect_call_signature_mismatch
+00007f83f001b41f .121:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001b424 .122:	addq	text, scratch
+00007f83f001b427	callq	retpoline
+00007f83f001b42c	leaq	0x18(sp), sp
+00007f83f001b431	testl	result, result
+00007f83f001b433	je	.123			; back
+00007f83f001b439	jmp	.106
+00007f83f001b43e .120:	movl	0x38(sp), r5
+00007f83f001b442	addl	$0x18, r5
+00007f83f001b445	movl	r5, 0x10(sp)
+00007f83f001b449	movl	r5, scratch
+00007f83f001b44b	addq	memory, scratch
+00007f83f001b44e	movl	(scratch), r5
+00007f83f001b450	movl	8(sp), r6
+00007f83f001b454	movl	0x18(sp), r7
+00007f83f001b458	movl	0x38(sp), r8
+00007f83f001b45d	addl	$0x1c, r8
+00007f83f001b461	movl	r8, 0x38(sp)
+00007f83f001b466	movl	r8, scratch
+00007f83f001b469	addq	memory, scratch
+00007f83f001b46c	movl	(scratch), r8
+00007f83f001b46f	movl	r8, scratch
+00007f83f001b472	addq	memory, scratch
+00007f83f001b475	movl	0xc(scratch), r8
+00007f83f001b479	pushq	r5
+00007f83f001b47b	pushq	r6
+00007f83f001b47d	pushq	r7
+00007f83f001b47f	movl	$4, scratch
+00007f83f001b485	testl	r8, r8
+00007f83f001b488	cmovll	scratch, r8
+00007f83f001b48c	cmpl	r8, scratch
+00007f83f001b48f	jle	.124
+00007f83f001b491	movq	0xe0(text, r8, 8), result
+00007f83f001b499	movl	result, scratch
+00007f83f001b49b	shrq	$0x20, result
+00007f83f001b49f	cmpl	$0, result
+00007f83f001b4a2	je	.125
+00007f83f001b4a4	callq	trap.indirect_call_signature_mismatch
+00007f83f001b4a9 .124:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001b4ae .125:	addq	text, scratch
+00007f83f001b4b1	callq	retpoline
+00007f83f001b4b6	leaq	0x18(sp), sp
+00007f83f001b4bb	testl	result, result
+00007f83f001b4bd	jne	.106
+00007f83f001b4c3	movl	$0xffffffff, scratch
+00007f83f001b4c9	movl	scratch, 0x40(sp)
+00007f83f001b4cd .129:	movl	0x40(sp), r5
+00007f83f001b4d1	incl	r5
+00007f83f001b4d3	movl	r5, 0x40(sp)
+00007f83f001b4d7	movl	(sp), r6
+00007f83f001b4da	movl	r5, result
+00007f83f001b4dc	cmpl	r6, result
+00007f83f001b4de	jae	.126
+00007f83f001b4e4	movl	0x10(sp), r5
+00007f83f001b4e8	movl	r5, scratch
+00007f83f001b4ea	addq	memory, scratch
+00007f83f001b4ed	movl	(scratch), r5
+00007f83f001b4ef	movl	0x28(sp), r6
+00007f83f001b4f3	addl	$0x4c, r6
+00007f83f001b4f6	movl	0x20(sp), r7
+00007f83f001b4fa	movl	0x38(sp), r8
+00007f83f001b4ff	movl	r8, scratch
+00007f83f001b502	addq	memory, scratch
+00007f83f001b505	movl	(scratch), r8
+00007f83f001b508	movl	r8, scratch
+00007f83f001b50b	addq	memory, scratch
+00007f83f001b50e	movl	0xc(scratch), r8
+00007f83f001b512	pushq	r5
+00007f83f001b514	pushq	r6
+00007f83f001b516	pushq	r7
+00007f83f001b518	movl	$4, scratch
+00007f83f001b51e	testl	r8, r8
+00007f83f001b521	cmovll	scratch, r8
+00007f83f001b525	cmpl	r8, scratch
+00007f83f001b528	jle	.127
+00007f83f001b52a	movq	0xe0(text, r8, 8), result
+00007f83f001b532	movl	result, scratch
+00007f83f001b534	shrq	$0x20, result
+00007f83f001b538	cmpl	$0, result
+00007f83f001b53b	je	.128
+00007f83f001b53d	callq	trap.indirect_call_signature_mismatch
+00007f83f001b542 .127:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001b547 .128:	addq	text, scratch
+00007f83f001b54a	callq	retpoline
+00007f83f001b54f	leaq	0x18(sp), sp
+00007f83f001b554	testl	result, result
+00007f83f001b556	je	.129			; back
+00007f83f001b55c .106:	movl	0x28(sp), r5
+00007f83f001b560	addl	$0x50, r5
+00007f83f001b563	movl	r5, -0x18(memory)
+00007f83f001b567	movl	$1, result
+00007f83f001b56d	leaq	0x30(sp), sp
+00007f83f001b572	retq
+00007f83f001b573 .126:	movl	0x28(sp), r5
+00007f83f001b577	addl	$0x50, r5
+00007f83f001b57a	movl	r5, -0x18(memory)
+00007f83f001b57e	movl	zero, result
+00007f83f001b580	leaq	0x30(sp), sp
+00007f83f001b585	retq
+
+_ZN4core9panicking9panic_fmt17h59066e1e00f1980fE:
+00007f83f001b590	leaq	-0x18(sp), scratch
+00007f83f001b598	cmpq	stacklimit, scratch
+00007f83f001b59b	jge	.12a
+00007f83f001b59d	callq	trap.call_stack_exhausted
+00007f83f001b5a2 .12a:	pushq	zero
+00007f83f001b5a3	pushq	zero
+00007f83f001b5a4	movl	-0x18(memory), r5
+00007f83f001b5a8	subl	$0x20, r5
+00007f83f001b5ab	movl	r5, 8(sp)
+00007f83f001b5af	movl	r5, -0x18(memory)
+00007f83f001b5b3	movl	0x18(sp), r5
+00007f83f001b5b7	movl	r5, scratch
+00007f83f001b5b9	addq	memory, scratch
+00007f83f001b5bc	movq	(scratch), r5
+00007f83f001b5bf	movq	r5, (sp)
+00007f83f001b5c3	movl	8(sp), r5
+00007f83f001b5c7	addl	$0x14, r5
+00007f83f001b5ca	movl	0x18(sp), r6
+00007f83f001b5ce	movl	r6, scratch
+00007f83f001b5d0	addq	memory, scratch
+00007f83f001b5d3	movq	8(scratch), r6
+00007f83f001b5d7	movl	r5, scratch
+00007f83f001b5d9	addq	memory, scratch
+00007f83f001b5dc	movq	r6, (scratch)
+00007f83f001b5df	movl	8(sp), r5
+00007f83f001b5e3	movq	(sp), r6
+00007f83f001b5e7	movl	r5, scratch
+00007f83f001b5e9	addq	memory, scratch
+00007f83f001b5ec	movq	r6, 0xc(scratch)
+00007f83f001b5f0	movl	8(sp), r5
+00007f83f001b5f4	movl	0x20(sp), r6
+00007f83f001b5f8	movl	r5, scratch
+00007f83f001b5fa	addq	memory, scratch
+00007f83f001b5fd	movl	r6, 8(scratch)
+00007f83f001b600	movl	8(sp), r5
+00007f83f001b604	movl	r5, scratch
+00007f83f001b606	addq	memory, scratch
+00007f83f001b609	movl	$0x100038, 4(scratch)
+00007f83f001b610	movl	8(sp), r5
+00007f83f001b614	movl	r5, scratch
+00007f83f001b616	addq	memory, scratch
+00007f83f001b619	movl	$0x10018c, (scratch)
+00007f83f001b61f	movl	8(sp), r5
+00007f83f001b623	pushq	r5
+00007f83f001b625	callq	rust_begin_unwind
+00007f83f001b62a	leaq	8(sp), sp
+00007f83f001b62f	callq	trap.unreachable
+00007f83f001b634	leaq	0x10(sp), sp
+00007f83f001b639	retq
+
+_ZN4core9panicking18panic_bounds_check17h5092bca8a4727e93E:
+00007f83f001b640	leaq	-0x18(sp), scratch
+00007f83f001b648	cmpq	stacklimit, scratch
+00007f83f001b64b	jge	.12b
+00007f83f001b64d	callq	trap.call_stack_exhausted
+00007f83f001b652 .12b:	pushq	zero
+00007f83f001b653	movl	-0x18(memory), r5
+00007f83f001b657	subl	$0x30, r5
+00007f83f001b65a	movl	r5, (sp)
+00007f83f001b65d	movl	r5, -0x18(memory)
+00007f83f001b661	movl	(sp), r5
+00007f83f001b664	movl	0x10(sp), r6
+00007f83f001b668	movl	r5, scratch
+00007f83f001b66a	addq	memory, scratch
+00007f83f001b66d	movl	r6, 4(scratch)
+00007f83f001b670	movl	(sp), r5
+00007f83f001b673	movl	0x18(sp), r6
+00007f83f001b677	movl	r5, scratch
+00007f83f001b679	addq	memory, scratch
+00007f83f001b67c	movl	r6, (scratch)
+00007f83f001b67e	movl	(sp), r5
+00007f83f001b681	addl	$0x20, r5
+00007f83f001b684	addl	$0xc, r5
+00007f83f001b687	movl	r5, scratch
+00007f83f001b689	addq	memory, scratch
+00007f83f001b68c	movl	$1, (scratch)
+00007f83f001b692	movl	(sp), r5
+00007f83f001b695	addl	$0x1c, r5
+00007f83f001b698	movl	r5, scratch
+00007f83f001b69a	addq	memory, scratch
+00007f83f001b69d	movl	$2, (scratch)
+00007f83f001b6a3	movl	(sp), r5
+00007f83f001b6a6	addl	$8, r5
+00007f83f001b6a9	addl	$0xc, r5
+00007f83f001b6ac	movl	r5, scratch
+00007f83f001b6ae	addq	memory, scratch
+00007f83f001b6b1	movl	$2, (scratch)
+00007f83f001b6b7	movl	(sp), r5
+00007f83f001b6ba	movl	r5, scratch
+00007f83f001b6bc	addq	memory, scratch
+00007f83f001b6bf	movl	$1, 0x24(scratch)
+00007f83f001b6c6	movl	(sp), r5
+00007f83f001b6c9	movl	r5, scratch
+00007f83f001b6cb	addq	memory, scratch
+00007f83f001b6ce	movl	$0x100144, 0x10(scratch)
+00007f83f001b6d5	movl	(sp), r5
+00007f83f001b6d8	movl	r5, scratch
+00007f83f001b6da	addq	memory, scratch
+00007f83f001b6dd	movl	$2, 0xc(scratch)
+00007f83f001b6e4	movl	(sp), r5
+00007f83f001b6e7	movl	r5, scratch
+00007f83f001b6e9	addq	memory, scratch
+00007f83f001b6ec	movl	$0x100028, 8(scratch)
+00007f83f001b6f3	movl	(sp), r5
+00007f83f001b6f6	movl	(sp), r6
+00007f83f001b6f9	movl	r5, scratch
+00007f83f001b6fb	addq	memory, scratch
+00007f83f001b6fe	movl	r6, 0x28(scratch)
+00007f83f001b701	movl	(sp), r5
+00007f83f001b704	movl	(sp), r6
+00007f83f001b707	addl	$4, r6
+00007f83f001b70a	movl	r5, scratch
+00007f83f001b70c	addq	memory, scratch
+00007f83f001b70f	movl	r6, 0x20(scratch)
+00007f83f001b712	movl	(sp), r5
+00007f83f001b715	movl	(sp), r6
+00007f83f001b718	addl	$0x20, r6
+00007f83f001b71b	movl	r5, scratch
+00007f83f001b71d	addq	memory, scratch
+00007f83f001b720	movl	r6, 0x18(scratch)
+00007f83f001b723	movl	(sp), r5
+00007f83f001b726	addl	$8, r5
+00007f83f001b729	movl	0x20(sp), r6
+00007f83f001b72d	pushq	r5
+00007f83f001b72f	pushq	r6
+00007f83f001b731	callq	_ZN4core9panicking9panic_fmt17h59066e1e00f1980fE
+00007f83f001b736	leaq	0x10(sp), sp
+00007f83f001b73b	callq	trap.unreachable
+00007f83f001b740	leaq	8(sp), sp
+00007f83f001b745	retq
+
+_ZN4core3fmt9Formatter12pad_integral28_$u7b$$u7b$closure$u7d$$u7d$17h83b03ce049820748E:
+00007f83f001b750	leaq	-0x40(sp), scratch
+00007f83f001b758	cmpq	stacklimit, scratch
+00007f83f001b75b	jge	.12c
+00007f83f001b75d	callq	trap.call_stack_exhausted
+00007f83f001b762 .12c:	pushq	zero
+00007f83f001b763	pushq	zero
+00007f83f001b764	pushq	zero
+00007f83f001b765	pushq	zero
+00007f83f001b766	pushq	zero
+00007f83f001b767	movl	-0x18(memory), r5
+00007f83f001b76b	subl	$0x10, r5
+00007f83f001b76e	movl	r5, 0x20(sp)
+00007f83f001b772	movl	r5, -0x18(memory)
+00007f83f001b776	movl	0x38(sp), r5
+00007f83f001b77a	movl	r5, scratch
+00007f83f001b77c	addq	memory, scratch
+00007f83f001b77f	movl	(scratch), r5
+00007f83f001b781	movl	r5, scratch
+00007f83f001b783	addq	memory, scratch
+00007f83f001b786	movl	(scratch), r5
+00007f83f001b788	movl	r5, 0x18(sp)
+00007f83f001b78c	movl	r5, result
+00007f83f001b78e	cmpl	$0x110000, result
+00007f83f001b794	je	.12d
+00007f83f001b79a	movl	0x30(sp), r5
+00007f83f001b79e	addl	$0x1c, r5
+00007f83f001b7a1	movl	r5, scratch
+00007f83f001b7a3	addq	memory, scratch
+00007f83f001b7a6	movl	(scratch), r5
+00007f83f001b7a8	movl	r5, 0x10(sp)
+00007f83f001b7ac	movl	0x30(sp), r5
+00007f83f001b7b0	movl	r5, scratch
+00007f83f001b7b2	addq	memory, scratch
+00007f83f001b7b5	movl	0x18(scratch), r5
+00007f83f001b7b8	movl	r5, 8(sp)
+00007f83f001b7bc	movl	0x20(sp), r5
+00007f83f001b7c0	movl	r5, scratch
+00007f83f001b7c2	addq	memory, scratch
+00007f83f001b7c5	movl	zero, 0xc(scratch)
+00007f83f001b7c8	movl	0x18(sp), r5
+00007f83f001b7cc	movl	r5, result
+00007f83f001b7ce	cmpl	$0x7f, result
+00007f83f001b7d1	ja	.12e
+00007f83f001b7d7	movl	0x20(sp), r5
+00007f83f001b7db	movl	0x18(sp), r6
+00007f83f001b7df	movl	r5, scratch
+00007f83f001b7e1	addq	memory, scratch
+00007f83f001b7e4	movb	r6b, 0xc(scratch)
+00007f83f001b7e8	movl	$1, scratch
+00007f83f001b7ee	movl	scratch, (sp)
+00007f83f001b7f1	jmp	.12f
+00007f83f001b7f6 .12e:	movl	0x18(sp), r5
+00007f83f001b7fa	movl	r5, result
+00007f83f001b7fc	cmpl	$0x7ff, result
+00007f83f001b802	ja	.130
+00007f83f001b808	movl	0x20(sp), r5
+00007f83f001b80c	movl	0x18(sp), r6
+00007f83f001b810	andl	$0x3f, r6
+00007f83f001b813	orl	$0x80, r6
+00007f83f001b819	movl	r5, scratch
+00007f83f001b81b	addq	memory, scratch
+00007f83f001b81e	movb	r6b, 0xd(scratch)
+00007f83f001b822	movl	0x20(sp), r5
+00007f83f001b826	movl	0x18(sp), r6
+00007f83f001b82a	shrl	$6, r6
+00007f83f001b82d	andl	$0x1f, r6
+00007f83f001b830	orl	$0xc0, r6
+00007f83f001b836	movl	r5, scratch
+00007f83f001b838	addq	memory, scratch
+00007f83f001b83b	movb	r6b, 0xc(scratch)
+00007f83f001b83f	movl	$2, scratch
+00007f83f001b845	movl	scratch, (sp)
+00007f83f001b848	jmp	.12f
+00007f83f001b84d .130:	movl	0x18(sp), r5
+00007f83f001b851	movl	r5, result
+00007f83f001b853	cmpl	$0xffff, result
+00007f83f001b859	ja	.131
+00007f83f001b85f	movl	0x20(sp), r5
+00007f83f001b863	movl	0x18(sp), r6
+00007f83f001b867	andl	$0x3f, r6
+00007f83f001b86a	orl	$0x80, r6
+00007f83f001b870	movl	r5, scratch
+00007f83f001b872	addq	memory, scratch
+00007f83f001b875	movb	r6b, 0xe(scratch)
+00007f83f001b879	movl	0x20(sp), r5
+00007f83f001b87d	movl	0x18(sp), r6
+00007f83f001b881	shrl	$6, r6
+00007f83f001b884	andl	$0x3f, r6
+00007f83f001b887	orl	$0x80, r6
+00007f83f001b88d	movl	r5, scratch
+00007f83f001b88f	addq	memory, scratch
+00007f83f001b892	movb	r6b, 0xd(scratch)
+00007f83f001b896	movl	0x20(sp), r5
+00007f83f001b89a	movl	0x18(sp), r6
+00007f83f001b89e	shrl	$0xc, r6
+00007f83f001b8a1	andl	$0xf, r6
+00007f83f001b8a4	orl	$0xe0, r6
+00007f83f001b8aa	movl	r5, scratch
+00007f83f001b8ac	addq	memory, scratch
+00007f83f001b8af	movb	r6b, 0xc(scratch)
+00007f83f001b8b3	movl	$3, scratch
+00007f83f001b8b9	movl	scratch, (sp)
+00007f83f001b8bc	jmp	.12f
+00007f83f001b8c1 .131:	movl	0x20(sp), r5
+00007f83f001b8c5	movl	0x18(sp), r6
+00007f83f001b8c9	andl	$0x3f, r6
+00007f83f001b8cc	orl	$0x80, r6
+00007f83f001b8d2	movl	r5, scratch
+00007f83f001b8d4	addq	memory, scratch
+00007f83f001b8d7	movb	r6b, 0xf(scratch)
+00007f83f001b8db	movl	0x20(sp), r5
+00007f83f001b8df	movl	0x18(sp), r6
+00007f83f001b8e3	shrl	$0x12, r6
+00007f83f001b8e6	orl	$0xf0, r6
+00007f83f001b8ec	movl	r5, scratch
+00007f83f001b8ee	addq	memory, scratch
+00007f83f001b8f1	movb	r6b, 0xc(scratch)
+00007f83f001b8f5	movl	0x20(sp), r5
+00007f83f001b8f9	movl	0x18(sp), r6
+00007f83f001b8fd	shrl	$6, r6
+00007f83f001b900	andl	$0x3f, r6
+00007f83f001b903	orl	$0x80, r6
+00007f83f001b909	movl	r5, scratch
+00007f83f001b90b	addq	memory, scratch
+00007f83f001b90e	movb	r6b, 0xe(scratch)
+00007f83f001b912	movl	0x20(sp), r5
+00007f83f001b916	movl	0x18(sp), r6
+00007f83f001b91a	shrl	$0xc, r6
+00007f83f001b91d	andl	$0x3f, r6
+00007f83f001b920	orl	$0x80, r6
+00007f83f001b926	movl	r5, scratch
+00007f83f001b928	addq	memory, scratch
+00007f83f001b92b	movb	r6b, 0xd(scratch)
+00007f83f001b92f	movl	$4, scratch
+00007f83f001b935	movl	scratch, (sp)
+00007f83f001b938 .12f:	movl	$1, scratch
+00007f83f001b93e	movl	scratch, 0x18(sp)
+00007f83f001b942	movl	8(sp), r5
+00007f83f001b946	movl	0x20(sp), r6
+00007f83f001b94a	addl	$0xc, r6
+00007f83f001b94d	movl	(sp), r7
+00007f83f001b950	movl	0x10(sp), r8
+00007f83f001b955	movl	r8, scratch
+00007f83f001b958	addq	memory, scratch
+00007f83f001b95b	movl	0xc(scratch), r8
+00007f83f001b95f	pushq	r5
+00007f83f001b961	pushq	r6
+00007f83f001b963	pushq	r7
+00007f83f001b965	movl	$4, scratch
+00007f83f001b96b	testl	r8, r8
+00007f83f001b96e	cmovll	scratch, r8
+00007f83f001b972	cmpl	r8, scratch
+00007f83f001b975	jle	.132
+00007f83f001b977	movq	0xe0(text, r8, 8), result
+00007f83f001b97f	movl	result, scratch
+00007f83f001b981	shrq	$0x20, result
+00007f83f001b985	cmpl	$0, result
+00007f83f001b988	je	.133
+00007f83f001b98a	callq	trap.indirect_call_signature_mismatch
+00007f83f001b98f .132:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001b994 .133:	addq	text, scratch
+00007f83f001b997	callq	retpoline
+00007f83f001b99c	leaq	0x18(sp), sp
+00007f83f001b9a1	testl	result, result
+00007f83f001b9a3	jne	.134
+00007f83f001b9a9 .12d:	movl	0x38(sp), r5
+00007f83f001b9ad	movl	r5, scratch
+00007f83f001b9af	addq	memory, scratch
+00007f83f001b9b2	movl	4(scratch), r5
+00007f83f001b9b5	movl	r5, scratch
+00007f83f001b9b7	addq	memory, scratch
+00007f83f001b9ba	movzbl	(scratch), r5
+00007f83f001b9bd	testl	r5, r5
+00007f83f001b9bf	je	.135
+00007f83f001b9c5	movl	0x30(sp), r5
+00007f83f001b9c9	movl	r5, scratch
+00007f83f001b9cb	addq	memory, scratch
+00007f83f001b9ce	movl	0x18(scratch), r5
+00007f83f001b9d1	movl	0x38(sp), r6
+00007f83f001b9d5	movl	r6, scratch
+00007f83f001b9d7	addq	memory, scratch
+00007f83f001b9da	movl	8(scratch), r6
+00007f83f001b9dd	movl	r6, 0x38(sp)
+00007f83f001b9e1	movl	r6, scratch
+00007f83f001b9e3	addq	memory, scratch
+00007f83f001b9e6	movl	(scratch), r6
+00007f83f001b9e8	movl	0x38(sp), r7
+00007f83f001b9ec	movl	r7, scratch
+00007f83f001b9ee	addq	memory, scratch
+00007f83f001b9f1	movl	4(scratch), r7
+00007f83f001b9f4	movl	0x30(sp), r8
+00007f83f001b9f9	addl	$0x1c, r8
+00007f83f001b9fd	movl	r8, scratch
+00007f83f001ba00	addq	memory, scratch
+00007f83f001ba03	movl	(scratch), r8
+00007f83f001ba06	movl	r8, scratch
+00007f83f001ba09	addq	memory, scratch
+00007f83f001ba0c	movl	0xc(scratch), r8
+00007f83f001ba10	pushq	r5
+00007f83f001ba12	pushq	r6
+00007f83f001ba14	pushq	r7
+00007f83f001ba16	movl	$4, scratch
+00007f83f001ba1c	testl	r8, r8
+00007f83f001ba1f	cmovll	scratch, r8
+00007f83f001ba23	cmpl	r8, scratch
+00007f83f001ba26	jle	.136
+00007f83f001ba28	movq	0xe0(text, r8, 8), result
+00007f83f001ba30	movl	result, scratch
+00007f83f001ba32	shrq	$0x20, result
+00007f83f001ba36	cmpl	$0, result
+00007f83f001ba39	je	.137
+00007f83f001ba3b	callq	trap.indirect_call_signature_mismatch
+00007f83f001ba40 .136:	callq	trap.indirect_call_index_out_of_bounds
+00007f83f001ba45 .137:	addq	text, scratch
+00007f83f001ba48	callq	retpoline
+00007f83f001ba4d	leaq	0x18(sp), sp
+00007f83f001ba52	movl	result, 0x18(sp)
+00007f83f001ba56 .134:	movl	0x20(sp), r5
+00007f83f001ba5a	addl	$0x10, r5
+00007f83f001ba5d	movl	r5, -0x18(memory)
+00007f83f001ba61	movl	0x18(sp), r5
+00007f83f001ba65	movl	r5, result
+00007f83f001ba67	leaq	0x28(sp), sp
+00007f83f001ba6c	retq
+00007f83f001ba6d .135:	movl	0x20(sp), r5
+00007f83f001ba71	addl	$0x10, r5
+00007f83f001ba74	movl	r5, -0x18(memory)
+00007f83f001ba78	movl	zero, result
+00007f83f001ba7a	leaq	0x28(sp), sp
+00007f83f001ba7f	retq
+
+_ZN4core3ptr18real_drop_in_place17h041d55e0f747001aE:
+00007f83f001ba80	leaq	(sp), scratch
+00007f83f001ba88	cmpq	stacklimit, scratch
+00007f83f001ba8b	jge	.138
+00007f83f001ba8d	callq	trap.call_stack_exhausted
+00007f83f001ba92 .138:	xorl	result, result
+00007f83f001ba94	retq
+
+_ZN36_$LT$T$u20$as$u20$core..any..Any$GT$11get_type_id17hccb9c72504cb6b55E:
+00007f83f001baa0	leaq	(sp), scratch
+00007f83f001baa8	cmpq	stacklimit, scratch
+00007f83f001baab	jge	.139
+00007f83f001baad	callq	trap.call_stack_exhausted
+00007f83f001bab2 .139:	movabsq	$-0x167c716e06de3ec5, result
+00007f83f001babc	retq
+
+_ZN4core5slice22slice_index_order_fail17h4ab2eb66cba28a23E:
+00007f83f001bac0	leaq	-0x18(sp), scratch
+00007f83f001bac8	cmpq	stacklimit, scratch
+00007f83f001bacb	jge	.13a
+00007f83f001bacd	callq	trap.call_stack_exhausted
+00007f83f001bad2 .13a:	pushq	zero
+00007f83f001bad3	movl	-0x18(memory), r5
+00007f83f001bad7	subl	$0x30, r5
+00007f83f001bada	movl	r5, (sp)
+00007f83f001badd	movl	r5, -0x18(memory)
+00007f83f001bae1	movl	(sp), r5
+00007f83f001bae4	movl	0x10(sp), r6
+00007f83f001bae8	movl	r5, scratch
+00007f83f001baea	addq	memory, scratch
+00007f83f001baed	movl	r6, 4(scratch)
+00007f83f001baf0	movl	(sp), r5
+00007f83f001baf3	movl	0x18(sp), r6
+00007f83f001baf7	movl	r5, scratch
+00007f83f001baf9	addq	memory, scratch
+00007f83f001bafc	movl	r6, (scratch)
+00007f83f001bafe	movl	(sp), r5
+00007f83f001bb01	addl	$0x20, r5
+00007f83f001bb04	addl	$0xc, r5
+00007f83f001bb07	movl	r5, scratch
+00007f83f001bb09	addq	memory, scratch
+00007f83f001bb0c	movl	$1, (scratch)
+00007f83f001bb12	movl	(sp), r5
+00007f83f001bb15	addl	$0x1c, r5
+00007f83f001bb18	movl	r5, scratch
+00007f83f001bb1a	addq	memory, scratch
+00007f83f001bb1d	movl	$2, (scratch)
+00007f83f001bb23	movl	(sp), r5
+00007f83f001bb26	addl	$8, r5
+00007f83f001bb29	addl	$0xc, r5
+00007f83f001bb2c	movl	r5, scratch
+00007f83f001bb2e	addq	memory, scratch
+00007f83f001bb31	movl	$2, (scratch)
+00007f83f001bb37	movl	(sp), r5
+00007f83f001bb3a	movl	r5, scratch
+00007f83f001bb3c	addq	memory, scratch
+00007f83f001bb3f	movl	$1, 0x24(scratch)
+00007f83f001bb46	movl	(sp), r5
+00007f83f001bb49	movl	r5, scratch
+00007f83f001bb4b	addq	memory, scratch
+00007f83f001bb4e	movl	$0x100144, 0x10(scratch)
+00007f83f001bb55	movl	(sp), r5
+00007f83f001bb58	movl	r5, scratch
+00007f83f001bb5a	addq	memory, scratch
+00007f83f001bb5d	movl	$2, 0xc(scratch)
+00007f83f001bb64	movl	(sp), r5
+00007f83f001bb67	movl	r5, scratch
+00007f83f001bb69	addq	memory, scratch
+00007f83f001bb6c	movl	$0x100068, 8(scratch)
+00007f83f001bb73	movl	(sp), r5
+00007f83f001bb76	movl	(sp), r6
+00007f83f001bb79	addl	$4, r6
+00007f83f001bb7c	movl	r5, scratch
+00007f83f001bb7e	addq	memory, scratch
+00007f83f001bb81	movl	r6, 0x28(scratch)
+00007f83f001bb84	movl	(sp), r5
+00007f83f001bb87	movl	(sp), r6
+00007f83f001bb8a	movl	r5, scratch
+00007f83f001bb8c	addq	memory, scratch
+00007f83f001bb8f	movl	r6, 0x20(scratch)
+00007f83f001bb92	movl	(sp), r5
+00007f83f001bb95	movl	(sp), r6
+00007f83f001bb98	addl	$0x20, r6
+00007f83f001bb9b	movl	r5, scratch
+00007f83f001bb9d	addq	memory, scratch
+00007f83f001bba0	movl	r6, 0x18(scratch)
+00007f83f001bba3	movl	(sp), r5
+00007f83f001bba6	addl	$8, r5
+00007f83f001bba9	pushq	r5
+00007f83f001bbab	pushq	$0x100078
+00007f83f001bbb0	callq	_ZN4core9panicking9panic_fmt17h59066e1e00f1980fE
+00007f83f001bbb5	leaq	0x10(sp), sp
+00007f83f001bbba	callq	trap.unreachable
+00007f83f001bbbf	leaq	8(sp), sp
+00007f83f001bbc4	retq
+
+memset:
+00007f83f001bbd0	leaq	-8(sp), scratch
+00007f83f001bbd8	cmpq	stacklimit, scratch
+00007f83f001bbdb	jge	.13b
+00007f83f001bbdd	callq	trap.call_stack_exhausted
+00007f83f001bbe2 .13b:	pushq	zero
+00007f83f001bbe3	movl	0x10(sp), r5
+00007f83f001bbe7	testl	r5, r5
+00007f83f001bbe9	je	.13c
+00007f83f001bbef	movl	0x20(sp), r5
+00007f83f001bbf3	movl	r5, (sp)
+00007f83f001bbf6 .13d:	movl	(sp), r5
+00007f83f001bbf9	movl	0x18(sp), r6
+00007f83f001bbfd	movl	r5, scratch
+00007f83f001bbff	addq	memory, scratch
+00007f83f001bc02	movb	r6b, (scratch)
+00007f83f001bc05	movl	(sp), r5
+00007f83f001bc08	incl	r5
+00007f83f001bc0a	movl	r5, (sp)
+00007f83f001bc0d	movl	0x10(sp), r5
+00007f83f001bc11	addl	$-1, r5
+00007f83f001bc14	movl	r5, 0x10(sp)
+00007f83f001bc18	testl	r5, r5
+00007f83f001bc1a	je	.13c
+00007f83f001bc1c	testb	$1, suspendbit
+00007f83f001bc20	je	.13d			; back
+00007f83f001bc26	callq	.3c			; back
+00007f83f001bc2b	jmp	.13d			; back
+00007f83f001bc30 .13c:	movl	0x20(sp), r5
+00007f83f001bc34	movl	r5, result
+00007f83f001bc36	leaq	8(sp), sp
+00007f83f001bc3b	retq
+
+memcpy:
+00007f83f001bc40	leaq	-8(sp), scratch
+00007f83f001bc48	cmpq	stacklimit, scratch
+00007f83f001bc4b	jge	.13e
+00007f83f001bc4d	callq	trap.call_stack_exhausted
+00007f83f001bc52 .13e:	pushq	zero
+00007f83f001bc53	movl	0x10(sp), r5
+00007f83f001bc57	testl	r5, r5
+00007f83f001bc59	je	.13f
+00007f83f001bc5f	movl	0x20(sp), r5
+00007f83f001bc63	movl	r5, (sp)
+00007f83f001bc66 .140:	movl	(sp), r5
+00007f83f001bc69	movl	0x18(sp), r6
+00007f83f001bc6d	movl	r6, scratch
+00007f83f001bc6f	addq	memory, scratch
+00007f83f001bc72	movzbl	(scratch), r6
+00007f83f001bc75	movl	r5, scratch
+00007f83f001bc77	addq	memory, scratch
+00007f83f001bc7a	movb	r6b, (scratch)
+00007f83f001bc7d	movl	(sp), r5
+00007f83f001bc80	incl	r5
+00007f83f001bc82	movl	r5, (sp)
+00007f83f001bc85	movl	0x18(sp), r5
+00007f83f001bc89	incl	r5
+00007f83f001bc8b	movl	r5, 0x18(sp)
+00007f83f001bc8f	movl	0x10(sp), r5
+00007f83f001bc93	addl	$-1, r5
+00007f83f001bc96	movl	r5, 0x10(sp)
+00007f83f001bc9a	testl	r5, r5
+00007f83f001bc9c	je	.13f
+00007f83f001bc9e	testb	$1, suspendbit
+00007f83f001bca2	je	.140			; back
+00007f83f001bca8	callq	.3c			; back
+00007f83f001bcad	jmp	.140			; back
+00007f83f001bcb2 .13f:	movl	0x20(sp), r5
+00007f83f001bcb6	movl	r5, result
+00007f83f001bcb8	leaq	8(sp), sp
+00007f83f001bcbd	retq
+
