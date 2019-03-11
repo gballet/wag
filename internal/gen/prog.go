@@ -13,6 +13,7 @@ import (
 )
 
 const (
+	VectorOffsetGoStack       = -4 * obj.Word
 	VectorOffsetCurrentMemory = -3 * obj.Word
 	VectorOffsetGrowMemory    = -2 * obj.Word
 	VectorOffsetTrapHandler   = -1 * obj.Word

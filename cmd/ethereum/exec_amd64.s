@@ -11,6 +11,9 @@ TEXT ·exec(SB),NOSPLIT,$0-48
 	MOVQ	memoryBase+16(FP), R14
 	MOVQ	stackPtr+24(FP), CX
 
+	MOVQ	-0x20(R15), DI
+	MOVQ	SP, (DI)
+
 	MOVQ	CX, SP			// stack ptr
 
 	XORL	AX, AX

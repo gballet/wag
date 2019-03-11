@@ -55,29 +55,20 @@ TEXT ·importFinish(SB),$0-8
 	RET
 
 TEXT ethereumFinish<>(SB),NOSPLIT,$0
-	PUSHQ	AX
-	MOVQ	16(SP), AX
-	PUSHQ	AX
-	CALL	main·FinishHelper+0(SB)
-	POPQ	AX
-	MOVQ	16(SP), CX		// Bonne valeur
-	POPQ	DI				// Bonne valeur
+	// Get both arguments from the stack, before it
+	// is changed back to its previous value
+	MOVQ	8(SP), AX
+	MOVQ	16(SP), CX
 
-	// Manque SI, mais en gros ca devrait
-	// etre une valeur presente sur la pile.
-	// En admettant que je suis capable de
-	// faire une vraie allocation.
-	// 
-	//MOVQ	, SI
+	// Recover the saved value of the stack
+	MOVQ    -0x20(R15), SI
+	MOVQ	(SI), SP
 
-	// Could not find how to have a simple `REP MOVSB`
-	// to work with this shitty language by arrogant
-	// assholes who think they know everything better
-	// than anyone else.
-	retdata_copy:
-	MOVQ	(SI), AX
-	MOVQ	AX, (DI)
-	LOOP retdata_copy
+	// Store the buffer addresses and size at
+	// the location where go expects both parameters
+	// to be stored, on the initial stack.
+	MOVQ	CX, 0x28(SP)
+	MOVQ	AX, 0x30(SP)
 	RET
 
 TEXT ·importGrowMemoryHandler(SB),$0-8

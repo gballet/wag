@@ -17,6 +17,8 @@ import (
 	"syscall"
 	"unsafe"
 
+	"github.com/tsavola/wag/internal/gen"
+
 	"github.com/tsavola/wag"
 	"github.com/tsavola/wag/buffer"
 	"github.com/tsavola/wag/compile"
@@ -136,7 +138,13 @@ func main() {
 
 	vecMem := vecTextMem[:vecSize]
 	copy(vecMem[vecSize-len(importVector):], importVector)
-	binary.LittleEndian.PutUint64(vecTextMem[vecSize-4*8:], 0xdeadbeef)
+
+	contractData := make([]byte, 100 /* original rsp + size + data */)
+	binary.LittleEndian.PutUint64(contractData[8:], )
+	copy(contractData[8:], )
+	cdAddr := uint64(memAddr(contractData))
+	fmt.Println("caddr = ", cdAddr)
+	binary.LittleEndian.PutUint64(vecTextMem[vecSize+gen.VectorOffsetGoStack:], cdAddr)
 
 	textMem := vecTextMem[vecSize:]
 	textAddr := memAddr(textMem)
@@ -198,7 +206,8 @@ func main() {
 		log.Fatal("stack is too small for starting program")
 	}
 
-	exec(textAddr, stackLimit, memoryAddr, stackPtr)
+	retaddr, retsize := exec(textAddr, stackLimit, memoryAddr, stackPtr)
 
-	fmt.Println("fini")
+	fmt.Println("fini", retaddr, retsize)
+	fmt.Println("mem: ", globalsMemory[retaddr+obj.MemoryOffset:retaddr+obj.MemoryOffset+retsize])
 }
