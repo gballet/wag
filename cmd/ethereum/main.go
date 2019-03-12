@@ -139,9 +139,10 @@ func main() {
 	vecMem := vecTextMem[:vecSize]
 	copy(vecMem[vecSize-len(importVector):], importVector)
 
-	contractData := make([]byte, 100 /* original rsp + size + data */)
-	binary.LittleEndian.PutUint64(contractData[8:], )
-	copy(contractData[8:], )
+	contractData := make([]byte, 8+8+8+len("coucou2") /* original rsp + gas + size + data */)
+	binary.LittleEndian.PutUint64(contractData[8:], uint64(1000))
+	binary.LittleEndian.PutUint64(contractData[16:], uint64(len("coucou2")))
+	copy(contractData[24:], []byte("coucou2"))
 	cdAddr := uint64(memAddr(contractData))
 	fmt.Println("caddr = ", cdAddr)
 	binary.LittleEndian.PutUint64(vecTextMem[vecSize+gen.VectorOffsetGoStack:], cdAddr)

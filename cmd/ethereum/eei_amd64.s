@@ -8,10 +8,9 @@ TEXT ·importGetCallDataSize(SB),$0-8
 	RET
 
 TEXT ethereumGetCallDataSize<>(SB),NOSPLIT,$0
-	MOVQ (SP), AX
-	PUSHQ AX
-	CALL main·GetCallDataSize+0(SB)
-	POPQ AX
+	// Get pointer to the contract info area into r13
+	MOVQ    -0x20(R15), R13
+	MOVQ	0x10(R13), AX
 	RET
 
 TEXT ·importUseGas(SB),$0-8
@@ -20,11 +19,25 @@ TEXT ·importUseGas(SB),$0-8
 	RET
 
 TEXT ethereumUseGas<>(SB),NOSPLIT,$0
-	MOVQ    8(SP), AX
-	PUSHQ   AX
-	CALL main·UseGas+0(SB)
-	POPQ	AX
+	// Get pointer to the contract info area into r13
+	MOVQ    -0x20(R15), R13
+
+	MOVQ    8(SP), AX		// Gas required
+	MOVQ	0x8(R13), CX	// Gas left
+	CMPQ	AX, CX
+	JA		oog
+	
 	XORQ	AX, AX
+	XORQ	CX, CX
+	RET
+
+	oog:
+	// Set gas value to 0
+	XORQ	AX, AX
+	MOVQ	AX, 0x8(R13)
+	// Recover the saved value of the stack
+	MOVQ    -0x20(R15), SI
+	MOVQ	(SI), SP
 	RET
 
 TEXT ·importCallDataCopy(SB),$0-8
@@ -38,7 +51,7 @@ TEXT ethereumCallDataCopy<>(SB),NOSPLIT,$0
 
 	// Get pointer to input data
 	MOVQ	R13, SI
-	ADDQ	$0x10, SI		// start of input buffer
+	ADDQ	$0x18, SI		// start of input buffer
 	MOVQ	0x10(SP), AX	// rax = input data offset
 	ADDQ	AX, SI
 
@@ -46,7 +59,7 @@ TEXT ethereumCallDataCopy<>(SB),NOSPLIT,$0
 	// copied to the destination buffer
 	MOVQ	0x8(SP), CX		// rcx = number of bytes
 	ADDQ	CX, AX			// rax = input buffer + nbytes
-	MOVQ	0x8(R13), R12	// r12 = max size
+	MOVQ	0x10(R13), R12	// r12 = max size
 	CMPQ	AX, R12
 	JA		eei_error
 
