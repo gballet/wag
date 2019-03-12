@@ -90,6 +90,28 @@ TEXT ethereumFinish<>(SB),NOSPLIT,$0
 	MOVQ	AX, 0x30(SP)
 	RET
 
+TEXT ·importRevert(SB),$0-8
+	LEAQ	ethereumRevert<>(SB), AX
+	MOVQ	AX, ret+0(FP)
+	RET
+
+TEXT ethereumRevert<>(SB),NOSPLIT,$0
+	// Get both arguments from the stack, before it
+	// is changed back to its previous value
+	MOVQ	8(SP), AX
+	MOVQ	16(SP), CX
+
+	// Recover the saved value of the stack
+	MOVQ    -0x20(R15), SI
+	MOVQ	(SI), SP
+
+	// Store the buffer addresses and size at
+	// the location where go expects both parameters
+	// to be stored, on the initial stack.
+	MOVQ	CX, 0x28(SP)
+	MOVQ	AX, 0x30(SP)
+	RET
+
 TEXT ·importGrowMemoryHandler(SB),$0-8
 	LEAQ	growMemoryHandler<>(SB), AX
 	MOVQ	AX, ret+0(FP)
