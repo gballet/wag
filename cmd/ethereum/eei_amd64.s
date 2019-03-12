@@ -33,20 +33,39 @@ TEXT ·importCallDataCopy(SB),$0-8
 	RET
 
 TEXT ethereumCallDataCopy<>(SB),NOSPLIT,$0
-    PUSHQ   AX
-	MOVQ	32(SP), AX
-	PUSHQ	AX
-	MOVQ	32(SP), AX
-	PUSHQ	AX
-	MOVQ	32(SP), AX
-	PUSHQ	AX
+	// Get pointer to the contract info area into r13
+	MOVQ    -0x20(R15), R13
 
-	//CALL main·CallDataCopyHelper+0(SB)
+	// Get pointer to input data
+	MOVQ	R13, SI
+	ADDQ	$0x10, SI		// start of input buffer
+	MOVQ	0x10(SP), AX	// rax = input data offset
+	ADDQ	AX, SI
 
-	POPQ	AX
-	POPQ	AX
-	POPQ	AX
-	POPQ	AX
+	// Load and check the size of data to be
+	// copied to the destination buffer
+	MOVQ	0x8(SP), CX		// rcx = number of bytes
+	ADDQ	CX, AX			// rax = input buffer + nbytes
+	MOVQ	0x8(R13), R12	// r12 = max size
+	CMPQ	AX, R12
+	JA		eei_error
+
+	// Load address of the destination buffer
+	MOVQ	0x18(SP), DI
+	ADDQ	R14, DI
+
+	copy:
+	MOVB	(SI), AX
+	MOVB	AX, (DI)
+	ADDQ	$1, SI
+	ADDQ	$1, DI
+	LOOP	copy
+	RET
+
+	eei_error:
+	// Recover the saved value of the stack
+	MOVQ    -0x20(R15), SI
+	MOVQ	(SI), SP
 	RET
 
 TEXT ·importFinish(SB),$0-8
