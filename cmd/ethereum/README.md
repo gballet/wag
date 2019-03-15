@@ -2,7 +2,7 @@
 
 ## Installation instructions
 
-Sync the repo and build the executable:
+Sync the repo, check out the `runtime-design` branch and build the executable:
 
 ```
 $ go build ./cmd/ethereum/...
