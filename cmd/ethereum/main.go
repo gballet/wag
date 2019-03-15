@@ -107,6 +107,7 @@ func main() {
 		stackSize = wa.PageSize
 		entry     = "main"
 		dumpText  = false
+		inputData = "Hello, world!"
 	)
 
 	flag.BoolVar(&verbose, "v", verbose, "verbose logging")
@@ -114,6 +115,7 @@ func main() {
 	flag.IntVar(&stackSize, "stacksize", stackSize, "call stack size")
 	flag.StringVar(&entry, "entry", entry, "function to run")
 	flag.BoolVar(&dumpText, "dumptext", dumpText, "disassemble the generated code to stdout")
+	flag.StringVar(&inputData, "input", inputData, "An (escaped) string representing the bytes of the input")
 	flag.Parse()
 
 	if flag.NArg() != 1 {
@@ -129,7 +131,6 @@ func main() {
 	progReader := bytes.NewReader(prog)
 
 	vecSize := alignSize(len(importVector), os.Getpagesize())
-	fmt.Println("vec size=", vecSize)
 
 	vecTextMem, err := makeMem(vecSize+textSize, syscall.PROT_READ|syscall.PROT_WRITE, 0)
 	if err != nil {
@@ -139,12 +140,11 @@ func main() {
 	vecMem := vecTextMem[:vecSize]
 	copy(vecMem[vecSize-len(importVector):], importVector)
 
-	contractData := make([]byte, 8+8+8+len("coucou2") /* original rsp + gas + size + data */)
+	contractData := make([]byte, 8+8+8+len(inputData) /* original rsp + gas + size + data */)
 	binary.LittleEndian.PutUint64(contractData[8:], uint64(1000))
-	binary.LittleEndian.PutUint64(contractData[16:], uint64(len("coucou2")))
-	copy(contractData[24:], []byte("coucou2"))
+	binary.LittleEndian.PutUint64(contractData[16:], uint64(len(inputData)))
+	copy(contractData[24:], []byte(inputData))
 	cdAddr := uint64(memAddr(contractData))
-	fmt.Println("caddr = ", cdAddr)
 	binary.LittleEndian.PutUint64(vecTextMem[vecSize+gen.VectorOffsetGoStack:], cdAddr)
 
 	textMem := vecTextMem[vecSize:]
@@ -167,7 +167,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-	fmt.Println("initial memory size:", obj.InitialMemorySize, obj.MemoryOffset)
 	setImportVectorCurrentMemory(obj.InitialMemorySize)
 
 	globalsMemory, err := makeMem(obj.MemoryOffset+linearMemoryAddressSpace, syscall.PROT_NONE, 0)
@@ -209,6 +208,5 @@ func main() {
 
 	retaddr, retsize := exec(textAddr, stackLimit, memoryAddr, stackPtr)
 
-	fmt.Println("fini", retaddr, retsize)
-	fmt.Println("mem: ", globalsMemory[retaddr+obj.MemoryOffset:retaddr+obj.MemoryOffset+retsize])
+	fmt.Println("result: ", globalsMemory[retaddr+obj.MemoryOffset:retaddr+obj.MemoryOffset+retsize])
 }

@@ -2,12 +2,7 @@ package main
 
 import (
 	"encoding/binary"
-	"fmt"
 )
-
-func Caca() {
-	fmt.Println("caca")
-}
 
 func importGetCallDataSize() uint64
 func importUseGas() uint64
@@ -15,9 +10,6 @@ func importCallDataCopy() uint64
 func importFinish() uint64
 func importRevert() uint64
 func importGrowMemoryHandler() uint64
-
-var callData = []byte("coucou1")
-var result []byte
 
 func init() {
 	importVector = make([]byte, (5+4)*8)
