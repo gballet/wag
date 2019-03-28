@@ -27,13 +27,16 @@ TEXT ethereumUseGas<>(SB),NOSPLIT,$0
 	CMPQ	AX, CX
 	JA		oog
 	
+	SUBQ	AX, CX
+	MOVQ	CX, 0x8(R13)
 	XORQ	AX, AX
 	XORQ	CX, CX
 	RET
 
 	oog:
-	// Set gas value to 0
+	// Set gas value to -1
 	XORQ	AX, AX
+	NOTQ	AX
 	MOVQ	AX, 0x8(R13)
 	// Recover the saved value of the stack
 	MOVQ    -0x20(R15), SI

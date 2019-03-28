@@ -8,6 +8,7 @@ package main
 import (
 	"bytes"
 	"encoding/binary"
+	"encoding/hex"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -108,6 +109,8 @@ func main() {
 		entry     = "main"
 		dumpText  = false
 		inputData = "Hello, world!"
+		inputHex  = ""
+		startGas  = uint64(1000)
 	)
 
 	flag.BoolVar(&verbose, "v", verbose, "verbose logging")
@@ -116,6 +119,8 @@ func main() {
 	flag.StringVar(&entry, "entry", entry, "function to run")
 	flag.BoolVar(&dumpText, "dumptext", dumpText, "disassemble the generated code to stdout")
 	flag.StringVar(&inputData, "input", inputData, "An (escaped) string representing the bytes of the input")
+	flag.StringVar(&inputHex, "input-hex", inputHex, "A string containing the hex representation of the bytes of the input. Overrides -input")
+	flag.Uint64Var(&startGas, "startgas", startGas, "Initial amount of gas to start the program with")
 	flag.Parse()
 
 	if flag.NArg() != 1 {
@@ -140,10 +145,21 @@ func main() {
 	vecMem := vecTextMem[:vecSize]
 	copy(vecMem[vecSize-len(importVector):], importVector)
 
-	contractData := make([]byte, 8+8+8+len(inputData) /* original rsp + gas + size + data */)
-	binary.LittleEndian.PutUint64(contractData[8:], uint64(1000))
-	binary.LittleEndian.PutUint64(contractData[16:], uint64(len(inputData)))
-	copy(contractData[24:], []byte(inputData))
+	var input []byte
+	if len(inputHex) != 0 {
+		input, err = hex.DecodeString(inputHex)
+		if err != nil {
+			fmt.Println("Cannot decode hex string", inputHex)
+			os.Exit(1)
+		}
+	} else {
+		input = []byte(inputData)
+	}
+
+	contractData := make([]byte, 8+8+8+len(input) /* original rsp + gas + size + data */)
+	binary.LittleEndian.PutUint64(contractData[8:], startGas)
+	binary.LittleEndian.PutUint64(contractData[16:], uint64(len(input)))
+	copy(contractData[24:], input)
 	cdAddr := uint64(memAddr(contractData))
 	binary.LittleEndian.PutUint64(vecTextMem[vecSize+gen.VectorOffsetGoStack:], cdAddr)
 
@@ -208,5 +224,10 @@ func main() {
 
 	retaddr, retsize := exec(textAddr, stackLimit, memoryAddr, stackPtr)
 
-	fmt.Println("result: ", globalsMemory[retaddr+obj.MemoryOffset:retaddr+obj.MemoryOffset+retsize])
+	gasLeft := binary.LittleEndian.Uint64(contractData[8:])
+	if gasLeft == 0xffffffffffffffff {
+		fmt.Println("Out of gas")
+	} else {
+		fmt.Println("gas left: ", gasLeft, "result: ", globalsMemory[retaddr+obj.MemoryOffset:retaddr+obj.MemoryOffset+retsize])
+	}
 }
